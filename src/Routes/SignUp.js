@@ -11,6 +11,7 @@ import {
   BsFillPersonFill,
 } from 'react-icons/bs';
 import { AiOutlineMail } from 'react-icons/ai';
+import axios from 'axios';
 
 import { UserContext } from '../App';
 import appNamesArray from '../data/appNames';
@@ -24,19 +25,20 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // handling user input errors.
-  const [firstNameErrorExists, setFirstNameErrorExists] = useState(false);
-  const [lastNameErrorExists, setLastNameErrorExists] = useState(false);
-  const [emailErrorExists, setEmailErrorExists] = useState(false);
-  const [passwordErrorExists, setPasswordErrorExists] = useState(false);
-  const [confirmPasswordErrorExists, setConfirmPasswordErrorExists] =
+  // handling user input errors
+  const [hasFirstNameError, setHasFirstNameError] = useState(false);
+  const [hasLastNameError, setHasLastNameError] = useState(false);
+  const [hasEmailError, setHasEmailError] = useState(false);
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+  const [hasConfirmPasswordError, setHasConfirmPasswordError] =
     useState(false);
+  const [hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
 
   const [firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
   const [lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
@@ -44,6 +46,7 @@ const SignUp = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
     useState(null);
+  const [passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -61,27 +64,27 @@ const SignUp = () => {
 
   // updating state values.
   const UpdatefirstName = (event) => {
-    setFirstNameErrorExists(false);
+    setHasFirstNameError(false);
     setFirstName(event.target.value.trim());
   };
 
   const UpdatelastName = (event) => {
-    setLastNameErrorExists(false);
+    setHasLastNameError(false);
     setLastName(event.target.value.trim());
   };
 
   const UpdateEmail = (event) => {
-    setEmailErrorExists(false);
+    setHasEmailError(false);
     setEmail(event.target.value.trim());
   };
 
   const UpdatePassword = (event) => {
-    setPasswordErrorExists(false);
+    setHasPasswordError(false);
     setPassword(event.target.value);
   };
 
   const UpdateConfirmPassword = (event) => {
-    setConfirmPasswordErrorExists(false);
+    setHasConfirmPasswordError(false);
     setConfirmPassword(event.target.value);
   };
 
@@ -94,78 +97,79 @@ const SignUp = () => {
   };
 
   const CreateNewUser = async () => {
-    try {
-      setFirstNameErrorExists(false);
-      setLastNameErrorExists(false);
-      setEmailErrorExists(false);
-      setPasswordErrorExists(false);
-      setConfirmPasswordErrorExists(false);
+      setHasFirstNameError(false);
+      setHasLastNameError(false);
+      setHasEmailError(false);
+      setHasPasswordError(false);
+      setHasConfirmPasswordError(false);
       setOtherError(null);
 
-      if (
-        email.length < 1 ||
-        firstName.length < 1 ||
-        lastName.length < 1 ||
-        password.length < 1 ||
-        confirmPassword.length < 1
-      ) {
-        if (firstName.length < 1) {
-          setFirstNameErrorExists(true);
+      if( !firstName || !lastName || !email || !password || !confirmPassword ) {
+        if (!firstName) {
+          setHasFirstNameError(true);
           setFirstNameErrorMessage('First name is required *');
-        } else {
-          setFirstNameErrorExists(false);
+          console.log("first name is required")
+        } 
+        else {
+          setHasFirstNameError(false);
         }
 
-        if (lastName.length < 1) {
-          setLastNameErrorExists(true);
+        if (!lastName) {
+          setHasLastNameError(true);
           setLastNameErrorMessage('Last name is required *');
+          console.log("last name is required")
         } else {
-          setLastNameErrorExists(false);
+          setHasLastNameError(false);
         }
 
-        if (email.length < 1) {
-          setEmailErrorExists(true);
+        if (!email) {
+          setHasEmailError(true);
           setEmailErrorMessage('E-mail is required *');
+          console.log("e-mail is required")
         } else {
-          setEmailErrorExists(false);
+          setHasEmailError(false);
         }
 
-        if (password.length < 1) {
-          setPasswordErrorExists(true);
+        if (!password) {
+          setHasPasswordError(true);
           setPasswordErrorMessage('Password is required *');
+          console.log("password is required")
         } else {
-          setPasswordErrorExists(false);
+          setHasPasswordError(false);
         }
 
-        if (confirmPassword.length < 1) {
-          setConfirmPasswordErrorExists(true);
+        if (!confirmPassword) {
+          setHasConfirmPasswordError(true);
           setConfirmPasswordErrorMessage('Password confirmation is required *');
+          console.log("confirm password is required")
         } else {
-          setConfirmPasswordErrorExists(false);
+          setHasConfirmPasswordError(false);
         }
-      } else if (password !== confirmPassword) {
-        setPasswordErrorExists(true);
-        setConfirmPasswordErrorExists(true);
-        setPasswordErrorMessage('Passwords do not match');
-        setConfirmPasswordErrorMessage('Passwords do not match');
-      } else if (password === confirmPassword) {
-        // if (!existingUser) {
-        //   let newUser = {
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     email: email,
-        //     password: password,
-        //   }
-          // make api call to create user
-          // console.log("new user data", newUser);
-        // } else {
-          // alert('A user is already logged in. Please log out before creating a new account.');
-          // throw new Error('a user is already logged in..');
-        // }
       }
-    } catch (error) {
-      // handle errors appropriately
-    }
+      else {
+        if( password !== confirmPassword ) {
+          setHasPasswordsMismatchError(true)
+          setPasswordsMismatchErrorMessage("Password and confirm passwords must match")
+          console.log("Password and confirm passwords must match")
+        }
+        else {
+          let signUpPayload = {
+            firstName,
+            lastName,
+            email,
+            password
+          }
+          
+          axios.post(`${ process.env.REACT_APP_DEV_API_URL }/auth/register`, signUpPayload)
+          .then( response => {
+            console.log("sign up response = ", response.data)
+          })
+          .catch( error => {
+            console.log("sign up error, ", error)
+          })
+        }
+      }
+
   };
 
 
@@ -192,7 +196,7 @@ const SignUp = () => {
               <div className="input-group-margin">
                 <InputGroup
                   className={
-                    firstNameErrorExists
+                    hasFirstNameError
                       ? 'input-group-error'
                       : 'input-group-style'
                   }
@@ -213,7 +217,7 @@ const SignUp = () => {
               <div className="input-group-margin">
                 <InputGroup
                   className={
-                    lastNameErrorExists
+                    hasLastNameError
                       ? 'input-group-error'
                       : 'input-group-style'
                   }
@@ -236,7 +240,7 @@ const SignUp = () => {
               <div className="input-group-margin">
                 <InputGroup
                   className={
-                    emailErrorExists ? 'input-group-error' : 'input-group-style'
+                    hasEmailError ? 'input-group-error' : 'input-group-style'
                   }
                 >
                   <Form.Control
@@ -255,7 +259,7 @@ const SignUp = () => {
               <div className="input-group-margin">
                 <InputGroup
                   className={
-                    passwordErrorExists
+                    hasPasswordError
                       ? 'input-group-error'
                       : 'input-group-style'
                   }
@@ -287,7 +291,7 @@ const SignUp = () => {
               <div className="input-group-margin">
                 <InputGroup
                   className={
-                    confirmPasswordErrorExists
+                    hasConfirmPasswordError
                       ? 'input-group-error'
                       : 'input-group-style'
                   }

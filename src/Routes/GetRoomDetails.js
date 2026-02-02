@@ -96,6 +96,7 @@ const GetRoomDetails = () => {
       if (response.status === 200) {
         let data = await response.json();
         setselectedRoomDetailsObject({ ...data });
+        console.log("selected room ", selectedRoomDetailsObject)
         setTimeout(() => {
           setIsLoadingHotelDetails(false);
         }, 1000);
