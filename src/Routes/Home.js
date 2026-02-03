@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -32,10 +33,10 @@ import meeting_room_pictures_array from '../data/meetingRoomData.js';
 
 const Home = () => {
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
+  const api_url = process.env.REACT_APP_DEV_API_URL;
   const all_hotels_section_ref = useRef(null);
 
-  const [roomsArray, setRoomsArray] = useState([]);
+  const [hotelsArray, setHotelsArray] = useState([]);
   const [loadingHotels, setIsLoadingHotels] = useState(true);
   const [fetchError, setFetchError] = useState(false);
   const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
@@ -50,6 +51,21 @@ const Home = () => {
       behavior: 'smooth',
     });
   }, []);
+
+
+  // fetch all hotels from database
+  useEffect(() => {
+    console.log("before fetch, hotels array is ", hotelsArray)
+    axios.get(`${ api_url }/hotels/get-all-hotels`)
+    .then( response => {
+      let hotelsList = response.data.data
+      setHotelsArray(hotelsList)
+      setTimeout(() => {
+        console.log("after fetch, hotels array is ", hotelsArray)
+      }, 3000)
+    })
+    .catch( error => console.log("Error fetching all hotels ", error))
+  },[])
 
 
   // special deals pictures array.
@@ -143,29 +159,29 @@ const Home = () => {
             className="main-hotels-section-row"
             ref={all_hotels_section_ref}
           >
-            {AllHotelsArray.map((room, index) => (
-              <Col key={index}>
+            {hotelsArray.map((hotel) => (
+              <Col key={hotel.id}>
                 <Card
                   className="cover-page-card-style"
                   onClick={() =>
                     navigate(
-                      `/get-room-details/${room.room_number}/${room._id}`
+                      `/get-room-details/${hotel.hotelName}/${hotel.id}`
                     )
                   }
                 >
                   <Card.Img
-                    src={room.room_cover_photo_url}
-                    alt=""
+                    src={hotel.coverImageURL}
+                    alt="Hotel cover image"
                     className="hotel-card-img"
                   />
                   <Card.Body>
                     <Card.Title className="card-title">
-                      <section className="mb-3">{room.room_number}</section>
+                      <section className="mb-3">{hotel.hotelName}</section>
 
                       <section>
                         <Rating
                           name="read-only"
-                          value={room.room_rating}
+                          value={hotel.starRating}
                           readOnly
                         />
                       </section>
@@ -175,11 +191,11 @@ const Home = () => {
                       <div>
                         <section className="card-room-location">
                           <IoLocationSharp />{' '}
-                          <h6 className="location-detail">Accra</h6>
+                          <h6 className="location-detail">{hotel.city}</h6>
                         </section>
 
                         <section className="card-room-rate">
-                          GH<span>&#8373;</span> {room.room_rate} per night
+                          GH<span>&#8373;</span> {hotel.priceRange} per night
                         </section>
                       </div>
                     </Card.Subtitle>

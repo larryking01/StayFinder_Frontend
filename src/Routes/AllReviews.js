@@ -24,7 +24,7 @@ const Reviews = () => {
 
   // handling state.
   const [allReviewsArray, setAllReviewsArray] = useState([]);
-  const [selectedRoomDetailsObject, setselectedRoomDetailsObject] = useState(
+  const [selectedHotel, setselectedHotel] = useState(
     {}
   );
   const [fetchError, setFetchError] = useState(false);
@@ -60,7 +60,7 @@ const Reviews = () => {
       if (response.status === 200) {
         console.log(`selected room success response is ${response.status}`);
         let data = await response.json();
-        setselectedRoomDetailsObject({ ...data });
+        setselectedHotel({ ...data });
         setTimeout(() => {
           setIsLoadingHotelDetails(false);
         }, 1000);
@@ -205,7 +205,7 @@ const Reviews = () => {
                 <Col>
                   <img
                     className="all-reviews-images-styling"
-                    src={selectedRoomDetailsObject.room_cover_photo_url}
+                    src={selectedHotel.room_cover_photo_url}
                     alt=""
                   />
                 </Col>
@@ -213,7 +213,7 @@ const Reviews = () => {
                 <Col>
                   <img
                     className="all-reviews-images-styling"
-                    src={selectedRoomDetailsObject.room_extra_photo_url_1}
+                    src={selectedHotel.room_extra_photo_url_1}
                     alt=""
                   />
                 </Col>
@@ -221,7 +221,7 @@ const Reviews = () => {
                 <Col>
                   <img
                     className="all-reviews-images-styling"
-                    src={selectedRoomDetailsObject.room_extra_photo_url_2}
+                    src={selectedHotel.room_extra_photo_url_2}
                     alt=""
                   />
                 </Col>

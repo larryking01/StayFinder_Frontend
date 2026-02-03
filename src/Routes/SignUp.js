@@ -21,6 +21,7 @@ import appNamesArray from '../data/appNames';
 
 
 const SignUp = () => {
+  const api_url = process.env.REACT_APP_DEV_API_URL;
   const brand_name = appNamesArray[0];
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -159,8 +160,8 @@ const SignUp = () => {
             email,
             password
           }
-          
-          axios.post(`${ process.env.REACT_APP_DEV_API_URL }/auth/register`, signUpPayload)
+
+          axios.post(`${ api_url }/auth/register`, signUpPayload)
           .then( response => {
             console.log("sign up response = ", response.data)
           })
