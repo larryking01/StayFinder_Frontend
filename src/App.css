@@ -638,6 +638,16 @@
   color: var(--primary-color);
 }
 
+.amenity-wrapper {
+  /* background-color: #6495ed; */
+  margin-bottom: 1rem;
+  width: 10rem;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid grey;
+  text-align: center;
+}
+
 .srd-padding-bottom {
   padding-bottom: 3%;
 }
