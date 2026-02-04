@@ -21,6 +21,7 @@ import StartDatePicker from '../Configuration/StartDatePicker';
 import EndDatePicker from '../Configuration/EndDatePicker';
 // import Maps2 from '../Configuration/Maps2';
 import goodToKnowArray from '../data/hotelGoodToKnowData';
+import { formatDate, formatTime } from '../helpers/formatDate.helper';
 
 
 
@@ -136,6 +137,20 @@ const GetRoomDetails = () => {
 
   //   FetchAllReviews();
   // }, []);
+
+  useEffect(() => {
+    axios.get(`${ api_url }/reviews/get-hotel-reviews/${ selectedHotelId }`)
+    .then( response => {
+      let hotelReviews = response.data.data
+      setAllReviewsArray( hotelReviews )
+      console.log("hotel reviews", hotelReviews) 
+      console.log("reviews array = ", allReviewsArray)
+    })
+    .catch( error => {
+      // handle errors gracefully
+    })
+
+  },[])
 
 
   // updating reviewer email state
@@ -542,23 +557,14 @@ const GetRoomDetails = () => {
                 Hotel Amenities
               </h3>
               <Row xs={3} md={6}>
-                {selectedHotel ? (
-                  selectedHotel.room_features ? (
-                    selectedHotel.room_features.map(
-                      (feature, index) => (
-                        <Col key={index}>
-                          <div className="selected-room-features-amenities-div">
-                            <h5>{feature}</h5>
-                          </div>
-                        </Col>
-                      )
-                    )
-                  ) : (
-                    <h3>failed to load hotel features...</h3>
-                  )
-                ) : (
-                  <h3>couldn't fetch selected room details...</h3>
-                )}
+                {
+                  Object.keys(selectedHotel).length === 0 ?
+                  <p>No features to display currently...</p>
+                  :
+                  selectedHotel.amenities.map((amenity, index) => (
+                    <Col key={ index }>{ amenity }</Col>
+                  ))
+                }
               </Row>
             </section>
 
@@ -582,7 +588,7 @@ const GetRoomDetails = () => {
             </section>
 
             <section className="selected-room-details-sub-section">
-              <h3 className="selected-room-details-sub-header">Reviews</h3>
+              <h3 className="selected-room-details-sub-header">Guest Reviews</h3>
               {allReviewsArray.map((review, index) => (
                 <div className="posted-reviews-wrapper-div" key={index}>
                   <section className="reviewer-info">
@@ -591,17 +597,17 @@ const GetRoomDetails = () => {
                     </div>
 
                     <div className="reviewer-info-name-date">
-                      <h5 className="reviewer-name"> {review.user_email} </h5>
+                      <h5 className="reviewer-name"> {review.user_name} </h5>
                       <p className="review-date">
-                        Wrote a review {review.review_date} @{' '}
-                        {review.review_time}{' '}
+                        Reviewed: {formatDate(review.created_at)} @{' '}
+                        {formatTime(review.created_at)}{' '}
                       </p>
                     </div>
                   </section>
 
                   <section className="review-body">
                     <Row>
-                      <p className="review-body-text">{review.review_body}</p>
+                      <p className="review-body-text">{review.review_content}</p>
                     </Row>
                     <hr />
                   </section>
@@ -614,7 +620,7 @@ const GetRoomDetails = () => {
                   className="see-all-reviews-btn"
                   onClick={() =>
                     navigate(
-                      `/all-reviews/${params.hotel_name}/${params.hotel_id}`
+                      `/all-reviews/${selectedHotelName}/${selectedHotelId}`
                     )
                   }
                 >
