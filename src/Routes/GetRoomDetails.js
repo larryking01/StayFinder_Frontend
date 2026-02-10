@@ -29,7 +29,7 @@ import { formatDate, formatTime } from '../helpers/formatDate.helper';
 
 
 const GetRoomDetails = () => {
-  const api_url = process.env.REACT_APP_DEV_API_URL;
+  const api_url = process.env.REACT_APP_PROD_API_URL;
 
   const params = useParams();
   let selectedHotelName = params.hotel_name;
@@ -43,6 +43,7 @@ const GetRoomDetails = () => {
   const locationRef = useRef(null)
   const reviewsRef = useRef(null)
   const pricingRef = useRef(null)
+  const policiesRef = useRef(null)
 
   // for state.
   const [selectedHotel, setSelectedHotel] = useState({});
@@ -62,6 +63,7 @@ const GetRoomDetails = () => {
   const [isLoadingReviews, setIsLoadingReviews] = useState(true);
   const [reviewsError, setReviewsError] = useState(false);
   const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
+  const [ hotelGalleryImages, setHotelGalleryImages ] = useState([])
 
   // destructure user booking hotel extra info.
   const {
@@ -95,6 +97,9 @@ const GetRoomDetails = () => {
       let matchingHotel = response.data.data[0]
       console.log("matching hotel ", matchingHotel) 
       setSelectedHotel({ ...matchingHotel } )
+      let galleryImages = matchingHotel.galleryImages
+      console.log("gallery images = ", galleryImages)
+      setHotelGalleryImages([...galleryImages])
       console.log("hotel details ", selectedHotel) 
       setTimeout(() => {
         setIsLoadingHotelDetails( false )
@@ -158,6 +163,12 @@ const GetRoomDetails = () => {
 
   const ScrollToPricingSection = () => {
     pricingRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToPoliciesSection = () => {
+    policiesRef.current.scrollIntoView({
       behavior: 'smooth'
     })
   }
@@ -329,7 +340,7 @@ const GetRoomDetails = () => {
               </p>
             ) : null}
 
-            <section className="selected-room-checkin-dates">
+            {/* <section className="selected-room-checkin-dates">
               <Form className="selected-room-details-destination-form">
                 <Row xs={1} md={3}>
                   <Col className="selected-room-details-destination-column">
@@ -490,10 +501,10 @@ const GetRoomDetails = () => {
                   </Col>
                 </Row>
               </Form>
-            </section>
+            </section> */}
 
 
-            <section className="book-now-section">
+            {/* <section className="book-now-section">
               <Button
                 variant="custom"
                 className="book-now-button-first"
@@ -501,29 +512,45 @@ const GetRoomDetails = () => {
               >
                 Book Now
               </Button>
+            </section> */}
+
+
+            <section className="selected-room-details-headers">
+              <div className="hotel-gallery-grid">
+                {
+                  hotelGalleryImages.map((galleryImage, index) => (
+                    <img src={ galleryImage } key={ index } className="gallery-item" alt="hotel gallery image"/>
+                  ))
+                }
+
+              </div>
             </section>
 
 
             <section className="selected-room-details-headers">
-              <Row md={5} xs={3}>
+              <Row md={6} xs={3}>
                 <Col onClick={ ScrollToDescriptionSection }>
-                  <p className="selected-room-details-price-text">Description</p>
+                  <p className="hotel-details-heading">Description</p>
                 </Col>
 
                 <Col onClick={ ScrollToAmenitiesSection }>
-                <p className="selected-room-details-price-text">Amenities</p>
+                <p className="hotel-details-heading">Amenities</p>
                 </Col>
 
                 <Col onClick={ ScrollToLocationSection }>
-                  <p className="selected-room-details-price-text">Location</p>
-                </Col>
-
-                <Col onClick={ ScrollToReviewsSection }>
-                  <p className="selected-room-details-price-text">Reviews</p>
+                  <p className="hotel-details-heading">Location</p>
                 </Col>
 
                 <Col onClick={ ScrollToPricingSection }>
-                 <p className="selected-room-details-price-text">Pricing</p> 
+                 <p className="hotel-details-heading">Pricing</p> 
+                </Col>
+
+                <Col onClick={ ScrollToPoliciesSection }>
+                 <p className="hotel-details-heading">Policies</p> 
+                </Col>
+
+                <Col onClick={ ScrollToReviewsSection }>
+                  <p className="hotel-details-heading">Reviews</p>
                 </Col>
               </Row>
               <hr />
@@ -570,7 +597,7 @@ const GetRoomDetails = () => {
                 selectedRoomLongitude={selectedHotel.room_longitude}
               /> */}
 
-              <div className="book-now-btn-row">
+              {/* <div className="book-now-btn-row">
                 <Button
                   variant="custom"
                   className="book-now-button-last"
@@ -578,11 +605,16 @@ const GetRoomDetails = () => {
                 >
                   Book Hotel Now
                 </Button>
-              </div>
+              </div> */}
             </section>
 
 
-            <section className="selected-room-details-sub-section">
+            <section className="selected-room-details-sub-section" ref={ pricingRef }>
+              <h3 className="selected-room-details-sub-header">Pricing</h3>
+            </section>
+
+
+            <section className="selected-room-details-sub-section" ref={ policiesRef }>
               <h3 className="selected-room-details-sub-header srd-padding-bottom">
                 Good to know
               </h3>

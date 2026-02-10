@@ -33,7 +33,7 @@ import meeting_room_pictures_array from '../data/meetingRoomData.js';
 
 const Home = () => {
 
-  const api_url = process.env.REACT_APP_DEV_API_URL;
+  const api_url = process.env.REACT_APP_PROD_API_URL;
   const all_hotels_section_ref = useRef(null);
 
   const [hotelsArray, setHotelsArray] = useState([]);

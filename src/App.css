@@ -612,15 +612,35 @@
   font-weight: bolder;
 }
 
-.selected-room-details-price-text {
+.hotel-details-heading {
   font-family: 'Lora', serif;
   color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .selected-room-details-headers {
-  padding-left: 6%;
-  padding-right: 6%;
+  padding: 0 6%;
 }
+
+.hotel-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  /* grid-template-rows: repeat(3, 10rem); */
+  grid-auto-rows: 10rem;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+
+.gallery-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+
+
 
 .hotel-feature-header {
   font-weight: bold;
@@ -1994,10 +2014,6 @@
   .book-now-button-last {
     width: 85%;
     margin-bottom: 10%;
-  }
-
-  .selected-room-details-price-text {
-    font-size: 1rem;
   }
 
   .book-now-btn-row {
