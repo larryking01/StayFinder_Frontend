@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -18,8 +19,9 @@ import NavbarComponent from './NavBar';
 import Footer from './Footer';
 import StartDatePicker from '../Configuration/StartDatePicker';
 import EndDatePicker from '../Configuration/EndDatePicker';
-import Maps2 from '../Configuration/Maps2';
+// import Maps2 from '../Configuration/Maps2';
 import goodToKnowArray from '../data/hotelGoodToKnowData';
+import { formatDate, formatTime } from '../helpers/formatDate.helper';
 
 
 
@@ -27,21 +29,24 @@ import goodToKnowArray from '../data/hotelGoodToKnowData';
 
 
 const GetRoomDetails = () => {
-  const server_url = process.env.REACT_APP_SERVER_URL;
+  const api_url = process.env.REACT_APP_PROD_API_URL;
 
   const params = useParams();
-  let booking_room_id = params.hotel_id;
-  let hotel_name = params.hotel_name;
+  let selectedHotelName = params.hotel_name;
+  let selectedHotelId = params.hotel_id;
 
   const navigate = useNavigate();
 
-  const reviewRef = useRef(null);
   const dateDurationRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const amenitiesRef = useRef(null);
+  const locationRef = useRef(null)
+  const reviewsRef = useRef(null)
+  const pricingRef = useRef(null)
+  const policiesRef = useRef(null)
 
   // for state.
-  const [selectedRoomDetailsObject, setselectedRoomDetailsObject] = useState(
-    {}
-  );
+  const [selectedHotel, setSelectedHotel] = useState({});
 
   const [fetchError, setFetchError] = useState(false);
   const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
@@ -58,6 +63,7 @@ const GetRoomDetails = () => {
   const [isLoadingReviews, setIsLoadingReviews] = useState(true);
   const [reviewsError, setReviewsError] = useState(false);
   const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
+  const [ hotelGalleryImages, setHotelGalleryImages ] = useState([])
 
   // destructure user booking hotel extra info.
   const {
@@ -83,59 +89,93 @@ const GetRoomDetails = () => {
     });
   }, []);
 
+
   // fetch details of selected room.
   useEffect(() => {
-    const FetchData = async () => {
-      let response = await fetch(
-        `${server_url}/get/room-details/${params.hotel_name}/${params.hotel_id}`,
-        {
-          method: 'GET',
-        }
+    axios.get(`${ api_url }/hotels/find-hotel/${ selectedHotelId }`)
+    .then( response => {
+      let matchingHotel = response.data.data[0]
+      console.log("matching hotel ", matchingHotel) 
+      setSelectedHotel({ ...matchingHotel } )
+      let galleryImages = matchingHotel.galleryImages
+      console.log("gallery images = ", galleryImages)
+      setHotelGalleryImages([...galleryImages])
+      console.log("hotel details ", selectedHotel) 
+      setTimeout(() => {
+        setIsLoadingHotelDetails( false )
+      }, 1000)
+    })
+    .catch( error => {
+      console.log("error fetching hotel details, ", error)
+      setTimeout(() => {
+        setIsLoadingHotelDetails( false )
+      }, 1000)
+      setFetchError(true);
+      setFetchErrorMessage(
+        'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
       );
+      // handle errors gracefully
+    })
 
-      if (response.status === 200) {
-        let data = await response.json();
-        setselectedRoomDetailsObject({ ...data });
-        setTimeout(() => {
-          setIsLoadingHotelDetails(false);
-        }, 1000);
-      } else {
-        setIsLoadingHotelDetails(false);
-        setFetchError(false);
-        setFetchErrorMessage(
-          'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
-        );
-      }
-    };
+  },[])
 
-    FetchData();
-  }, []);
 
-  // effect hook to fetch all reviews.
+
   useEffect(() => {
-    const FetchAllReviews = async () => {
-      let response = await fetch(
-        `${server_url}/get/fetch-reviews/${params.hotel_name}/${params.hotel_id}`
-      );
+    axios.get(`${ api_url }/reviews/get-hotel-reviews/${ selectedHotelId }`)
+    .then( response => {
+      let hotelReviews = response.data.data
+      setAllReviewsArray( hotelReviews )
+      console.log("hotel reviews", hotelReviews) 
+      console.log("reviews array = ", allReviewsArray)
+    })
+    .catch( error => {
+      // handle errors gracefully
+    })
 
-      if (response.status === 200) {
-        let data = await response.json();
-        setAllReviewsArray(data);
-        setTimeout(() => {
-          setIsLoadingReviews(false);
-        }, 1000);
-      } else if (response.status === 404) {
-        setTimeout(() => {
-          setIsLoadingReviews(false);
-        }, 1000);
-      } else {
-        setIsLoadingReviews(false);
-        setReviewsErrorMessage('failed to fetch reviews....');
-      }
-    };
+  },[])
 
-    FetchAllReviews();
-  }, []);
+
+  // scroll to specific detail section on click
+  const ScrollToDescriptionSection = () => {
+    descriptionRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToAmenitiesSection = () => {
+    amenitiesRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToLocationSection = () => {
+    locationRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToReviewsSection = () => {
+    reviewsRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToPricingSection = () => {
+    pricingRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const ScrollToPoliciesSection = () => {
+    policiesRef.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+
+
+
 
 
   // updating reviewer email state
@@ -167,7 +207,7 @@ const GetRoomDetails = () => {
     } else {
       setPostingReview(true);
       let response = await fetch(
-        `${server_url}/post/post-review/${params.hotel_name}/${params.hotel_id}`,
+        `${api_url}/post/post-review/${params.hotel_name}/${params.hotel_id}`,
         {
           method: 'POST',
           headers: {
@@ -246,7 +286,7 @@ const GetRoomDetails = () => {
           'number_of_booked_rooms',
           numberOfRooms.toString()
         );
-        navigate(`/book-hotel/${hotel_name}/${booking_room_id}`);
+        navigate(`/book-hotel/${selectedHotelName}/${selectedHotelId}`);
       }
     }
   };
@@ -256,12 +296,13 @@ const GetRoomDetails = () => {
       <NavbarComponent />
 
       <section className="selected-room-details-section">
-        <h3 className="selected-room-name"> {params.hotel_name} </h3>
-        <Rating name="read-only" value={4} readOnly />
+        <h3 className="selected-room-name"> { selectedHotelName } </h3>
         <p>
           {' '}
-          <IoLocationSharp /> {selectedRoomDetailsObject.room_location}
+          <IoLocationSharp /> {selectedHotel.streetAddress}, {selectedHotel.city}
         </p>
+        <div></div>
+        <Rating name="read-only" value={4} readOnly />
         {allReviewsArray.length > 0 ? (
           allReviewsArray.length === 1 ? (
             <h5>{allReviewsArray.length} review </h5>
@@ -299,7 +340,7 @@ const GetRoomDetails = () => {
               </p>
             ) : null}
 
-            <section className="selected-room-checkin-dates">
+            {/* <section className="selected-room-checkin-dates">
               <Form className="selected-room-details-destination-form">
                 <Row xs={1} md={3}>
                   <Col className="selected-room-details-destination-column">
@@ -460,10 +501,10 @@ const GetRoomDetails = () => {
                   </Col>
                 </Row>
               </Form>
-            </section>
+            </section> */}
 
 
-            <section className="book-now-section">
+            {/* <section className="book-now-section">
               <Button
                 variant="custom"
                 className="book-now-button-first"
@@ -471,35 +512,115 @@ const GetRoomDetails = () => {
               >
                 Book Now
               </Button>
+            </section> */}
+
+
+            <section className="selected-room-details-headers">
+              <div className="hotel-gallery-grid">
+                {
+                  hotelGalleryImages.map((galleryImage, index) => (
+                    <img src={ galleryImage } key={ index } className="gallery-item" alt="hotel gallery image"/>
+                  ))
+                }
+
+              </div>
             </section>
 
 
             <section className="selected-room-details-headers">
-              <Row md={5} xs={3}>
-                <Col>Description</Col>
+              <Row md={6} xs={3}>
+                <Col onClick={ ScrollToDescriptionSection }>
+                  <p className="hotel-details-heading">Description</p>
+                </Col>
 
-                <Col>Amenities</Col>
+                <Col onClick={ ScrollToAmenitiesSection }>
+                <p className="hotel-details-heading">Amenities</p>
+                </Col>
 
-                <Col>Location</Col>
+                <Col onClick={ ScrollToLocationSection }>
+                  <p className="hotel-details-heading">Location</p>
+                </Col>
 
-                <Col>Reviews</Col>
-                <Col>
-                  <h5 className="selected-room-details-price-text">
-                    GH<span>&#8373;{selectedRoomDetailsObject.room_rate}</span>
-                  </h5>
+                <Col onClick={ ScrollToPricingSection }>
+                 <p className="hotel-details-heading">Pricing</p> 
+                </Col>
+
+                <Col onClick={ ScrollToPoliciesSection }>
+                 <p className="hotel-details-heading">Policies</p> 
+                </Col>
+
+                <Col onClick={ ScrollToReviewsSection }>
+                  <p className="hotel-details-heading">Reviews</p>
                 </Col>
               </Row>
               <hr />
             </section>
 
-            <section className="selected-room-details-sub-section">
+
+            <section className="selected-room-details-sub-section" ref={ descriptionRef }>
+              <h3 className="selected-room-details-sub-header">
+                Hotel Description
+              </h3>
+
+              { 
+                Object.keys(selectedHotel) === 0 ?
+                 <p>No data to display currently..</p> 
+                 : 
+                 <p>{ selectedHotel.fullDescription }</p> 
+              }
+              
+            </section>
+
+            <section className="selected-room-details-sub-section" ref={ amenitiesRef }>
+              <h3 className="selected-room-details-sub-header">
+                Hotel Amenities
+              </h3>
+              <Row xs={2} md={5}>
+                {
+                  Object.keys(selectedHotel).length === 0 ?
+                  <p>No features to display currently...</p>
+                  :
+                  selectedHotel.amenities.map((amenity, index) => (
+                    <Col key={ index }>
+                      <div className="amenity-wrapper">{ amenity }</div>
+                    </Col>
+                  ))
+                }
+              </Row>
+            </section>
+
+            <section className="selected-room-details-sub-section" ref={ locationRef }>
+              <h3 className="selected-room-details-sub-header">Our Location</h3>
+
+              {/* <Maps2
+                selectedRoomLatitude={selectedHotel.room_latitude}
+                selectedRoomLongitude={selectedHotel.room_longitude}
+              /> */}
+
+              {/* <div className="book-now-btn-row">
+                <Button
+                  variant="custom"
+                  className="book-now-button-last"
+                  onClick={HandleBookHotelRoom}
+                >
+                  Book Hotel Now
+                </Button>
+              </div> */}
+            </section>
+
+
+            <section className="selected-room-details-sub-section" ref={ pricingRef }>
+              <h3 className="selected-room-details-sub-header">Pricing</h3>
+            </section>
+
+
+            <section className="selected-room-details-sub-section" ref={ policiesRef }>
               <h3 className="selected-room-details-sub-header srd-padding-bottom">
                 Good to know
               </h3>
               {goodToKnowArray.map((feature, index) => (
-                <div className="selected-room-details-good-to-know-div">
+                <div className="selected-room-details-good-to-know-div" key={index}>
                   <Row
-                    key={index}
                     className="selected-room-details-good-to-know-div-row"
                   >
                     <Col>{feature.icon}</Col>
@@ -521,108 +642,61 @@ const GetRoomDetails = () => {
               ))}
             </section>
 
-            <section className="selected-room-details-sub-section">
-              <h3 className="selected-room-details-sub-header">
-                Hotel Description
-              </h3>
-              <p>
-                {selectedRoomDetailsObject
-                  ? selectedRoomDetailsObject.room_description
-                    ? selectedRoomDetailsObject.room_description
-                    : null
-                  : null}
-              </p>
-            </section>
 
-            <section className="selected-room-details-sub-section">
-              <h3 className="selected-room-details-sub-header">
-                Hotel Amenities
-              </h3>
-              <Row xs={3} md={6}>
-                {selectedRoomDetailsObject ? (
-                  selectedRoomDetailsObject.room_features ? (
-                    selectedRoomDetailsObject.room_features.map(
-                      (feature, index) => (
-                        <Col key={index}>
-                          <div className="selected-room-features-amenities-div">
-                            <h5>{feature}</h5>
-                          </div>
-                        </Col>
+            <section className="selected-room-details-sub-section" ref={ reviewsRef }>
+              <h3 className="selected-room-details-sub-header">Guest Reviews</h3>
+              {
+                allReviewsArray.length > 0 ?
+                  allReviewsArray.map((review, index) => (
+                    <div className="posted-reviews-wrapper-div" key={index}>
+                      <section className="reviewer-info">
+                        <div>
+                          <BsPersonFill size={30} />
+                        </div>
+
+                        <div className="reviewer-info-name-date">
+                          <h5 className="reviewer-name"> {review.user_name} </h5>
+                          <p className="review-date">
+                            Reviewed: {formatDate(review.created_at)} @{' '}
+                            {formatTime(review.created_at)}{' '}
+                          </p>
+                        </div>
+                      </section>
+
+                      <section className="review-body">
+                        <Row>
+                          <p className="review-body-text">{review.review_content}</p>
+                        </Row>
+                        <hr />
+                      </section>
+                    </div>
+                  ))
+                  :
+                  <p>
+                    No reviews submitted yet. Be the first to submit one right
+                    below..
+                  </p>
+              }
+
+              {/* {
+                allReviewsArray.length > 0 ? (
+                  <Button
+                    variant="custom"
+                    className="see-all-reviews-btn"
+                    onClick={() =>
+                      navigate(
+                        `/all-reviews/${selectedHotelName}/${selectedHotelId}`
                       )
-                    )
-                  ) : (
-                    <h3>failed to load hotel features...</h3>
-                  )
-                ) : (
-                  <h3>couldn't fetch selected room details...</h3>
-                )}
-              </Row>
-            </section>
-
-            <section className="selected-room-details-sub-section">
-              <h3 className="selected-room-details-sub-header">Our Location</h3>
-
-              <Maps2
-                selectedRoomLatitude={selectedRoomDetailsObject.room_latitude}
-                selectedRoomLongitude={selectedRoomDetailsObject.room_longitude}
-              />
-
-              <div className="book-now-btn-row">
-                <Button
-                  variant="custom"
-                  className="book-now-button-last"
-                  onClick={HandleBookHotelRoom}
-                >
-                  Book Hotel Now
-                </Button>
-              </div>
-            </section>
-
-            <section className="selected-room-details-sub-section">
-              <h3 className="selected-room-details-sub-header">Reviews</h3>
-              {allReviewsArray.map((review, index) => (
-                <div className="posted-reviews-wrapper-div" key={index}>
-                  <section className="reviewer-info">
-                    <div>
-                      <BsPersonFill size={30} />
-                    </div>
-
-                    <div className="reviewer-info-name-date">
-                      <h5 className="reviewer-name"> {review.user_email} </h5>
-                      <p className="review-date">
-                        Wrote a review {review.review_date} @{' '}
-                        {review.review_time}{' '}
-                      </p>
-                    </div>
-                  </section>
-
-                  <section className="review-body">
-                    <Row>
-                      <p className="review-body-text">{review.review_body}</p>
-                    </Row>
-                    <hr />
-                  </section>
-                </div>
-              ))}
-
-              {allReviewsArray.length > 0 ? (
-                <Button
-                  variant="custom"
-                  className="see-all-reviews-btn"
-                  onClick={() =>
-                    navigate(
-                      `/all-reviews/${params.hotel_name}/${params.hotel_id}`
-                    )
-                  }
-                >
-                  See all {/*allReviewsArray.length */} reviews
-                </Button>
-              ) : (
-                <p>
-                  No reviews submitted yet. Be the first to submit one right
-                  below..
-                </p>
-              )}
+                    }
+                  >
+                    See all reviews
+                  </Button>
+                ) 
+                : 
+              (
+                <p>dfkd</p>
+              )
+              } */}
             </section>
 
             <section className="get-room-details-review-section">

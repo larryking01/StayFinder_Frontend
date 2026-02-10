@@ -80,12 +80,12 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="fetch-all-bookings" element={<FetchAllBookings />} />
             <Route path="fetch-all-rooms" element={<FetchAllRooms />} />
             <Route
               path="get-room-details/:hotel_name/:hotel_id"
               element={<GetRoomDetails />}
             />
+            <Route path="fetch-all-bookings" element={<FetchAllBookings />} />
             <Route
               path="book-hotel/:hotel_name/:room_id"
               element={<BookHotel />}
