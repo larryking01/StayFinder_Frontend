@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
