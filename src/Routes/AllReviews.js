@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -33,9 +33,9 @@ const Reviews = () => {
   const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
   const [isLoadingHotelDetails, setIsLoadingHotelDetails] = useState(true);
 
-  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
-  const [reviewsError, setReviewsError] = useState(false);
-  const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
+  const [_isLoadingReviews, setIsLoadingReviews] = useState(true);
+  const [_reviewsError, _setReviewsError] = useState(false);
+  const [_reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
 
   const [reviewerEmail, setReviewerEmail] = useState('');
   const [reviewBody, setReviewBody] = useState('');

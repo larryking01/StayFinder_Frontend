@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useEffect } from 'react';
 import Row from 'react-bootstrap/Row';

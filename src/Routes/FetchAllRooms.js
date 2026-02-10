@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';

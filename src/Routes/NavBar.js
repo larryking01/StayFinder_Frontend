@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';

@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

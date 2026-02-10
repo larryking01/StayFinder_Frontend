@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +26,7 @@ const SignUp = () => {
   const api_url = process.env.REACT_APP_DEV_API_URL;
   const brand_name = appNamesArray[0];
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -42,15 +41,15 @@ const SignUp = () => {
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [hasConfirmPasswordError, setHasConfirmPasswordError] =
     useState(false);
-  const [hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
+  const [_hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
 
-  const [firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
-  const [lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
-  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
-  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+  const [_firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
+  const [_lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
+  const [_emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [_passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+  const [_confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
     useState(null);
-  const [passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
+  const [_passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);

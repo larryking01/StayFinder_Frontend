@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';

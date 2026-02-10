@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
+/* eslint-disable no-unused-vars */
 
 import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -12,7 +11,6 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Rating from '@mui/material/Rating';
 import { IoLocationSharp } from 'react-icons/io5';
 import { BsPersonFill } from 'react-icons/bs';
-import { BiMinus, BiPlus } from 'react-icons/bi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,8 +18,8 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../App';
 import NavbarComponent from './NavBar';
 import Footer from './Footer';
-import StartDatePicker from '../Configuration/StartDatePicker';
-import EndDatePicker from '../Configuration/EndDatePicker';
+// import StartDatePicker from '../Configuration/StartDatePicker';
+// import EndDatePicker from '../Configuration/EndDatePicker';
 // import Maps2 from '../Configuration/Maps2';
 import goodToKnowArray from '../data/hotelGoodToKnowData';
 import { formatDate, formatTime } from '../helpers/formatDate.helper';
@@ -61,21 +59,18 @@ const GetRoomDetails = () => {
   const [reviewBodyError, setReviewBodyError] = useState(false);
   const [postingReview, setPostingReview] = useState(false);
   const [reviewFeedback, setReviewFeedback] = useState('');
-  const [showGuestExtraDetails, setShowGuestExtraDetails] = useState(false);
+  const [_showGuestExtraDetails, _setShowGuestExtraDetails] = useState(false);
   const [bookingDatesNull, setBookingDatesNull] = useState(false);
-  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
-  const [reviewsError, setReviewsError] = useState(false);
-  const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
+  const [_isLoadingReviews, _setIsLoadingReviews] = useState(true);
+  const [_reviewsError, _setReviewsError] = useState(false);
+  const [_reviewsErrorMessage, _setReviewsErrorMessage] = useState(null);
   const [ hotelGalleryImages, setHotelGalleryImages ] = useState([])
 
   // destructure user booking hotel extra info.
   const {
     numberOfAdultVisitors,
-    setNumberOfAdultVisitors,
     numberOfChildVisitors,
-    setNumberOfChildVisitors,
     numberOfRooms,
-    setNumberOfRooms,
     startDateValue,
     endDateValue,
     startDateMilliseconds,
