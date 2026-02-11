@@ -1,11 +1,11 @@
-import movenpick_cover_photo from '../Media Files/Hotel Cover Pages/movempick_cover_photo.jpg';
-import kempinski_cover_photo from '../Media Files/Hotel Cover Pages/kempinski_hotel_cover.jpg';
-import la_villa_boutique_cover_photo from '../Media Files/Hotel Cover Pages/la_villa_hotel_cover.jpg';
-import villa_monticello_cover_photo from '../Media Files/Hotel Cover Pages/villa_monticello_hotel_cover.jpg';
-import marriott_cover_photo from '../Media Files/Hotel Cover Pages/marriott_hotel_cover.jpg';
-import number_one_cover_photo from '../Media Files/Hotel Cover Pages/oxford_street_hotel_cover.jpg';
-import holiday_inn_cover_photo from '../Media Files/Hotel Cover Pages/holiday_inn_hotel_cover.jpg';
-import labadi_beach_cover_photo from '../Media Files/Hotel Cover Pages/labadi_beach_hotel_cover.webp';
+import movenpick_cover_photo from '../Assets/Hotel Cover Pages/movempick_cover_photo.jpg';
+import kempinski_cover_photo from '../Assets/Hotel Cover Pages/kempinski_hotel_cover.jpg';
+import la_villa_boutique_cover_photo from '../Assets/Hotel Cover Pages/la_villa_hotel_cover.jpg';
+import villa_monticello_cover_photo from '../Assets/Hotel Cover Pages/villa_monticello_hotel_cover.jpg';
+import marriott_cover_photo from '../Assets/Hotel Cover Pages/marriott_hotel_cover.jpg';
+import number_one_cover_photo from '../Assets/Hotel Cover Pages/oxford_street_hotel_cover.jpg';
+import holiday_inn_cover_photo from '../Assets/Hotel Cover Pages/holiday_inn_hotel_cover.jpg';
+import labadi_beach_cover_photo from '../Assets/Hotel Cover Pages/labadi_beach_hotel_cover.webp';
 
   
   

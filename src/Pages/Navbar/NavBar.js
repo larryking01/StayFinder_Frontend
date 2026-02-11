@@ -25,7 +25,7 @@ const NavbarComponent = () => {
           <Navbar.Collapse id="redponsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link
-                onClick={() => navigate('/fetch-all-rooms')}
+                onClick={() => navigate('/fetch-all-hotels')}
                 className="nav-link-text"
               >
                 {' '}
