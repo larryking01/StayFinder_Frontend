@@ -7,9 +7,9 @@ import Rating from '@mui/material/Rating';
 import Button from 'react-bootstrap/Button';
 import { IoLocationSharp } from 'react-icons/io5';
 import { PaystackButton } from 'react-paystack';
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
-import ScrollToTop from '../Configuration/ScrollToTop';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
+import ScrollToTop from '../../Configuration/ScrollToTop';
 import axios from 'axios';
 
 const BookHotel = () => {

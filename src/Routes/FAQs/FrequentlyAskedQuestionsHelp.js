@@ -4,8 +4,8 @@ import { BsArrowDownSquare, BsArrowUpSquare } from 'react-icons/bs';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
 
 const FrequentlyAskedQuestionsHelp = () => {
   const navigate = useNavigate();

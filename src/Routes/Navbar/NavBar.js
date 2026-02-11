@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import appNamesArray from '../data/appNames';
+import appNamesArray from '../../data/appNames';
 
 // modules
-import { UserContext } from '../App';
+import { UserContext } from '../../App';
 
 const NavbarComponent = () => {
   const brand_name = appNamesArray[0];

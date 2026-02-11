@@ -19,13 +19,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // modules
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
 
-import trending_accra_marriott_cover from '../Media Files/trending_accra_marriott_cover.jpg';
-import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jpg';
-import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jpg';
-import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg';
+import trending_accra_marriott_cover from '../../Media Files/trending_accra_marriott_cover.jpg';
+import trending_kempinski_cover from '../../Media Files/trending_kempinski_cover.jpg';
+import trending_movenpick_cover from '../../Media Files/trending_movenpick_cover.jpg';
+import trending_mensvic_cover from '../../Media Files/trending_mensvic_hotel.jpg';
 
 
 const FetchAllRooms = () => {

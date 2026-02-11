@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
-import about_svg from '../Media Files/about.png';
-import contact_us_svg from '../Media Files/contact-us.png';
-import question_svg from '../Media Files/question.png';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
+import about_svg from '../../Media Files/about.png';
+import contact_us_svg from '../../Media Files/contact-us.png';
+import question_svg from '../../Media Files/question.png';
 
 const Help = () => {
   // component always displays from top on initial render.

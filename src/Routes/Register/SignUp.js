@@ -13,8 +13,8 @@ import {
 import { AiOutlineMail } from 'react-icons/ai';
 import axios from 'axios';
 
-import { UserContext } from '../App';
-import appNamesArray from '../data/appNames';
+import { UserContext } from '../../App';
+import appNamesArray from '../../data/appNames';
 
 
 

@@ -14,10 +14,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // modules
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
-import goodToKnowArray from '../data/hotelGoodToKnowData';
-import { formatDate, formatTime } from '../helpers/formatDate.helper';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
+import goodToKnowArray from '../../data/hotelGoodToKnowData';
+import { formatDate, formatTime } from '../../helpers/formatDate.helper';
 
 
 

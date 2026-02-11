@@ -9,8 +9,8 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { AiOutlineMail } from 'react-icons/ai';
 
 // modules
-import { UserContext } from '../App';
-import appNamesArray from '../data/appNames';
+import { UserContext } from '../../App';
+import appNamesArray from '../../data/appNames';
 
 const Login = () => {
   const brand_name = appNamesArray[0];
