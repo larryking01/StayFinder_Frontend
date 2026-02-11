@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +22,6 @@ import Rating from '@mui/material/Rating';
 import StartDatePicker from '../Configuration/StartDatePicker.js';
 import EndDatePicker from '../Configuration/EndDatePicker.js';
 
-import AllHotelsArray from '../data/hotelsData.js';
 import rooms_and_suites_pictures_array from '../data/roomsAndSuitesData.js';
 import restaurants_pictures_array from '../data/restaurantsData.js';
 import catchPhrasesArray from '../data/catchPhrasesData.js';
@@ -37,9 +37,6 @@ const Home = () => {
   const all_hotels_section_ref = useRef(null);
 
   const [hotelsArray, setHotelsArray] = useState([]);
-  const [loadingHotels, setIsLoadingHotels] = useState(true);
-  const [fetchError, setFetchError] = useState(false);
-  const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -55,17 +52,23 @@ const Home = () => {
 
   // fetch all hotels from database
   useEffect(() => {
-    console.log("before fetch, hotels array is ", hotelsArray)
-    axios.get(`${ api_url }/hotels/get-all-hotels`)
-    .then( response => {
-      let hotelsList = response.data.data
-      setHotelsArray(hotelsList)
-      setTimeout(() => {
-        console.log("after fetch, hotels array is ", hotelsArray)
-      }, 3000)
-    })
-    .catch( error => console.log("Error fetching all hotels ", error))
-  },[])
+    const FetchAllHotels = async () => {
+      try {
+        let response = await axios.get(`${ api_url }/hotels/get-all-hotels`)
+        let hotelsList = response.data.data
+        console.log(hotelsList)
+        setHotelsArray( hotelsList )
+      }
+      catch( error ) {
+        // handle error professionally.
+        console.error("Failed to fetch hotels due to error, ", error)
+      }
+
+    }
+
+    FetchAllHotels()
+
+  },[api_url])
 
 
   // special deals pictures array.

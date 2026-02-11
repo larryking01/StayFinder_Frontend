@@ -12,7 +12,7 @@ const NavbarComponent = () => {
 
   const navigate = useNavigate();
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <>

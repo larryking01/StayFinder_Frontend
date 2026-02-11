@@ -38,7 +38,8 @@ const Footer = () => {
   // handle newsletter subscription.
   const HandleNewsletterSubscription = () => {
     let regex =
-      /^(?:(?:[^<>()[\].,;:\s@\"]+(?:\.[^<>()[\].,;:\s@\"]+)*)|(\".+\"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}))$/;
+      /^(?:(?:[^<>()[\].,;:\s@"]+(?:\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}))$/;
+      
     if (email.length < 1) {
       setNewsletterSubscribeError('No email provided');
     } else if (!email.match(regex)) {
