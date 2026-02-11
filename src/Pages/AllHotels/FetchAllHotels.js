@@ -19,16 +19,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // modules
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
 
-import trending_accra_marriott_cover from '../Media Files/trending_accra_marriott_cover.jpg';
-import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jpg';
-import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jpg';
-import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg';
+import trending_accra_marriott_cover from '../../Assets/trending_accra_marriott_cover.jpg';
+import trending_kempinski_cover from '../../Assets/trending_kempinski_cover.jpg';
+import trending_movenpick_cover from '../../Assets/trending_movenpick_cover.jpg';
+import trending_mensvic_cover from '../../Assets/trending_mensvic_hotel.jpg';
 
 
-const FetchAllRooms = () => {
+const FetchAllHotels = () => {
   const server_url = process.env.REACT_APP_SERVER_URL;
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const FetchAllRooms = () => {
   // fetch all rooms.
   useEffect(() => {
     const FetchAllRooms = async () => {
-      let response = await fetch(`${server_url}/get/fetch-all-rooms`, {
+      let response = await fetch(`${server_url}/get/fetch-all-hotels`, {
         method: 'GET',
       });
 
@@ -133,7 +133,7 @@ const FetchAllRooms = () => {
           </p>
         </section>
 
-        <section className="fetch-all-rooms-search-tab-section">
+        <section className="fetch-all-hotels-search-tab-section">
           <InputGroup>
             <Form.Control
               type="text"
@@ -173,7 +173,7 @@ const FetchAllRooms = () => {
               <h5 className="fetch-hotels-error-text"> {fetchErrorMessage} </h5>
             </section>
           ) : (
-            <section className="fetch-all-rooms-main-section">
+            <section className="fetch-all-hotels-main-section">
               <div>
                 {currentItems.map((rooms, index) => {
                   return (
@@ -185,7 +185,7 @@ const FetchAllRooms = () => {
                       className="fetch-all-hotels-row"
                       onClick={() =>
                         navigate(
-                          `/get-room-details/${rooms.room_number}/${rooms._id}`
+                          `/get-hotel-details/${rooms.room_number}/${rooms._id}`
                         )
                       }
                     >
@@ -358,4 +358,4 @@ const FetchAllRooms = () => {
   );
 };
 
-export default FetchAllRooms;
+export default FetchAllHotels;

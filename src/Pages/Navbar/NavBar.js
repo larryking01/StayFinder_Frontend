@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import appNamesArray from '../data/appNames';
+import appNamesArray from '../../data/appNames';
 
 // modules
-import { UserContext } from '../App';
+import { UserContext } from '../../App';
 
 const NavbarComponent = () => {
   const brand_name = appNamesArray[0];
@@ -25,7 +25,7 @@ const NavbarComponent = () => {
           <Navbar.Collapse id="redponsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link
-                onClick={() => navigate('/fetch-all-rooms')}
+                onClick={() => navigate('/fetch-all-hotels')}
                 className="nav-link-text"
               >
                 {' '}

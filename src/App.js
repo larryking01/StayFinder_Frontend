@@ -6,20 +6,20 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import Home from './Routes/Home';
-import FetchAllBookings from './Routes/FetchAllBookings';
-import FetchAllRooms from './Routes/FetchAllRooms';
-import GetRoomDetails from './Routes/GetRoomDetails';
-import BookHotel from './Routes/BookHotel';
-import Help from './Routes/Help';
-import ContactUsHelp from './Routes/ContactUsHelp';
-import AboutHelp from './Routes/AboutHelp';
-import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp';
-import Login from './Routes/Login';
-import SignUp from './Routes/SignUp';
-import NavbarComponent from './Routes/NavBar';
-import PaymentSuccess from './Routes/PaymentSuccess';
-import PaymentCanceled from './Routes/PaymentCanceled';
+import Home from './Pages/Home/Home';
+import FetchAllBookings from './Pages/AllBookings/FetchAllBookings';
+import FetchAllRooms from './Pages/AllHotels/FetchAllHotels';
+import GetRoomDetails from './Pages/HotelDetails/GetHotelDetails';
+import BookHotel from './Pages/BookHotel/BookHotel';
+import Help from './Pages/Help/Help';
+import ContactUsHelp from './Pages/ContactUsHelp/ContactUsHelp';
+import AboutHelp from './Pages/AboutUsHelp/AboutHelp';
+import FrequentlyAskedQuestionsHelp from './Pages/FAQs/FrequentlyAskedQuestionsHelp';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Register/SignUp';
+import NavbarComponent from './Pages/Navbar/NavBar';
+import PaymentSuccess from './Pages/PaymentSuccess';
+import PaymentCanceled from './Pages/PaymentCanceled';
 
 // handle user state.
 const UserContext = createContext(null);
@@ -79,9 +79,9 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="fetch-all-rooms" element={<FetchAllRooms />} />
+            <Route path="fetch-all-hotels" element={<FetchAllRooms />} />
             <Route
-              path="get-room-details/:hotel_name/:hotel_id"
+              path="get-hotel-details/:hotel_name/:hotel_id"
               element={<GetRoomDetails />}
             />
             <Route path="fetch-all-bookings" element={<FetchAllBookings />} />

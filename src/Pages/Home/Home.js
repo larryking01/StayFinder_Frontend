@@ -10,22 +10,22 @@ import { BsArrowRight } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
 import Carousel from 'react-bootstrap/Carousel';
 
-import NavbarComponent from './NavBar';
-import ScrollToTop from '../Configuration/ScrollToTop';
-import Footer from './Footer';
-import background_2 from '../Media Files/Homepage Background/background_2.jpg';
-import trip_dotcom from '../Media Files/trip.com_logo.png';
-import booking_dotcom from '../Media Files/booking.com_logo.png';
-import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg';
-import hotels_dotcom from '../Media Files/hotels.com_logo.jpg'; 
+import NavbarComponent from '../Navbar/NavBar.js';
+import ScrollToTop from '../../Configuration/ScrollToTop.js';
+import Footer from '../Footer/Footer.js';
+import background_2 from '../../Assets/Homepage Background/background_2.jpg';
+import trip_dotcom from '../../Assets/trip.com_logo.png';
+import booking_dotcom from '../../Assets/booking.com_logo.png';
+import hyatt_dotcom from '../../Assets/hyatt.com_logo.jpg';
+import hotels_dotcom from '../../Assets/hotels.com_logo.jpg'; 
 import Rating from '@mui/material/Rating';
-import StartDatePicker from '../Configuration/StartDatePicker.js';
-import EndDatePicker from '../Configuration/EndDatePicker.js';
+import StartDatePicker from '../../Configuration/StartDatePicker.js';
+import EndDatePicker from '../../Configuration/EndDatePicker.js';
 
-import rooms_and_suites_pictures_array from '../data/roomsAndSuitesData.js';
-import restaurants_pictures_array from '../data/restaurantsData.js';
-import catchPhrasesArray from '../data/catchPhrasesData.js';
-import meeting_room_pictures_array from '../data/meetingRoomData.js';
+import rooms_and_suites_pictures_array from '../../data/roomsAndSuitesData.js';
+import restaurants_pictures_array from '../../data/restaurantsData.js';
+import catchPhrasesArray from '../../data/catchPhrasesData.js';
+import meeting_room_pictures_array from '../../data/meetingRoomData.js';
 
 
 
@@ -168,7 +168,7 @@ const Home = () => {
                   className="cover-page-card-style"
                   onClick={() =>
                     navigate(
-                      `/get-room-details/${hotel.hotelName}/${hotel.id}`
+                      `/get-hotel-details/${hotel.hotelName}/${hotel.id}`
                     )
                   }
                 >
@@ -211,7 +211,7 @@ const Home = () => {
           <Row xs={1}>
             <div
               className="view-all-hotels-text-div"
-              onClick={() => navigate('fetch-all-rooms')}
+              onClick={() => navigate('fetch-all-hotels')}
             >
               <Button variant="custom" className="view-all-hotels-btn">
                 View all hotels <BsArrowRight size={20} />{' '}

@@ -1,7 +1,7 @@
-import restaurant_image1 from '../Media Files/Restaurants Images/restaurant_image1.jpg';
-import restaurant_image2 from '../Media Files/Restaurants Images/restaurant_image2.webp';
-import restaurant_image3 from '../Media Files/Restaurants Images/restaurant_image3.jpg';
-import restaurant_image4 from '../Media Files/Restaurants Images/restaurant_image4.jpg';
+import restaurant_image1 from '../Assets/Restaurants Images/restaurant_image1.jpg';
+import restaurant_image2 from '../Assets/Restaurants Images/restaurant_image2.webp';
+import restaurant_image3 from '../Assets/Restaurants Images/restaurant_image3.jpg';
+import restaurant_image4 from '../Assets/Restaurants Images/restaurant_image4.jpg';
 
 
 let restaurants_pictures_array = [

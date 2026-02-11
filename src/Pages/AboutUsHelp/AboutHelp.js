@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
-import traveler from '../Media Files/traveler.png';
-import upcycling from '../Media Files/upcycling.png';
-import larry from '../Media Files/Team Members Images/larry.webp';
-import priscilla from '../Media Files/Team Members Images/priscilla.webp';
-import nat from '../Media Files/Team Members Images/nat.avif';
-import marian from '../Media Files/Team Members Images/marian.jpg';
-import aku_shika from '../Media Files/Team Members Images/aku-shika.jpg';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
+import traveler from '../../Assets/traveler.png';
+import upcycling from '../../Assets/upcycling.png';
+import larry from '../../Assets/Team Members Images/larry.webp';
+import priscilla from '../../Assets/Team Members Images/priscilla.webp';
+import nat from '../../Assets/Team Members Images/nat.avif';
+import marian from '../../Assets/Team Members Images/marian.jpg';
+import aku_shika from '../../Assets/Team Members Images/aku-shika.jpg';
 
 const AboutHelp = () => {
   //component always displays from top on initial render.

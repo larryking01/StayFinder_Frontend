@@ -14,17 +14,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // modules
-import NavbarComponent from './NavBar';
-import Footer from './Footer';
-import goodToKnowArray from '../data/hotelGoodToKnowData';
-import { formatDate, formatTime } from '../helpers/formatDate.helper';
+import NavbarComponent from '../Navbar/NavBar';
+import Footer from '../Footer/Footer';
+import goodToKnowArray from '../../data/hotelGoodToKnowData';
+import { formatDate, formatTime } from '../../helpers/formatDate.helper';
 
 
 
 
 
 
-const GetRoomDetails = () => {
+const GetHotelDetails = () => {
   const api_url = process.env.REACT_APP_PROD_API_URL;
 
   const params = useParams();
@@ -420,8 +420,8 @@ const GetRoomDetails = () => {
 
             </section>
 
-            <section className="get-room-details-review-section">
-              <h5 className="get-room-details-post-review-header">
+            <section className="get-hotel-details-review-section">
+              <h5 className="get-hotel-details-post-review-header">
                 Post a review
               </h5>
               <Form>
@@ -461,7 +461,7 @@ const GetRoomDetails = () => {
                   <Col>
                     <Button
                       variant="custom"
-                      className="get-room-details-post-review-btn"
+                      className="get-hotel-details-post-review-btn"
                       onClick={HandlePostReview}
                     >
                       Post review
@@ -497,4 +497,4 @@ const GetRoomDetails = () => {
   );
 };
 
-export default GetRoomDetails;
+export default GetHotelDetails;

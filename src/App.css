@@ -735,7 +735,7 @@
   color: white;
 }
 
-.get-room-details-review-section {
+.get-hotel-details-review-section {
   margin-left: 6%;
   margin-right: 50%;
 }
@@ -749,17 +749,17 @@
   height: 55px;
 }
 
-.get-room-details-post-review-header {
+.get-hotel-details-post-review-header {
   font-family: 'Lora', serif;
   color: var(--primary-color);
 }
 
-.get-room-details-post-review-btn {
+.get-hotel-details-post-review-btn {
   background-color: var(--primary-color);
   color: white;
 }
 
-.get-room-details-post-review-btn:hover {
+.get-hotel-details-post-review-btn:hover {
   background-color: var(--primary-color);
   color: white;
 }
@@ -800,7 +800,7 @@
 /* end of selected room details styling */
 
 /* fetch all rooms styling */
-.fetch-all-rooms-main-section {
+.fetch-all-hotels-main-section {
   padding-left: 10%;
   padding-right: 10%;
   margin-top: 3%;
@@ -863,7 +863,7 @@
   color: white;
 }
 
-.fetch-all-rooms-search-tab-section {
+.fetch-all-hotels-search-tab-section {
   padding-left: 9%;
   padding-right: 9%;
   margin-top: 3%;
@@ -2020,7 +2020,7 @@
     margin-top: 8%;
   }
 
-  .get-room-details-review-section {
+  .get-hotel-details-review-section {
     margin-left: 6%;
     margin-right: 6%;
     margin-top: 10%;
@@ -2037,7 +2037,7 @@
     width: 100%;
   }
 
-  .fetch-all-rooms-search-tab-section {
+  .fetch-all-hotels-search-tab-section {
     margin-bottom: 13%;
     margin-top: 12%;
     padding: 0 5.5%;
