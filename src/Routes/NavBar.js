@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +12,7 @@ const NavbarComponent = () => {
 
   const navigate = useNavigate();
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <>

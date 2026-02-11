@@ -54,9 +54,7 @@ const Home = () => {
   useEffect(() => {
     const FetchAllHotels = async () => {
       try {
-        let response = await axios.get(`${ api_url }/hotels/get-all-hotels`, {
-          timeout: 5000
-        })
+        let response = await axios.get(`${ api_url }/hotels/get-all-hotels`)
         let hotelsList = response.data.data
         console.log(hotelsList)
         setHotelsArray( hotelsList )

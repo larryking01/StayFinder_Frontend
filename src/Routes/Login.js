@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -18,14 +16,12 @@ const Login = () => {
   const brand_name = appNamesArray[0];
   const navigate = useNavigate();
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailErrorExists, setEmailErrorExists] = useState(false);
   const [passwordErrorExists, setPasswordErrorExists] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [otherError, setOtherError] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -64,29 +60,17 @@ const Login = () => {
       if (email.length < 1 || password.length < 1) {
         if (email.length < 1) {
           setEmailErrorExists(true);
-          setEmailErrorMessage('E-mail is required *');
         } else {
           setEmailErrorExists(false);
         }
 
         if (password.length < 1) {
           setPasswordErrorExists(true);
-          setPasswordErrorMessage('Password is required *');
         } else {
           setPasswordErrorExists(false);
         }
       } else {
-        // if (!existingUser) {
-        //   let user = {
-        //     email: email,
-        //     password: password,
-        //   }
-          // make api call to create user
-          // console.log("user credentials", user);
-        // } else {
-        //   alert('A user is already logged in. Please log out before creating a new account.');
-        //   // throw new Error('a user is already logged in..');
-        // }
+        // create a new user
       }
     } catch (error) {
       // handle errors appropriately

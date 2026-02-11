@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,27 +7,14 @@ import Rating from '@mui/material/Rating';
 import Button from 'react-bootstrap/Button';
 import { IoLocationSharp } from 'react-icons/io5';
 import { PaystackButton } from 'react-paystack';
-import emailjs from '@emailjs/browser';
-
-import { UserContext } from '../App';
 import NavbarComponent from './NavBar';
 import Footer from './Footer';
 import ScrollToTop from '../Configuration/ScrollToTop';
+import axios from 'axios';
 
 const BookHotel = () => {
   const params = useParams();
-  const server_url = process.env.REACT_APP_SERVER_URL;
-
-  const {
-    startDateValue,
-    setStartDateValue,
-    endDateValue,
-    setEndDateValue,
-    numberOfAdultVisitors,
-    numberOfChildVisitors,
-    numberOfRooms,
-    customerLengthOfStay,
-  } = useContext(UserContext);
+  const server_url = process.env.REACT_APP_PROD_API_URL;
 
   // setting up state.
   const confirmReference = useRef(null);
@@ -42,21 +27,10 @@ const BookHotel = () => {
   const [bookingCustomerNumber, setBookingCustomerNumber] = useState('');
   const [bookingFieldsErrorStatus, setBookingFieldsErrorStatus] =
     useState(false);
-  const [showBookingConfirmPage, setShowBookingConfirmPage] = useState(false);
+  const [showBookingConfirmPage] = useState(false);
   const [bookingFieldsErrorMessage, setBookingFieldsErrorMessage] =
     useState('');
 
-  const [basicCost, setBasicCost] = useState(0);
-  const [vatRate, setVatRate] = useState(0);
-  const [nhilRate, setNhilRate] = useState(0);
-  const [covidLevy, setCovidLevy] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
-  const [basicCostString, setBasicCostString] = useState('0');
-  const [vatRateString, setVatRateString] = useState('0');
-  const [nhilRateString, setNhilRateString] = useState('0');
-  const [covidLevyString, setCovidLevyString] = useState('0');
-  const [totalCostString, setTotalCostString] = useState('0');
-  const [lengthOfStay, setLengthOfStay] = useState(1);
 
   // component always displays from top on initial render.
   useEffect(() => {
@@ -67,138 +41,26 @@ const BookHotel = () => {
     });
   }, []);
 
+
   // fetch the booking hotel.
   useEffect(() => {
     const fetchBookingHotel = async () => {
-      let response = await fetch(
-        `${server_url}/get/room-details/${params.hotel_name}/${params.room_id}`,
-        {
-          method: 'GET',
-        }
-      );
-
-      if (response.ok) {
-        let data = await response.json();
-        setBookingHotelObject({ ...data });
+      try {
+        let response = await axios.get(`${server_url}/get/room-details/${params.hotel_name}/${params.room_id}`)
+        setBookingHotelObject({...response.data})
       }
-    };
-    fetchBookingHotel();
-  }, []);
-
-  // getting the customer length of stay
-  useEffect(() => {
-    let length_of_stay = window.localStorage.getItem('length_of_stay');
-    length_of_stay = parseInt(length_of_stay);
-    setLengthOfStay(length_of_stay);
-  }, [
-    startDateValue,
-    endDateValue,
-    setStartDateValue,
-    setEndDateValue,
-    lengthOfStay,
-  ]);
-
-  // update values of pricing calculators.
-  useEffect(() => {
-    if (Object.keys(bookingHotelObject).length > 3) {
-      let vt, nh, cd, tc;
-      setBasicCost(bookingHotelObject.room_rate * lengthOfStay);
-      setBasicCostString(basicCost.toFixed(2));
-      vt = 0.125 * basicCost;
-      setVatRate(vt);
-      setVatRateString(vatRate.toFixed(2));
-
-      nh = 0.025 * basicCost;
-      setNhilRate(nh);
-      setNhilRateString(nhilRate.toFixed(2));
-
-      cd = 0.01 * basicCost;
-      setCovidLevy(cd);
-      setCovidLevyString(covidLevy.toFixed(2));
-
-      tc = basicCost + vt + nh + cd;
-      setTotalCost(tc);
-      setTotalCostString(tc.toFixed(2));
+      catch( error ) {
+        alert("error occurred")
+      }
+      finally {
+        console.log("finished")
+      }
     }
-  }, [
-    bookingHotelObject,
-    basicCost,
-    vatRate,
-    nhilRate,
-    covidLevy,
-    totalCost,
-    basicCostString,
-    vatRateString,
-    nhilRateString,
-    covidLevyString,
-    totalCostString,
-  ]);
 
-  // fetch start date value from local storage
-  useEffect(() => {
-    let localStorageStartDateValue = JSON.parse(
-      window.localStorage.getItem('startDateValue')
-    );
-    setStartDateValue(localStorageStartDateValue);
-  }, [startDateValue, setStartDateValue]);
-
-  //fetch end date value from local storage
-  useEffect(() => {
-    let localStorageEndDateValue = JSON.parse(
-      window.localStorage.getItem('endDateValue')
-    );
-    setEndDateValue(localStorageEndDateValue);
-  }, [endDateValue, setEndDateValue]);
-
-  //emailjs dynamic variables object.
-  let email_js_public_key = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-  let email_js_service_id = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-  let email_js_template_id = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-  let email_js_dynamic_variables = {
-    recipient: bookingCustomerEmail,
-    to_name: bookingCustomerFirstName,
-    from_name: 'SwiftStay',
-    message: `You have successfully booked ${bookingHotelObject.room_number} at ${totalCost} for ${customerLengthOfStay} nights!. We hope you enjoy your stay!!`,
-    booked_hotel_image: bookingHotelObject.room_cover_photo_url,
-  };
+    fetchBookingHotel()
+  }, [server_url, params.hotel_name, params.room_id]);
 
   
-  // setting up paystack.
-  const componentProps = {
-    publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
-    currency: 'GHS',
-    amount: Math.floor(totalCost * 100),
-    email: bookingCustomerEmail,
-    text: 'I confirm booking details. Complete my booking now',
-    onSuccess: () => {
-      try {
-        alert(
-          `Payment successful!. Confirmation email sent to ${bookingCustomerEmail}`
-        );
-        emailjs.send(
-          email_js_service_id,
-          email_js_template_id,
-          email_js_dynamic_variables,
-          email_js_public_key
-        );
-      } catch (error) {
-        console.log(`email js error: ${error}`);
-      }
-    },
-    onClose: () => {
-      alert('payment failed');
-    },
-  };
-
-  // scrolling details section ref into view.
-  const ScrollDetailsSectionRefIntoView = () => {
-    setTimeout(() => {
-      detailsSectionRef.current.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }, 1000);
-  };
-
   // updating state values.
   const UpdateCustomerFirstName = (event) => {
     setBookingCustomerFirstName(event.target.value);
@@ -216,19 +78,11 @@ const BookHotel = () => {
     setBookingCustomerNumber(event.target.value);
   };
 
-  // scrolling confirm booking reference into view.
-  const ScrollConfirmBookingIntoView = () => {
-    setTimeout(() => {
-      confirmReference.current.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }, 1000);
-  };
 
   // handling book hotel action.
   const HandleBookHotelAction = async () => {
     let regex =
-      /^(?:(?:[^<>()[\].,;:\s@\"]+(?:\.[^<>()[\].,;:\s@\"]+)*)|(\".+\"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}))$/;
+      /^(?:(?:[^<>()[\].,;:\s@"]+(?:\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}))$/;
 
     if (
       bookingCustomerFirstName.length < 1 ||
@@ -246,10 +100,7 @@ const BookHotel = () => {
         'Your email is invalid, please enter a valid email...'
       );
     } else {
-      console.log(totalCost * 100);
-      setBookingFieldsErrorStatus(false);
-      setShowBookingConfirmPage(true);
-      ScrollConfirmBookingIntoView();
+      console.log("totalCost * 100");
     }
   };
 
@@ -286,39 +137,6 @@ const BookHotel = () => {
               </p>
               <hr />
 
-              {/* <section>
-                                <Carousel rows={ 1 } cols={ 1 } loop>
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_cover_photo_url } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_1 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_2 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_3 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_4 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_5 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                    <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_6 } className='book-hotel-grid-img mb-3' alt='' />
-                                    </Carousel.Item>
-
-                                </Carousel>
-                            </section>
- */}
               <Row md={2} xs={1}>
                 <Col>
                   <h5 className="section-sub-header">
@@ -328,7 +146,7 @@ const BookHotel = () => {
                     </span>
                   </h5>
                   <p className="booking-hotel-extra-details">
-                    {startDateValue}
+                    start date value here
                   </p>
                 </Col>
 
@@ -339,7 +157,7 @@ const BookHotel = () => {
                       (mm-dd-yyyy)
                     </span>
                   </h5>
-                  <p className="booking-hotel-extra-details">{endDateValue}</p>
+                  <p className="booking-hotel-extra-details">End date value here</p>
                 </Col>
               </Row>
 
@@ -347,14 +165,14 @@ const BookHotel = () => {
                 <Col>
                   <h5 className="section-sub-header">No. Of Adults</h5>
                   <p className="booking-hotel-extra-details">
-                    {window.localStorage.getItem('number_of_adult_visitors')}
+                    number of adult visitors
                   </p>
                 </Col>
 
                 <Col>
                   <h5 className="section-sub-header">No. Of Children</h5>
                   <p className="booking-hotel-extra-details">
-                    {window.localStorage.getItem('number_of_child_visitors')}
+                    number of child visitors
                   </p>
                 </Col>
               </Row>
@@ -363,14 +181,14 @@ const BookHotel = () => {
                 <Col>
                   <h5 className="section-sub-header">No. Of Rooms Booked</h5>
                   <p className="booking-hotel-extra-details">
-                    {window.localStorage.getItem('number_of_booked_rooms')}
+                    number of booked rooms
                   </p>
                 </Col>
 
                 <Col>
                   <h5 className="section-sub-header">Length Of Stay</h5>
                   <p className="booking-hotel-extra-details">
-                    {lengthOfStay} nights
+                    length of stay nights
                   </p>
                 </Col>
                 <hr />
@@ -423,23 +241,23 @@ const BookHotel = () => {
 
                   <Col>
                     <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> {basicCostString}{' '}
+                      <span>&#8373;</span> basic cost
                     </h6>
 
                     <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> {vatRateString}
+                      <span>&#8373;</span> vat rate
                     </h6>
 
                     <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> {nhilRateString}
+                      <span>&#8373;</span> nhil rate
                     </h6>
 
                     <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> {covidLevyString}
+                      <span>&#8373;</span> covid levy
                     </h6>
 
                     <h3 className="section-sub-header total-cost ">
-                      <span>&#8373;</span> {totalCostString}{' '}
+                      <span>&#8373;</span> total cost
                     </h3>
                   </Col>
                 </Row>
@@ -563,14 +381,14 @@ const BookHotel = () => {
               <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
                 <Col>
                   <h5 className="booking-hotel-detail-header">Check-in date</h5>
-                  <p>{startDateValue}</p>
+                  <p>start date </p>
                 </Col>
 
                 <Col>
                   <h5 className="booking-hotel-detail-header">
                     Check-out date
                   </h5>
-                  <p>{endDateValue}</p>
+                  <p>end date</p>
                 </Col>
               </Row>
               <hr />
@@ -580,14 +398,14 @@ const BookHotel = () => {
                   <h5 className="booking-hotel-detail-header">
                     Number of adults
                   </h5>
-                  <p>{numberOfAdultVisitors}</p>
+                  <p>number of adult visitors</p>
                 </Col>
 
                 <Col>
                   <h5 className="booking-hotel-detail-header">
                     Number of children
                   </h5>
-                  <p>{numberOfChildVisitors}</p>
+                  <p>Number of children</p>
                 </Col>
               </Row>
               <hr />
@@ -597,14 +415,14 @@ const BookHotel = () => {
                   <h5 className="booking-hotel-detail-header">
                     Number of rooms booked
                   </h5>
-                  <p>{numberOfRooms}</p>
+                  <p>Number of rooms</p>
                 </Col>
 
                 <Col>
                   <h5 className="booking-hotel-detail-header">
                     Length of stay
                   </h5>
-                  <p>{lengthOfStay} nights</p>
+                  <p>Length of stay nights</p>
                 </Col>
               </Row>
               <hr />
@@ -637,13 +455,13 @@ const BookHotel = () => {
                     <Col>
                       <p>
                         GH<span>&#8373;</span> {bookingHotelObject.room_rate} *{' '}
-                        {lengthOfStay} nights
+                        lengthOfStay nights
                       </p>
                     </Col>
 
                     <Col>
                       <p>
-                        GH<span>&#8373;</span> {basicCostString}
+                        GH<span>&#8373;</span> basicCostString
                       </p>
                     </Col>
                   </Row>
@@ -656,7 +474,7 @@ const BookHotel = () => {
                     <Col>
                       <p>
                         GH<span>&#8373;</span>
-                        {vatRateString}{' '}
+                        vatRateString {' '}
                       </p>
                     </Col>
                   </Row>
@@ -669,7 +487,7 @@ const BookHotel = () => {
                     <Col>
                       <p>
                         GH<span>&#8373;</span>
-                        {nhilRateString}{' '}
+                        nhilRateString {' '}
                       </p>
                     </Col>
                   </Row>
@@ -681,7 +499,7 @@ const BookHotel = () => {
 
                     <Col>
                       <p>
-                        GH<span>&#8373;</span> {covidLevyString}
+                        GH<span>&#8373;</span> covidLevyString
                       </p>
                     </Col>
                   </Row>
@@ -693,7 +511,7 @@ const BookHotel = () => {
 
                     <Col>
                       <p className="total-cost">
-                        GH<span>&#8373;</span> {totalCostString}
+                        GH<span>&#8373;</span> totalCostString
                       </p>
                     </Col>
                   </Row>
@@ -749,7 +567,6 @@ const BookHotel = () => {
               <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
                 <Col>
                   <PaystackButton
-                    {...componentProps}
                     className="paystack-btn"
                   />
                 </Col>
@@ -758,7 +575,7 @@ const BookHotel = () => {
                   <Button
                     variant="custom"
                     className="edit-booking-details-btn"
-                    onClick={ScrollDetailsSectionRefIntoView}
+                    
                   >
                     I want to edit my booking information
                   </Button>

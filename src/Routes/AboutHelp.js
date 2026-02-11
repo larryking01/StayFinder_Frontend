@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -41,15 +39,15 @@ const SignUp = () => {
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [hasConfirmPasswordError, setHasConfirmPasswordError] =
     useState(false);
-  const [_hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
+  // const [hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
 
-  const [_firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
-  const [_lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
-  const [_emailErrorMessage, setEmailErrorMessage] = useState(null);
-  const [_passwordErrorMessage, setPasswordErrorMessage] = useState(null);
-  const [_confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
-    useState(null);
-  const [_passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
+  // const [firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
+  // const [lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
+  // const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  // const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+  // const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+  //   useState(null);
+  // const [passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -109,8 +107,6 @@ const SignUp = () => {
 
       if( !firstName || !lastName || !email || !password || !confirmPassword ) {
         if (!firstName) {
-          setHasFirstNameError(true);
-          setFirstNameErrorMessage('First name is required *');
           console.log("first name is required")
         } 
         else {
@@ -119,7 +115,6 @@ const SignUp = () => {
 
         if (!lastName) {
           setHasLastNameError(true);
-          setLastNameErrorMessage('Last name is required *');
           console.log("last name is required")
         } else {
           setHasLastNameError(false);
@@ -127,7 +122,6 @@ const SignUp = () => {
 
         if (!email) {
           setHasEmailError(true);
-          setEmailErrorMessage('E-mail is required *');
           console.log("e-mail is required")
         } else {
           setHasEmailError(false);
@@ -135,7 +129,6 @@ const SignUp = () => {
 
         if (!password) {
           setHasPasswordError(true);
-          setPasswordErrorMessage('Password is required *');
           console.log("password is required")
         } else {
           setHasPasswordError(false);
@@ -143,7 +136,6 @@ const SignUp = () => {
 
         if (!confirmPassword) {
           setHasConfirmPasswordError(true);
-          setConfirmPasswordErrorMessage('Password confirmation is required *');
           console.log("confirm password is required")
         } else {
           setHasConfirmPasswordError(false);
@@ -151,8 +143,6 @@ const SignUp = () => {
       }
       else {
         if( password !== confirmPassword ) {
-          setHasPasswordsMismatchError(true)
-          setPasswordsMismatchErrorMessage("Password and confirm passwords must match")
           console.log("Password and confirm passwords must match")
         }
         else {

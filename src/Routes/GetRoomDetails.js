@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 
-import { useState, useEffect, useRef, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,12 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // modules
-import { UserContext } from '../App';
 import NavbarComponent from './NavBar';
 import Footer from './Footer';
-// import StartDatePicker from '../Configuration/StartDatePicker';
-// import EndDatePicker from '../Configuration/EndDatePicker';
-// import Maps2 from '../Configuration/Maps2';
 import goodToKnowArray from '../data/hotelGoodToKnowData';
 import { formatDate, formatTime } from '../helpers/formatDate.helper';
 
@@ -35,8 +30,6 @@ const GetRoomDetails = () => {
   const params = useParams();
   let selectedHotelName = params.hotel_name;
   let selectedHotelId = params.hotel_id;
-
-  const navigate = useNavigate();
 
   const dateDurationRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -59,25 +52,9 @@ const GetRoomDetails = () => {
   const [reviewBodyError, setReviewBodyError] = useState(false);
   const [postingReview, setPostingReview] = useState(false);
   const [reviewFeedback, setReviewFeedback] = useState('');
-  const [_showGuestExtraDetails, _setShowGuestExtraDetails] = useState(false);
-  const [bookingDatesNull, setBookingDatesNull] = useState(false);
-  const [_isLoadingReviews, _setIsLoadingReviews] = useState(true);
-  const [_reviewsError, _setReviewsError] = useState(false);
-  const [_reviewsErrorMessage, _setReviewsErrorMessage] = useState(null);
   const [ hotelGalleryImages, setHotelGalleryImages ] = useState([])
 
-  // destructure user booking hotel extra info.
-  const {
-    numberOfAdultVisitors,
-    numberOfChildVisitors,
-    numberOfRooms,
-    startDateValue,
-    endDateValue,
-    startDateMilliseconds,
-    endDateMilliseconds,
-    setCustomerLengthOfStay,
-  } = useContext(UserContext);
-
+  
   // component always displays from top on initial render.
   useEffect(() => {
     window.scrollTo({
@@ -90,48 +67,58 @@ const GetRoomDetails = () => {
 
   // fetch details of selected room.
   useEffect(() => {
-    axios.get(`${ api_url }/hotels/find-hotel/${ selectedHotelId }`)
-    .then( response => {
-      let matchingHotel = response.data.data[0]
-      console.log("matching hotel ", matchingHotel) 
-      setSelectedHotel({ ...matchingHotel } )
-      let galleryImages = matchingHotel.galleryImages
-      console.log("gallery images = ", galleryImages)
-      setHotelGalleryImages([...galleryImages])
-      console.log("hotel details ", selectedHotel) 
-      setTimeout(() => {
-        setIsLoadingHotelDetails( false )
-      }, 1000)
-    })
-    .catch( error => {
-      console.log("error fetching hotel details, ", error)
-      setTimeout(() => {
-        setIsLoadingHotelDetails( false )
-      }, 1000)
-      setFetchError(true);
-      setFetchErrorMessage(
-        'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
-      );
-      // handle errors gracefully
-    })
 
-  },[])
+    const FetchHotelDetails = async () => {
+      try {
+        let response = await axios.get(`${ api_url }/hotels/find-hotel/${ selectedHotelId }`)
+        let matchingHotel = response.data.data[0]
+        console.log("matching hotel ", matchingHotel) 
+        setSelectedHotel({ ...matchingHotel } )
+        let galleryImages = matchingHotel.galleryImages
+        console.log("gallery images = ", galleryImages)
+        setHotelGalleryImages([...galleryImages])
+        console.log("hotel details ", matchingHotel) 
+      }
+      catch( error ) {
+        console.log("error fetching hotel details, ", error)
+        setFetchError(true);
+        setFetchErrorMessage(
+          'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
+        );
+        // handle errors gracefully
+      }
+      finally {
+        setTimeout(() => {
+          setIsLoadingHotelDetails( false )
+        }, 1000)
+      }
+    }
+
+    FetchHotelDetails()
+
+  },[ api_url, selectedHotelId ])
 
 
 
   useEffect(() => {
-    axios.get(`${ api_url }/reviews/get-hotel-reviews/${ selectedHotelId }`)
-    .then( response => {
-      let hotelReviews = response.data.data
-      setAllReviewsArray( hotelReviews )
-      console.log("hotel reviews", hotelReviews) 
-      console.log("reviews array = ", allReviewsArray)
-    })
-    .catch( error => {
-      // handle errors gracefully
-    })
+    const FetchHotelReviews = async () => {
+      try {
+        let response = axios.get(`${ api_url }/reviews/get-hotel-reviews/${ selectedHotelId }`)
+        let hotelReviews = response.data.data
+        setAllReviewsArray( hotelReviews )
 
-  },[])
+      }
+      catch( error ) {
+      // handle errors gracefully
+    }
+    finally {
+      // handle loading state here
+    }
+  }
+
+  FetchHotelReviews()
+
+  },[ api_url, selectedHotelId ])
 
 
   // scroll to specific detail section on click
@@ -239,56 +226,6 @@ const GetRoomDetails = () => {
   };
 
 
-  const CalculateLengthOfStay = (checkInDate, checkOutDate) => {
-    let lengthOfStay = checkOutDate.getTime() - checkInDate.getTime();
-    lengthOfStay = Math.floor(lengthOfStay / (1000 * 60 * 60 * 24));
-    return lengthOfStay;
-  };
-
-
-  const HandleBookHotelRoom = () => {
-    if (startDateValue == null || endDateValue == null) {
-      setBookingDatesNull(true);
-      alert(
-        'You have to enter both check-in and check-out dates to book hotel...'
-      );
-      dateDurationRef.current.scrollIntoView({
-        behavior: 'smooth',
-      });
-    } else {
-      setBookingDatesNull(false);
-      let durationOfStay = CalculateLengthOfStay(
-        startDateMilliseconds,
-        endDateMilliseconds
-      );
-      if (durationOfStay < 0) {
-        alert('Check-out date must be later than Check-in date');
-        dateDurationRef.current.scrollIntoView({
-          behavior: 'smooth',
-        });
-      } else {
-        setCustomerLengthOfStay(durationOfStay);
-        window.localStorage.setItem(
-          'length_of_stay',
-          durationOfStay.toString()
-        );
-        window.localStorage.setItem(
-          'number_of_adult_visitors',
-          numberOfAdultVisitors.toString()
-        );
-        window.localStorage.setItem(
-          'number_of_child_visitors',
-          numberOfChildVisitors.toString()
-        );
-        window.localStorage.setItem(
-          'number_of_booked_rooms',
-          numberOfRooms.toString()
-        );
-        navigate(`/book-hotel/${selectedHotelName}/${selectedHotelId}`);
-      }
-    }
-  };
-
   return (
     <div>
       <NavbarComponent />
@@ -332,192 +269,11 @@ const GetRoomDetails = () => {
           </section>
         ) : (
           <section ref={dateDurationRef}>
-            {bookingDatesNull === true ? (
-              <p className="start-date-end-date-null-message">
-                Check-in and Check-out dates are both required.
-              </p>
-            ) : null}
-
-            {/* <section className="selected-room-checkin-dates">
-              <Form className="selected-room-details-destination-form">
-                <Row xs={1} md={3}>
-                  <Col className="selected-room-details-destination-column">
-                    <StartDatePicker />
-                  </Col>
-
-                  <Col className="selected-room-details-destination-column">
-                    <EndDatePicker />
-                  </Col>
-
-                  <Col className="selected-room-details-destination-column">
-                    <Form.Control
-                      type="text"
-                      className="selected-room-details-category text-control-focus-style specify-cursor"
-                      placeholder={
-                        numberOfAdultVisitors +
-                        ' adult(s). ' +
-                        numberOfChildVisitors +
-                        ' child(ren). ' +
-                        numberOfRooms +
-                        ' room(s)'
-                      }
-                      value={`${numberOfAdultVisitors} ${numberOfAdultVisitors === 1 ? ' adult' : ' adults'} * ${numberOfChildVisitors} ${numberOfChildVisitors === 1 ? ' child' : ' children'} * ${numberOfRooms} ${numberOfRooms === 1 ? ' room' : ' rooms'}`}
-                      onClick={() =>
-                        setShowGuestExtraDetails(!showGuestExtraDetails)
-                      }
-                    />
-
-                    {showGuestExtraDetails === true ? (
-                      <Form className="selected-room-details-extra-guest-details-form mt-3">
-                        <Row className="selected-room-details-extra-guest-details-row mb-2">
-                          <Col>
-                            <h6>Adults</h6>
-                          </Col>
-
-                          <Col>
-                            <Row className="selected-room-details-extra-guest-info-row">
-                              <Col>
-                                <BiMinus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() => {
-                                    if (numberOfAdultVisitors === 0) {
-                                      setNumberOfAdultVisitors(0);
-                                    } else {
-                                      setNumberOfAdultVisitors(
-                                        numberOfAdultVisitors - 1
-                                      );
-                                    }
-                                  }}
-                                />
-                              </Col>
-
-                              <Col>{numberOfAdultVisitors}</Col>
-
-                              <Col>
-                                <BiPlus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() =>
-                                    setNumberOfAdultVisitors(
-                                      numberOfAdultVisitors + 1
-                                    )
-                                  }
-                                />
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-
-                        <Row className="selected-room-details-extra-guest-details-row mb-2">
-                          <Col>
-                            <h6>Children</h6>
-                          </Col>
-
-                          <Col>
-                            <Row className="selected-room-details-extra-guest-info-row">
-                              <Col>
-                                <BiMinus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() => {
-                                    if (numberOfChildVisitors === 0) {
-                                      setNumberOfChildVisitors(0);
-                                    } else {
-                                      setNumberOfChildVisitors(
-                                        numberOfChildVisitors - 1
-                                      );
-                                    }
-                                  }}
-                                />
-                              </Col>
-
-                              <Col>{numberOfChildVisitors}</Col>
-
-                              <Col>
-                                <BiPlus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() => {
-                                    setNumberOfChildVisitors(
-                                      numberOfChildVisitors + 1
-                                    );
-                                  }}
-                                />
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-
-                        <Row className="selected-room-details-extra-guest-details-row mb-4">
-                          <Col>
-                            <h6>Rooms</h6>
-                          </Col>
-
-                          <Col>
-                            <Row className="selected-room-details-extra-guest-info-row">
-                              <Col>
-                                <BiMinus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() => {
-                                    if (numberOfRooms === 0) {
-                                      setNumberOfRooms(0);
-                                    } else {
-                                      setNumberOfRooms(numberOfRooms - 1);
-                                    }
-                                  }}
-                                />
-                              </Col>
-
-                              <Col>{numberOfRooms}</Col>
-
-                              <Col>
-                                <BiPlus
-                                  color="#5a50eb"
-                                  className="selected-room-details-extra-guest-info-icon"
-                                  onClick={() => {
-                                    setNumberOfRooms(numberOfRooms + 1);
-                                  }}
-                                />
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-
-                        <Row className="selected-room-details-extra-guest-details-row">
-                          <Button
-                            variant="custom"
-                            onClick={() => setShowGuestExtraDetails(false)}
-                            className="selected-room-details-extra-guest-details-done-btn"
-                          >
-                            Done
-                          </Button>
-                        </Row>
-                      </Form>
-                    ) : null}
-                  </Col>
-                </Row>
-              </Form>
-            </section> */}
-
-
-            {/* <section className="book-now-section">
-              <Button
-                variant="custom"
-                className="book-now-button-first"
-                onClick={HandleBookHotelRoom}
-              >
-                Book Now
-              </Button>
-            </section> */}
-
-
             <section className="selected-room-details-headers">
               <div className="hotel-gallery-grid">
                 {
                   hotelGalleryImages.map((galleryImage, index) => (
-                    <img src={ galleryImage } key={ index } className="gallery-item" alt="hotel gallery image"/>
+                    <img src={ galleryImage } key={ index } className="gallery-item" alt="hotel gallery"/>
                   ))
                 }
 
@@ -590,20 +346,6 @@ const GetRoomDetails = () => {
             <section className="selected-room-details-sub-section" ref={ locationRef }>
               <h3 className="selected-room-details-sub-header">Our Location</h3>
 
-              {/* <Maps2
-                selectedRoomLatitude={selectedHotel.room_latitude}
-                selectedRoomLongitude={selectedHotel.room_longitude}
-              /> */}
-
-              {/* <div className="book-now-btn-row">
-                <Button
-                  variant="custom"
-                  className="book-now-button-last"
-                  onClick={HandleBookHotelRoom}
-                >
-                  Book Hotel Now
-                </Button>
-              </div> */}
             </section>
 
 
@@ -676,25 +418,6 @@ const GetRoomDetails = () => {
                   </p>
               }
 
-              {/* {
-                allReviewsArray.length > 0 ? (
-                  <Button
-                    variant="custom"
-                    className="see-all-reviews-btn"
-                    onClick={() =>
-                      navigate(
-                        `/all-reviews/${selectedHotelName}/${selectedHotelId}`
-                      )
-                    }
-                  >
-                    See all reviews
-                  </Button>
-                ) 
-                : 
-              (
-                <p>dfkd</p>
-              )
-              } */}
             </section>
 
             <section className="get-room-details-review-section">

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsArrowDownSquare, BsArrowUpSquare } from 'react-icons/bs';

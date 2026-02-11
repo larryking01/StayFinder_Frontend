@@ -43,7 +43,7 @@ const ContactUsHelp = () => {
 
   const HandleComplaintSubmit = () => {
     let regex =
-      /^(?:(?:[^<>()[\].,;:\s@\"]+(?:\.[^<>()[\].,;:\s@\"]+)*)|(\".+\"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}))$/;
+      /^(?:(?:[^<>()[\].,;:\s@"]+(?:\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}))$/;
 
     if (customerEmail.length === 0) {
       setSubmitComplaintError('No email provided. Email is required');

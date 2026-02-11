@@ -18,7 +18,6 @@ import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
 import Login from './Routes/Login';
 import SignUp from './Routes/SignUp';
 import NavbarComponent from './Routes/NavBar';
-import Reviews from './Routes/AllReviews';
 import PaymentSuccess from './Routes/PaymentSuccess';
 import PaymentCanceled from './Routes/PaymentCanceled';
 
@@ -99,10 +98,6 @@ const App = () => {
             />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<SignUp />} />
-            <Route
-              path="all-reviews/:hotel_name/:hotel_id"
-              element={<Reviews />}
-            />
             <Route path="payment-successful" element={<PaymentSuccess />} />
             <Route path="payment-canceled" element={<PaymentCanceled />} />
             <Route path="nav-bar" element={<NavbarComponent />} />
