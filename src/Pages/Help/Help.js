@@ -1,3 +1,4 @@
+import './help.css';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';

@@ -1,0 +1,90 @@
+.about-us-main-background {
+  width: 100%;
+  height: 90vh;
+}
+
+.img-text {
+  position: absolute;
+  bottom: -2%;
+  padding-left: 15%;
+  color: black;
+  font-family: 'Lora', serif;
+  font-size: 2.3rem;
+  font-style: normal;
+}
+
+.about-us-header-section {
+  margin-top: 4%;
+}
+
+.main-header-text {
+  text-align: center;
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.about-us-sub-headers {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.about-us-row-generic-style {
+  margin-top: 4%;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-bottom: 4%;
+}
+
+.about-us-mission-row {
+  background-image: linear-gradient(to top, white, blue);
+  padding-top: 10%;
+  padding-bottom: 10%;
+  text-align: center;
+  color: white;
+}
+
+.about-us-mission-text {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.about-us-team-section {
+  margin-top: 4%;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+.our-team-header {
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  text-align: center;
+  margin-top: 8%;
+  color: var(--primary-color);
+}
+
+.column-icon-style {
+  width: 30%;
+}
+
+.team-pic-style {
+  width: 80%;
+  border-radius: 30%;
+}
+
+.our-team-row {
+  margin-bottom: 9%;
+}
+
+.team-member-name {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+}
+
+.team-member-position {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
