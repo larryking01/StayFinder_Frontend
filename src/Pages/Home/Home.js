@@ -168,7 +168,7 @@ const Home = () => {
                   className="cover-page-card-style"
                   onClick={() =>
                     navigate(
-                      `/get-hotel-details/${hotel.hotelName}/${hotel.id}`
+                      `/hotel-details/${hotel.hotelName}/${hotel.id}`
                     )
                   }
                 >

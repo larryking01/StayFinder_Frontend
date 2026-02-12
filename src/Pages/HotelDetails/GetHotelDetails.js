@@ -420,8 +420,8 @@ const GetHotelDetails = () => {
 
             </section>
 
-            <section className="get-hotel-details-review-section">
-              <h5 className="get-hotel-details-post-review-header">
+            <section className="hotel-details-review-section">
+              <h5 className="hotel-details-post-review-header">
                 Post a review
               </h5>
               <Form>
@@ -461,7 +461,7 @@ const GetHotelDetails = () => {
                   <Col>
                     <Button
                       variant="custom"
-                      className="get-hotel-details-post-review-btn"
+                      className="hotel-details-post-review-btn"
                       onClick={HandlePostReview}
                     >
                       Post review

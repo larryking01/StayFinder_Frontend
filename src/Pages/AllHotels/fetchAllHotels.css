@@ -1,0 +1,199 @@
+/* fetch all rooms styling */
+.fetch-all-hotels-main-section {
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 3%;
+}
+
+.find-perfect-hotel-section {
+  padding-left: 8.8%;
+  margin-top: 4%;
+}
+
+.find-perfect-hotel-text {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+}
+
+.from-budget-text {
+  font-family: 'Lora', serif;
+  font-weight: bold;
+}
+
+.fetch-all-hotels-row {
+  border-radius: 1%;
+  padding: 1%;
+  margin-bottom: 2%;
+  border: 1px solid lightgray;
+  /* box-shadow: 1px 1px 5px grey; */
+  cursor: pointer;
+}
+
+.fetch-all-hotels-fetch-error-section {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.fetch-all-hotels-loading-section {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.fetch-all-hotels-title {
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.room-rate-text {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+}
+
+.go-to-site-button {
+  width: 40%;
+  background-color: var(--primary-color);
+  color: white;
+  height: 40px;
+}
+
+.go-to-site-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.fetch-all-hotels-search-tab-section {
+  padding-left: 9%;
+  padding-right: 9%;
+  margin-top: 3%;
+}
+
+.search-hotel-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.search-hotel-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.search-hotel-textbox {
+  height: 55px;
+}
+
+.hotel-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* for pagination */
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  font-size: 1.2rem;
+  gap: 5px;
+}
+
+.pagination .page-num {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.pagination .page-num:hover {
+  background-color: #5ab1bb;
+  color: white;
+}
+
+.pagination .active {
+  background-color: #5ab1bb;
+  color: white;
+}
+
+
+.trending-hotels-text {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+  padding-left: 8.8%;
+}
+
+.explore-popular-destinations-text {
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  padding-left: 8.8%;
+}
+
+.trending-hotels-row {
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.trending-hotels-title {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.trending-hotels-sub-text {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+}
+
+.genius-travel-section {
+  background-image: linear-gradient(to right, lightblue, var(--primary-color));
+  padding-top: 5%;
+  padding-bottom: 10%;
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
+.genius-travel-text {
+  color: white;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-size: 2.7rem;
+}
+
+.genius-meta-text {
+  color: white;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+}
+
+.genius-started-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.genius-started-btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+.genius-travel-img {
+  width: 70%;
+}
+
+.genius-travel-info-row {
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
+.genius-travel-info-text {
+  color: white;
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+}
+
+.genius-travel-info-text-meta {
+  color: white;
+  font-family: 'Lora', serif;
+}
+
+/* end of fetch all rooms styling */
