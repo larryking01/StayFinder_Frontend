@@ -1,4 +1,4 @@
-
+import './getHotelDetails.css'
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
