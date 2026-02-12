@@ -1,0 +1,44 @@
+.faq-header-section-generic-style {
+  margin-top: 10%;
+  margin-right: 6%;
+  margin-left: 6%;
+  margin-bottom: 6%;
+}
+
+.faq-header-text {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+}
+
+.answer-div-show {
+  display: block;
+}
+
+.answer-div-hide {
+  display: none;
+}
+
+.faq-question-answer-section {
+  margin-top: 6%;
+  margin-right: 6%;
+  margin-left: 6%;
+  margin-bottom: 6%;
+}
+
+.faq-question-text {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+}
+
+.q_and_a_div {
+  cursor: pointer;
+}
+
+.faq-row-selected {
+  cursor: pointer;
+}
+
+.faq-row-unselected {
+  cursor: pointer;
+}
+

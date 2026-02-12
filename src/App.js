@@ -8,7 +8,7 @@ import '@fontsource/roboto/700.css';
 
 import Home from './Pages/Home/Home';
 import FetchAllBookings from './Pages/AllBookings/FetchAllBookings';
-import FetchAllRooms from './Pages/AllHotels/FetchAllHotels';
+import FetchAllHotels from './Pages/AllHotels/FetchAllHotels';
 import GetRoomDetails from './Pages/HotelDetails/GetHotelDetails';
 import BookHotel from './Pages/BookHotel/BookHotel';
 import Help from './Pages/Help/Help';
@@ -79,9 +79,9 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="fetch-all-hotels" element={<FetchAllRooms />} />
+            <Route path="fetch-all-hotels" element={<FetchAllHotels />} />
             <Route
-              path="get-hotel-details/:hotel_name/:hotel_id"
+              path="hotel-details/:hotel_name/:hotel_id"
               element={<GetRoomDetails />}
             />
             <Route path="fetch-all-bookings" element={<FetchAllBookings />} />

@@ -1,3 +1,4 @@
+import './bookHotel.css';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';

@@ -1,4 +1,4 @@
-
+import './home.css';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -168,7 +168,7 @@ const Home = () => {
                   className="cover-page-card-style"
                   onClick={() =>
                     navigate(
-                      `/get-hotel-details/${hotel.hotelName}/${hotel.id}`
+                      `/hotel-details/${hotel.hotelName}/${hotel.id}`
                     )
                   }
                 >

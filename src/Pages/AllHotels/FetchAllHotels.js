@@ -1,4 +1,4 @@
-
+import './fetchAllHotels.css';
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
@@ -185,7 +185,7 @@ const FetchAllHotels = () => {
                       className="fetch-all-hotels-row"
                       onClick={() =>
                         navigate(
-                          `/get-hotel-details/${rooms.room_number}/${rooms._id}`
+                          `/hotel-details/${rooms.room_number}/${rooms._id}`
                         )
                       }
                     >

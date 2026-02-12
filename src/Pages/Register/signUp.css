@@ -1,0 +1,105 @@
+.sign-up-wrapper {
+  text-align: center;
+}
+
+.signup-control-focus-style:focus {
+  box-shadow: none;
+  border: 2px solid var(--text-control-border);
+}
+
+.create-account-section {
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+
+.log-in-brand-logo {
+  cursor: pointer;
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+
+.sign-up-header-text {
+  font-family: 'Lora', serif;
+}
+
+.sign-up-form {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.input-group-margin {
+  margin-bottom: 8%;
+}
+
+.input-group-style {
+  height: 45px;
+}
+
+.input-group-error {
+  border: 1px solid red;
+  height: 45px;
+}
+
+.input-group-text {
+  cursor: pointer;
+}
+
+.sign-up-brand-logo {
+  cursor: pointer;
+}
+
+.sign-up-btn {
+  width: 100%;
+  height: 45px;
+  background-color: var(--primary-color);
+  color: white;
+  /* margin-top: 6.5%; */
+}
+
+.sign-up-btn:hover {
+  width: 100%;
+  height: 45px;
+  background-color: var(--primary-color);
+  color: white;
+  /* margin-top: 6.5%; */
+}
+
+.other-error-text {
+  color: red;
+  font-family: 'Lora', serif;
+}
+
+.sign-up-tnc-text {
+  font-size: 0.8rem;
+}
+
+.sign-up-already-account-text {
+  font-size: 0.8rem;
+}
+
+.sign-up-continue-with-text {
+  font-size: 0.8rem;
+}
+
+.tnc-span {
+  color: blue;
+  cursor: pointer;
+}
+
+.sign-in-span {
+  color: blue;
+  cursor: pointer;
+}
+
+.alt-sign-up-icon {
+  cursor: pointer;
+}
+
+.alt-sign-up-icon:hover {
+  color: var(--primary-color);
+}
+

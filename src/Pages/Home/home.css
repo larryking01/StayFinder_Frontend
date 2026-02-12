@@ -1,0 +1,279 @@
+.hide-overflow {
+  overflow-x: hidden;
+}
+
+.main-content {
+  margin-top: 3%;
+}
+
+.get-away {
+  margin-left: 4%;
+  margin-bottom: 5%;
+}
+
+.get-away-text {
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+}
+
+.get-away-details-text {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+}
+
+.welcome-phrase {
+  position: relative;
+  bottom: 34rem;
+  z-index: 10;
+  color: white;
+  opacity: 1;
+  padding: 0% 10% 0% 10%;
+  text-align: center;
+  font-family: 'Courgette', cursive;
+}
+
+.cover-page-card-style {
+  cursor: pointer;
+  margin-bottom: 10%;
+  height: 94%;
+}
+
+.main-hotels-section {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.main-hotels-section-row {
+  margin-bottom: 3%;
+}
+
+.fetching-hotels-text {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  color: #808080;
+}
+
+.fetch-hotels-error-section {
+  text-align: center;
+}
+
+.fetch-hotels-error-text {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+}
+
+.hotel-card-img {
+  min-height: 250px;
+  max-height: 250px;
+  width: 100%;
+  transition: transform 0.5s ease 0s;
+}
+
+.hotel-card-img:hover {
+  transform: scale(1.06);
+}
+
+.card-title {
+  font-weight: bolder;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 20%;
+}
+
+.location-detail {
+  font-family: 'Lora', serif;
+}
+
+.card-room-location {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3%;
+}
+
+.card-room-rate {
+  padding-bottom: 3%;
+  font-weight: bolder;
+  font-family: 'Lora', serif;
+}
+
+.save-big-text {
+  color: var(--primary-color);
+  font-size: 1.6em;
+  margin-left: 4%;
+  font-family: 'Lora', serif;
+  margin-top: 2%;
+}
+
+.intro-background-img {
+  width: 100%;
+  height: 80vh;
+  margin-bottom: 5%;
+  filter: brightness(60%);
+}
+
+.view-all-hotels-text-div {
+  cursor: pointer;
+}
+
+.view-all-hotels-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.view-all-hotels-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.best-prices-img {
+  width: 120px;
+}
+
+.intro-form {
+  position: absolute;
+  top: 72%;
+  width: 75%;
+  height: 34%;
+  background-color: white;
+  margin-left: 14%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  box-shadow: 0px 1px 3px grey;
+  border-radius: 2%;
+}
+
+.intro-form-catch-phrase {
+  text-align: center;
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+  padding-bottom: 1%;
+  font-size: 1.3rem;
+}
+
+.destination-textbox {
+  height: 55px;
+}
+
+.number-of-guests-textbox {
+  height: 55px;
+}
+
+.find-hotel-button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  height: 55px;
+}
+
+.find-hotel-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.intro-form-row {
+  margin-bottom: 2%;
+}
+
+.intro-choice-options {
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s ease;
+}
+
+.intro-choice-options:hover {
+  cursor: pointer;
+  color: #6495ed;
+  transform: scale(1.2);
+}
+
+.intro-choice-text {
+  padding-left: 2%;
+  margin-top: -2%;
+}
+
+.form-header-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-header-div h6 {
+  padding-right: 1%;
+  margin-left: 9%;
+  color: white;
+}
+
+.world-of-hotels-section {
+  margin-top: -4rem;
+  text-align: center;
+}
+
+.world-of-hotels-text {
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.book-perfect-hotel-text {
+  font-family: 'Lora', serif;
+}
+
+.plan-staycation-section {
+  margin-top: 5%;
+}
+
+.plan-staycation-text {
+  color: var(--primary-color);
+  margin-left: 4%;
+  font-size: 2.3rem;
+  padding-bottom: 2%;
+  font-family: 'Lora', serif;
+}
+
+.get-best-prices-section {
+  text-align: center;
+  margin-bottom: 3%;
+  font-family: 'Lora', serif;
+  margin-top: 10%;
+}
+
+.get-best-prices-text {
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+
+.extra-info-section {
+  margin: 5%;
+}
+
+.extra-info-row {
+  margin-bottom: 8%;
+}
+
+.extra-info-title {
+  font-family: 'Lora', serif;
+  padding-bottom: 5%;
+  color: var(--primary-color);
+}
+
+.extra-info-text-col {
+  padding: 2% 4% 0% 4%;
+}
+
+.extra-info-details {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.extra-info-details-text {
+  font-size: 1.4rem;
+}
+
+.extra-info-img {
+  width: 100%;
+  aspect-ratio: 5/3;
+  border-radius: 10%;
+}
+
