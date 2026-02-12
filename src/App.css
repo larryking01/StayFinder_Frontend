@@ -47,60 +47,6 @@
   background-color: blue;
 }
 
-/* navbar styling */
-.navbar-brand {
-  font-style: italic;
-  font-size: 1.7rem;
-  color: var(--primary-color);
-  font-weight: bold;
-}
-
-.navbar-brand:hover {
-  color: #3124ec;
-}
-
-.nav-link-text {
-  font-family: 'Lora', serif;
-}
-
-.navbar-login-btn {
-  /* background-color: var(--primary-color);
-    color: white; */
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  margin-left: 2%;
-}
-
-.navbar-login-btn:hover {
-  background-color: var(--primary-color);
-  color: white;
-  /* background-color: white;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color); */
-}
-
-.navbar-signup-btn {
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-}
-
-.navbar-signup-btn:hover {
-  /* background-color: var(--primary-color); */
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.navbar-brand {
-  cursor: pointer;
-}
-
-.user-name-display {
-  margin-left: -2%;
-}
-
-/* end of navbar styling */
 
 /* footer styling */
 .footer-container {

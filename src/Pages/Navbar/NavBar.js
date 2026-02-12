@@ -1,3 +1,4 @@
+import './navbar.css'
 import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
