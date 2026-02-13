@@ -1,31 +1,32 @@
+import './startDatePicker.css'
 import React, { useContext, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
+import { UserContext } from '../../App';
 
-// modules
-import { UserContext } from '../App';
-
-const EndDatePicker = () => {
+const StartDatePicker = () => {
   // destructure values from context
-  const { endDateValue, setEndDateValue, setEndDateMilliseconds } =
+  const { startDateValue, setStartDateValue, setStartDateMilliseconds } =
     useContext(UserContext);
 
-  // store end date value in local storage
   useEffect(() => {
-    window.localStorage.setItem('endDateValue', JSON.stringify(endDateValue));
-  }, [endDateValue]);
+    window.localStorage.setItem(
+      'startDateValue',
+      JSON.stringify(startDateValue)
+    );
+  }, [startDateValue]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <DatePicker
-        label="Check-out"
-        value={endDateValue}
+        label="Check-in"
+        value={startDateValue}
         onChange={(newValue) => {
           if (newValue !== null) {
             const date = newValue._d;
-            setEndDateMilliseconds(date);
+            setStartDateMilliseconds(date);
             const day = date.getDate();
             let stringDay = day.toString();
             if (stringDay.length < 2) {
@@ -42,7 +43,7 @@ const EndDatePicker = () => {
             let stringYear = year.toString();
 
             let finalDate = stringMonth + '/' + stringDay + '/' + stringYear;
-            setEndDateValue(finalDate);
+            setStartDateValue(finalDate);
           }
         }}
         renderInput={(params) => <TextField {...params} />}
@@ -52,4 +53,4 @@ const EndDatePicker = () => {
   );
 };
 
-export default EndDatePicker;
+export default StartDatePicker;

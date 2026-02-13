@@ -172,4 +172,58 @@
   padding: 1.5%;
 }
 
-/* end of book hotel page styling */
+
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .section-sub-header {
+    font-size: 1rem;
+  }
+
+  .booking-hotel-summary-div {
+    border: 1px solid lightgray;
+    padding: 3%;
+  }
+
+  .details-section {
+    border: 1px solid lightgray;
+    border-radius: 2%;
+    padding: 3%;
+  }
+
+  .booking-hotel-extra-details {
+    font-size: 0.84rem;
+    padding-bottom: 5%;
+  }
+
+  .booking-hotel-price {
+    font-weight: bold;
+  }
+
+  .form-control-no-text {
+    margin-bottom: 8%;
+  }
+
+  .details-section-sub-div {
+    margin-bottom: 12%;
+  }
+
+  .confirm-booking-details-btn {
+    margin-bottom: 12%;
+  }
+
+  .paystack-btn {
+    margin-bottom: 9%;
+  }
+
+  .book-room-features {
+    background-color: var(--light-blue-color);
+    padding: 7% 14%;
+    text-align: center;
+    border-radius: 5%;
+  }
+
+}

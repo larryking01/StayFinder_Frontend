@@ -42,3 +42,13 @@
   cursor: pointer;
 }
 
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .faq-question-answer-section {
+    margin-top: 13%;
+  }
+}

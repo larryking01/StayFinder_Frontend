@@ -197,3 +197,28 @@
 }
 
 /* end of fetch all rooms styling */
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .fetch-all-hotels-row {
+    margin-bottom: 12%;
+  }
+
+  .go-to-site-button {
+    width: 100%;
+  }
+
+  .fetch-all-hotels-search-tab-section {
+    margin-bottom: 13%;
+    margin-top: 12%;
+    padding: 0 5.5%;
+  }
+
+  .search-hotel-textbox {
+    height: 43px;
+  }
+  
+}
