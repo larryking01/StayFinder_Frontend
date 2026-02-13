@@ -51,3 +51,15 @@
   font-style: italic;
   color: red;
 }
+
+
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .contact-us-details-section {
+    width: 100%;
+  }
+}

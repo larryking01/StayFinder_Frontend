@@ -88,3 +88,52 @@
   font-size: 1.1rem;
   font-weight: bold;
 }
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .about-us-main-background {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .img-text {
+    position: relative;
+    padding-left: 8%;
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  .about-us-header-section {
+    margin-top: 20%;
+    margin-bottom: 10%;
+    margin-right: 3.1rem;
+  }
+
+  .main-header-text {
+    padding-left: 5%;
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .about-us-mission-row {
+    background-image: linear-gradient(to bottom, blue, white);
+    padding: 5%;
+    text-align: center;
+    color: white;
+  }
+
+  .about-us-mission-text {
+    font-size: 2.3rem;
+    font-weight: bold;
+  }
+
+  .team-pic-style {
+    width: 100%;
+  }
+}

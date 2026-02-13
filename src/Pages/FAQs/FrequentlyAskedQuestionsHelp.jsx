@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import NavbarComponent from '../Navbar/NavBar';
-import Footer from '../Footer/Footer';
+import Footer from '../Footer/Footer.jsx';
 
 const FrequentlyAskedQuestionsHelp = () => {
   const navigate = useNavigate();

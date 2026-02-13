@@ -103,3 +103,21 @@
   color: var(--primary-color);
 }
 
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .sign-up-form {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+  }
+
+  .other-error-text {
+    font-size: 0.78rem;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}

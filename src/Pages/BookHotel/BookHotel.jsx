@@ -10,7 +10,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { PaystackButton } from 'react-paystack';
 import NavbarComponent from '../Navbar/NavBar';
 import Footer from '../Footer/Footer';
-import ScrollToTop from '../../Configuration/ScrollToTop';
+import ScrollToTop from '../../Components/ScrollToTop/ScrollToTop';
 import axios from 'axios';
 
 const BookHotel = () => {

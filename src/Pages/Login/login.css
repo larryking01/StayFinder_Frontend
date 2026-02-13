@@ -111,3 +111,23 @@
 .footer-gap {
   margin-bottom: 15%;
 }
+
+
+
+
+
+/* responsive styling */
+@media (max-width: 480px) {
+  .login-form {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+
+  .login-other-error-text {
+    color: red;
+    font-family: 'Lora', serif;
+    font-size: 0.78rem;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}

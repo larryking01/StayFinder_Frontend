@@ -10,17 +10,17 @@ import { BsArrowRight } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
 import Carousel from 'react-bootstrap/Carousel';
 
-import NavbarComponent from '../Navbar/NavBar.js';
-import ScrollToTop from '../../Configuration/ScrollToTop.js';
-import Footer from '../Footer/Footer.js';
+import NavbarComponent from '../Navbar/NavBar.jsx';
+import ScrollToTop from '../../Components/ScrollToTop/ScrollToTop.jsx';
+import Footer from '../Footer/Footer.jsx';
 import background_2 from '../../Assets/Homepage Background/background_2.jpg';
 import trip_dotcom from '../../Assets/trip.com_logo.png';
 import booking_dotcom from '../../Assets/booking.com_logo.png';
 import hyatt_dotcom from '../../Assets/hyatt.com_logo.jpg';
 import hotels_dotcom from '../../Assets/hotels.com_logo.jpg'; 
 import Rating from '@mui/material/Rating';
-import StartDatePicker from '../../Configuration/StartDatePicker.js';
-import EndDatePicker from '../../Configuration/EndDatePicker.js';
+import StartDatePicker from '../../Components/DatePickers/StartDatePicker.jsx';
+import EndDatePicker from '../../Components/DatePickers/EndDatePicker.jsx';
 
 import rooms_and_suites_pictures_array from '../../data/roomsAndSuitesData.js';
 import restaurants_pictures_array from '../../data/restaurantsData.js';
