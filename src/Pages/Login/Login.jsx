@@ -8,16 +8,24 @@ import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { AiOutlineMail } from 'react-icons/ai';
-
-// modules
-import { UserContext } from '../../App';
+import { UserData } from '../../App';
 import appNamesArray from '../../data/appNames';
+
+
+
+
+
+
+
+
+
+
 
 const Login = () => {
   const brand_name = appNamesArray[0];
   const navigate = useNavigate();
 
-  const { currentUser } = useContext(UserContext);
+  const { userInfo } = useContext(UserData);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,6 +80,7 @@ const Login = () => {
         }
       } else {
         // create a new user
+        console.log( userInfo )
       }
     } catch (error) {
       // handle errors appropriately
@@ -94,7 +103,8 @@ const Login = () => {
           {otherError ? otherError : null}
         </p>
         <h4 className="login-header-text mb-5">
-          {currentUser ? currentUser.email : ''}
+          {/* {currentUser ? currentUser.email : ''} */}
+          current user email
         </h4>
       </section>
 

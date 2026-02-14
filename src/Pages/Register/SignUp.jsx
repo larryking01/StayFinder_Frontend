@@ -14,8 +14,14 @@ import {
 import { AiOutlineMail } from 'react-icons/ai';
 import axios from 'axios';
 
-import { UserContext } from '../../App';
+import { UserData } from '../../App';
 import appNamesArray from '../../data/appNames';
+
+
+
+
+
+
 
 
 
@@ -24,8 +30,10 @@ import appNamesArray from '../../data/appNames';
 const SignUp = () => {
   const api_url = process.env.REACT_APP_DEV_API_URL;
   const brand_name = appNamesArray[0];
+
+
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
+  const { userInfo } = useContext(UserData);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -179,7 +187,7 @@ const SignUp = () => {
         <h4 className="sign-up-header-text">Create an account</h4>
         <p className="other-error-text">{otherError ? otherError : null}</p>
         <h4 className="sign-up-header-text mb-5">
-          {currentUser ? currentUser.email : ''}
+          {userInfo.email ? userInfo.email : ''}
         </h4>
       </section>
 
