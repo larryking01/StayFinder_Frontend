@@ -4,16 +4,23 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import appNamesArray from '../../data/appNames';
+import { UserData } from '../../App';
 
-// modules
-import { UserContext } from '../../App';
+
+
+
+
+
+
+
+
 
 const NavbarComponent = () => {
   const brand_name = appNamesArray[0];
 
   const navigate = useNavigate();
 
-  const { currentUser } = useContext(UserContext);
+  const { userInfo } = useContext(UserData);
 
   return (
     <>
@@ -56,14 +63,17 @@ const NavbarComponent = () => {
             </Nav>
 
             <Nav className="ms-auto">
-              {currentUser ? (
+              {
+              userInfo ? (
                 <>
                   <h5 className="user-name-display">
                     {' '}
-                    {currentUser.displayName}{' '}
+                    {userInfo.firstName}{' '}
                   </h5>
                 </>
-              ) : (
+              ) 
+              : 
+              (
                 <>
                   <Nav.Link className="nav-link-button">
                     <Button
