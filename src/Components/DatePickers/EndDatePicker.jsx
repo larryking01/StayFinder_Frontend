@@ -13,7 +13,6 @@ const EndDatePicker = () => {
 
   // store end date value in local storage
   useEffect(() => {
-    console.log("booking details = ", bookingDetails)
     localStorage.setItem('endDateValue', JSON.stringify(bookingDetails.checkOutDate));
   }, [bookingDetails.checkOutDate]);
 
