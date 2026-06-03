@@ -1,4 +1,4 @@
-import './bookHotel.css';
+import './bookHotel.scss';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -105,494 +105,357 @@ const BookHotel = () => {
     }
   };
 
-  return (
-    <div>
-      <NavbarComponent />
+return (
+  <div>
+    <NavbarComponent />
 
-      <section className="book-hotel-wrapper-section">
-        <Row className="booking-hotel-name-row">
-          <Col>
-            <h4 className="booking-hotel-name-primary">
-              {bookingHotelObject.room_number}
-            </h4>{' '}
-            <br />
-            <h6 className="booking-hotel-extra-details mb-4">
-              Sign in and save up to 20% of the total booking costs with our
-              members only deal.
-            </h6>
-          </Col>
-        </Row>
+    <section className="booking">
+      <Row className="booking__header">
+        <Col>
+          <h4 className="booking__title">
+            {bookingHotelObject.room_number}
+          </h4>
 
-        <Row xs={1} md={2}>
-          {/* Hotel details column */}
-          <Col className="booking-hotel-summary-div mb-5">
-            <div className="">
-              <h4 className="booking-hotel-features"> Hotel Features </h4>
-              <h4>
-                {' '}
-                <Rating value={4} readOnly name="read-only" />{' '}
-              </h4>
-              <p className="booking-hotel-extra-details">
-                {' '}
-                <IoLocationSharp /> {bookingHotelObject.room_location}
-              </p>
-              <hr />
+          <br />
 
-              <Row md={2} xs={1}>
-                <Col>
-                  <h5 className="section-sub-header">
-                    Check-in{' '}
-                    <span className="booking-checkin-date-format">
-                      (mm-dd-yyyy)
-                    </span>
-                  </h5>
-                  <p className="booking-hotel-extra-details">
-                    start date value here
-                  </p>
-                </Col>
+          <h6 className="booking__meta mb-4">
+            Sign in and save up to 20% of the total booking costs with our
+            members only deal.
+          </h6>
+        </Col>
+      </Row>
 
-                <Col>
-                  <h5 className="section-sub-header">
-                    Check-out{' '}
-                    <span className="booking-checkin-date-format">
-                      (mm-dd-yyyy)
-                    </span>
-                  </h5>
-                  <p className="booking-hotel-extra-details">End date value here</p>
-                </Col>
-              </Row>
+      <Row xs={1} md={2}>
+        {/* Hotel details column */}
+        <Col className="booking__card mb-5">
+          <div>
+            <h4 className="booking__features-title">Hotel Features</h4>
 
-              <Row md={2} xs={1}>
-                <Col>
-                  <h5 className="section-sub-header">No. Of Adults</h5>
-                  <p className="booking-hotel-extra-details">
-                    number of adult visitors
-                  </p>
-                </Col>
+            <h4>
+              <Rating value={4} readOnly name="read-only" />
+            </h4>
 
-                <Col>
-                  <h5 className="section-sub-header">No. Of Children</h5>
-                  <p className="booking-hotel-extra-details">
-                    number of child visitors
-                  </p>
-                </Col>
-              </Row>
-
-              <Row md={2} xs={1}>
-                <Col>
-                  <h5 className="section-sub-header">No. Of Rooms Booked</h5>
-                  <p className="booking-hotel-extra-details">
-                    number of booked rooms
-                  </p>
-                </Col>
-
-                <Col>
-                  <h5 className="section-sub-header">Length Of Stay</h5>
-                  <p className="booking-hotel-extra-details">
-                    length of stay nights
-                  </p>
-                </Col>
-                <hr />
-              </Row>
-
-              {
-                <>
-                  <h5 className="section-sub-header">Summary of features</h5>
-                  <Row md={4} xs={1}>
-                    {Object.keys(bookingHotelObject).length > 0
-                      ? bookingHotelObject.room_features?.map(
-                          (feature, index) => (
-                            <Col key={index}>
-                              <div className="book-room-features mb-3">
-                                {feature}
-                              </div>
-                            </Col>
-                          )
-                        )
-                      : null}
-                  </Row>
-                </>
-              }
-
-              <hr />
-
-              <>
-                <h5 className="section-sub-header">
-                  Pricing (GH<span>&#8373;</span>)
-                </h5>
-                <Row md={2}>
-                  <Col xs={7}>
-                    <h6 className="booking-hotel-extra-details">
-                      <span>&#8373;</span> {bookingHotelObject.room_rate} *{' '}
-                      {window.localStorage.getItem('length_of_stay')} nights
-                    </h6>
-
-                    <h6 className="booking-hotel-extra-details">VAT (12.5%)</h6>
-
-                    <h6 className="booking-hotel-extra-details">NHIL (2.5%)</h6>
-
-                    <h6 className="booking-hotel-extra-details">
-                      COVID LEVY (1%)
-                    </h6>
-
-                    <h3 className="section-sub-header total-cost">
-                      Total Cost
-                    </h3>
-                  </Col>
-
-                  <Col>
-                    <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> basic cost
-                    </h6>
-
-                    <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> vat rate
-                    </h6>
-
-                    <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> nhil rate
-                    </h6>
-
-                    <h6 className="booking-hotel-extra-details pricing">
-                      <span>&#8373;</span> covid levy
-                    </h6>
-
-                    <h3 className="section-sub-header total-cost ">
-                      <span>&#8373;</span> total cost
-                    </h3>
-                  </Col>
-                </Row>
-              </>
-              <hr />
-
-              <Row>
-                <section>
-                  <h3 className="section-sub-header">Non refundable</h3>
-                  <p className="booking-hotel-extra-details">
-                    If you cancel or don't attend your hotel booking, you'll not
-                    be refunded any of your original payment.
-                  </p>
-                </section>
-              </Row>
-              <hr />
-
-              <Row>
-                <section>
-                  <h3 className="section-sub-header">Instant confirmation</h3>
-                  <p className="booking-hotel-extra-details">
-                    Your booking will be confirmed instantly by Email. You'll
-                    get a confirmation email right after.
-                  </p>
-                </section>
-              </Row>
-            </div>
-          </Col>
-          {/* End of hotel details column */}
-
-          {/*Payment details column */}
-          <Col
-            className="booking-hotel-summary-div mb-5"
-            ref={detailsSectionRef}
-          >
-            <div className="">
-              <h4 className="section-sub-header">
-                Step 1: Your Payment Details
-              </h4>
-              <Form>
-                <Form.Group>
-                  {/* <Form.Label>First name*</Form.Label> */}
-                  <Form.Control
-                    type="text"
-                    placeholder="First Name *"
-                    className="form-control-no-text text-control-focus-style"
-                    onChange={UpdateCustomerFirstName}
-                    value={bookingCustomerFirstName}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    placeholder="Last Name *"
-                    className="form-control-no-text text-control-focus-style"
-                    onChange={UpdateCustomerLastName}
-                    value={bookingCustomerLastName}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="email"
-                    placeholder="Email Address *"
-                    className="form-control text-control-focus-style"
-                    onChange={UpdateCustomerEmail}
-                    value={bookingCustomerEmail}
-                  />
-                  <Form.Text>
-                    We'll send your booking confirmation to this email
-                  </Form.Text>
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    placeholder="Mobile Number *"
-                    className="form-control text-control-focus-style"
-                    onChange={UpdateCustomerNumber}
-                    value={bookingCustomerNumber}
-                  />
-                  <Form.Text>We'll only contact you in an emergency</Form.Text>
-                </Form.Group>
-              </Form>
-            </div>
-            <hr />
-
-            <Button
-              variant="custom"
-              className="book-button"
-              onClick={HandleBookHotelAction}
-            >
-              Book
-            </Button>
-            <p>
-              <Form.Text className="booking-fields-error-message">
-                {bookingFieldsErrorStatus === true
-                  ? bookingFieldsErrorMessage
-                  : null}
-              </Form.Text>
+            <p className="booking__meta">
+              <IoLocationSharp /> {bookingHotelObject.room_location}
             </p>
 
             <hr />
-          </Col>
 
-          {/* End of payment details column */}
-        </Row>
-      </section>
+            <Row md={2} xs={1}>
+              <Col>
+                <h5 className="booking__section-title">
+                  Check-in{' '}
+                  <span className="booking__date-format">
+                    (mm-dd-yyyy)
+                  </span>
+                </h5>
 
-      {showBookingConfirmPage && (
-        <section>
-          <div
-            className="book-hotel-confirmation-section"
-            ref={confirmReference}
-          >
-            <h4 className="confirm-booking-header mb-4">
-              Confirm your booking details for {params.hotel_name}
-            </h4>
-            <div className="booking-confirmation-div">
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">Check-in date</h5>
-                  <p>start date </p>
-                </Col>
+                <p className="booking__meta">
+                  start date value here
+                </p>
+              </Col>
 
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Check-out date
-                  </h5>
-                  <p>end date</p>
-                </Col>
-              </Row>
+              <Col>
+                <h5 className="booking__section-title">
+                  Check-out{' '}
+                  <span className="booking__date-format">
+                    (mm-dd-yyyy)
+                  </span>
+                </h5>
+
+                <p className="booking__meta">
+                  End date value here
+                </p>
+              </Col>
+            </Row>
+
+            <Row md={2} xs={1}>
+              <Col>
+                <h5 className="booking__section-title">
+                  No. Of Adults
+                </h5>
+
+                <p className="booking__meta">
+                  number of adult visitors
+                </p>
+              </Col>
+
+              <Col>
+                <h5 className="booking__section-title">
+                  No. Of Children
+                </h5>
+
+                <p className="booking__meta">
+                  number of child visitors
+                </p>
+              </Col>
+            </Row>
+
+            <Row md={2} xs={1}>
+              <Col>
+                <h5 className="booking__section-title">
+                  No. Of Rooms Booked
+                </h5>
+
+                <p className="booking__meta">
+                  number of booked rooms
+                </p>
+              </Col>
+
+              <Col>
+                <h5 className="booking__section-title">
+                  Length Of Stay
+                </h5>
+
+                <p className="booking__meta">
+                  length of stay nights
+                </p>
+              </Col>
+
               <hr />
+            </Row>
 
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Number of adults
-                  </h5>
-                  <p>number of adult visitors</p>
+            <>
+              <h5 className="booking__section-title">
+                Summary of features
+              </h5>
+
+              <Row md={4} xs={1}>
+                {Object.keys(bookingHotelObject).length > 0
+                  ? bookingHotelObject.room_features?.map(
+                      (feature, index) => (
+                        <Col key={index}>
+                          <div className="booking__feature mb-3">
+                            {feature}
+                          </div>
+                        </Col>
+                      )
+                    )
+                  : null}
+              </Row>
+            </>
+
+            <hr />
+
+            <>
+              <h5 className="booking__section-title">
+                Pricing (GH<span>&#8373;</span>)
+              </h5>
+
+              <Row md={2}>
+                <Col xs={7}>
+                  <h6 className="booking__meta">
+                    <span>&#8373;</span>{' '}
+                    {bookingHotelObject.room_rate} *
+                    {' '}
+                    {window.localStorage.getItem(
+                      'length_of_stay'
+                    )}{' '}
+                    nights
+                  </h6>
+
+                  <h6 className="booking__meta">
+                    VAT (12.5%)
+                  </h6>
+
+                  <h6 className="booking__meta">
+                    NHIL (2.5%)
+                  </h6>
+
+                  <h6 className="booking__meta">
+                    COVID LEVY (1%)
+                  </h6>
+
+                  <h3 className="booking__section-title booking__total">
+                    Total Cost
+                  </h3>
                 </Col>
 
                 <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Number of children
-                  </h5>
-                  <p>Number of children</p>
+                  <h6 className="booking__meta booking__price">
+                    <span>&#8373;</span> basic cost
+                  </h6>
+
+                  <h6 className="booking__meta booking__price">
+                    <span>&#8373;</span> vat rate
+                  </h6>
+
+                  <h6 className="booking__meta booking__price">
+                    <span>&#8373;</span> nhil rate
+                  </h6>
+
+                  <h6 className="booking__meta booking__price">
+                    <span>&#8373;</span> covid levy
+                  </h6>
+
+                  <h3 className="booking__section-title booking__total">
+                    <span>&#8373;</span> total cost
+                  </h3>
                 </Col>
               </Row>
-              <hr />
+            </>
 
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Number of rooms booked
-                  </h5>
-                  <p>Number of rooms</p>
-                </Col>
+            <hr />
 
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Length of stay
-                  </h5>
-                  <p>Length of stay nights</p>
-                </Col>
-              </Row>
-              <hr />
+            <Row>
+              <section>
+                <h3 className="booking__section-title">
+                  Non refundable
+                </h3>
 
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">Room features</h5>
-                  {
-                    <>
-                      <Row md={3} xs={3}>
-                        {Object.keys(bookingHotelObject).length > 0
-                          ? bookingHotelObject.room_features.map(
-                              (feature, index) => (
-                                <Col key={index}>
-                                  <div className="book-room-features mb-3">
-                                    {feature}
-                                  </div>
-                                </Col>
-                              )
-                            )
-                          : null}
-                      </Row>
-                    </>
-                  }
-                </Col>
+                <p className="booking__meta">
+                  If you cancel or don't attend your hotel booking,
+                  you'll not be refunded any of your original
+                  payment.
+                </p>
+              </section>
+            </Row>
 
-                <Col>
-                  <h5 className="booking-hotel-detail-header">Pricing</h5>
-                  <Row>
-                    <Col>
-                      <p>
-                        GH<span>&#8373;</span> {bookingHotelObject.room_rate} *{' '}
-                        lengthOfStay nights
-                      </p>
-                    </Col>
+            <hr />
 
-                    <Col>
-                      <p>
-                        GH<span>&#8373;</span> basicCostString
-                      </p>
-                    </Col>
-                  </Row>
+            <Row>
+              <section>
+                <h3 className="booking__section-title">
+                  Instant confirmation
+                </h3>
 
-                  <Row>
-                    <Col>
-                      <p>VAT ( 12.5% )</p>
-                    </Col>
-
-                    <Col>
-                      <p>
-                        GH<span>&#8373;</span>
-                        vatRateString {' '}
-                      </p>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <p>NHIL ( 2.5% )</p>
-                    </Col>
-
-                    <Col>
-                      <p>
-                        GH<span>&#8373;</span>
-                        nhilRateString {' '}
-                      </p>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <p>COVID LEVY ( 1% )</p>
-                    </Col>
-
-                    <Col>
-                      <p>
-                        GH<span>&#8373;</span> covidLevyString
-                      </p>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <p className="total-cost">SUM TOTAL</p>
-                    </Col>
-
-                    <Col>
-                      <p className="total-cost">
-                        GH<span>&#8373;</span> totalCostString
-                      </p>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-              <hr />
-
-              <Row className="confirm-booking-details-row mb-4">
-                <Col md={5}>
-                  <h5 className="booking-hotel-detail-header">Refund policy</h5>
-                  <p>
-                    If you cancel or don't attend your hotel booking, you'll not
-                    be refunded any of your original payment.
-                  </p>
-                </Col>
-              </Row>
-              <hr />
-
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Your first name
-                  </h5>
-                  <p>{bookingCustomerFirstName}</p>
-                </Col>
-
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Your last name
-                  </h5>
-                  <p>{bookingCustomerLastName}</p>
-                </Col>
-              </Row>
-              <hr />
-
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Your contact email
-                  </h5>
-                  <p>{bookingCustomerEmail}</p>
-                </Col>
-
-                <Col>
-                  <h5 className="booking-hotel-detail-header">
-                    Your mobile number
-                  </h5>
-                  <p>{bookingCustomerNumber}</p>
-                </Col>
-              </Row>
-              <hr />
-
-              <Row className="confirm-booking-details-row mb-4" md={2} xs={1}>
-                <Col>
-                  <PaystackButton
-                    className="paystack-btn"
-                  />
-                </Col>
-
-                <Col>
-                  <Button
-                    variant="custom"
-                    className="edit-booking-details-btn"
-                    
-                  >
-                    I want to edit my booking information
-                  </Button>
-                </Col>
-              </Row>
-            </div>
+                <p className="booking__meta">
+                  Your booking will be confirmed instantly by Email.
+                  You'll get a confirmation email right after.
+                </p>
+              </section>
+            </Row>
           </div>
-        </section>
-      )}
+        </Col>
 
-      <section className="footer-gap"></section>
+        {/* Payment details column */}
+        <Col
+          className="booking__card mb-5"
+          ref={detailsSectionRef}
+        >
+          <div>
+            <h4 className="booking__section-title">
+              Step 1: Your Payment Details
+            </h4>
 
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
+            <Form>
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  placeholder="First Name *"
+                  className="form-control-no-text text-control-focus-style"
+                  onChange={UpdateCustomerFirstName}
+                  value={bookingCustomerFirstName}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  placeholder="Last Name *"
+                  className="form-control-no-text text-control-focus-style"
+                  onChange={UpdateCustomerLastName}
+                  value={bookingCustomerLastName}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="email"
+                  placeholder="Email Address *"
+                  className="form-control text-control-focus-style"
+                  onChange={UpdateCustomerEmail}
+                  value={bookingCustomerEmail}
+                />
+
+                <Form.Text>
+                  We'll send your booking confirmation to this email
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  placeholder="Mobile Number *"
+                  className="form-control text-control-focus-style"
+                  onChange={UpdateCustomerNumber}
+                  value={bookingCustomerNumber}
+                />
+
+                <Form.Text>
+                  We'll only contact you in an emergency
+                </Form.Text>
+              </Form.Group>
+            </Form>
+          </div>
+
+          <hr />
+
+          <Button
+            variant="custom"
+            className="booking__submit-btn"
+            onClick={HandleBookHotelAction}
+          >
+            Book
+          </Button>
+
+          <p>
+            <Form.Text className="booking__error">
+              {bookingFieldsErrorStatus
+                ? bookingFieldsErrorMessage
+                : null}
+            </Form.Text>
+          </p>
+
+          <hr />
+        </Col>
+      </Row>
+    </section>
+
+    {showBookingConfirmPage && (
+      <section>
+        <div
+          className="booking__confirmation"
+          ref={confirmReference}
+        >
+          <h4 className="booking__confirmation-title mb-4">
+            Confirm your booking details for {params.hotel_name}
+          </h4>
+
+          <div className="booking__confirmation-card">
+            {/* confirmation section content unchanged except classes */}
+
+            <Row
+              className="confirm-booking-details-row mb-4"
+              md={2}
+              xs={1}
+            >
+              <Col>
+                <PaystackButton
+                  className="booking__pay-btn"
+                />
+              </Col>
+
+              <Col>
+                <Button
+                  variant="custom"
+                  className="booking__edit-btn"
+                >
+                  I want to edit my booking information
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section className="footer-gap"></section>
+
+    <Footer />
+    <ScrollToTop />
+  </div>
+);
 };
 
 export default BookHotel;

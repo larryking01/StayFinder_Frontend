@@ -1,0 +1,70 @@
+.faq {
+  &__header {
+    margin-top: 10%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+  }
+
+  &__title {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+  }
+
+  &__description {
+    margin-bottom: 0.75rem;
+  }
+
+  &__contact-link {
+    color: blue;
+    cursor: pointer;
+  }
+
+  &__content {
+    margin-top: 6%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &--active {
+      cursor: pointer;
+    }
+
+    &--inactive {
+      cursor: pointer;
+    }
+  }
+
+  &__question {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__answer {
+    &--visible {
+      display: block;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .faq {
+    &__content {
+      margin-top: 13%;
+    }
+  }
+}

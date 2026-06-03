@@ -1,4 +1,4 @@
-import './fetchAllHotels.css';
+import './fetchAllHotels.scss';
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
@@ -119,243 +119,278 @@ const FetchAllHotels = () => {
   ];
 
   return (
-    <>
-      <NavbarComponent />
+<>
+  <NavbarComponent />
 
-      <div className="hide-overflow">
-        <section className="find-perfect-hotel-section">
-          <h3 className="find-perfect-hotel-text">
-            Find the perfect hotel on SwiftStay
-          </h3>
-          <p className="from-budget-text">
-            From budget hotels to luxury rooms and everything in between, your
-            dream escape is just a reservation away!
+  <div className="hotels-list">
+    <section className="hotels-list__hero">
+      <h3 className="hotels-list__hero-title">
+        Find the perfect hotel on SwiftStay
+      </h3>
+
+      <p className="hotels-list__hero-subtitle">
+        From budget hotels to luxury rooms and everything in between, your
+        dream escape is just a reservation away!
+      </p>
+    </section>
+
+    <section className="hotels-list__search">
+      <InputGroup>
+        <Form.Control
+          type="text"
+          placeholder="search hotel by name, place or price"
+          className="hotels-list__search-input text-control-focus-style"
+          onChange={UpdateSearchHotel}
+          value={searchHotel}
+        />
+
+        <Button
+          variant="custom"
+          className="hotels-list__search-button"
+          onClick={() => console.log(searchHotel)}
+        >
+          <span>
+            <BsSearch /> Search
+          </span>
+        </Button>
+      </InputGroup>
+    </section>
+
+    <section>
+      {isLoadingAllHotels ? (
+        <section className="hotels-list__loading">
+          <FontAwesomeIcon
+            icon={faSpinner}
+            size="2x"
+            spinPulse
+            className="mb-4"
+            color="#808080"
+          />
+
+          <p className="hotels-list__loading-text">
+            fetching all hotels... please wait
           </p>
         </section>
-
-        <section className="fetch-all-hotels-search-tab-section">
-          <InputGroup>
-            <Form.Control
-              type="text"
-              placeholder="search hotel by name, place or price"
-              className="search-hotel-textbox text-control-focus-style"
-              onChange={UpdateSearchHotel}
-              value={searchHotel}
-            />
-            <Button
-              variant="custom"
-              className="search-hotel-button"
-              onClick={() => console.log(searchHotel)}
-            >
-              <span>
-                <BsSearch /> Search
-              </span>
-            </Button>
-          </InputGroup>
+      ) : fetchError ? (
+        <section className="hotels-list__error">
+          <h5 className="hotels-list__error-text">
+            {fetchErrorMessage}
+          </h5>
         </section>
-
-        <section>
-          {isLoadingAllHotels === true ? (
-            <section className="fetch-all-hotels-loading-section">
-              <FontAwesomeIcon
-                icon={faSpinner}
-                size="2x"
-                spinPulse
-                className="mb-4"
-                color="#808080"
-              />
-              <p className="fetching-hotels-text">
-                fetching all hotels... please wait
-              </p>
-            </section>
-          ) : fetchError === true ? (
-            <section className="fetch-all-hotels-fetch-error-section">
-              <h5 className="fetch-hotels-error-text"> {fetchErrorMessage} </h5>
-            </section>
-          ) : (
-            <section className="fetch-all-hotels-main-section">
-              <div>
-                {currentItems.map((rooms, index) => {
-                  return (
-                    <Row
-                      md={3}
-                      xs={1}
-                      sm={1}
-                      key={index}
-                      className="fetch-all-hotels-row"
-                      onClick={() =>
-                        navigate(
-                          `/hotel-details/${rooms.room_number}/${rooms._id}`
-                        )
-                      }
-                    >
-                      <Col md={4}>
-                        <img
-                          src={rooms.room_cover_photo_url}
-                          alt=""
-                          className="hotel-img"
-                        />
-                      </Col>
-
-                      <Col md={5}>
-                        <h3 className="fetch-all-hotels-title">
-                          {rooms.room_number}
-                        </h3>
-                        <p>
-                          {' '}
-                          <IoLocationSharp /> <span>{rooms.room_location}</span>
-                        </p>
-                        <Rating
-                          name="read-only"
-                          value={rooms.room_rating}
-                          readOnly
-                        />{' '}
-                        <p></p>
-                        <p className="room-rate-text">
-                          GH<span>&#8373;</span> {rooms.room_rate}
-                        </p>
-                        <Button variant="custom" className="go-to-site-button">
-                          More details
-                        </Button>
-                      </Col>
-
-                      <Col md={3}>
-                        <p className="key-features-head">
-                          Key Features Include:
-                        </p>
-                        <p>
-                          Free cancellation: Yes <BsCheckCircleFill />
-                        </p>
-                        <p>
-                          Refund: No <FaTimesCircle />
-                        </p>
-                        <p>
-                          Free cancellation: Yes <BsCheckCircleFill />
-                        </p>
-                        <p>
-                          Free cancellation: No <FaTimesCircle />
-                        </p>
-                      </Col>
-                    </Row>
-                  );
-                })}
-              </div>
-
-              <ReactPaginate
-                breakLabel="..."
-                previousLabel={<RxDoubleArrowLeft />}
-                nextLabel={<RxDoubleArrowRight />}
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={4}
-                pageCount={pageCount}
-                renderOnZeroPageCount={null}
-                containerClassName="pagination"
-                pageLinkClassName="page-num"
-                previousLinkClassName="page-num"
-                nextLinkClassName="page-num"
-                activeLinkClassName="active"
-              />
-            </section>
-          )}
-        </section>
-
-        <section className="trending-hotels-section">
-          <h4 className="trending-hotels-text">Trending hotel destinations</h4>
-          <p className="explore-popular-destinations-text">
-            Explore destinations currently popular with travelers from
-            Ghana{' '}
-          </p>
-          <Row className="trending-hotels-row" md={4} xs={1}>
-            {trendingHotelsArray.map((hotel, index) => (
-              <Col key={index}>
-                <Card>
-                  <Card.Img
-                    src={hotel.coverImage}
-                    alt=""
-                    width={150}
-                    height={200}
-                  />
-                </Card>
-
-                <Card.Body>
-                  <Card.Title>
-                    <h5 className="trending-hotels-title">{hotel.hotelName}</h5>
-                    <h6 className="trending-hotels-sub-text">
-                      Avg. {hotel.averagePrice}.00 per night
-                    </h6>
-                  </Card.Title>
-                </Card.Body>
-              </Col>
-            ))}
-          </Row>
-        </section>
-
-        <section className="genius-travel-section">
-          <Row md={2} xs={1} className="mb-5">
-            <Col>
-              <img
-                className="genius-travel-img"
-                src="https://r-cf.bstatic.com/static/img/genius/genius_landing_page/artworks/hotel@2x/c57b6f58a8cc0bd3c2d537cca7a21b50b3fddd5f.png"
-                alt=""
-              />
-            </Col>
-
-            <Col>
-              <h3 className="genius-travel-text">
-                Discover the genius way to travel
-              </h3>
-              <p className="genius-meta-text">
-                SwiftStay's loyalty program is simple.
-              </p>
-              <p className="genius-meta-text">
-                The more you book with us, the more travel rewards you'll get.
-                Sign in or create an account
-              </p>
-              <Button
-                variant="custom"
-                className="genius-started-btn"
-                onClick={() => navigate('/login')}
+      ) : (
+        <section className="hotels-list__content">
+          <div>
+            {currentItems.map((rooms, index) => (
+              <Row
+                md={3}
+                xs={1}
+                sm={1}
+                key={index}
+                className="hotels-list__card"
+                onClick={() =>
+                  navigate(
+                    `/hotel-details/${rooms.room_number}/${rooms._id}`
+                  )
+                }
               >
-                Get started
-              </Button>
-            </Col>
-          </Row>
+                <Col md={4}>
+                  <img
+                    src={rooms.room_cover_photo_url}
+                    alt=""
+                    className="hotels-list__card-image"
+                  />
+                </Col>
 
-          <Row className="genius-travel-info-row" md={3} xs={1}>
-            <Col>
-              <h4 className="genius-travel-info-text">
-                Wide selection of hotels
-              </h4>
-              <p className="genius-travel-info-text-meta">
-                Search, compare, and book hotels all over the world
-              </p>
-            </Col>
+                <Col md={5}>
+                  <h3 className="hotels-list__card-title">
+                    {rooms.room_number}
+                  </h3>
 
-            <Col>
-              <h4 className="genius-travel-info-text">
-                Verified guest reviews
-              </h4>
-              <p className="genius-travel-info-text-meta">
-                Explore millions of verified hotel reviews written by other
-                guests{' '}
-              </p>
-            </Col>
+                  <p>
+                    <IoLocationSharp />
+                    <span> {rooms.room_location}</span>
+                  </p>
 
-            <Col>
-              <h4 className="genius-travel-info-text">24/7 customer support</h4>
-              <p className="genius-travel-info-text-meta">
-                Count on Booking.com for help when you need it, wherever you
-                might be{' '}
-              </p>
-            </Col>
-          </Row>
+                  <Rating
+                    name="read-only"
+                    value={rooms.room_rating}
+                    readOnly
+                  />
+
+                  <p></p>
+
+                  <p className="hotels-list__price">
+                    GH<span>&#8373;</span> {rooms.room_rate}
+                  </p>
+
+                  <Button
+                    variant="custom"
+                    className="hotels-list__details-button"
+                  >
+                    More details
+                  </Button>
+                </Col>
+
+                <Col md={3}>
+                  <p className="hotels-list__features-heading">
+                    Key Features Include:
+                  </p>
+
+                  <p>
+                    Free cancellation: Yes <BsCheckCircleFill />
+                  </p>
+
+                  <p>
+                    Refund: No <FaTimesCircle />
+                  </p>
+
+                  <p>
+                    Free cancellation: Yes <BsCheckCircleFill />
+                  </p>
+
+                  <p>
+                    Free cancellation: No <FaTimesCircle />
+                  </p>
+                </Col>
+              </Row>
+            ))}
+          </div>
+
+          <ReactPaginate
+            breakLabel="..."
+            previousLabel={<RxDoubleArrowLeft />}
+            nextLabel={<RxDoubleArrowRight />}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={4}
+            pageCount={pageCount}
+            renderOnZeroPageCount={null}
+            containerClassName="pagination"
+            pageLinkClassName="page-num"
+            previousLinkClassName="page-num"
+            nextLinkClassName="page-num"
+            activeLinkClassName="active"
+          />
         </section>
-      </div>
+      )}
+    </section>
 
-      <section className="footer-gap"></section>
-      <Footer />
-    </>
-  );
+    <section className="hotels-list__trending">
+      <h4 className="hotels-list__trending-title">
+        Trending hotel destinations
+      </h4>
+
+      <p className="hotels-list__trending-subtitle">
+        Explore destinations currently popular with travelers from Ghana
+      </p>
+
+      <Row
+        className="hotels-list__trending-row"
+        md={4}
+        xs={1}
+      >
+        {trendingHotelsArray.map((hotel, index) => (
+          <Col key={index}>
+            <Card>
+              <Card.Img
+                src={hotel.coverImage}
+                alt=""
+                width={150}
+                height={200}
+              />
+            </Card>
+
+            <Card.Body>
+              <Card.Title>
+                <h5 className="hotels-list__trending-card-title">
+                  {hotel.hotelName}
+                </h5>
+
+                <h6 className="hotels-list__trending-card-subtitle">
+                  Avg. {hotel.averagePrice}.00 per night
+                </h6>
+              </Card.Title>
+            </Card.Body>
+          </Col>
+        ))}
+      </Row>
+    </section>
+
+    <section className="hotels-list__genius">
+      <Row md={2} xs={1} className="mb-5">
+        <Col>
+          <img
+            className="hotels-list__genius-image"
+            src="https://r-cf.bstatic.com/static/img/genius/genius_landing_page/artworks/hotel@2x/c57b6f58a8cc0bd3c2d537cca7a21b50b3fddd5f.png"
+            alt=""
+          />
+        </Col>
+
+        <Col>
+          <h3 className="hotels-list__genius-title">
+            Discover the genius way to travel
+          </h3>
+
+          <p className="hotels-list__genius-text">
+            SwiftStay's loyalty program is simple.
+          </p>
+
+          <p className="hotels-list__genius-text">
+            The more you book with us, the more travel rewards you'll get.
+            Sign in or create an account
+          </p>
+
+          <Button
+            variant="custom"
+            className="hotels-list__genius-button"
+            onClick={() => navigate('/login')}
+          >
+            Get started
+          </Button>
+        </Col>
+      </Row>
+
+      <Row
+        className="hotels-list__genius-features"
+        md={3}
+        xs={1}
+      >
+        <Col>
+          <h4 className="hotels-list__genius-feature-title">
+            Wide selection of hotels
+          </h4>
+
+          <p className="hotels-list__genius-feature-text">
+            Search, compare, and book hotels all over the world
+          </p>
+        </Col>
+
+        <Col>
+          <h4 className="hotels-list__genius-feature-title">
+            Verified guest reviews
+          </h4>
+
+          <p className="hotels-list__genius-feature-text">
+            Explore millions of verified hotel reviews written by other guests
+          </p>
+        </Col>
+
+        <Col>
+          <h4 className="hotels-list__genius-feature-title">
+            24/7 customer support
+          </h4>
+
+          <p className="hotels-list__genius-feature-text">
+            Count on Booking.com for help when you need it, wherever you might
+            be
+          </p>
+        </Col>
+      </Row>
+    </section>
+  </div>
+
+  <section className="footer-gap"></section>
+  <Footer />
+</>  );
 };
 
 export default FetchAllHotels;

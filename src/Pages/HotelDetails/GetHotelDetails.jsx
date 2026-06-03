@@ -1,4 +1,4 @@
-import './getHotelDetails.css'
+import './getHotelDetails.scss'
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -225,276 +225,336 @@ const GetHotelDetails = () => {
     }
   };
 
+return (
+  <div>
+    <NavbarComponent />
 
-  return (
+    <section className="hotel-details__header">
+      <h3 className="hotel-details__title">{selectedHotelName}</h3>
+
+      <p>
+        <IoLocationSharp /> {selectedHotel.streetAddress},{' '}
+        {selectedHotel.city}
+      </p>
+
+      <div></div>
+
+      <Rating name="read-only" value={4} readOnly />
+
+      {allReviewsArray.length > 0 ? (
+        allReviewsArray.length === 1 ? (
+          <h5>{allReviewsArray.length} review</h5>
+        ) : (
+          <h5>{allReviewsArray.length} Reviews</h5>
+        )
+      ) : (
+        <h5>No reviews yet</h5>
+      )}
+    </section>
+
     <div>
-      <NavbarComponent />
+      {isLoadingHotelDetails === true ? (
+        <section className="fetch-all-hotels-loading-section">
+          <FontAwesomeIcon
+            icon={faSpinner}
+            size="2x"
+            spinPulse
+            className="mb-4"
+            color="#808080"
+          />
 
-      <section className="selected-room-details-section">
-        <h3 className="selected-room-name"> { selectedHotelName } </h3>
-        <p>
-          {' '}
-          <IoLocationSharp /> {selectedHotel.streetAddress}, {selectedHotel.city}
-        </p>
-        <div></div>
-        <Rating name="read-only" value={4} readOnly />
-        {allReviewsArray.length > 0 ? (
-          allReviewsArray.length === 1 ? (
-            <h5>{allReviewsArray.length} review </h5>
-          ) : (
-            <h5> {allReviewsArray.length} Reviews </h5>
-          )
-        ) : (
-          <h5>No reviews yet</h5>
-        )}
-      </section>
-
-      <div>
-        {isLoadingHotelDetails === true ? (
-          <section className="fetch-all-hotels-loading-section">
-            <FontAwesomeIcon
-              icon={faSpinner}
-              size="2x"
-              spinPulse
-              className="mb-4"
-              color="#808080"
-            />
-            <p className="fetching-hotels-text">
-              fetching details of {params.hotel_name}... please wait
-            </p>
-          </section>
-        ) : fetchError === true ? (
-          <section className="fetch-all-hotels-fetch-error-section">
-            <h5 className="fetch-hotels-error-text"> {fetchErrorMessage} </h5>
-          </section>
-        ) : (
-          <section ref={dateDurationRef}>
-            <section className="selected-room-details-headers">
-              <div className="hotel-gallery-grid">
-                {
-                  hotelGalleryImages.map((galleryImage, index) => (
-                    <img src={ galleryImage } key={ index } className="gallery-item" alt="hotel gallery"/>
-                  ))
-                }
-
-              </div>
-            </section>
-
-
-            <section className="selected-room-details-headers">
-              <Row md={6} xs={3}>
-                <Col onClick={ ScrollToDescriptionSection }>
-                  <p className="hotel-details-heading">Description</p>
-                </Col>
-
-                <Col onClick={ ScrollToAmenitiesSection }>
-                <p className="hotel-details-heading">Amenities</p>
-                </Col>
-
-                <Col onClick={ ScrollToLocationSection }>
-                  <p className="hotel-details-heading">Location</p>
-                </Col>
-
-                <Col onClick={ ScrollToPricingSection }>
-                 <p className="hotel-details-heading">Pricing</p> 
-                </Col>
-
-                <Col onClick={ ScrollToPoliciesSection }>
-                 <p className="hotel-details-heading">Policies</p> 
-                </Col>
-
-                <Col onClick={ ScrollToReviewsSection }>
-                  <p className="hotel-details-heading">Reviews</p>
-                </Col>
-              </Row>
-              <hr />
-            </section>
-
-
-            <section className="selected-room-details-sub-section" ref={ descriptionRef }>
-              <h3 className="selected-room-details-sub-header">
-                Hotel Description
-              </h3>
-
-              { 
-                Object.keys(selectedHotel) === 0 ?
-                 <p>No data to display currently..</p> 
-                 : 
-                 <p>{ selectedHotel.fullDescription }</p> 
-              }
-              
-            </section>
-
-            <section className="selected-room-details-sub-section" ref={ amenitiesRef }>
-              <h3 className="selected-room-details-sub-header">
-                Hotel Amenities
-              </h3>
-              <Row xs={2} md={5}>
-                {
-                  Object.keys(selectedHotel).length === 0 ?
-                  <p>No features to display currently...</p>
-                  :
-                  selectedHotel.amenities.map((amenity, index) => (
-                    <Col key={ index }>
-                      <div className="amenity-wrapper">{ amenity }</div>
-                    </Col>
-                  ))
-                }
-              </Row>
-            </section>
-
-            <section className="selected-room-details-sub-section" ref={ locationRef }>
-              <h3 className="selected-room-details-sub-header">Our Location</h3>
-
-            </section>
-
-
-            <section className="selected-room-details-sub-section" ref={ pricingRef }>
-              <h3 className="selected-room-details-sub-header">Pricing</h3>
-            </section>
-
-
-            <section className="selected-room-details-sub-section" ref={ policiesRef }>
-              <h3 className="selected-room-details-sub-header srd-padding-bottom">
-                Good to know
-              </h3>
-              {goodToKnowArray.map((feature, index) => (
-                <div className="selected-room-details-good-to-know-div" key={index}>
-                  <Row
-                    className="selected-room-details-good-to-know-div-row"
-                  >
-                    <Col>{feature.icon}</Col>
-
-                    <Col md={4} className="hotel-feature-header">
-                      {feature.feature}
-                    </Col>
-
-                    <Col md={6}>
-                      {feature.description}
-                      <p>
-                        {feature.visaIcon} {feature.masterCardIcon}{' '}
-                        {feature.paypalIcon}{' '}
-                      </p>
-                    </Col>
-                  </Row>
-                  <hr />
-                </div>
-              ))}
-            </section>
-
-
-            <section className="selected-room-details-sub-section" ref={ reviewsRef }>
-              <h3 className="selected-room-details-sub-header">Guest Reviews</h3>
-              {
-                allReviewsArray.length > 0 ?
-                  allReviewsArray.map((review, index) => (
-                    <div className="posted-reviews-wrapper-div" key={index}>
-                      <section className="reviewer-info">
-                        <div>
-                          <BsPersonFill size={30} />
-                        </div>
-
-                        <div className="reviewer-info-name-date">
-                          <h5 className="reviewer-name"> {review.user_name} </h5>
-                          <p className="review-date">
-                            Reviewed: {formatDate(review.created_at)} @{' '}
-                            {formatTime(review.created_at)}{' '}
-                          </p>
-                        </div>
-                      </section>
-
-                      <section className="review-body">
-                        <Row>
-                          <p className="review-body-text">{review.review_content}</p>
-                        </Row>
-                        <hr />
-                      </section>
-                    </div>
-                  ))
-                  :
-                  <p>
-                    No reviews submitted yet. Be the first to submit one right
-                    below..
-                  </p>
-              }
-
-            </section>
-
-            <section className="hotel-details-review-section">
-              <h5 className="hotel-details-post-review-header">
-                Post a review
-              </h5>
-              <Form>
-                <Form.Control
-                  type="email"
-                  placeholder="Your email *"
-                  className={
-                    reviewerEmailError === true
-                      ? 'review-email-control-error text-control-focus-style mb-4'
-                      : 'review-email-control text-control-focus-style mb-4'
-                  }
-                  onChange={HandleReviewerEmailUpdate}
-                  value={reviewerEmail}
+          <p className="fetching-hotels-text">
+            fetching details of {params.hotel_name}... please wait
+          </p>
+        </section>
+      ) : fetchError === true ? (
+        <section className="fetch-all-hotels-fetch-error-section">
+          <h5 className="fetch-hotels-error-text">
+            {fetchErrorMessage}
+          </h5>
+        </section>
+      ) : (
+        <section ref={dateDurationRef}>
+          <section className="hotel-details__navigation">
+            <div className="hotel-details__gallery-grid">
+              {hotelGalleryImages.map((galleryImage, index) => (
+                <img
+                  src={galleryImage}
+                  key={index}
+                  className="hotel-details__gallery-item"
+                  alt="hotel gallery"
                 />
+              ))}
+            </div>
+          </section>
 
-                <FloatingLabel
-                  style={{ color: 'gray' }}
-                  controlId="floatingTextarea"
-                  label="Review body *"
-                  className="mb-4"
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder=""
-                    style={{ height: 150 }}
-                    className={
-                      reviewBodyError === true
-                        ? 'review-body-text-area-error text-control-focus-style'
-                        : 'review-body-text-area text-control-focus-style'
-                    }
-                    onChange={HandleReviewBodyUpdate}
-                    value={reviewBody}
-                  />
-                </FloatingLabel>
+          <section className="hotel-details__navigation">
+            <Row md={6} xs={3}>
+              <Col onClick={ScrollToDescriptionSection}>
+                <p className="hotel-details__nav-link">
+                  Description
+                </p>
+              </Col>
 
-                <Row>
-                  <Col>
-                    <Button
-                      variant="custom"
-                      className="hotel-details-post-review-btn"
-                      onClick={HandlePostReview}
-                    >
-                      Post review
-                    </Button>
+              <Col onClick={ScrollToAmenitiesSection}>
+                <p className="hotel-details__nav-link">
+                  Amenities
+                </p>
+              </Col>
+
+              <Col onClick={ScrollToLocationSection}>
+                <p className="hotel-details__nav-link">
+                  Location
+                </p>
+              </Col>
+
+              <Col onClick={ScrollToPricingSection}>
+                <p className="hotel-details__nav-link">
+                  Pricing
+                </p>
+              </Col>
+
+              <Col onClick={ScrollToPoliciesSection}>
+                <p className="hotel-details__nav-link">
+                  Policies
+                </p>
+              </Col>
+
+              <Col onClick={ScrollToReviewsSection}>
+                <p className="hotel-details__nav-link">
+                  Reviews
+                </p>
+              </Col>
+            </Row>
+
+            <hr />
+          </section>
+
+          <section
+            className="hotel-details__section"
+            ref={descriptionRef}
+          >
+            <h3 className="hotel-details__section-title">
+              Hotel Description
+            </h3>
+
+            {Object.keys(selectedHotel) === 0 ? (
+              <p>No data to display currently..</p>
+            ) : (
+              <p>{selectedHotel.fullDescription}</p>
+            )}
+          </section>
+
+          <section
+            className="hotel-details__section"
+            ref={amenitiesRef}
+          >
+            <h3 className="hotel-details__section-title">
+              Hotel Amenities
+            </h3>
+
+            <Row xs={2} md={5}>
+              {Object.keys(selectedHotel).length === 0 ? (
+                <p>No features to display currently...</p>
+              ) : (
+                selectedHotel.amenities.map((amenity, index) => (
+                  <Col key={index}>
+                    <div className="hotel-details__amenity">
+                      {amenity}
+                    </div>
+                  </Col>
+                ))
+              )}
+            </Row>
+          </section>
+
+          <section
+            className="hotel-details__section"
+            ref={locationRef}
+          >
+            <h3 className="hotel-details__section-title">
+              Our Location
+            </h3>
+          </section>
+
+          <section
+            className="hotel-details__section"
+            ref={pricingRef}
+          >
+            <h3 className="hotel-details__section-title">
+              Pricing
+            </h3>
+          </section>
+
+          <section
+            className="hotel-details__section"
+            ref={policiesRef}
+          >
+            <h3 className="hotel-details__section-title hotel-details__section-title--spaced">
+              Good to know
+            </h3>
+
+            {goodToKnowArray.map((feature, index) => (
+              <div
+                className="hotel-details__policy"
+                key={index}
+              >
+                <Row className="hotel-details__policy-row">
+                  <Col>{feature.icon}</Col>
+
+                  <Col
+                    md={4}
+                    className="hotel-details__feature-header"
+                  >
+                    {feature.feature}
                   </Col>
 
-                  <Col md={7}>
-                    <p className="posting-review-icon mt-4">
-                      {postingReview === true ? (
-                        <FontAwesomeIcon
-                          icon={faSpinner}
-                          spinPulse
-                          size="2x"
-                          className="mb-2"
-                        />
-                      ) : null}
-                    </p>
-                    <p className="review-feedback-text">
-                      {reviewFeedback.length > 1 ? reviewFeedback : ''}
+                  <Col md={6}>
+                    {feature.description}
+
+                    <p>
+                      {feature.visaIcon}{' '}
+                      {feature.masterCardIcon}{' '}
+                      {feature.paypalIcon}
                     </p>
                   </Col>
                 </Row>
-              </Form>
-            </section>
+
+                <hr />
+              </div>
+            ))}
           </section>
-        )}
-      </div>
 
-      <section className="footer-gap"></section>
+          <section
+            className="hotel-details__section"
+            ref={reviewsRef}
+          >
+            <h3 className="hotel-details__section-title">
+              Guest Reviews
+            </h3>
 
-      <Footer />
+            {allReviewsArray.length > 0 ? (
+              allReviewsArray.map((review, index) => (
+                <div
+                  className="hotel-details__review"
+                  key={index}
+                >
+                  <section className="hotel-details__review-header">
+                    <div>
+                      <BsPersonFill size={30} />
+                    </div>
+
+                    <div className="hotel-details__review-meta">
+                      <h5 className="hotel-details__review-name">
+                        {review.user_name}
+                      </h5>
+
+                      <p className="hotel-details__review-date">
+                        Reviewed:{' '}
+                        {formatDate(review.created_at)} @{' '}
+                        {formatTime(review.created_at)}
+                      </p>
+                    </div>
+                  </section>
+
+                  <section className="hotel-details__review-body">
+                    <Row>
+                      <p className="hotel-details__review-text">
+                        {review.review_content}
+                      </p>
+                    </Row>
+
+                    <hr />
+                  </section>
+                </div>
+              ))
+            ) : (
+              <p>
+                No reviews submitted yet. Be the first
+                to submit one right below..
+              </p>
+            )}
+          </section>
+
+          <section className="hotel-details__review-form">
+            <h5 className="hotel-details__review-title">
+              Post a review
+            </h5>
+
+            <Form>
+              <Form.Control
+                type="email"
+                placeholder="Your email *"
+                className={
+                  reviewerEmailError === true
+                    ? 'hotel-details__review-input hotel-details__review-input--error text-control-focus-style mb-4'
+                    : 'hotel-details__review-input text-control-focus-style mb-4'
+                }
+                onChange={HandleReviewerEmailUpdate}
+                value={reviewerEmail}
+              />
+
+              <FloatingLabel
+                style={{ color: 'gray' }}
+                controlId="floatingTextarea"
+                label="Review body *"
+                className="mb-4"
+              >
+                <Form.Control
+                  as="textarea"
+                  placeholder=""
+                  style={{ height: 150 }}
+                  className={
+                    reviewBodyError === true
+                      ? 'hotel-details__review-textarea hotel-details__review-textarea--error text-control-focus-style'
+                      : 'hotel-details__review-textarea text-control-focus-style'
+                  }
+                  onChange={HandleReviewBodyUpdate}
+                  value={reviewBody}
+                />
+              </FloatingLabel>
+
+              <Row>
+                <Col>
+                  <Button
+                    variant="custom"
+                    className="hotel-details__review-button"
+                    onClick={HandlePostReview}
+                  >
+                    Post review
+                  </Button>
+                </Col>
+
+                <Col md={7}>
+                  <p className="posting-review-icon mt-4">
+                    {postingReview === true ? (
+                      <FontAwesomeIcon
+                        icon={faSpinner}
+                        spinPulse
+                        size="2x"
+                        className="mb-2"
+                      />
+                    ) : null}
+                  </p>
+
+                  <p className="hotel-details__review-feedback">
+                    {reviewFeedback.length > 1
+                      ? reviewFeedback
+                      : ''}
+                  </p>
+                </Col>
+              </Row>
+            </Form>
+          </section>
+        </section>
+      )}
     </div>
-  );
+
+    <section className="footer-gap"></section>
+
+    <Footer />
+  </div>
+);
 };
 
 export default GetHotelDetails;

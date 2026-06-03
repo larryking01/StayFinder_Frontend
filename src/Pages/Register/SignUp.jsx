@@ -1,4 +1,4 @@
-import './signUp.css';
+import './signUp.scss';
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -48,15 +48,6 @@ const SignUp = () => {
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [hasConfirmPasswordError, setHasConfirmPasswordError] =
     useState(false);
-  // const [hasPasswordsMismatchError, setHasPasswordsMismatchError] = useState(false);
-
-  // const [firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
-  // const [lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
-  // const [emailErrorMessage, setEmailErrorMessage] = useState(null);
-  // const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
-  // const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
-  //   useState(null);
-  // const [passwordsMismatchErrorMessage, setPasswordsMismatchErrorMessage] = useState(false)
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -173,190 +164,213 @@ const SignUp = () => {
       }
 
   };
+return (
+  <div className="signup">
+    <section className="signup__brand">
+      <h3
+        className="signup__brand-logo"
+        onClick={() => navigate('/')}
+      >
+        {brand_name}
+      </h3>
+    </section>
 
+    <section className="signup__header">
+      <h4 className="signup__title">Create an account</h4>
 
-  return (
-    <div className="sign-up-wrapper">
-      <section>
-        <h3 className="log-in-brand-logo" onClick={() => navigate('/')}>
-          {brand_name}
-        </h3>
-      </section>
+      <p className="signup__error">
+        {otherError ? otherError : null}
+      </p>
 
-      <section className="create-account-section">
-        <h4 className="sign-up-header-text">Create an account</h4>
-        <p className="other-error-text">{otherError ? otherError : null}</p>
-        <h4 className="sign-up-header-text mb-5">
-          {userInfo.email ? userInfo.email : ''}
-        </h4>
-      </section>
+      <h4 className="signup__user-email mb-5">
+        {userInfo.email ? userInfo.email : ''}
+      </h4>
+    </section>
 
-      <section className="sign-up-form">
-        <Form>
-          <Row md={2} xs={1} sm={1}>
-            <Col>
-              <div className="input-group-margin">
-                <InputGroup
-                  className={
-                    hasFirstNameError
-                      ? 'input-group-error'
-                      : 'input-group-style'
-                  }
+    <section className="signup__form-wrapper">
+      <Form>
+        <Row md={2} xs={1} sm={1}>
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <InputGroup
+                className={
+                  hasFirstNameError
+                    ? 'signup__input-group signup__input-group--error'
+                    : 'signup__input-group'
+                }
+              >
+                <Form.Control
+                  className="signup__control"
+                  type="text"
+                  placeholder="First name *"
+                  onChange={UpdatefirstName}
+                  value={firstName}
+                />
+
+                <InputGroup.Text className="signup__input-icon">
+                  <BsFillPersonFill />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <InputGroup
+                className={
+                  hasLastNameError
+                    ? 'signup__input-group signup__input-group--error'
+                    : 'signup__input-group'
+                }
+              >
+                <Form.Control
+                  className="signup__control"
+                  type="text"
+                  placeholder="Last name *"
+                  onChange={UpdatelastName}
+                  value={lastName}
+                />
+
+                <InputGroup.Text className="signup__input-icon">
+                  <BsFillPersonFill />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+        </Row>
+
+        <Row md={2} xs={1} sm={1}>
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <InputGroup
+                className={
+                  hasEmailError
+                    ? 'signup__input-group signup__input-group--error'
+                    : 'signup__input-group'
+                }
+              >
+                <Form.Control
+                  className="signup__control"
+                  type="email"
+                  placeholder="E-mail *"
+                  onChange={UpdateEmail}
+                  value={email}
+                />
+
+                <InputGroup.Text className="signup__input-icon">
+                  <AiOutlineMail />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <InputGroup
+                className={
+                  hasPasswordError
+                    ? 'signup__input-group signup__input-group--error'
+                    : 'signup__input-group'
+                }
+              >
+                <Form.Control
+                  className="signup__control"
+                  type={passwordVisible ? 'text' : 'password'}
+                  placeholder="Password *"
+                  onChange={UpdatePassword}
+                  value={password}
+                />
+
+                <InputGroup.Text
+                  className="signup__input-icon signup__input-icon--clickable"
+                  onClick={TogglePasswordVisible}
                 >
-                  <Form.Control
-                    className="signup-control-focus-style"
-                    type="text"
-                    placeholder="First name *"
-                    onChange={UpdatefirstName}
-                    value={firstName}
-                  />
-                  <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
+                  {passwordVisible ? (
+                    <BsFillEyeFill />
+                  ) : (
+                    <BsFillEyeSlashFill />
+                  )}
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+        </Row>
 
-            <Col>
-              <div className="input-group-margin">
-                <InputGroup
-                  className={
-                    hasLastNameError
-                      ? 'input-group-error'
-                      : 'input-group-style'
-                  }
+        <Row md={2} xs={1} sm={1}>
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <InputGroup
+                className={
+                  hasConfirmPasswordError
+                    ? 'signup__input-group signup__input-group--error'
+                    : 'signup__input-group'
+                }
+              >
+                <Form.Control
+                  className="signup__control"
+                  type={confirmPasswordVisible ? 'text' : 'password'}
+                  placeholder="Confirm password *"
+                  onChange={UpdateConfirmPassword}
+                  value={confirmPassword}
+                />
+
+                <InputGroup.Text
+                  className="signup__input-icon signup__input-icon--clickable"
+                  onClick={ToggleConfirmPasswordVisible}
                 >
-                  <Form.Control
-                    className="signup-control-focus-style"
-                    type="text"
-                    placeholder="Last name *"
-                    onChange={UpdatelastName}
-                    value={lastName}
-                  />
-                  <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
+                  {confirmPasswordVisible ? (
+                    <BsFillEyeFill />
+                  ) : (
+                    <BsFillEyeSlashFill />
+                  )}
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+
+          <Col>
+            <div className="signup__input-group-wrapper">
+              <Button
+                variant="custom"
+                className="signup__button"
+                onClick={CreateNewUser}
+              >
+                Create account
+              </Button>
+            </div>
+          </Col>
+        </Row>
+
+        <section className="signup__footer">
+          <Row>
+            <p className="signup__login-text">
+              Already have an account?{' '}
+              <span
+                className="signup__link"
+                onClick={() => navigate('/login')}
+              >
+                Sign in
+              </span>
+            </p>
           </Row>
 
-          <Row md={2} xs={1} sm={1}>
-            <Col>
-              <div className="input-group-margin">
-                <InputGroup
-                  className={
-                    hasEmailError ? 'input-group-error' : 'input-group-style'
-                  }
-                >
-                  <Form.Control
-                    className="signup-control-focus-style"
-                    type="email"
-                    placeholder="E-mail *"
-                    onChange={UpdateEmail}
-                    value={email}
-                  />
-                  <InputGroup.Text>{<AiOutlineMail />}</InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
-
-            <Col>
-              <div className="input-group-margin">
-                <InputGroup
-                  className={
-                    hasPasswordError
-                      ? 'input-group-error'
-                      : 'input-group-style'
-                  }
-                >
-                  <Form.Control
-                    className="signup-control-focus-style"
-                    type={passwordVisible ? 'text' : 'password'}
-                    placeholder="Password *"
-                    onChange={UpdatePassword}
-                    value={password}
-                  />
-                  <InputGroup.Text
-                    className="input-group-text"
-                    onClick={TogglePasswordVisible}
-                  >
-                    {passwordVisible ? (
-                      <BsFillEyeFill />
-                    ) : (
-                      <BsFillEyeSlashFill />
-                    )}
-                  </InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
+          <Row className="mb-3">
+            <p className="signup__terms">
+              By signing up, I agree to the{' '}
+              <span className="signup__link">
+                Terms and Conditions
+              </span>{' '}
+              and{' '}
+              <span className="signup__link">
+                Privacy Statement
+              </span>
+            </p>
           </Row>
-
-          <Row md={2} xs={1} sm={1}>
-            <Col>
-              <div className="input-group-margin">
-                <InputGroup
-                  className={
-                    hasConfirmPasswordError
-                      ? 'input-group-error'
-                      : 'input-group-style'
-                  }
-                >
-                  <Form.Control
-                    className="signup-control-focus-style"
-                    type={confirmPasswordVisible ? 'text' : 'password'}
-                    placeholder="Confirm password *"
-                    onChange={UpdateConfirmPassword}
-                    value={confirmPassword}
-                  />
-                  <InputGroup.Text
-                    className="input-group-text"
-                    onClick={ToggleConfirmPasswordVisible}
-                  >
-                    {confirmPasswordVisible ? (
-                      <BsFillEyeFill />
-                    ) : (
-                      <BsFillEyeSlashFill />
-                    )}
-                  </InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
-
-            <Col>
-              <div className="input-group-margin">
-                <Button
-                  variant="custom"
-                  className="sign-up-btn"
-                  onClick={CreateNewUser}
-                >
-                  Create account
-                </Button>
-              </div>
-            </Col>
-          </Row>
-
-          <section>
-            <Row>
-              <p className="sign-up-already-account-text">
-                Already have an account?{' '}
-                <span
-                  className="sign-in-span"
-                  onClick={() => navigate('/login')}
-                >
-                  Sign in
-                </span>
-              </p>
-            </Row>
-
-            <Row className="mb-3">
-              <p className="sign-up-tnc-text">
-                By signing up, I agree to the{' '}
-                <span className="tnc-span">Terms and Conditions</span> and{' '}
-                <span className="tnc-span">Privacy Statement</span>
-              </p>
-            </Row>
-          </section>
-        </Form>
-      </section>
-    </div>
-  );
+        </section>
+      </Form>
+    </section>
+  </div>
+);
 };
 
 export default SignUp;

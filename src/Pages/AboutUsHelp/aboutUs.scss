@@ -1,0 +1,86 @@
+.about-us {
+  &__mission {
+    background-image: linear-gradient(to top, white, blue);
+    padding-top: 10%;
+    padding-bottom: 10%;
+    text-align: center;
+    color: white;
+  }
+
+  &__mission-text {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  &__row {
+    margin: 4% 6%;
+
+    &--team {
+      margin-bottom: 9%;
+    }
+  }
+
+  &__subheading {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+  }
+
+  &__team {
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+
+  &__team-heading {
+    margin-top: 8%;
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  &__icon {
+    width: 30%;
+  }
+
+  &__team-image {
+    width: 80%;
+    border-radius: 30%;
+  }
+
+  &__team-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+  }
+
+  &__team-position {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
+
+
+
+
+/* ======================================
+   Responsive
+====================================== */
+
+@media (max-width: 480px) {
+  .about-us {
+    &__mission {
+      background-image: linear-gradient(to bottom, blue, white);
+      padding: 5%;
+    }
+
+    &__mission-text {
+      font-size: 2.3rem;
+    }
+
+    &__team-image {
+      width: 100%;
+    }
+  }
+}
