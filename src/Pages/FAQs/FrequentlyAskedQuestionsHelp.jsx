@@ -1,4 +1,4 @@
-import './FAQs.css';
+import './FAQs.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsArrowDownSquare, BsArrowUpSquare } from 'react-icons/bs';
@@ -126,74 +126,87 @@ const FrequentlyAskedQuestionsHelp = () => {
     },
   ];
 
-  return (
-    <div>
-      <NavbarComponent />
 
-      <section className="faq-header-section-generic-style">
-        <h3 className="faq-header-text">Frequently Asked Questions</h3>
+
+return (
+  <div>
+    <NavbarComponent />
+
+    <section className="faq">
+      <div className="faq__header">
+        <h3 className="faq__title">Frequently Asked Questions</h3>
+
         <hr style={{ width: '35%' }} />
-        <p>
+
+        <p className="faq__description">
           Have any any questions? Go through our list of Frequently Asked
           Questions to see if we have provided an answer to it.
         </p>
-        <p>
+
+        <p className="faq__description">
           If you can't find your question of interest addressed, head over to
           our{' '}
           <span
-            style={{ color: 'blue', cursor: 'pointer' }}
+            className="faq__contact-link"
             onClick={() => navigate('/help-contact-us')}
           >
             Contact Us
           </span>{' '}
           page and ask us directly.
         </p>
-      </section>
+      </div>
 
-      <section className="faq-question-answer-section">
+      <section className="faq__content">
         {question_answer_array.map((question_answer, index) => (
-          <>
+          <div key={index}>
             <div
-              key={index}
-              className={
+              className={`faq__item ${
                 question_answer.faqAnswerShow
-                  ? 'faq-row-selected mb-4'
-                  : 'faq-row-unselected mb-4'
-              }
+                  ? 'faq__item--active'
+                  : 'faq__item--inactive'
+              } mb-4`}
               onClick={() =>
-                question_answer.setFaqAnswerShow(!question_answer.faqAnswerShow)
+                question_answer.setFaqAnswerShow(
+                  !question_answer.faqAnswerShow
+                )
               }
             >
               <Row>
                 <Col md={10} sm={8} xs={9}>
-                  <h5 className="faq-question-text">
+                  <h5 className="faq__question">
                     {question_answer.question}
                   </h5>
                 </Col>
 
-                <Col>{question_answer.icon}</Col>
+                <Col>
+                  <span className="faq__icon">
+                    {question_answer.icon}
+                  </span>
+                </Col>
               </Row>
 
               <Row>
                 <div
-                  className={
+                  className={`faq__answer ${
                     question_answer.faqAnswerShow
-                      ? 'answer-div-show'
-                      : 'answer-div-hide'
-                  }
+                      ? 'faq__answer--visible'
+                      : 'faq__answer--hidden'
+                  }`}
                 >
                   {question_answer.answer}
                 </div>
               </Row>
             </div>
+
             <hr />
-          </>
+          </div>
         ))}
       </section>
+    </section>
 
-      <Footer />
-    </div>
-  );
+    <Footer />
+  </div>
+);
 };
 
 export default FrequentlyAskedQuestionsHelp;

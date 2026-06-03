@@ -1,4 +1,4 @@
-import './footer.css';
+import './footer.scss';
 import { useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -64,125 +64,138 @@ const Footer = () => {
     }
   };
 
+
+
   return (
-    <footer className="footer-container">
-      <Row xs={1} md={4}>
-        <Col md={3}>
-          <h4 className="footer-header" onClick={() => navigate('/help')}>
-            {' '}
-            Help{' '}
-          </h4>
-          <p
-            className="footer-link-item"
-            onClick={() => navigate('/help-about-us')}
+  <footer className="footer">
+    <Row xs={1} md={4}>
+      <Col md={3}>
+        <h4
+          className="footer__heading"
+          onClick={() => navigate('/help')}
+        >
+          Help
+        </h4>
+
+        <p
+          className="footer__link"
+          onClick={() => navigate('/help-about-us')}
+        >
+          About Us
+        </p>
+
+        <p
+          className="footer__link"
+          onClick={() => navigate('/help-contact-us')}
+        >
+          Contact Us
+        </p>
+
+        <p
+          className="footer__link"
+          onClick={() => navigate('/help-bookings')}
+        >
+          Bookings
+        </p>
+
+        <p
+          className="footer__link"
+          onClick={() => navigate('/frequently-asked-questions')}
+        >
+          Frequently Asked Questions
+        </p>
+
+        <p
+          className="footer__link"
+          onClick={() => navigate('/help')}
+        >
+          Terms and Conditions
+        </p>
+      </Col>
+
+      <Col md={2}>
+        <h4 className="footer__heading">Partners</h4>
+
+        <p className="footer__link">Work With Us</p>
+        <p className="footer__link">Advertise With Us</p>
+        <p className="footer__link">Affiliates</p>
+        <p className="footer__link">Booking Insight</p>
+      </Col>
+
+      <Col md={3}>
+        <h4 className="footer__heading">Connect with Us</h4>
+
+        <p className="footer__icon">
+          <SiGmail size={22} />
+        </p>
+
+        <p className="footer__icon">
+          <BsFacebook size={22} />
+        </p>
+
+        <p className="footer__icon">
+          <GrTwitter size={22} />
+        </p>
+
+        <p className="footer__icon">
+          <AiFillInstagram size={22} />
+        </p>
+
+        <p className="footer__icon">
+          <BsYoutube size={22} />
+        </p>
+
+        <p className="footer__icon">
+          <BsLinkedin size={22} />
+        </p>
+      </Col>
+
+      <Col md={4}>
+        <h4 className="footer__heading">Newsletter Signup</h4>
+
+        <InputGroup>
+          <Form.Control
+            type="email"
+            placeholder="email@example.com"
+            className="footer__newsletter-input"
+            aria-label="email"
+            aria-describedby="basic-addon-2"
+            onChange={UpdateEmailValue}
+            value={email}
+          />
+
+          <Button
+            variant="custom"
+            className="footer__newsletter-button"
+            id="button-addon"
+            onClick={HandleNewsletterSubscription}
           >
-            {' '}
-            About Us{' '}
-          </p>
-          <p
-            className="footer-link-item"
-            onClick={() => navigate('/help-contact-us')}
-          >
-            {' '}
-            Contact Us{' '}
-          </p>
-          <p
-            className="footer-link-item"
-            onClick={() => navigate('/help-bookings')}
-          >
-            {' '}
-            Bookings{' '}
-          </p>
-          <p
-            className="footer-link-item"
-            onClick={() => navigate('/frequently-asked-questions')}
-          >
-            {' '}
-            Frequently Asked Questions{' '}
-          </p>
-          <p className="footer-link-item" onClick={() => navigate('/help')}>
-            {' '}
-            Terms and Conditions{' '}
-          </p>
-        </Col>
+            Subscribe
+          </Button>
+        </InputGroup>
 
-        <Col md={2}>
-          <h4 className="footer-header"> Partners </h4>
-          <p className="footer-link-item"> Work With Us </p>
-          <p className="footer-link-item"> Advertise With Us </p>
-          <p className="footer-link-item"> Affiliates </p>
-          <p className="footer-link-item"> Booking Insight </p>
-        </Col>
+        <p className="footer__newsletter-text">
+          Subscribe to get all the latest updates
+        </p>
 
-        <Col md={3}>
-          <h4 className="footer-header"> Connect with Us </h4>
-          <p className="footer-link-icon">
-            {' '}
-            <SiGmail size={22} />{' '}
-          </p>
-          <p className="footer-link-icon">
-            {' '}
-            <BsFacebook size={22} />{' '}
-          </p>
-          <p className="footer-link-icon">
-            {' '}
-            <GrTwitter size={22} />{' '}
-          </p>
-          <p className="footer-link-icon">
-            {' '}
-            <AiFillInstagram size={22} />{' '}
-          </p>
-          <p className="footer-link-icon">
-            {' '}
-            <BsYoutube size={22} />{' '}
-          </p>
-          <p className="footer-link-icon">
-            {' '}
-            <BsLinkedin size={22} />{' '}
-          </p>
-        </Col>
+        <p className="footer__error">
+          {newsLetterSubscribeError}
+        </p>
+      </Col>
+    </Row>
 
-        <Col md={4}>
-          <h4 className="footer-header"> Newsletter Signup </h4>
-          <InputGroup>
-            <Form.Control
-              type="email"
-              placeholder="email@example.com"
-              className="newsletter-textbox"
-              aria-label="email"
-              aria-describedby="basic-addon-2"
-              onChange={UpdateEmailValue}
-              value={email}
-            />
-            <Button
-              variant="custom"
-              className="newsletter-button"
-              id="button-addon"
-              onClick={HandleNewsletterSubscription}
-            >
-              Subscribe
-            </Button>
-          </InputGroup>
-          <p className="subscribe-updates-text">
-            Subscribe to get all the latest updates
-          </p>
-          <p className="newsletter-subscribe-error">
-            {newsLetterSubscribeError}
-          </p>
-        </Col>
-      </Row>
+    <hr className="footer__divider" />
 
-      <hr />
+    <Row>
+      <Col>
+        <h6 className="footer__copyright">
+          All rights reserved | <AiOutlineCopyrightCircle /> 2023.
+        </h6>
+      </Col>
+    </Row>
+  </footer>
+);
 
-      <Row>
-        <Col>
-          <h6 className="rights-reserved-text">
-            All rights reserved | <AiOutlineCopyrightCircle /> 2023.
-          </h6>
-        </Col>
-      </Row>
-    </footer>
-  );
 };
 
 export default Footer;

@@ -1,4 +1,4 @@
-import './login.css';
+import './login.scss';
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -87,113 +87,130 @@ const Login = () => {
     }
   };
 
+return (
+  <div className="login">
+    <section className="login__brand">
+      <h3
+        className="login__brand-logo"
+        onClick={() => navigate('/')}
+      >
+        {brand_name}
+      </h3>
+    </section>
 
+    <section className="login__account">
+      <h4 className="login__title">
+        Login to your account
+      </h4>
 
-  return (
-    <div className="log-in-wrapper">
-      <section>
-        <h3 className="log-in-brand-logo" onClick={() => navigate('/')}>
-          {brand_name}
-        </h3>
-      </section>
+      <p className="login__error-message">
+        {otherError ? otherError : null}
+      </p>
 
-      <section className="login-account-section">
-        <h4 className="log-in-header-text">Login to your account</h4>
-        <p className="login-other-error-text">
-          {otherError ? otherError : null}
-        </p>
-        <h4 className="login-header-text mb-5">
-          {/* {currentUser ? currentUser.email : ''} */}
-          current user email
-        </h4>
-      </section>
+      <h4 className="login__user-email mb-5">
+        current user email
+      </h4>
+    </section>
 
-      <section className="login-form">
-        <Form>
-          <Row md={2} xs={1} sm={1}>
-            <Col>
-              <div className="login-input-group-margin">
-                <InputGroup
-                  className={
-                    emailErrorExists
-                      ? 'login-input-group-error'
-                      : 'login-input-group-style'
-                  }
+    <section className="login__form-wrapper">
+      <Form>
+        <Row md={2} xs={1} sm={1}>
+          <Col>
+            <div className="login__field">
+              <InputGroup
+                className={
+                  emailErrorExists
+                    ? 'login__input-group login__input-group--error'
+                    : 'login__input-group'
+                }
+              >
+                <Form.Control
+                  className="login__input login__input--email"
+                  type="email"
+                  placeholder="E-mail *"
+                  onChange={UpdateEmail}
+                  value={email}
+                />
+
+                <InputGroup.Text className="login__input-icon">
+                  <AiOutlineMail />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+
+          <Col>
+            <div className="login__field">
+              <InputGroup
+                className={
+                  passwordErrorExists
+                    ? 'login__input-group login__input-group--error'
+                    : 'login__input-group'
+                }
+              >
+                <Form.Control
+                  className="login__input login__input--password"
+                  type={passwordVisible ? 'text' : 'password'}
+                  placeholder="Password *"
+                  onChange={UpdatePassword}
+                  value={password}
+                />
+
+                <InputGroup.Text
+                  className="login__input-icon login__input-icon--clickable"
+                  onClick={TogglePasswordVisible}
                 >
-                  <Form.Control
-                    className="login-email-control"
-                    type="email"
-                    placeholder="E-mail *"
-                    onChange={UpdateEmail}
-                    value={email}
-                  />
-                  <InputGroup.Text>{<AiOutlineMail />}</InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
+                  {passwordVisible ? (
+                    <BsFillEyeFill />
+                  ) : (
+                    <BsFillEyeSlashFill />
+                  )}
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Col>
+        </Row>
 
-            <Col>
-              <div className="login-input-group-margin">
-                <InputGroup
-                  className={
-                    passwordErrorExists
-                      ? 'login-input-group-error'
-                      : 'login-input-group-style'
-                  }
-                >
-                  <Form.Control
-                    className="login-password-control"
-                    type={passwordVisible ? 'text' : 'password'}
-                    placeholder="Password *"
-                    onChange={UpdatePassword}
-                    value={password}
-                  />
-                  <InputGroup.Text
-                    className="login-input-group-text"
-                    onClick={TogglePasswordVisible}
-                  >
-                    {passwordVisible ? (
-                      <BsFillEyeFill />
-                    ) : (
-                      <BsFillEyeSlashFill />
-                    )}
-                  </InputGroup.Text>
-                </InputGroup>
-              </div>
-            </Col>
+        <Button
+          variant="custom"
+          className="login__submit-button mb-3"
+          onClick={SignInUser}
+        >
+          Sign in
+        </Button>
+
+        <section className="login__footer">
+          <Row>
+            <p className="login__create-account">
+              Don't have an account?{' '}
+              <span
+                className="login__link"
+                onClick={() => navigate('/sign-up')}
+              >
+                Create One
+              </span>
+            </p>
+
+            <p className="login__forgot-password">
+              Forgot password?
+            </p>
+
+            <p className="login__terms">
+              By signing in, I agree to the{' '}
+              <span className="login__link">
+                Terms and Conditions
+              </span>{' '}
+              and{' '}
+              <span className="login__link">
+                Privacy Statement
+              </span>
+            </p>
           </Row>
-
-          <Button
-            variant="custom"
-            className="login-btn mb-3"
-            onClick={SignInUser}
-          >
-            Sign in
-          </Button>
-
-          <section>
-            <Row>
-              <p className="create-account-text">
-                Don't have an account?{' '}
-                <span
-                  className="sign-up-span"
-                  onClick={() => navigate('/sign-up')}
-                >
-                  Create One
-                </span>
-              </p>
-              <p className="forgot-password-text">Forgot password?</p>
-              <p className="login-tnc-text">
-                By signing in, I agree to the{' '}
-                <span className="login-tnc-span">Terms and Conditions</span> and{' '}
-                <span className="login-tnc-span">Privacy Statement</span>
-              </p>
-            </Row>
-          </section>
-        </Form>
-      </section>
-    </div>
-  );
+        </section>
+      </Form>
+    </section>
+  </div>
+);
 };
 
 export default Login;

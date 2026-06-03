@@ -1,13 +1,12 @@
 import { createContext, useState} from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import Home from './Pages/Home/Home';
-import FetchAllBookings from './Pages/AllBookings/FetchAllBookings';
 import FetchAllHotels from './Pages/AllHotels/FetchAllHotels';
 import GetRoomDetails from './Pages/HotelDetails/GetHotelDetails';
 import BookHotel from './Pages/BookHotel/BookHotel';
@@ -18,8 +17,6 @@ import FrequentlyAskedQuestionsHelp from './Pages/FAQs/FrequentlyAskedQuestionsH
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Register/SignUp';
 import NavbarComponent from './Pages/Navbar/NavBar';
-import PaymentSuccess from './Pages/PaymentSuccess';
-import PaymentCanceled from './Pages/PaymentCanceled';
 
 
 
@@ -74,7 +71,6 @@ const App = () => {
               path="hotel-details/:hotel_name/:hotel_id"
               element={<GetRoomDetails />}
             />
-            <Route path="fetch-all-bookings" element={<FetchAllBookings />} />
             <Route
               path="book-hotel/:hotel_name/:room_id"
               element={<BookHotel />}
@@ -88,8 +84,6 @@ const App = () => {
             />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<SignUp />} />
-            <Route path="payment-successful" element={<PaymentSuccess />} />
-            <Route path="payment-canceled" element={<PaymentCanceled />} />
             <Route path="nav-bar" element={<NavbarComponent />} />
           </Routes>
         </UserData.Provider>      

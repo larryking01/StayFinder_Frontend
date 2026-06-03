@@ -1,4 +1,4 @@
-import './help.css';
+import './help.scss';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -44,40 +44,45 @@ const Help = () => {
   // navigation.
   const navigate = useNavigate();
 
-  return (
-    <div>
-      <NavbarComponent />
 
-      <section className="help-page-wrapper mb-5">
-        <section className="help-title-section">
-          <h4 className="help-title-text">What can we help you with today?</h4>
 
-          <Row md={3} xs={1}>
-            {categoryArray.map((category, index) => (
-              <Col key={index}>
-                <div
-                  className="help-category-div"
-                  onClick={() => navigate(`${category.navigate}`)}
-                >
-                  <img
-                    src={category.categoryImage}
-                    alt=""
-                    className="help-category-image"
-                  />
-                  <h5 className="help-category-text">
-                    {' '}
-                    {category.helpCategory}{' '}
-                  </h5>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </section>
+return (
+  <div>
+    <NavbarComponent />
+
+    <section className="help mb-5">
+      <section className="help__section">
+        <h4 className="help__title">
+          What can we help you with today?
+        </h4>
+
+        <Row md={3} xs={1}>
+          {categoryArray.map((category, index) => (
+            <Col key={index}>
+              <div
+                className="help__card"
+                onClick={() => navigate(category.navigate)}
+              >
+                <img
+                  src={category.categoryImage}
+                  alt=""
+                  className="help__image"
+                />
+
+                <h5 className="help__category">
+                  {category.helpCategory}
+                </h5>
+              </div>
+            </Col>
+          ))}
+        </Row>
       </section>
+    </section>
 
-      <Footer />
-    </div>
-  );
+    <Footer />
+  </div>
+);  
+
 };
 
 export default Help;
