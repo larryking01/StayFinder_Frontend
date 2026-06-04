@@ -1,75 +1,225 @@
-# React + TypeScript + Vite
+# StayFinder Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern hotel discovery and booking platform built with **React**, **TypeScript**, and **Vite**. StayFinder allows users to browse hotels, view detailed property information, manage bookings, and leave reviews through a fast and responsive user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+* **React 19**
+* **TypeScript**
+* **Vite**
+* **React Router**
+* **Redux Toolkit**
+* **Axios**
+* **ESLint**
+* **SCSS** 
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## Features
 
-## Expanding the ESLint configuration
+### Authentication
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* User registration
+* User login
+* Password reset
+* Protected routes
+* User profile management
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Hotels
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* Browse available hotels
+* View detailed hotel information
+* Search and filter hotels
+* Featured hotel listings
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Bookings
+
+* Create bookings
+* View booking history
+* Manage existing bookings
+* Booking status tracking
+
+### Reviews
+
+* Submit hotel reviews
+* View hotel reviews
+* Display hotel ratings
+* Verified stay reviews
+
+### Notifications
+
+* Booking confirmation notifications
+* Booking cancellation notifications
+* Account verification notifications
+
+---
+
+## Project Structure
+
+```text
+src/
+├── assets/
+├── components/
+├── hooks/
+├── models/
+├── layouts/
+├── pages/
+├── store/
+├── services/
+├── types/
+├── utils/
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Folder Overview
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Folder     | Purpose                                    |
+| ---------- | ------------------------------------------ |
+| assets     | Images, icons, fonts, and static resources |
+| components | Reusable UI components                     |
+| constants  | Application constants and configuration    |
+| hooks      | Custom React hooks                         |
+| layouts    | Shared page layouts                        |
+| pages      | Route-level page components                |
+| routes     | Application routing configuration          |
+| services   | API communication and business logic       |
+| types      | TypeScript interfaces and types            |
+| utils      | Utility and helper functions               |
+| store      | Redux-toolkit store, reducers, selectors
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Prerequisites
+
+* Node.js (v20+ recommended)
+* npm
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
 ```
+
+Navigate into the project:
+
+```bash
+cd stayfinder-frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+Adjust the URL according to your backend environment.
+
+---
+
+## Development
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Production Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## Linting
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
+---
+
+## Backend Integration
+
+StayFinder Frontend communicates with the StayFinder API for:
+
+* Authentication
+* Hotel management
+* Booking management
+* Review management
+* Notification workflows
+
+Ensure the backend server is running and accessible through the configured environment variables.
+
+---
+
+## API Version
+
+This frontend is designed to work with **StayFinder API v2**, which provides:
+
+* Standardized API responses
+* Improved error handling
+* Enhanced validation
+* Secure authentication and authorization
+* Booking and review management
+
+---
+
+## Future Enhancements
+
+* Hotel search and advanced filtering
+* Wishlist functionality
+* Payment gateway integration
+* User dashboard analytics
+* Booking reminders
+* Dark mode support
+* Internationalization (i18n)
+
+---
+
+## Author
+
+**Larry Williams**
+
+Software Developer
+
+---
+
+## License
+
+This project is licensed under the MIT License.
