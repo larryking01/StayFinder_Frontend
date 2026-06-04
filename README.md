@@ -1,1 +1,0 @@
-# StayFinder Hotel Booking App.
