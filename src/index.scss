@@ -1,1 +1,89 @@
 @use './style/resets' as *;
+
+
+// create font types
+// poppins font family
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/poppins/Poppins-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/poppins/Poppins-Thin.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 200;
+}
+
+
+
+
+// lore font family
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/lora/Lora-Bold.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/lora/Lora-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/lora/Lora-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 400;
+}
+
+
+
+
+// montserrat font family
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/montserrat/Montserrat-Light.ttf') format('truetype');
+    font-display: swap;
+    font-weight: 200;
+}
