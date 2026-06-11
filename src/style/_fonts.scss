@@ -1,10 +1,10 @@
 // pass the desired font family name to get your font choice
-@mixin font-header($font-family) {
+@mixin font-title($font-family) {
     font-family: $font-family;
     font-weight: 800;
 }
 
-@mixin font-sub-header($font-family) {
+@mixin font-sub-title($font-family) {
     font-family: $font-family;
     font-weight: 600;
 }

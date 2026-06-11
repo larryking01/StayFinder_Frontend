@@ -1,3 +1,64 @@
+@use '../../style/fonts' as *;
+@use '../../style/colours' as *;
+
+
+
+
+
 .footer {
-    background-color: green;
+    background-color: $beige;
+    padding: 2rem;
+
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+
+    &__column {
+        color: $text-midnight-blue;
+
+        h3 {
+            margin-bottom: 1rem;
+            @include font-sub-title('Poppins');
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            @include font-regular('Poppins');
+            cursor: pointer;
+        }
+    }
+
+
+    &__socialLinks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        @include font-regular('Poppins');
+
+
+        p {
+            cursor: pointer;
+        }
+    }
+
+
+    &__copyrights {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        @include font-regular('Poppins');
+
+    }
+
 }
