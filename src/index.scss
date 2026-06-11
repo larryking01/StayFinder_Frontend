@@ -1,4 +1,9 @@
 @use './style/resets' as *;
+@use './style/colours' as *;
+
+
+
+
 
 
 // create font types
@@ -86,4 +91,25 @@
     src: url('./assets/fonts/montserrat/Montserrat-Light.ttf') format('truetype');
     font-display: swap;
     font-weight: 200;
+}
+
+
+
+// define scss variables
+:root {
+    --brand-primary: $brand-primary;
+    --brand-secondary: $brand-secondary;
+    --brand-accent: $brand-accent;
+
+    --text-heading: $text-heading;
+    --text-primary: $text-primary;
+    --text-secondary: $text-secondary;
+    --text-light: $text-light;
+
+    --border-default: $border-default;
+
+    --background-primary: $background-primary;
+    --background-secondary: $background-secondary;
+
+    --white: $white;
 }
