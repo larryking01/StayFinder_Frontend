@@ -1,0 +1,76 @@
+@use '../../style/mixins' as *;
+@use '../../style/colours' as *;
+@use '../../style/fonts' as *;
+
+
+
+
+
+
+
+
+
+.reservation {
+
+
+
+    &__form {
+        background-color: $off-white;
+        width:64rem;
+        height: 6rem;
+        padding: 1rem;
+        @include element-border;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        input {
+            @include element-border;
+            height: 3rem;
+            width: 18rem;
+            border: 1px solid $cool-gray;
+            padding: 1rem 1rem 1rem 3rem;
+            @include font-regular('Poppins');
+            @include input-focused;
+
+
+            &::placeholder {
+                @include font-regular('Poppins');
+            }
+        }
+
+
+        button {
+            @include button-primary(6rem, 3rem);
+        }
+    }
+
+
+    &__wrapper {
+        position: relative;
+
+        
+         .reservation__options{
+            @include button-base;
+            width: 18rem;
+            height: 3rem;
+            background-color: $white;
+            color: $text-midnight-blue;
+            border: 1px solid $cool-gray;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 3rem;
+            @include input-focused;
+        }
+    }
+
+
+    &__icon {
+        position: absolute;
+        top: 12px;
+        left: 10px;
+    }
+
+}
