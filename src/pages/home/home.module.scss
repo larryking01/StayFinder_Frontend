@@ -1,6 +1,39 @@
 @use '../../style/fonts' as *;
+@use '../../style/colours' as *;
+
+
+
+
+
 
 
 .home {
-    background-color: beige;
+
+   
+   &__hero {
+        height: 27rem;
+        padding: 2rem;
+        background-image: url('../../assets/images/hero_2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        
+
+
+        h3 {
+            @include font-sub-title('Poppins');
+            font-size: 3rem;
+            color: $white;
+        }
+   }
+
+
+   &__content {
+     padding: 2rem;
+   }
+
+
+
 }
