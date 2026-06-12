@@ -1,6 +1,7 @@
 @use '../../style/mixins' as *;
-@use '../../style/colours' as *;
 @use '../../style/fonts' as *;
+
+
 
 
 
@@ -15,7 +16,7 @@
 
 
     &__form {
-        background-color: $off-white;
+        background-color: var(--background-primary);
         width:64rem;
         height: 6rem;
         padding: 1rem;
@@ -29,7 +30,7 @@
             @include element-border;
             height: 3rem;
             width: 18rem;
-            border: 1px solid $cool-gray;
+            border: 1px solid var(--border-default);
             padding: 1rem 1rem 1rem 3rem;
             @include font-regular('Poppins');
             @include input-focused;
@@ -55,9 +56,9 @@
             @include button-base;
             width: 18rem;
             height: 3rem;
-            background-color: $white;
-            color: $text-midnight-blue;
-            border: 1px solid $cool-gray;
+            background-color: var(--white);
+            color: var(--text-primary);
+            border: 1px solid var(--border-default);
             display: flex;
             justify-content: flex-start;
             align-items: center;

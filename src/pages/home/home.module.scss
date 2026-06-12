@@ -1,5 +1,4 @@
 @use '../../style/fonts' as *;
-@use '../../style/colours' as *;
 
 
 
@@ -27,13 +26,15 @@
         h3 {
             @include font-sub-title('Poppins');
             font-size: 3rem;
-            color: $white;
+            color: var(--white);
         }
    }
 
 
    &__content {
      padding: 2rem;
+     display: flex;
+     gap: 1rem;
    }
 
 

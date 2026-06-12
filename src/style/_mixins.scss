@@ -1,4 +1,3 @@
-@use './colours' as *;
 @use './fonts' as *;
 
 
@@ -17,8 +16,8 @@
 
 @mixin button-primary ($width: auto, $height: auto) {
     @include button-base;
-    background-color: $text-midnight-blue;
-    color: $white;
+    background-color: var(--brand-primary);
+    color: var(--white);
     width: $width;
     height: $height;
     border: none;
@@ -34,8 +33,8 @@
 
 @mixin button-secondary ($width: auto, $height: auto) {
     @include button-base;
-    background-color: $primary-orange;
-    color: $text-midnight-blue;
+    background-color: var(--brand-secondary);
+    color: var(--text-primary);
     width: $width;
     height: $height;
     border: none;
@@ -56,6 +55,6 @@
 
     &:focus {
         outline: none;
-        border: 2px solid $primary-blue;
+        border: 2px solid var(--brand-secondary);
     }
 }

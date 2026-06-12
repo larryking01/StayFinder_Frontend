@@ -1,6 +1,7 @@
 import styles from './home.module.scss'
 import ReservationForm from '../../components/reservationForm/reservationForm'
-
+import HotelCard from '../../components/hotelCard/hotelCard'
+import { Hotel } from 'lucide-react'
 
 
 
@@ -27,7 +28,10 @@ const Home = () => {
             </section>
 
             <section className={ styles.home__content }>
-                <h3>Most trending</h3>
+                <HotelCard />
+                <HotelCard />
+                <HotelCard />
+                <HotelCard />
             </section>
         </main>
     )
