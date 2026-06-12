@@ -1,5 +1,5 @@
 @use '../../style/fonts' as *;
-
+@use '../../style/mixins' as *;
 
 
 
@@ -8,35 +8,194 @@
 
 .home {
 
+  // re-usable styles within component
+  .titleText {
+      @include font-title('Poppins');
+      font-size: 1.8rem;
+      color: var(--text-heading);
+      margin-bottom: 1rem;
+  }
+
+  .regularText {
+      @include font-regular('Poppins');
+      color: var(--text-primary);
+  }
+
+  .marginBottom {
+    margin-bottom: 3rem;
+  }
+
+
    
-   &__hero {
-        height: 27rem;
-        padding: 2rem;
-        background-image: url('../../assets/images/hero_2.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+  // element styling
+  &__hero {
+      height: 27rem;
+      background-image: url('../../assets/images/hero_2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+
+      h3 {
+          @include font-sub-title('Poppins');
+          font-size: 3rem;
+          color: var(--white);
+      }
+   }
+
+
+  .mainContent {
+    padding: 0 5rem;
+  }
+
+
+   &__hotelsList {
+    margin-bottom: 6rem;
+
+
+     .hotelsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: 1rem;
+     }
+   }
+
+
+
+   &__aboutUs {
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+
+
+    .nameContainer {
+      align-self: center;
+      width: 15%;
+
+
+      h3 {
+        @include font-sub-title('Poppins');
+        color: var(--text-heading);
+        font-size: 2rem;;
+      }
+    }
+
+
+    .briefDescriptionContainer {
+      align-self: center;
+      width: 35%;
+
+      p {
+        @include font-regular('Poppins');
+        color: var(--text-primary);
+        line-height: 1.8rem;
+      }
+    }
+
+
+    .ourImagesContainer {
+      width: 40%;
+      display: flex;
+      justify-content: space-between;
+
+      img {
+        width: 10rem;
+        @include element-border;
+        object-fit: cover;
+      }
+
+    }
+
+   }
+
+
+
+   &__ourPartners {
+
+    p {
+      margin-bottom: 1rem;
+    }
+    
+
+    .partnerIcons {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+
+      img {
+        width: 5rem;
+        @include element-border;
+      }
+    }
+   }
+
+
+
+   &__trending {
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+
+    .trendingGrid {
+      // background-color: red;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      gap: 1rem;
+    }
+
+
+
+    .destinationItem {
+      position: relative;
+      cursor: pointer;
+
+
+      .destinationImage {
+        width: 25rem;
+        @include element-border;
+        filter: brightness(80%);
+      }
+
+
+      .destinationFlagContainer {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
+        gap: 1rem;
 
 
-        h3 {
-            @include font-sub-title('Poppins');
-            font-size: 3rem;
-            color: var(--white);
+        p {
+          align-self: center;
+          @include font-sub-title('Poppins');
+          font-size: 1.2rem;
+          color: var(--white)
         }
+
+        .destinationFlag {
+          width: 3rem;
+          @include element-border;
+        }
+        
+      }
+
+
+    }
+
+
+
+
+
    }
-
-
-   &__content {
-     padding: 2rem;
-     display: flex;
-     gap: 1rem;
-   }
-
-
 
 }
