@@ -1,0 +1,90 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+
+
+
+
+
+.hotelCard {
+    @include element-border;
+    box-shadow: 2px 2px 1px var(--border-default);
+    background-color: var(--background-primary);
+    width: 18rem;
+    height: 27rem;
+    cursor: pointer;
+
+
+
+    &__coverImage {
+        width: 100%;
+        height: 15rem;
+
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 0.625rem;
+            border-top-right-radius: 0.625rem;
+        }
+    }
+
+
+    &__details {
+        width: 100%;
+        height: 12rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+
+        h3 {
+            @include font-title('Poppins');
+            font-size: 1.1rem;
+        }
+
+        p {
+            @include font-regular('Poppins');
+            font-size: 0.8rem;
+        }
+
+
+        .nameLocation {
+            margin-bottom: 1rem;
+        }
+
+
+        .reviewsInfo {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+
+
+            .averageRating {
+                @include element-border;
+                @include font-title('Poppins');
+                background-color: var(--brand-primary);
+                color: var(--white);
+                padding: 0.3rem;
+            }
+
+
+            p {
+                align-self: center;
+            }
+        }
+
+        
+        .pricingInfo {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+
+            
+            p {
+                align-self: center
+            }
+        }
+    }
+}

@@ -1,5 +1,4 @@
 @use '../../style/fonts' as *;
-@use '../../style/colours' as *;
 
 
 
@@ -18,20 +17,24 @@
         background-position: center;
         background-repeat: no-repeat;
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         
 
 
         h3 {
             @include font-sub-title('Poppins');
             font-size: 3rem;
-            color: $white;
+            color: var(--white);
         }
    }
 
 
    &__content {
      padding: 2rem;
+     display: flex;
+     gap: 1rem;
    }
 
 

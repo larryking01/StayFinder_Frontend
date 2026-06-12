@@ -1,4 +1,27 @@
 @use './style/resets' as *;
+@use './style/colours' as *;
+
+
+
+
+// define global scss variables
+:root {
+    --brand-primary: #{$brand-primary};
+    --brand-secondary: #{$brand-secondary};
+    --brand-accent: #{$brand-accent};
+
+    --text-heading: #{$text-heading};
+    --text-link: #{$text-link};
+    --text-secondary: #{$text-secondary};
+    --text-light: #{$text-light};
+
+    --border-default: #{$border-default};
+
+    --background-primary: #{$background-primary};
+    --background-secondary: #{$background-secondary};
+
+    --white: #{$white};
+}
 
 
 // create font types
@@ -87,3 +110,6 @@
     font-display: swap;
     font-weight: 200;
 }
+
+
+

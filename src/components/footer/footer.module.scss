@@ -1,12 +1,11 @@
 @use '../../style/fonts' as *;
-@use '../../style/colours' as *;
 
 
 
 
 
 .footer {
-    background-color: $beige;
+    background-color: var(--background-secondary);
     padding: 2rem;
 
 
@@ -19,11 +18,11 @@
 
 
     &__column {
-        color: $text-midnight-blue;
 
         h3 {
             margin-bottom: 1rem;
             @include font-sub-title('Poppins');
+            color: var(--text-heading);
         }
 
         ul {
@@ -34,6 +33,7 @@
             margin-bottom: 1rem;
             @include font-regular('Poppins');
             cursor: pointer;
+            color: var(--text-link);
         }
     }
 

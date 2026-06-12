@@ -1,7 +1,60 @@
+@use './fonts' as *;
 
 
 
 
-@mixin element-border-radius {
+@mixin element-border {
     border-radius: 0.625rem;
+}
+
+
+@mixin button-base {
+    @include element-border;
+    cursor: pointer;
+}
+
+
+@mixin button-primary ($width: auto, $height: auto) {
+    @include button-base;
+    background-color: var(--brand-primary);
+    color: var(--white);
+    width: $width;
+    height: $height;
+    border: none;
+    @include font-regular('Poppins');
+    transition: all 0.3s ease;
+
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+
+@mixin button-secondary ($width: auto, $height: auto) {
+    @include button-base;
+    background-color: var(--brand-secondary);
+    color: var(--text-primary);
+    width: $width;
+    height: $height;
+    border: none;
+    @include font-regular('Poppins');
+    transition: all 0.3s ease;
+
+
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+
+
+@mixin input-focused {
+    transition: all 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border: 2px solid var(--brand-secondary);
+    }
 }
