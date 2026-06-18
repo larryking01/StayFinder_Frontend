@@ -58,3 +58,13 @@
         border: 2px solid var(--brand-secondary);
     }
 }
+
+
+@mixin container-padding {
+    padding: 0 5rem;
+}
+
+
+@mixin box-shadow {
+    box-shadow: 0 4px 12px rgba(38, 42, 184, 0.04);
+}

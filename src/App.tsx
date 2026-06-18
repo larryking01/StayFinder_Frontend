@@ -11,6 +11,7 @@ import Login from './pages/login/login'
 import Support from './pages/support/support'
 import BookedHotels from './pages/bookedHotels/bookedHotels'
 import Favourites from './pages/favouriteHotels/favouriteHotels'
+import SearchResults from './pages/searchResults/searchResults'
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route index element={ <Home /> } />
           <Route path='home' element={ <Home /> } />
           <Route path=':hotelName/:hotelId' element={ <HotelInfo /> } />
+          <Route path='searchResults/:destination' element={ <SearchResults /> } />
           <Route path="checkout/:hotelName/:hotelId" element={ <HotelCheckout /> } /> 
           <Route path="my-bookings" element={ <BookedHotels /> } />
           <Route path="favourites" element={ <Favourites /> } />

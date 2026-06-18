@@ -7,7 +7,7 @@
 
 .hotelCard {
     @include element-border;
-    box-shadow: 2px 2px 1px var(--border-default);
+    @include box-shadow;
     background-color: var(--background-primary);
     width: 18rem;
     height: 27rem;

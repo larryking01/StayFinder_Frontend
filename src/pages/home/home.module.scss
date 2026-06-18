@@ -49,7 +49,7 @@
 
 
   .mainContent {
-    padding: 0 5rem;
+    @include container-padding;
   }
 
 
