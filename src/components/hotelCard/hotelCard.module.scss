@@ -26,6 +26,7 @@
             object-fit: cover;
             border-top-left-radius: 0.625rem;
             border-top-right-radius: 0.625rem;
+            filter: brightness(92%)
         }
     }
 
@@ -41,6 +42,7 @@
 
         h3 {
             @include font-title('Poppins');
+            color: var(--brand-primary);
             font-size: 1.1rem;
         }
 
