@@ -10,6 +10,8 @@
     --brand-secondary: #{$brand-secondary};
     --brand-accent: #{$brand-accent};
 
+    --body-bg: #{$body-bg};
+
     --text-heading: #{$text-heading};
     --text-link: #{$text-link};
     --text-secondary: #{$text-secondary};
@@ -22,6 +24,11 @@
     --background-secondary: #{$background-secondary};
 
     --white: #{$white};
+}
+
+
+body {
+    background-color: var(--body-bg);
 }
 
 

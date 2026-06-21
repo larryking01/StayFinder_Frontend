@@ -21,6 +21,7 @@
         height: 6rem;
         padding: 1rem;
         @include element-border;
+        @include box-shadow;
         display: flex;
         justify-content: space-between;
         align-items: center;
