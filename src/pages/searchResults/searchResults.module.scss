@@ -27,7 +27,7 @@
 
 
         .resultsMetadata {
-            // background-color: beige;
+            // background-color: var(--background-primary);
             width: 30%;
 
 
@@ -38,19 +38,59 @@
 
             .mapContainer {
                 @include element-border();
-                height: 12rem;
+                height: 15rem;
                 border: 1px solid var(--border-default);
+                margin-bottom: 4rem;
 
 
                 img {
                     width: 100%;
+                    height: 100%;
                     object-fit: cover;
                 }
             }
 
 
+            .filterContainer {
+                padding: 1rem;
 
 
+                .filterByTitle {
+                    margin-bottom: 1rem;
+                }
+
+
+                .filterCategory {
+                    // background-color: purple;
+                    margin-bottom: 2rem;
+
+
+                    .categoryTitle {
+                        font-size: 0.9rem;
+                        margin-bottom: 0.5rem;
+                    }
+                }
+
+
+                .filterOption {
+                    display: flex;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+
+
+                    input {
+                        // appearance: none;
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        cursor: pointer;
+                    }
+
+                    .optionName {
+                        @include font-regular('Poppins');
+                        font-size: 0.85rem;
+                    }
+                }
+            }
         }
 
 
@@ -68,12 +108,21 @@
                     @include font-title('Poppins');
                 }
 
+
                 .filter {
+                    display: flex;
+                    gap: 0.5rem;
                     background-color: var(--background-primary);
                     @include element-border;
                     border: 1px solid var(--border-default);
                     padding: 0.5rem;
                     cursor: pointer;
+                    
+
+                    p {
+                        @include font-regular('Poppins');
+                        font-size: 0.85rem;
+                    }
                 }
             }
 
