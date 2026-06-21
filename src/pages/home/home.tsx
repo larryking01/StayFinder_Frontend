@@ -77,7 +77,7 @@ const Home = () => {
                         <div className={ styles.destinationItem }>
                             <img src={ hero } className={ styles.destinationImage }/>
 
-                            <div className={ styles.destinationFlagContainer }>
+                            <div className={ styles.destinationTarget }>
                                 <p>Accra</p>
                                 <img src={ ghanaFlag } className={ styles.destinationFlag }/>
                             </div>
@@ -86,7 +86,7 @@ const Home = () => {
                         <div className={ styles.destinationItem }>
                             <img src={ hero } className={ styles.destinationImage }/>
 
-                            <div className={ styles.destinationFlagContainer }>
+                            <div className={ styles.destinationTarget }>
                                 <p>Accra</p>
                                 <img src={ ghanaFlag } className={ styles.destinationFlag }/>
                             </div>
@@ -95,7 +95,7 @@ const Home = () => {
                         <div className={ styles.destinationItem }>
                             <img src={ hero } className={ styles.destinationImage }/>
 
-                            <div className={ styles.destinationFlagContainer }>
+                            <div className={ styles.destinationTarget }>
                                 <p>Accra</p>
                                 <img src={ ghanaFlag } className={ styles.destinationFlag }/>
                             </div>
@@ -104,7 +104,7 @@ const Home = () => {
                         <div className={ styles.destinationItem }>
                             <img src={ hero } className={ styles.destinationImage }/>
 
-                            <div className={ styles.destinationFlagContainer }>
+                            <div className={ styles.destinationTarget }>
                                 <p>Accra</p>
                                 <img src={ ghanaFlag } className={ styles.destinationFlag }/>
                             </div>
@@ -113,7 +113,7 @@ const Home = () => {
                         <div className={ styles.destinationItem }>
                             <img src={ hero } className={ styles.destinationImage }/>
 
-                            <div className={ styles.destinationFlagContainer }>
+                            <div className={ styles.destinationTarget }>
                                 <p>Accra</p>
                                 <img src={ ghanaFlag } className={ styles.destinationFlag }/>
                             </div>
