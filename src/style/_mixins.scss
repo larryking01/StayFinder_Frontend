@@ -3,13 +3,18 @@
 
 
 
-@mixin element-border {
+@mixin element-border-radius {
     border-radius: 0.625rem;
 }
 
 
+@mixin element-border {
+    border: 1px solid var(--border-default);
+}
+
+
 @mixin button-base {
-    @include element-border;
+    @include element-border-radius;
     cursor: pointer;
 }
 
@@ -68,3 +73,5 @@
 @mixin box-shadow {
     box-shadow: 0 4px 12px rgba(38, 42, 184, 0.04);
 }
+
+

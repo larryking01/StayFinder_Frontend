@@ -1,0 +1,39 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+
+
+
+
+
+.reviewCard {
+    width: 24rem;
+    padding: 1rem;
+    @include element-border;
+    @include element-border-radius;
+
+
+    .authorInfo {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+
+        .profile {
+            display: flex;
+            gap: 0.5rem;
+
+
+            img {
+                width: 5rem;
+                height: 4rem;
+                object-fit: cover;
+            }
+
+
+            .authorNameAndCountry {
+                align-self: center;
+            }
+
+        }
+    }
+}
