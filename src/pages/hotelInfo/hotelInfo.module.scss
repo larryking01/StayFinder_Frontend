@@ -1,3 +1,211 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+
+
+
+
+
+
+
 .hotelInfo {
-    background-color: blue;
+    @include container-padding;
+    
+
+    &__reservationForm {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+
+
+    &__nameAndLocation {
+        margin-bottom: 2rem;
+
+        h3 {
+            @include font-title('Poppins');
+            font-size: 1.8rem;
+            color: var(--brand-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            @include font-regular('Poppins');
+            font-size: 0.85rem;
+        }
+
+        .locationDisplay {
+            display: flex;
+        }
+    }
+
+
+    &__picturesDisplayGrid {
+        margin-bottom: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+        gap: 0.5rem;
+
+
+        img {
+            width: 26rem;
+            @include element-border-radius;
+        }
+    }
+
+
+    &__headingList {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+
+        p {
+            padding: 1rem;
+            cursor: pointer;
+            @include font-regular('Poppins');
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--brand-primary)
+        }
+    }
+
+
+    &__infoSection {
+        margin-bottom: 2rem;
+
+        h3 {
+            @include font-title('Poppins');
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            @include font-regular('Poppins');
+            font-size: 0.9rem;
+            line-height: 1.5rem;
+        }
+
+        li {
+            @include font-regular('Poppins');
+            font-size: 0.9rem;
+            line-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    .amenitiesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+        gap: 1rem;
+
+
+        .amenityItem {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            @include element-border;
+            @include element-border-radius;
+            padding: 0.5rem;
+            background-color: var(--background-secondary);
+
+
+            p {
+                @include font-regular('Poppins');
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+
+    .houseRulesContainer {
+        margin-top: 1rem;
+        padding: 1rem;
+        @include element-border;
+        @include element-border-radius;
+
+
+        li {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-default);
+            @include font-regular('Poppins');
+            font-size: 0.85rem;
+
+
+            &:last-child {
+                border: none;
+            }
+        }
+
+
+        p {
+            line-height: 2.5rem;
+        }
+    }
+
+
+    .paymentOptionsDisplay {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+
+        img {
+            width: 6rem;
+            height: 4rem;
+            object-fit: contain;
+        }
+    }
+
+
+    .reviewsInfo {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+
+        .averageRating {
+            @include element-border-radius;
+            @include font-title('Poppins');
+            background-color: var(--brand-primary);
+            color: var(--white);
+            padding: 0.35rem;
+        }
+
+
+        p {
+            align-self: center;
+        }
+    }
+
+
+    .topRatedText {
+        margin-bottom: 1rem;
+    }
+
+
+    .reviewsDisplay {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 1rem;
+
+    }
+
+
+    .readAllReviewsBtn {
+        @include button-primary(8rem, 3rem)
+    }
+
+
+
+
+
+
+
+
 }

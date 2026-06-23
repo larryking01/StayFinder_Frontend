@@ -20,7 +20,7 @@
         width:64rem;
         height: 6rem;
         padding: 1rem;
-        @include element-border;
+        @include element-border-radius;
         @include box-shadow;
         display: flex;
         justify-content: space-between;
@@ -28,10 +28,10 @@
 
 
         input {
+            @include element-border-radius;
             @include element-border;
             height: 3rem;
             width: 18rem;
-            border: 1px solid var(--border-default);
             padding: 1rem 1rem 1rem 3rem;
             @include font-regular('Poppins');
             @include input-focused;
@@ -54,12 +54,12 @@
 
         
          .reservation__options{
+            @include element-border;
             @include button-base;
             width: 18rem;
             height: 3rem;
             background-color: var(--white);
             color: var(--text-primary);
-            border: 1px solid var(--border-default);
             display: flex;
             justify-content: flex-start;
             align-items: center;

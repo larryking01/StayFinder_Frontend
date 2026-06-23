@@ -6,7 +6,7 @@
 
 
 .hotelCard {
-    @include element-border;
+    @include element-border-radius;
     @include box-shadow;
     background-color: var(--background-primary);
     width: 18rem;
@@ -64,7 +64,7 @@
 
 
             .averageRating {
-                @include element-border;
+                @include element-border-radius;
                 @include font-title('Poppins');
                 background-color: var(--brand-primary);
                 color: var(--white);

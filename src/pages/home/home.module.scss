@@ -107,7 +107,7 @@
 
       img {
         width: 10rem;
-        @include element-border;
+        @include element-border-radius;
         object-fit: cover;
         filter: brightness(92%)
       }
@@ -138,7 +138,7 @@
 
         .destinationImage {
           width: 25rem;
-          @include element-border;
+          @include element-border-radius;
           filter: brightness(90%);
         }
 
@@ -162,7 +162,7 @@
           .destinationFlag {
             width: 3rem;
             height: 2.5rem;
-            @include element-border;
+            @include element-border-radius;
           }
         
         }
@@ -188,7 +188,7 @@
 
       img {
         width: 5rem;
-        @include element-border;
+        @include element-border-radius;
       }
     }
    }

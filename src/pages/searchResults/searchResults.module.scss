@@ -37,9 +37,9 @@
 
 
             .mapContainer {
-                @include element-border();
+                @include element-border;
+                @include element-border-radius();
                 height: 15rem;
-                border: 1px solid var(--border-default);
                 margin-bottom: 4rem;
 
 
@@ -113,8 +113,7 @@
                     display: flex;
                     gap: 0.5rem;
                     background-color: var(--background-primary);
-                    @include element-border;
-                    border: 1px solid var(--border-default);
+                    @include element-border-radius;
                     padding: 0.5rem;
                     cursor: pointer;
                     
