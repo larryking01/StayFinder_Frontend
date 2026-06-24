@@ -61,7 +61,7 @@
     @include element-border;
     @include element-border-radius;
     @include input-focused;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
 }
 
 
@@ -85,3 +85,8 @@
 }
 
 
+@mixin checkBox-default($width: 1.2rem, $height: 1.2rem) {
+    width: $width;
+    height: $height;
+    cursor: pointer;
+}

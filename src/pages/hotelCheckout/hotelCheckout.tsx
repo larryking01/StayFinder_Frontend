@@ -50,7 +50,7 @@ const HotelCheckout = () => {
 
 
                     <article className={ styles.notificationsContainer }>
-                        <input type='checkbox' />
+                        <input type='checkbox' className={ styles.checkBox } />
                         <p>Get emails about deals, offers, and other info from Hotels.com. You can opt out anytime.</p>
                     </article>
 
@@ -84,7 +84,7 @@ const HotelCheckout = () => {
 
 
                     <article className={ styles.notificationsContainer }>
-                        <input type='checkbox' />
+                        <input type='checkbox' className={ styles.checkBox } />
                         <p>Save this card for future use.</p>
                     </article>
 

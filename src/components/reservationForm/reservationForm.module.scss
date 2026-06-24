@@ -28,15 +28,11 @@
 
 
         input {
-            @include element-border-radius;
-            @include element-border;
-            height: 3rem;
-            width: 18rem;
-            padding: 1rem 1rem 1rem 3rem;
+            @include text-input-default(18rem, 3rem);
             @include font-regular('Poppins');
-            @include input-focused;
+            padding: 1rem 1rem 1rem 3rem;   // overwrite default padding from text-input-default mixin
 
-
+            
             &::placeholder {
                 @include font-regular('Poppins');
             }

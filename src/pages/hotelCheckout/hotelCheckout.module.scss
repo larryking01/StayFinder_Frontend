@@ -22,16 +22,15 @@
         width: 40%;
 
 
-
         form {
             width: 100%;
 
             .inputContainer {
                 position: relative;
-
+                margin-bottom: 1rem;
 
                 input {
-                    @include text-input-default()
+                    @include text-input-default();
                 }
             }
 
@@ -39,6 +38,7 @@
             .inputContainerFlex {
                 display: flex;
                 gap: 1rem;
+                margin-bottom: 1rem;
 
 
                 input {
@@ -65,8 +65,8 @@
                 margin-bottom: 3rem;
 
 
-                input {
-                    width: 3rem;
+                .checkBox {
+                    @include checkBox-default();
                 }
 
 
@@ -272,11 +272,7 @@
 
 
                 input {
-                    @include element-border;
-                    @include element-border-radius;
-                    @include input-focused;
-                    width: 100%;
-                    height: 3rem;
+                    @include text-input-default(100%, 3rem);
                 }
 
 

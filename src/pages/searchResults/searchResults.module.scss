@@ -77,11 +77,8 @@
                     margin-bottom: 1rem;
 
 
-                    input {
-                        // appearance: none;
-                        width: 1.2rem;
-                        height: 1.2rem;
-                        cursor: pointer;
+                    .checkBox {
+                        @include checkBox-default();
                     }
 
                     .optionName {
