@@ -7,8 +7,7 @@
 
 
 .searchResults {
-    @include container-padding;
-
+    @include base-padding();
     
     &__reservationForm {
         // width: 64rem;

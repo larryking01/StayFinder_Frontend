@@ -1,0 +1,290 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+
+
+
+
+
+.checkout {
+    @include base-padding(2rem);
+    margin: 4rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+
+    h3 {
+        margin-bottom: 0.5rem;
+    }
+
+
+    &__paymentColumn {
+        width: 40%;
+
+
+
+        form {
+            width: 100%;
+
+            .inputContainer {
+                position: relative;
+
+
+                input {
+                    @include text-input-default()
+                }
+            }
+
+
+            .inputContainerFlex {
+                display: flex;
+                gap: 1rem;
+
+
+                input {
+                    @include text-input-default()
+                }
+
+
+                .phoneRegionContainer {
+                    position: relative;
+                    width: 40%;
+                }
+
+
+                .phoneNumberContainer {
+                    position: relative;
+                    width: 60%;
+                }
+            }
+
+
+            .notificationsContainer {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 3rem;
+
+
+                input {
+                    width: 3rem;
+                }
+
+
+                p {
+                    
+                }
+            }
+
+
+            .cancellationPolicyAndInstructions {
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+
+
+                .policyItem {
+                    margin-bottom: 2rem;
+                }
+
+                .instructionItem {
+                    margin-bottom: 1rem;
+                }
+            }
+
+
+            .termsAndConditions {
+                padding: 1rem;
+            }
+
+
+            .submitBtnContainer {
+                padding: 1rem;
+
+
+                button {
+                    @include button-primary(10rem, 3rem);
+                }
+            }
+        }
+    }
+
+
+
+    &__bookingConfirmation {
+        width: 40%;
+
+
+        .hotelInfoSummary {
+            background-color: beige;
+            @include element-border;
+            @include element-border-radius;
+            margin-bottom: 1rem;
+
+
+            .coverImages {
+                height: 17rem;
+                margin-bottom: 1rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-top-left-radius: 0.625rem;
+                    border-top-right-radius: 0.625rem;
+                }
+            }
+
+
+            .hotelName {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+
+            .hotelReviews {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+
+            .lengthOfStay {
+                margin: 1rem;
+                @include element-border-radius;
+                display: flex;
+                justify-content: space-between;
+                background-color: var(--background-secondary);
+                width: 80%;
+                padding: 1rem;
+
+
+                .stayInfo {
+                    height: 5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    
+                }
+            }
+
+
+            .featureHighlights {
+                padding: 1rem;
+                background-color: green;
+
+                .highlightsContainer {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+
+        .goodTaste {
+            margin-bottom: 1rem;
+
+
+            .tasteItem {
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+                // background-color: lightblue;
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+
+
+                .iconContainer {
+                    display: grid;
+                    place-items: center;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    background-color: red;
+                }
+
+
+                p {
+                    align-self: center;
+                }
+            }
+            
+        }
+
+
+        .priceDetails {
+            @include element-border;
+            @include element-border-radius;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            background-color: lightblue;
+
+
+            .priceItem {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+
+
+                &:nth-child(3) {
+                    padding-bottom: 2rem;
+                    border-bottom: 2px solid var(--border-default);
+                }
+            }
+
+
+            .priceIncrementWarning {
+                background-color: var(--background-secondary);
+                padding: 1rem;
+                @include element-border-radius;
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+            
+        }
+
+
+        .couponContainer {
+            // background-color: lightblue;
+
+
+            .couponIntro {
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+                margin-bottom: 1rem;
+
+
+                p {
+                    align-self: center;
+                }
+            }
+
+
+            .couponControls {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background-color: red;
+                height: 8rem;
+
+
+                input {
+                    @include element-border;
+                    @include element-border-radius;
+                    @include input-focused;
+                    width: 100%;
+                    height: 3rem;
+                }
+
+
+                button {
+                    @include button-primary(100%, 3rem)
+                }
+            }
+        }
+    }
+
+}
