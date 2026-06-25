@@ -12,7 +12,7 @@ import Support from './pages/support/support'
 import BookedHotels from './pages/bookedHotels/bookedHotels'
 import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
-
+import AuthLayout from './layouts/authLayout/authLayout'
 
 
 
@@ -42,8 +42,11 @@ function App() {
           <Route path="support" element={ <Support /> } />
         </Route>
 
-        <Route path="accounts/register" element={ <Register /> } />
-        <Route path="accounts/login" element={ <Login /> } />
+        <Route path="accounts" element={ <AuthLayout /> }>
+          <Route index element={ <Login /> } />
+          <Route path="register" element={ <Register /> } />
+        </Route>
+
         <Route path='*' element={ <NotFound /> } />
       </Routes>
     </Router>
