@@ -16,7 +16,38 @@ const Login = () => {
     
     return (
         <main className={ styles.login }>
-            <h3>Login</h3>
+            <section className={ styles.login__intro }>
+                <h3>StayFinder</h3>
+                <p>Login to your account</p>
+            </section>
+
+            
+            <section className={ styles.login__loginForm }>
+                <form>
+                    <div className={ styles.inputContainer }>
+                        <input type="text" placeholder='E-mail' />
+                    </div>
+
+                    <div className={ styles.inputContainer }>
+                        <input type="text" placeholder='Password' />
+                    </div>
+
+                    <div className={ styles.inputContainer }>
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </section>
+
+
+            <section className={ styles.login__googleLoginContainer }>
+                <button type="submit">Login with google</button>
+            </section>
+
+
+            <section className={ styles.login__loginRedirect }>
+                <p>Don't have an account?</p>
+                <p className={ styles.loginText }>Register</p>
+            </section>
         </main>
     )
 }

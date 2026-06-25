@@ -1,0 +1,68 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    // background-color: blue;
+}
+
+
+.authLayout {
+    width: 65rem;
+    height: 40rem;
+    // background-color: red;
+    @include element-border;
+    @include element-border-radius;
+    @include box-shadow;
+    display: flex;
+    justify-content: space-between;
+    // flex-wrap: wrap;
+
+
+
+    &__coverImageDisplay {
+        background-image: url('../../assets/images/hero_1.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+
+        h3 {
+            @include font-title('Poppins');
+            margin-bottom: 1rem;
+        }
+
+
+        p {
+            @include font-regular('Poppins');
+        }
+
+    }
+
+
+
+    &__authRoute {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+
+    }
+
+
+    
+}
+
