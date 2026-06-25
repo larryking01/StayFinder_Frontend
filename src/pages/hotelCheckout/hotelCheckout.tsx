@@ -1,5 +1,4 @@
 import styles from './hotelCheckout.module.scss'
-import { paymentOptions } from '../../data/paymentOptions'
 import cover from '../../assets/images/hero_3.jpg'
 import { filterCategory } from '../../data/filterCategories'
 import { Check, TrendingUp, X } from 'lucide-react'
