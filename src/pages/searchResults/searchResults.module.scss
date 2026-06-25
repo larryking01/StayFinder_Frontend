@@ -10,8 +10,6 @@
     @include base-padding();
     
     &__reservationForm {
-        // width: 64rem;
-        // background-color: red;
         display: flex;
         justify-content: center;
         margin: 2rem 0;
@@ -26,7 +24,6 @@
 
 
         .resultsMetadata {
-            // background-color: var(--background-primary);
             width: 30%;
 
 
@@ -55,17 +52,18 @@
 
 
                 .filterByTitle {
+                    @include font-sub-title('Poppins');
+                    font-size: 1.3rem;
                     margin-bottom: 1rem;
                 }
 
 
                 .filterCategory {
-                    // background-color: purple;
                     margin-bottom: 2rem;
 
 
                     .categoryTitle {
-                        font-size: 0.9rem;
+                        @include font-sub-title('Poppins');
                         margin-bottom: 0.5rem;
                     }
                 }
@@ -78,12 +76,12 @@
 
 
                     .checkBox {
-                        @include checkBox-default();
+                        @include checkBox-default(1.1rem, 1.1rem);
+                        align-self: center
                     }
 
                     .optionName {
-                        @include font-regular('Poppins');
-                        font-size: 0.85rem;
+                        @include font-small('Poppins');
                     }
                 }
             }
@@ -101,22 +99,21 @@
 
                 h3 {
                     align-self: center;
-                    @include font-title('Poppins');
+                    @include font-sub-title('Poppins');
                 }
 
 
                 .filter {
                     display: flex;
                     gap: 0.5rem;
-                    background-color: var(--background-primary);
+                    background-color: var(--card-bg);
                     @include element-border-radius;
                     padding: 0.5rem;
                     cursor: pointer;
                     
 
                     p {
-                        @include font-regular('Poppins');
-                        font-size: 0.85rem;
+                        @include font-small('Poppins');
                     }
                 }
             }

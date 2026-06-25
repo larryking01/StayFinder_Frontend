@@ -15,7 +15,15 @@
 
     h3 {
         margin-bottom: 0.5rem;
+        @include font-sub-title('Poppins');
+        color: var(--brand-primary)
     }
+
+
+    p {
+        @include font-small('Poppins');
+    }
+
 
 
     &__paymentColumn {
@@ -25,12 +33,26 @@
         form {
             width: 100%;
 
+            .formControlsContainer {
+                background-color: var(--card-bg);
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
             .inputContainer {
                 position: relative;
                 margin-bottom: 1rem;
 
+
                 input {
                     @include text-input-default();
+
+                    
+                    &::placeholder {
+                        color: var(--text-secondary)
+                    }
                 }
             }
 
@@ -42,8 +64,14 @@
 
 
                 input {
-                    @include text-input-default()
+                    @include text-input-default();
+
+
+                    &::placeholder {
+                        color: var(--text-secondary)
+                    }
                 }
+
 
 
                 .phoneRegionContainer {
@@ -68,32 +96,45 @@
                 .checkBox {
                     @include checkBox-default();
                 }
-
-
-                p {
-                    
-                }
             }
 
 
             .cancellationPolicyAndInstructions {
+                background-color: var(--card-bg);
                 @include element-border;
                 @include element-border-radius;
                 padding: 1rem;
 
 
                 .policyItem {
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
+
+
+                    p {
+                        line-height: 1.5rem;
+                    }
                 }
+
 
                 .instructionItem {
                     margin-bottom: 1rem;
+
+
+                    .refundableText {
+                        background-color: var(--brand-secondary);
+                        padding: 0.5rem;
+                        @include element-border-radius;
+                        margin-bottom: 1rem;
+                        @include box-shadow;
+                        font-weight: 600;
+                    }
                 }
             }
 
 
             .termsAndConditions {
                 padding: 1rem;
+                line-height: 1.5rem;
             }
 
 
@@ -102,7 +143,7 @@
 
 
                 button {
-                    @include button-primary(10rem, 3rem);
+                    @include button-primary(12rem, 3rem);
                 }
             }
         }
@@ -115,7 +156,7 @@
 
 
         .hotelInfoSummary {
-            background-color: beige;
+            background-color: var(--card-bg);
             @include element-border;
             @include element-border-radius;
             margin-bottom: 1rem;
@@ -123,7 +164,7 @@
 
             .coverImages {
                 height: 17rem;
-                margin-bottom: 1rem;
+                margin-bottom: 0.5rem;
 
                 img {
                     width: 100%;
@@ -152,9 +193,10 @@
                 @include element-border-radius;
                 display: flex;
                 justify-content: space-between;
-                background-color: var(--background-secondary);
-                width: 80%;
+                background-color: var(--brand-secondary);
+                width: 85%;
                 padding: 1rem;
+                @include box-shadow;
 
 
                 .stayInfo {
@@ -162,6 +204,11 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
+
+
+                    .stayInfoTitle {
+                        font-weight: 600;
+                    }
                     
                 }
             }
@@ -169,7 +216,7 @@
 
             .featureHighlights {
                 padding: 1rem;
-                background-color: green;
+
 
                 .highlightsContainer {
                     width: 100%;
@@ -182,6 +229,7 @@
 
 
         .goodTaste {
+            background-color: var(--card-bg);
             margin-bottom: 1rem;
 
 
@@ -189,7 +237,6 @@
                 @include element-border;
                 @include element-border-radius;
                 padding: 1rem;
-                // background-color: lightblue;
                 display: flex;
                 justify-content: flex-start;
                 gap: 1rem;
@@ -201,7 +248,7 @@
                     width: 2.5rem;
                     height: 2.5rem;
                     border-radius: 50%;
-                    background-color: red;
+                    background-color: var(--brand-secondary);
                 }
 
 
@@ -214,11 +261,11 @@
 
 
         .priceDetails {
+            background-color: var(--card-bg);
             @include element-border;
             @include element-border-radius;
             padding: 1rem;
             margin-bottom: 2rem;
-            background-color: lightblue;
 
 
             .priceItem {
@@ -228,26 +275,32 @@
 
 
                 &:nth-child(3) {
-                    padding-bottom: 2rem;
+                    padding-bottom: 1rem;
                     border-bottom: 2px solid var(--border-default);
+                }
+
+
+                .total {
+                    @include font-sub-title('Poppins');
                 }
             }
 
 
             .priceIncrementWarning {
-                background-color: var(--background-secondary);
+                background-color: var(--brand-secondary);
                 padding: 1rem;
                 @include element-border-radius;
                 display: flex;
                 justify-content: flex-start;
                 gap: 1rem;
+                
+
             }
             
         }
 
 
         .couponContainer {
-            // background-color: lightblue;
 
 
             .couponIntro {

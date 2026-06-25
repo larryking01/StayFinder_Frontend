@@ -28,14 +28,15 @@
             margin-bottom: 0.5rem;
         }
 
-        p {
-            @include font-regular('Poppins');
-            font-size: 0.85rem;
-        }
-
         .locationDisplay {
             display: flex;
+            gap: 0.5rem;
         }
+
+        p {
+            @include font-regular('Poppins');
+        }
+
     }
 
 
@@ -63,8 +64,6 @@
             padding: 1rem;
             cursor: pointer;
             @include font-regular('Poppins');
-            font-size: 1rem;
-            font-weight: 600;
             color: var(--brand-primary)
         }
     }
@@ -74,19 +73,18 @@
         margin-bottom: 2rem;
 
         h3 {
-            @include font-title('Poppins');
+            @include font-sub-title('Poppins');
+            color: var(--brand-primary);
             margin-bottom: 0.5rem;
         }
 
         p {
             @include font-regular('Poppins');
-            font-size: 0.9rem;
             line-height: 1.5rem;
         }
 
         li {
             @include font-regular('Poppins');
-            font-size: 0.9rem;
             line-height: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -110,8 +108,7 @@
 
 
             p {
-                @include font-regular('Poppins');
-                font-size: 0.85rem;
+                @include font-small('Poppins');
             }
         }
     }
@@ -130,8 +127,7 @@
             list-style: none;
             padding: 1rem;
             border-bottom: 1px solid var(--border-default);
-            @include font-regular('Poppins');
-            font-size: 0.85rem;
+            @include font-small('Poppins');
 
 
             &:last-child {
@@ -141,7 +137,8 @@
 
 
         p {
-            line-height: 2.5rem;
+            @include font-small('Poppins');
+            line-height: 2rem;
         }
     }
 
@@ -154,8 +151,8 @@
 
 
         img {
-            width: 6rem;
-            height: 4rem;
+            width: 4rem;
+            height: 3rem;
             object-fit: contain;
         }
     }
@@ -198,14 +195,8 @@
 
 
     .readAllReviewsBtn {
-        @include button-primary(8rem, 3rem)
+        @include button-primary(10rem, 3rem);
+        @include font-regular('Poppins');
     }
-
-
-
-
-
-
-
 
 }

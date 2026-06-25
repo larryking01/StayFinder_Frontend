@@ -13,6 +13,8 @@ import { Check, TrendingUp, X } from 'lucide-react'
 
 
 
+
+
 const HotelCheckout = () => {
 
 
@@ -21,82 +23,87 @@ const HotelCheckout = () => {
         <main className={ styles.checkout }>
             <section className={ styles.checkout__paymentColumn }>
                 <form>
-                    <h3>Who's checking in?</h3>
+                    <article className={ styles.formControlsContainer }>
 
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='First name' />
-                    </article>
+                        <h3>Who's checking in?</h3>
 
-
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='Surname' />
-                    </article>
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='First name' />
+                        </article>
 
 
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='E-mail' />
-                    </article>
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='Surname' />
+                        </article>
 
 
-                    <article className={ styles.inputContainerFlex }>
-                        <div className={ styles.phoneRegionContainer }>
-                            <input type="text" placeholder='Phone country/region' className={ styles.phoneRegionInput } />
-                        </div>
-
-                        <div className={ styles.phoneNumberContainer }>
-                            <input type="text" placeholder='Phone number' className={ styles.phoneNumberInput } />
-                        </div>
-                    </article>
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='E-mail' />
+                        </article>
 
 
-                    <article className={ styles.notificationsContainer }>
-                        <input type='checkbox' className={ styles.checkBox } />
-                        <p>Get emails about deals, offers, and other info from Hotels.com. You can opt out anytime.</p>
-                    </article>
+                        <article className={ styles.inputContainerFlex }>
+                            <div className={ styles.phoneRegionContainer }>
+                                <input type="text" placeholder='Phone country/region' className={ styles.phoneRegionInput } />
+                            </div>
+
+                            <div className={ styles.phoneNumberContainer }>
+                                <input type="text" placeholder='Phone number' className={ styles.phoneNumberInput } />
+                            </div>
+                        </article>
 
 
-                    <h3>Payment details</h3>
-
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='Name on card' />
-                    </article>
-
-
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='Card number' />
-                    </article>
+                        <article className={ styles.notificationsContainer }>
+                            <input type='checkbox' className={ styles.checkBox } />
+                            <p>Get emails about deals, offers, and other info from Hotels.com. You can opt out anytime.</p>
+                        </article>
 
 
-                    <article className={ styles.inputContainerFlex }>
-                        <div className={ styles.phoneRegionContainer }>
-                            <input type="text" placeholder='Expiry date' className={ styles.phoneRegionInput } />
-                        </div>
+                        <h3>Payment details</h3>
 
-                        <div className={ styles.phoneNumberContainer }>
-                            <input type="text" placeholder='Security code' className={ styles.phoneNumberInput } />
-                        </div>
-                    </article>
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='Name on card' />
+                        </article>
 
 
-                    <article className={ styles.inputContainer }>
-                        <input type="text" placeholder='Billing postcode' />
-                    </article>
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='Card number' />
+                        </article>
 
 
-                    <article className={ styles.notificationsContainer }>
-                        <input type='checkbox' className={ styles.checkBox } />
-                        <p>Save this card for future use.</p>
+                        <article className={ styles.inputContainerFlex }>
+                            <div className={ styles.phoneRegionContainer }>
+                                <input type="text" placeholder='Expiry date' className={ styles.phoneRegionInput } />
+                            </div>
+
+                            <div className={ styles.phoneNumberContainer }>
+                                <input type="text" placeholder='Security code' className={ styles.phoneNumberInput } />
+                            </div>
+                        </article>
+
+
+                        <article className={ styles.inputContainer }>
+                            <input type="text" placeholder='Billing postcode' />
+                        </article>
+
+
+                        <article className={ styles.notificationsContainer }>
+                            <input type='checkbox' className={ styles.checkBox } />
+                            <p>Save this card for future use.</p>
+                        </article>
                     </article>
 
 
                     <article className={ styles.cancellationPolicyAndInstructions }>
                         <div className={ styles.policyItem }>
-                            <h3>Cancellation policy</h3>
-                            <p>Fully refundable before Wed, 24 Jun, 2026</p>
-                            <p>Cancellations or changes made after 18:00 (property local time) on 24 Jun 2026 or
-                                no-shows are subject to a property fee equal to 100% of the total 
-                                amount paid for the reservation.
-                            </p>
+                            <div className={ styles.instructionItem }>
+                                <h3>Cancellation policy</h3>
+                                <p className={ styles.refundableText }>Fully refundable before Wed, 24 Jun, 2026</p>
+                                <p>Cancellations or changes made after 18:00 (property local time) on 24 Jun 2026 or
+                                    no-shows are subject to a property fee equal to 100% of the total 
+                                    amount paid for the reservation.
+                                </p>
+                            </div>
                         </div>
 
                         <div className={ styles.policyItem }>
@@ -123,7 +130,8 @@ const HotelCheckout = () => {
 
 
                     <article className={ styles.termsAndConditions }>
-                        <p>By clicking on the button below, I confirm I have read the Privacy Statement Opens 
+                        <p>
+                            By clicking on the button below, I confirm I have read the Privacy Statement Opens 
                             in new window and Government Travel Advice Opens in new window, 
                             and have read and accept the Terms of Service Opens in new window.
                         </p>
@@ -157,19 +165,19 @@ const HotelCheckout = () => {
 
                     <div className={ styles.lengthOfStay }>
                         <div className={ styles.stayInfo }>
-                            <p>Check-in</p>
+                            <p className={ styles.stayInfoTitle }>Check-in</p>
                             <p>Wed, Jul 1, 2026</p>
                             <p>3:00pm</p>
                         </div>
 
                         <div className={ styles.stayInfo }>
-                            <p>Check-out</p>
+                            <p className={ styles.stayInfoTitle }>Check-out</p>
                             <p>Wed, Jul 1, 2026</p>
                             <p>3:00pm</p>
                         </div>
 
                         <div className={ styles.stayInfo }>
-                            <p>Nights</p>
+                            <p className={ styles.stayInfoTitle }>Nights</p>
                             <p>1</p>
                         </div>
                     </div>
@@ -215,8 +223,8 @@ const HotelCheckout = () => {
                     </div>
 
                     <div className={ styles.priceItem }>
-                        <p>Total</p>
-                        <p>$26.16</p>
+                        <p className={ styles.total }>Total</p>
+                        <p className={ styles.total }>$26.16</p>
                     </div>
 
                     <div className={ styles.priceItem }>

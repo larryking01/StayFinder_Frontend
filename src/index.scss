@@ -6,23 +6,26 @@
 
 // define global scss variables
 :root {
+    // app brand
     --brand-primary: #{$brand-primary};
     --brand-secondary: #{$brand-secondary};
     --brand-accent: #{$brand-accent};
 
+    // containers
     --body-bg: #{$body-bg};
+    --footer-bg: #{$footer-bg};
 
+    // typography
     --text-heading: #{$text-heading};
     --text-link: #{$text-link};
     --text-secondary: #{$text-secondary};
     --text-primary: #{$text-primary};
     --text-light: #{$text-light};
 
+    // elements
     --border-default: #{$border-default};
-
-    --background-primary: #{$background-primary};
-    --background-secondary: #{$background-secondary};
-
+    --text-input-focused: #{$text-input-focused};
+    --card-bg: #{$card-bg};
     --white: #{$white};
 }
 

@@ -2,21 +2,35 @@
 @mixin font-title($font-family) {
     font-family: $font-family;
     font-weight: 800;
+    font-size: 1.8rem;
 }
+
 
 @mixin font-sub-title($font-family) {
     font-family: $font-family;
     font-weight: 600;
+    font-size: 1.2rem;
 }
+
 
 @mixin font-regular($font-family) {
     font-family: $font-family;
     font-weight: 400;
+    font-size: 1rem;
 }
+
 
 @mixin font-small($font-family) {
     font-family: $font-family;
-    font-weight: 200;
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+
+@mixin font-tiny($font-family) {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 0.7rem;
 }
 
 
