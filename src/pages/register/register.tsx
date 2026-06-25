@@ -1,4 +1,5 @@
 import styles from './register.module.scss'
+import { FcGoogle } from "react-icons/fc";
 
 
 
@@ -52,7 +53,10 @@ const Register = () => {
 
 
             <section className={ styles.register__googleLoginContainer }>
-                <button type="submit">Login with google</button>
+                <button type="submit">
+                    <FcGoogle size={ 27 } />                   
+                    Login with google
+                </button>
             </section>
 
 

@@ -1,5 +1,5 @@
 import styles from './login.module.scss'
-
+import { FcGoogle } from "react-icons/fc";
 
 
 
@@ -40,7 +40,10 @@ const Login = () => {
 
 
             <section className={ styles.login__googleLoginContainer }>
-                <button type="submit">Login with google</button>
+                <button type="submit">
+                    <FcGoogle size={ 27 } />                   
+                    Login with google
+                </button>
             </section>
 
 

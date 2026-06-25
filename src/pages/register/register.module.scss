@@ -48,7 +48,8 @@
 
 
             button {
-                @include button-primary(100%, 3rem)
+                @include button-primary(100%, 3rem);
+                margin-bottom: 1rem;
             }
 
 
@@ -62,7 +63,14 @@
 
 
         button {
-            @include button-primary(100%, 3rem)
+            @include button-primary(100%, 3rem);
+            background-color: white;
+            @include element-border;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
         }
     }
 
