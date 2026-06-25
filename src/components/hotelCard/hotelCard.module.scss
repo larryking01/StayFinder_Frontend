@@ -8,7 +8,7 @@
 .hotelCard {
     @include element-border-radius;
     @include box-shadow;
-    background-color: var(--background-primary);
+    background-color: var(--card-bg);
     width: 18rem;
     height: 27rem;
     cursor: pointer;
@@ -41,14 +41,12 @@
 
 
         h3 {
-            @include font-title('Poppins');
+            @include font-sub-title('Poppins');
             color: var(--brand-primary);
-            font-size: 1.1rem;
         }
 
         p {
-            @include font-regular('Poppins');
-            font-size: 0.8rem;
+            @include font-small('Poppins');
         }
 
 
@@ -65,10 +63,15 @@
 
             .averageRating {
                 @include element-border-radius;
-                @include font-title('Poppins');
+                @include font-regular('Poppins');
+                width: 2.2rem;
+                height: 2.2rem;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 background-color: var(--brand-primary);
                 color: var(--white);
-                padding: 0.35rem;
             }
 
 

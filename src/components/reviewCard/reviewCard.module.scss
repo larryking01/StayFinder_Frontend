@@ -32,8 +32,49 @@
 
             .authorNameAndCountry {
                 align-self: center;
+
+
+                .authorName {
+                    @include font-regular('Poppins');
+                    font-weight: 600;
+                    // color: var(--brand-primary)
+                    
+                }
+
+
+                .authorCountry {
+                    @include font-small('Poppins');
+                }
             }
 
+        }
+
+
+        .timeAgo {
+
+            p {
+                @include font-small('Poppins');
+            }
+        }
+    }
+
+
+    .reviewContent {
+        // background-color: red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 12rem;
+
+        .reviewBody {
+            @include font-small('Poppins');
+        }
+
+        .readMore {
+            @include font-small('Poppins');
+            font-weight: 600;
+            color: var(--brand-primary);
+            cursor: pointer;
         }
     }
 }

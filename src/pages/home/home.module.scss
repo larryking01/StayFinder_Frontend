@@ -8,10 +8,10 @@
 
 .home {
 
+
   // re-usable styles within component
   .titleText {
       @include font-title('Poppins');
-      font-size: 1.8rem;
       color: var(--text-heading);
       margin-bottom: 1rem;
   }
@@ -49,7 +49,7 @@
 
 
   .mainContent {
-    @include container-padding;
+    @include base-padding();
   }
 
 

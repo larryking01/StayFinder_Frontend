@@ -1,0 +1,339 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+
+
+
+
+
+.checkout {
+    @include base-padding(2rem);
+    margin: 4rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+
+    h3 {
+        margin-bottom: 0.5rem;
+        @include font-sub-title('Poppins');
+        color: var(--brand-primary)
+    }
+
+
+    p {
+        @include font-small('Poppins');
+    }
+
+
+
+    &__paymentColumn {
+        width: 40%;
+
+
+        form {
+            width: 100%;
+
+            .formControlsContainer {
+                background-color: var(--card-bg);
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .inputContainer {
+                position: relative;
+                margin-bottom: 1rem;
+
+
+                input {
+                    @include text-input-default();
+
+                    
+                    &::placeholder {
+                        color: var(--text-secondary)
+                    }
+                }
+            }
+
+
+            .inputContainerFlex {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 1rem;
+
+
+                input {
+                    @include text-input-default();
+
+
+                    &::placeholder {
+                        color: var(--text-secondary)
+                    }
+                }
+
+
+
+                .phoneRegionContainer {
+                    position: relative;
+                    width: 40%;
+                }
+
+
+                .phoneNumberContainer {
+                    position: relative;
+                    width: 60%;
+                }
+            }
+
+
+            .notificationsContainer {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 3rem;
+
+
+                .checkBox {
+                    @include checkBox-default();
+                }
+            }
+
+
+            .cancellationPolicyAndInstructions {
+                background-color: var(--card-bg);
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+
+
+                .policyItem {
+                    margin-bottom: 1rem;
+
+
+                    p {
+                        line-height: 1.5rem;
+                    }
+                }
+
+
+                .instructionItem {
+                    margin-bottom: 1rem;
+
+
+                    .refundableText {
+                        background-color: var(--brand-secondary);
+                        padding: 0.5rem;
+                        @include element-border-radius;
+                        margin-bottom: 1rem;
+                        @include box-shadow;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+
+            .termsAndConditions {
+                padding: 1rem;
+                line-height: 1.5rem;
+            }
+
+
+            .submitBtnContainer {
+                padding: 1rem;
+
+
+                button {
+                    @include button-primary(12rem, 3rem);
+                }
+            }
+        }
+    }
+
+
+
+    &__bookingConfirmation {
+        width: 40%;
+
+
+        .hotelInfoSummary {
+            background-color: var(--card-bg);
+            @include element-border;
+            @include element-border-radius;
+            margin-bottom: 1rem;
+
+
+            .coverImages {
+                height: 17rem;
+                margin-bottom: 0.5rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-top-left-radius: 0.625rem;
+                    border-top-right-radius: 0.625rem;
+                }
+            }
+
+
+            .hotelName {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+
+            .hotelReviews {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+
+            .lengthOfStay {
+                margin: 1rem;
+                @include element-border-radius;
+                display: flex;
+                justify-content: space-between;
+                background-color: var(--brand-secondary);
+                width: 85%;
+                padding: 1rem;
+                @include box-shadow;
+
+
+                .stayInfo {
+                    height: 5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+
+                    .stayInfoTitle {
+                        font-weight: 600;
+                    }
+                    
+                }
+            }
+
+
+            .featureHighlights {
+                padding: 1rem;
+
+
+                .highlightsContainer {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+
+        .goodTaste {
+            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+
+
+            .tasteItem {
+                @include element-border;
+                @include element-border-radius;
+                padding: 1rem;
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+
+
+                .iconContainer {
+                    display: grid;
+                    place-items: center;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    background-color: var(--brand-secondary);
+                }
+
+
+                p {
+                    align-self: center;
+                }
+            }
+            
+        }
+
+
+        .priceDetails {
+            background-color: var(--card-bg);
+            @include element-border;
+            @include element-border-radius;
+            padding: 1rem;
+            margin-bottom: 2rem;
+
+
+            .priceItem {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+
+
+                &:nth-child(3) {
+                    padding-bottom: 1rem;
+                    border-bottom: 2px solid var(--border-default);
+                }
+
+
+                .total {
+                    @include font-sub-title('Poppins');
+                }
+            }
+
+
+            .priceIncrementWarning {
+                background-color: var(--brand-secondary);
+                padding: 1rem;
+                @include element-border-radius;
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+                
+
+            }
+            
+        }
+
+
+        .couponContainer {
+
+
+            .couponIntro {
+                display: flex;
+                justify-content: flex-start;
+                gap: 1rem;
+                margin-bottom: 1rem;
+
+
+                p {
+                    align-self: center;
+                }
+            }
+
+
+            .couponControls {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background-color: red;
+                height: 8rem;
+
+
+                input {
+                    @include text-input-default(100%, 3rem);
+                }
+
+
+                button {
+                    @include button-primary(100%, 3rem)
+                }
+            }
+        }
+    }
+
+}

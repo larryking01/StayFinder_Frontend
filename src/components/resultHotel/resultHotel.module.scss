@@ -14,7 +14,7 @@
     justify-content: space-between;
     gap: 2rem;
     height: 17rem;
-    background-color: var(--background-primary);
+    background-color: var(--card-bg);
     @include box-shadow;
 
     
@@ -42,29 +42,29 @@
 
 
             h3 {
-                @include font-title('Poppins');
+                @include font-sub-title('Poppins');
                 color: var(--brand-primary)
             }
 
 
-            .reviewsInfo {
-                display: flex;
-                justify-content: flex-start;
-                gap: 0.5rem;
+            // .reviewsInfo {
+            //     display: flex;
+            //     justify-content: flex-start;
+            //     gap: 0.5rem;
 
 
-                .averageRating {
-                    @include element-border-radius;
-                    @include font-title('Poppins');
-                    background-color: var(--brand-primary);
-                    color: var(--white);
-                    padding: 0.35rem;
-                }
+            //     .averageRating {
+            //         @include element-border-radius;
+            //         @include font-title('Poppins');
+            //         background-color: var(--brand-primary);
+            //         color: var(--white);
+            //         padding: 0.35rem;
+            //     }
 
-                p {
-                    align-self: center;
-                }
-            }
+            //     p {
+            //         align-self: center;
+            //     }
+            // }
         }
 
 
@@ -106,8 +106,7 @@
 
 
     // component scoped global style for regular fonts
-    .regularFont {
-        @include font-regular('Poppins');
-        font-size: 0.85rem;
+    .smallFont {
+        @include font-small('Poppins');
     }
 }

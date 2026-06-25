@@ -13,6 +13,12 @@ import ghanaFlag from '../../assets/images/ghanaFlag.png'
 
 
 
+
+
+
+
+
+
 const Home = () => {
 
 

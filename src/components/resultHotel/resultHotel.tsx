@@ -25,7 +25,7 @@ const ResultHotel = () => {
                 <section className={ styles.hotelNameAndReview }>
                     <h3>Accra Marriott Hotel</h3>
 
-                    <div className={ `${ styles.reviewsInfo } ${ styles.regularFont }` }>
+                    <div className={ `${ styles.reviewsInfo } ${ styles.smallFont }` }>
                         <p className={ styles.averageRating }>8.7</p>
                         <p>Very good</p>
                         <p>21 reviews</p>
@@ -33,25 +33,25 @@ const ResultHotel = () => {
                 </section>
 
 
-                <section className={ `${ styles.location } ${ styles.regularFont }` }>
+                <section className={ `${ styles.location } ${ styles.smallFont }` }>
                     <MapPin size={ 20 } />
                     <p>Airport, Accra</p>
                 </section>
 
 
-                <section className={ `${ styles.topFeatures } ${ styles.regularFont }` }>
+                <section className={ `${ styles.topFeatures } ${ styles.smallFont }` }>
                     <p>Breakfast</p>
                     <p>Pool</p>
                     <p>Restaurant</p>
                 </section>
 
 
-                <section className={ `${ styles.refund } ${ styles.regularFont }` }>
+                <section className={ `${ styles.refund } ${ styles.smallFont }` }>
                     <p>Fully refundable. Reserve now, pay later</p>
                 </section>
 
 
-                <section className={ `${ styles.pricing } ${ styles.regularFont }` }>
+                <section className={ `${ styles.pricing } ${ styles.smallFont }` }>
                     <p>31 nights, 2 adults</p>
                     <h3>$ 7, 346, 895, 431.87</h3>
                 </section>

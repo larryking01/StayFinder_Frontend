@@ -39,7 +39,7 @@ const SearchResults = () => {
                                     {
                                         filter.options.map( option => (
                                             <div className={ styles.filterOption }>
-                                                <input type="checkbox" />
+                                                <input type="checkbox" className={ styles.checkBox } />
                                                 <p className={ styles.optionName }>{ option }</p>
                                             </div>
                                         ))
