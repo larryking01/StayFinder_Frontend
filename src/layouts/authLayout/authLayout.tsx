@@ -1,7 +1,6 @@
 import styles from './authLayout.module.scss'
 import { Outlet } from 'react-router'
 
-import cover from '../../assets/images/hero_2.jpg'
 
 
 
