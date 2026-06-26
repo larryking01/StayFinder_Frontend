@@ -37,6 +37,16 @@
         width: 100%;
 
         form {
+            .nameContainer {
+                display: flex;
+                justify-content: space-between;
+                gap: 0.5rem;
+
+                .inputContainer {
+                    width: 100%;
+                }
+            }
+
             .inputContainer {
                 position: relative;
                 margin-bottom: 1rem;
@@ -49,10 +59,36 @@
 
             button {
                 @include button-primary(100%, 3rem);
-                margin-bottom: 1rem;
             }
 
+        }
+    }
 
+
+    &__loginRedirect {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        p {
+            @include font-small('Poppins');
+        }
+
+
+        .loginText {
+            cursor: pointer;
+            color: var(--brand-primary);
+        }
+    }
+
+
+    &__OrDividerContainer {
+        margin-bottom: 1rem;
+
+
+        p {
+            font-size: 1.2rem;
         }
     }
 
@@ -75,21 +111,6 @@
     }
 
 
-    &__loginRedirect {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-
-        p {
-            @include font-small('Poppins');
-        }
-
-
-        .loginText {
-            cursor: pointer;
-            color: var(--brand-primary);
-        }
-    }
 
 
 }

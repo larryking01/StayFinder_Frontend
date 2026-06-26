@@ -39,6 +39,17 @@ const Login = () => {
             </section>
 
 
+            <section className={ styles.login__registerRedirect }>
+                <p>Don't have an account?</p>
+                <p className={ styles.registerText }>Register</p>
+            </section>
+
+
+            <section className={ styles.login__OrDividerContainer }>
+                <p>OR</p>
+            </section>
+
+
             <section className={ styles.login__googleLoginContainer }>
                 <button type="submit">
                     <FcGoogle size={ 27 } />                   
@@ -47,10 +58,6 @@ const Login = () => {
             </section>
 
 
-            <section className={ styles.login__loginRedirect }>
-                <p>Don't have an account?</p>
-                <p className={ styles.loginText }>Register</p>
-            </section>
         </main>
     )
 }

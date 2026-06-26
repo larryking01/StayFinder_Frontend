@@ -25,12 +25,14 @@ const Register = () => {
             
             <section className={ styles.register__registerForm }>
                 <form>
-                    <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='First name' />
-                    </div>
+                    <div className={ styles.nameContainer }>
+                        <div className={ styles.inputContainer }>
+                            <input type="text" placeholder='First name' />
+                        </div>
 
-                    <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='Last name' />
+                        <div className={ styles.inputContainer }>
+                            <input type="text" placeholder='Last name' />
+                        </div>
                     </div>
 
                     <div className={ styles.inputContainer }>
@@ -52,18 +54,24 @@ const Register = () => {
             </section>
 
 
-            <section className={ styles.register__googleLoginContainer }>
-                <button type="submit">
-                    <FcGoogle size={ 27 } />                   
-                    Login with google
-                </button>
-            </section>
-
-
             <section className={ styles.register__loginRedirect }>
                 <p>Have an account?</p>
                 <p className={ styles.loginText }>Login</p>
             </section>
+
+
+            <section className={ styles.register__OrDividerContainer }>
+                <p>OR</p>
+            </section>
+
+
+            <section className={ styles.register__googleLoginContainer }>
+                <button type="submit">
+                    <FcGoogle size={ 24 } />                   
+                    <p>Join with google </p>
+                </button>
+            </section>
+
 
         </main>
     )
