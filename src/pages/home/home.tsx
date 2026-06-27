@@ -6,7 +6,6 @@ import bookingDotCom from '../../assets/images/bookingDotComLogo.webp'
 import expedia from '../../assets/images/expediaLogo.webp'
 import hotelsDotCom from '../../assets/images/hotelsDotComLogo.png'
 import priceLine from '../../assets/images/pricelineLogo.jpg'
-import kayakLogo from '../../assets/images/kayakLogo.png'
 import ghanaFlag from '../../assets/images/ghanaFlag.png'
 
 
@@ -140,12 +139,9 @@ const Home = () => {
                         <img src={ expedia } />
                         <img src={ hotelsDotCom } />
                         <img src={ priceLine } />
-                        <img src={ kayakLogo } />
                     </div>
                 </section>
 
-
-                
             </article>
         </main>
     )

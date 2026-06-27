@@ -1,0 +1,44 @@
+// device breakpoints
+$mini-mobile: 480px;
+$mobile: 768px;
+$tablet: 1024px;
+$laptop: 1280px;
+$desktop: 1440px; 
+
+
+
+
+// mixins for various breakpoint stylings
+@mixin mini-mobile {
+    @media (max-width: #{$mini-mobile}) {
+        @content
+    }
+};
+
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content
+    }
+};
+
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content
+    }
+};
+
+
+@mixin laptop {
+    @media (max-width: #{$laptop}) {
+        @content
+    }
+};
+
+
+@mixin desktop {
+    @media (max-width: #{$desktop}) {
+        @content
+    }
+}
