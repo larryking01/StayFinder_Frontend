@@ -1,5 +1,6 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
 
 
 
@@ -44,6 +45,13 @@
           @include font-sub-title('Poppins');
           font-size: 3rem;
           color: var(--white);
+
+
+        // mini-mobile responsive styling
+        @include mini-mobile {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
       }
    }
 
@@ -54,7 +62,7 @@
 
 
    &__hotelsList {
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 
 
      .hotelsGrid {
@@ -75,9 +83,24 @@
 
 
 
+    // mini-mobile responsive styling
+    @include mini-mobile {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+
     .nameContainer {
       align-self: center;
       width: 15%;
+
+
+      // mini-mobile responsive styling
+      @include mini-mobile {
+        width: 100%;
+      }
 
 
       h3 {
@@ -92,6 +115,13 @@
       align-self: center;
       width: 35%;
 
+
+      // mini-mobile responsive styling
+      @include mini-mobile {
+        width: 100%;
+      }
+      
+
       p {
         @include font-regular('Poppins');
         color: var(--text-primary);
@@ -105,16 +135,33 @@
       display: flex;
       justify-content: space-between;
 
+
+      // mini-mobile responsive styling
+      @include mini-mobile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+
       img {
         width: 10rem;
         @include element-border-radius;
         object-fit: cover;
-        filter: brightness(92%)
+        filter: brightness(92%);
+
+
+        // mini-mobile responsive styling
+        @include mini-mobile {
+          width: 100%;
+        }
       }
 
     }
 
    }
+
 
 
    &__trending {
@@ -130,16 +177,29 @@
       gap: 1rem;
     
 
+      // mini-mobile responsive styling
+      @include mini-mobile {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+      }
+      
+
       .destinationItem {
+        width: 100%;
         position: relative;
         cursor: pointer;
         
-
 
         .destinationImage {
           width: 25rem;
           @include element-border-radius;
           filter: brightness(90%);
+
+
+          //mini-mobile responsive styling
+          @include mini-mobile {
+            width: 100%;
+          }
         }
 
 
@@ -156,13 +216,27 @@
             align-self: flex-end;
             @include font-sub-title('Poppins');
             font-size: 1.2rem;
-            color: var(--white)
+            color: var(--white);
+
+
+            // mini-mobile responsive styling
+            @include mini-mobile {
+              @include font-regular('Poppins');
+            }
           }
+
 
           .destinationFlag {
             width: 3rem;
             height: 2.5rem;
             @include element-border-radius;
+
+            // mini-mobile responsive styling
+            @include mini-mobile {
+              width: 2rem;
+              height: 2rem;
+            }
+
           }
         
         }
@@ -181,14 +255,27 @@
     
 
     .partnerIcons {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+
+
+      // mini-mobile responsive styling
+      @include mini-mobile {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+        gap: 1rem;
+      }
 
 
       img {
-        width: 5rem;
+        width: 4rem;
         @include element-border-radius;
+
+
+        // mini-mobile responsive styling
+        @include mini-mobile {
+          width: 3rem;
+        }
       }
     }
    }
