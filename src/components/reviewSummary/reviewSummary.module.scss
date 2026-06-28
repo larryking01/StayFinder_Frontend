@@ -39,10 +39,32 @@
             width: 1.9rem;
             height: 1.9rem;
         }
+
+
+        @include tablet {
+            @include font-small('Poppins');
+            font-size: 0.8rem;
+            width: 1.9rem;
+            height: 1.9rem;
+        }
     }
 
 
     p {
         align-self: center;
+        @include font-regular('Poppins');
+
+
+        @include mini-mobile {
+            @include font-small('Poppins');
+        }
+
+        @include mobile {
+            @include font-small('Poppins');
+        }
+
+        @include tablet {
+            @include font-small('Poppins');
+        }
     }
 }
