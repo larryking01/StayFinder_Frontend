@@ -27,7 +27,7 @@ const Home = () => {
             <section className={ `${ styles.home__hero } ${ styles.marginBottom }` }>
                 <h3>Your next trip starts here</h3>
 
-                <div className={ styles.home__datePicker }>
+                <div className={ styles.datePicker }>
                     <ReservationForm />
                 </div>
             </section>
