@@ -1,7 +1,7 @@
 import styles from './resultHotel.module.scss'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { MapPin } from 'lucide-react'
-
+import ReviewSummary from '../reviewSummary/reviewSummary'
 
 
 
@@ -25,11 +25,7 @@ const ResultHotel = () => {
                 <section className={ styles.hotelNameAndReview }>
                     <h3>Accra Marriott Hotel</h3>
 
-                    <div className={ `${ styles.reviewsInfo } ${ styles.smallFont }` }>
-                        <p className={ styles.averageRating }>8.7</p>
-                        <p>Very good</p>
-                        <p>21 reviews</p>
-                    </div>
+                    <ReviewSummary />
                 </section>
 
 
@@ -53,7 +49,7 @@ const ResultHotel = () => {
 
                 <section className={ `${ styles.pricing } ${ styles.smallFont }` }>
                     <p>31 nights, 2 adults</p>
-                    <h3>$ 7, 346, 895, 431.87</h3>
+                    <h3>$ 7, 346, 895</h3>
                 </section>
 
             </article>

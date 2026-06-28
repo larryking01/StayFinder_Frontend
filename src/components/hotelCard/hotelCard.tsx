@@ -1,5 +1,8 @@
 import styles from './hotelCard.module.scss'
 import hero from '../../assets/images/hero_5.webp'
+import ReviewSummary from '../reviewSummary/reviewSummary'
+
+
 
 
 
@@ -23,12 +26,8 @@ const HotelCard = () => {
                         <h3>Accra Marriott Hotel </h3>
                         <p>Accra</p>
                     </div>
-
-                    <div className={ styles.reviewsInfo }>
-                        <p className={ styles.averageRating }>8.7</p>
-                        <p>Very good</p>
-                        <p>21 reviews</p>
-                    </div>
+                    
+                    <ReviewSummary />
                 </article>
 
                 <article>
