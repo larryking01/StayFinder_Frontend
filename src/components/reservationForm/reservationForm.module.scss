@@ -12,19 +12,17 @@
 
 
 .reservation {
-
+    width: 100%;
 
 
     &__form {
+        width: 100%;
         background-color: var(--card-bg);
-        width:64rem;
-        height: 6rem;
         padding: 1rem;
         @include element-border-radius;
         @include box-shadow;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        gap: 0.5rem;
 
 
         // mini-mobile responsive styling
@@ -34,33 +32,68 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            
         }
 
 
+        // mobile responsive styling
+        @include mobile {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
 
+        // tablet responsive styling
+        @include tablet {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
 
         input {
-            @include text-input-default(18rem, 3rem);
+            @include text-input-default(100%, 3rem);
             @include font-small('Poppins');
             padding: 1rem 1rem 1rem 3rem;   // overwrite default padding from text-input-default mixin
 
             
             &::placeholder {
                 @include font-small('Poppins');
+                color: var(--text-secondary);
+            }
+
+
+            // mini-mobile responsive styling
+            @include mini-mobile {
+                @include text-input-default(100%, 3rem);
+                padding-left: 3rem;
             }
         }
 
-
+         
         button {
-            @include button-primary(6rem, 3rem);
+            @include button-primary(50%, 3rem);
             @include font-small('Poppins');
 
 
             // mini-mobile responsive styling
             @include mini-mobile {
+                @include button-primary(100%, 3rem);
+            }
+
+
+            // mobile responsive styling
+            @include mobile {
+                @include button-primary(100%, 3rem);
+            }
+
+
+            // tablet responsive styling
+            @include tablet {
                 @include button-primary(100%, 3rem);
             }
         }
@@ -69,15 +102,16 @@
 
     &__wrapper {
         position: relative;
+        width: 100%;
 
         
          .reservation__options{
             @include element-border;
             @include button-base;
-            width: 18rem;
+            width: 100%;
             height: 3rem;
             background-color: var(--white);
-            color: var(--text-primary);
+            color: var(--text-secondary);
             display: flex;
             justify-content: flex-start;
             align-items: center;

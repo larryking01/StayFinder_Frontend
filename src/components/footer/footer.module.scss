@@ -24,6 +24,22 @@
           flex-direction: column;
           gap: 1rem;
         }
+
+
+        // mobile responsive styling
+        @include mobile {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+
+        // tablet responsive styling
+        @include tablet {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
     }
 
 
