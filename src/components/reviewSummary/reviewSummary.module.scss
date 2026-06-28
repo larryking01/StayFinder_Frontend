@@ -1,0 +1,48 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+.reviewSummary {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+
+    .averageRating {
+        @include element-border-radius;
+        @include font-regular('Poppins');
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--brand-primary);
+        color: var(--white);
+
+
+        @include mini-mobile {
+            @include font-small('Poppins');
+            font-size: 0.8rem;
+            width: 1.9rem;
+            height: 1.9rem;
+        }
+
+
+        @include mobile {
+            @include font-small('Poppins');
+            font-size: 0.8rem;
+            width: 1.9rem;
+            height: 1.9rem;
+        }
+    }
+
+
+    p {
+        align-self: center;
+    }
+}
