@@ -22,6 +22,11 @@
     }
 
 
+    @include tablet {
+        width: 21rem;
+    }
+
+
     .authorInfo {
         display: flex;
         justify-content: space-between;
