@@ -71,6 +71,11 @@
         }
 
 
+        @include tablet {
+            grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        }
+
+
         img {
             width: 100%;
             @include element-border-radius;
