@@ -1,5 +1,6 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
 
 
 
@@ -11,6 +12,23 @@
     display: flex;
     justify-content: center;
     gap: 3rem;
+
+
+    @include mini-mobile {
+        flex-direction: column;
+        @include base-padding(0, 1rem)
+    }
+
+
+    @include mobile {
+        flex-direction: column;
+        @include base-padding(0, 1rem)
+    }
+
+
+    @include tablet {
+        @include base-padding(0, 1rem)
+    }
 
 
     h3 {
@@ -29,6 +47,16 @@
     &__paymentColumn {
         width: 40%;
 
+
+
+        @include mini-mobile {
+            width: 100%;
+        }
+
+
+        @include mobile {
+            width: 100%;
+        }
 
         form {
             width: 100%;
@@ -155,6 +183,16 @@
         width: 40%;
 
 
+        @include mini-mobile {
+            width: 100%;
+        }
+
+
+        @include mobile {
+            width: 100%;
+        }
+
+
         .hotelInfoSummary {
             background-color: var(--card-bg);
             @include element-border;
@@ -194,7 +232,7 @@
                 display: flex;
                 justify-content: space-between;
                 background-color: var(--brand-secondary);
-                width: 85%;
+                // width: 85%;
                 padding: 1rem;
                 @include box-shadow;
 
@@ -294,9 +332,7 @@
                 justify-content: flex-start;
                 gap: 1rem;
                 
-
             }
-            
         }
 
 
