@@ -1,5 +1,8 @@
 @use '../../style/mixins' as *;
 @use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
 
 
 
@@ -9,20 +12,34 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    // background-color: blue;
+
+
+    @include mini-mobile {
+        padding: 1rem;
+    }
+
+
+    @include mobile {
+        padding: 1rem;
+    }
+
+
+    @include tablet {
+        padding: 2rem;
+    }
 }
 
 
 .authLayout {
     width: 65rem;
     height: 40rem;
-    // background-color: red;
+    // padding: 1rem;
     @include element-border;
     @include element-border-radius;
     @include box-shadow;
     display: flex;
     justify-content: space-between;
-    // flex-wrap: wrap;
+    background-color: var(--card-bg);
 
 
 
@@ -36,6 +53,21 @@
         justify-content: center;
         align-items: center;
         padding: 1rem;
+
+
+        @include mini-mobile {
+            display: none;
+        }
+
+
+        @include mobile {
+            display: none;
+        }
+
+
+        @include tablet {
+            width: 40%;
+        }
 
 
         h3 {
@@ -59,10 +91,19 @@
         align-items: center;
 
 
+        @include mini-mobile {
+            width: 100%;
+        }
 
+
+        @include mobile {
+            width: 100% !important;
+        }
+
+
+        @include tablet {
+            width: 60%;
+        }
     }
-
-
-    
 }
 
