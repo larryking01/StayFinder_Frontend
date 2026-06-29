@@ -1,6 +1,6 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
-
+@use '../../style/breakpoints' as *;
 
 
 
@@ -27,9 +27,19 @@
 
 
     &__menu {
+
+        @include mini-mobile {
+            display: none;
+        }
+
+
+        @include mobile {
+            display: none;
+        }
+        
+
         ul {
             display: flex;
-            // flex-wrap: wrap;
             width: 30rem;
             justify-content: space-between;
         }

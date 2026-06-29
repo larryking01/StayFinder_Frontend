@@ -1,6 +1,6 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
-
+@use '../../style/breakpoints' as *;
 
 
 
@@ -10,6 +10,16 @@
     padding: 1rem;
     @include element-border;
     @include element-border-radius;
+
+
+    @include mini-mobile {
+        width: 100%;
+    }
+
+
+    @include mobile {
+        width: 100%;
+    }
 
 
     .authorInfo {

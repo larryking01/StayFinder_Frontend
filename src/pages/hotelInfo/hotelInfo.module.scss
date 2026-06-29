@@ -1,6 +1,6 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
-
+@use '../../style/breakpoints' as *;
 
 
 
@@ -9,6 +9,20 @@
 
 .hotelInfo {
     @include base-padding();
+
+
+
+    @include mini-mobile {
+        @include base-padding(0, 2rem);
+    }
+
+
+    @include mobile {
+        @include base-padding(0, 2rem);
+    }
+
+
+    
     
 
     &__reservationForm {
@@ -47,8 +61,18 @@
         gap: 0.5rem;
 
 
+        @include mini-mobile {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        }
+
+
+        @include mobile {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        }
+
+
         img {
-            width: 26rem;
+            width: 100%;
             @include element-border-radius;
         }
     }
@@ -60,11 +84,27 @@
         margin-bottom: 1rem;
 
 
+        @include mini-mobile {
+            display: none;
+        }
+
+
+        @include mobile {
+            display: none;
+        }
+
+
         p {
             padding: 1rem;
             cursor: pointer;
             @include font-regular('Poppins');
-            color: var(--brand-primary)
+            color: var(--brand-primary);
+
+
+            @include tablet {
+                @include font-small('Poppins');
+                font-weight: 600;
+            }
         }
     }
 
@@ -159,24 +199,7 @@
 
 
     .reviewsInfo {
-        display: flex;
-        justify-content: flex-start;
-        gap: 0.5rem;
         margin-bottom: 1rem;
-
-
-        .averageRating {
-            @include element-border-radius;
-            @include font-title('Poppins');
-            background-color: var(--brand-primary);
-            color: var(--white);
-            padding: 0.35rem;
-        }
-
-
-        p {
-            align-self: center;
-        }
     }
 
 
