@@ -4,7 +4,7 @@ import { MapPin, CircleSmall, Info } from 'lucide-react'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
-
+import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 
 
 
@@ -177,9 +177,7 @@ const HotelInfo = () => {
                 <h3>Guest Reviews</h3>
 
                 <div className={ styles.reviewsInfo }>
-                    <p className={ styles.averageRating }>8.7</p>
-                    <p>Very good</p>
-                    <p>21 reviews</p>
+                    <ReviewSummary />
                 </div>
 
                 <p className={ styles.topRatedText }>Top-rated guest experiences</p>
