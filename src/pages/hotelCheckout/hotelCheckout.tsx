@@ -239,11 +239,11 @@ const HotelCheckout = () => {
 
                 <article className={ styles.couponContainer }>
                     <div className={ styles.couponIntro }>
-                        <X />
                         <p>Use a coupon or promotion code</p>
                     </div>
 
                     <div className={ styles.couponControls }>
+                        <X className={ styles.iconContainer }/>
                         <input type="text" placeholder='Coupon code' />
                         <button type="button">Apply</button>
                     </div>
