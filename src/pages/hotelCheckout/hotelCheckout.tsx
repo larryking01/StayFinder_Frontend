@@ -43,7 +43,7 @@ const HotelCheckout = () => {
 
                         <article className={ styles.inputContainerFlex }>
                             <div className={ styles.phoneRegionContainer }>
-                                <input type="text" placeholder='Phone country/region' className={ styles.phoneRegionInput } />
+                                <input type="text" placeholder='Country code' className={ styles.phoneRegionInput } />
                             </div>
 
                             <div className={ styles.phoneNumberContainer }>
