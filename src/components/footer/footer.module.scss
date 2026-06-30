@@ -18,7 +18,6 @@
         flex-wrap: wrap;
 
 
-        // mini-mobile responsive styling
         @include mini-mobile {
           display: flex;
           flex-direction: column;
@@ -26,7 +25,6 @@
         }
 
 
-        // mobile responsive styling
         @include mobile {
           display: flex;
           flex-direction: column;
@@ -34,7 +32,6 @@
         }
 
 
-        // tablet responsive styling
         @include tablet {
           display: flex;
           flex-direction: column;
@@ -60,6 +57,16 @@
             @include font-regular('Poppins');
             cursor: pointer;
             color: var(--text-link);
+
+
+            @include mini-mobile {
+                @include font-small('Poppins');
+            }
+
+
+            @include mobile {
+                @include font-small('Poppins');
+            }
         }
     }
 
@@ -75,8 +82,19 @@
 
         p {
             cursor: pointer;
+
+
+            @include mini-mobile {
+                @include font-small('Poppins');
+            }
+
+
+            @include mobile {
+                @include font-small('Poppins');
+            }
         }
     }
+
 
 
     &__copyrights {
@@ -85,6 +103,15 @@
         justify-content: center;
         @include font-regular('Poppins');
 
-    }
 
+        @include mini-mobile {
+            @include font-small('Poppins');
+        }
+
+
+        @include mobile {
+            @include font-small('Poppins');
+        }
+
+    }
 }

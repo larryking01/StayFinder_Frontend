@@ -25,7 +25,6 @@
         gap: 0.5rem;
 
 
-        // mini-mobile responsive styling
         @include mini-mobile {
             width: 100%;
             height: 100%;
@@ -35,7 +34,6 @@
         }
 
 
-        // mobile responsive styling
         @include mobile {
             width: 100%;
             height: 100%;
@@ -45,7 +43,6 @@
         }
 
 
-        // tablet responsive styling
         @include tablet {
             width: 100%;
             height: 100%;
@@ -61,13 +58,6 @@
             padding: 1rem 1rem 1rem 3rem;   // overwrite default padding from text-input-default mixin
 
             
-            &::placeholder {
-                @include font-small('Poppins');
-                color: var(--text-secondary);
-            }
-
-
-            // mini-mobile responsive styling
             @include mini-mobile {
                 @include text-input-default(100%, 3rem);
                 padding-left: 3rem;
@@ -80,19 +70,16 @@
             @include font-small('Poppins');
 
 
-            // mini-mobile responsive styling
             @include mini-mobile {
                 @include button-primary(100%, 3rem);
             }
 
 
-            // mobile responsive styling
             @include mobile {
                 @include button-primary(100%, 3rem);
             }
 
 
-            // tablet responsive styling
             @include tablet {
                 @include button-primary(100%, 3rem);
             }

@@ -40,13 +40,22 @@
 
     p {
         @include font-small('Poppins');
+
+
+        @include mini-mobile {
+            @include font-regular('Poppins');
+        }
+
+
+        @include mobile {
+            @include font-regular('Poppins');
+        }
     }
 
 
 
     &__paymentColumn {
         width: 40%;
-
 
 
         @include mini-mobile {
@@ -76,11 +85,7 @@
 
                 input {
                     @include text-input-default();
-
                     
-                    &::placeholder {
-                        color: var(--text-secondary)
-                    }
                 }
             }
 
@@ -94,10 +99,6 @@
                 input {
                     @include text-input-default();
 
-
-                    &::placeholder {
-                        color: var(--text-secondary)
-                    }
                 }
 
 
@@ -124,6 +125,12 @@
                 .checkBox {
                     @include checkBox-default();
                 }
+
+
+                p {
+                    @include font-small('Poppins');
+                    color: var(--text-secondary)
+                }
             }
 
 
@@ -135,17 +142,12 @@
 
 
                 .policyItem {
-                    margin-bottom: 1rem;
+                    margin-bottom: 2rem;
 
 
                     p {
                         line-height: 1.5rem;
                     }
-                }
-
-
-                .instructionItem {
-                    margin-bottom: 1rem;
 
 
                     .refundableText {
@@ -360,7 +362,7 @@
 
 
                 p {
-                    @include font-regular('Poppins');
+                    @include font-small('Poppins');
                     color: var(--brand-primary);
                     cursor: pointer;
                 }

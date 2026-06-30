@@ -34,6 +34,7 @@
             @include font-title('Poppins');
             font-size: 2rem;
             color: var(--brand-primary);
+            text-align: center;
         }
 
         p {
@@ -68,6 +69,7 @@
 
             button {
                 @include button-primary(100%, 3rem);
+                @include font-regular('Poppins');
             }
 
         }
@@ -98,6 +100,7 @@
 
         p {
             font-size: 1.2rem;
+            @include font-regular('Poppins');
         }
     }
 
@@ -109,8 +112,9 @@
 
         button {
             @include button-primary(100%, 3rem);
-            background-color: white;
+            @include font-regular('Poppins');
             @include element-border;
+            background-color: white;
             color: var(--text-primary);
             display: flex;
             justify-content: center;

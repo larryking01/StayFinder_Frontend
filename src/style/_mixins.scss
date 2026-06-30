@@ -61,6 +61,17 @@
     @include element-border;
     @include element-border-radius;
     @include input-focused;
+    @include input-placeholder;
+
+}
+
+
+
+@mixin input-placeholder {
+    &::placeholder {
+        @include font-small('Poppins');
+        color: var(--text-secondary)
+    }
 }
 
 

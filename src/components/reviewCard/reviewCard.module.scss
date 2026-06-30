@@ -6,25 +6,11 @@
 
 
 .reviewCard {
-    width: 24rem;
+    width: 100% !important;
     padding: 1rem;
     @include element-border;
     @include element-border-radius;
-
-
-    @include mini-mobile {
-        width: 100%;
-    }
-
-
-    @include mobile {
-        width: 100%;
-    }
-
-
-    @include tablet {
-        width: 18rem;
-    }
+    
 
 
     .authorInfo {

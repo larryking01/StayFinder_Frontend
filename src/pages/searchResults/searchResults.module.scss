@@ -169,20 +169,22 @@
                 h3 {
                     align-self: center;
                     @include font-sub-title('Poppins');
+                    color: var(--text-primary);
 
 
                     @include mini-mobile {
-                        @include font-small('Poppins');
+                        @include font-regular('Poppins');
                         align-self: flex-start;
                     }
 
+
                     @include mobile {
-                        @include font-small('Poppins');
+                        @include font-regular('Poppins');
                         align-self: flex-start;
                     }
 
                     @include tablet {
-                        @include font-small('Poppins');
+                        @include font-regular('Poppins');
                         align-self: flex-start;
                     }
                     
@@ -201,6 +203,7 @@
 
                     p {
                         @include font-small('Poppins');
+                        
                     }
                 }
             }
