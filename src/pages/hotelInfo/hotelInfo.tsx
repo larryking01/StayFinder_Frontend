@@ -31,8 +31,10 @@ const HotelInfo = () => {
                 <h3>Atlantis Suites The Entertainment District - Toronto</h3>
                 <div className={ styles.locationDisplay }>
                     <MapPin size={ 20 } />
-                    <p>Akosombo Lakeside Road</p>
-                    <p>Akosombo, Ghana.</p>
+                    <div className={ styles.nameAndLocationContainer }>
+                        <p>Akosombo Lakeside Road</p>
+                        <p>Akosombo, Ghana.</p>
+                    </div>
                 </div>
             </section>
 
@@ -196,7 +198,7 @@ const HotelInfo = () => {
                 <h3>The fine print</h3>
                 <p>Must-know information for guests at this property</p>
 
-                <div className={ styles.houseRulesContainer }>
+                <div className={ styles.finePrintContainer }>
                     <p>
                         Each suite is individually styled; therefore, interior colours, finishes, flooring, layouts, and views may vary from the images displayed. 
                         All suites are maintained to a consistent luxury standard; however, exact design details and views are subject to availability.

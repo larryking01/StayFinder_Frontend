@@ -45,12 +45,29 @@
         .locationDisplay {
             display: flex;
             gap: 0.5rem;
-        }
 
-        p {
-            @include font-regular('Poppins');
-        }
 
+            .nameAndLocationContainer {
+                display: flex;
+                gap: 0.5rem;
+
+
+                @include mini-mobile {
+                    flex-direction: column;
+                    gap: 0.3rem;
+                }
+
+
+                @include mobile {
+                    flex-direction: column;
+                    gap: 0.3rem;
+                }
+
+                p {
+                    @include font-regular('Poppins');
+                }
+            }
+        }
     }
 
 
@@ -153,7 +170,7 @@
 
 
             p {
-                @include font-small('Poppins');
+                @include font-regular('Poppins');
             }
         }
     }
@@ -172,18 +189,12 @@
             list-style: none;
             padding: 1rem;
             border-bottom: 1px solid var(--border-default);
-            @include font-small('Poppins');
+            @include font-regular('Poppins');
 
 
             &:last-child {
                 border: none;
             }
-        }
-
-
-        p {
-            @include font-small('Poppins');
-            line-height: 2rem;
         }
     }
 
@@ -214,16 +225,46 @@
 
 
     .reviewsDisplay {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+        gap: 1rem;
         margin-bottom: 1rem;
+
+
+        @include mini-mobile {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        }
+
+
+        @include mobile {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        }
+
+
+        @include tablet {
+            grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        }
+    
     }
 
 
     .readAllReviewsBtn {
         @include button-primary(10rem, 3rem);
         @include font-regular('Poppins');
+    }
+
+
+    .finePrintContainer {
+        margin-top: 1rem;
+        padding: 1rem;
+        @include element-border;
+        @include element-border-radius;
+
+
+        p {
+            @include font-small('Poppins');
+            font-size: 0.9rem;
+        }
     }
 
 }

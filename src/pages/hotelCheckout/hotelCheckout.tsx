@@ -95,35 +95,31 @@ const HotelCheckout = () => {
 
                     <article className={ styles.cancellationPolicyAndInstructions }>
                         <div className={ styles.policyItem }>
-                            <div className={ styles.instructionItem }>
-                                <h3>Cancellation policy</h3>
-                                <p className={ styles.refundableText }>Fully refundable before Wed, 24 Jun, 2026</p>
-                                <p>Cancellations or changes made after 18:00 (property local time) on 24 Jun 2026 or
-                                    no-shows are subject to a property fee equal to 100% of the total 
-                                    amount paid for the reservation.
-                                </p>
-                            </div>
+                            <h3>Cancellation policy</h3>
+                            <p className={ styles.refundableText }>Fully refundable before Wed, 24 Jun, 2026</p>
+                            <p>Cancellations or changes made after 18:00 (property local time) on 24 Jun 2026 or
+                                no-shows are subject to a property fee equal to 100% of the total 
+                                amount paid for the reservation.
+                            </p>
                         </div>
 
                         <div className={ styles.policyItem }>
-                            <div className={ styles.instructionItem }>
-                                <h3>Special check-in instructions</h3>
-                                <p>
-                                    Front desk staff will greet guests on arrival at the property. Information provided 
-                                    by the property may be translated using automated translation tools.
-                                    Guests booked in breakfast included rate plans receive breakfast for up to 2 adults 
-                                    who are sharing a guestroom. Breakfast fees apply for additional guests. 
-                                    Guests booked in dinner included rate plans receive dinner for up to 2 adults who 
-                                    are sharing a guestroom. Dinner fees apply for additional guests.                                
-                                </p>
-                            </div>
+                            <h3>Special check-in instructions</h3>
+                            <p>
+                                Front desk staff will greet guests on arrival at the property. Information provided 
+                                by the property may be translated using automated translation tools.
+                                Guests booked in breakfast included rate plans receive breakfast for up to 2 adults 
+                                who are sharing a guestroom. Breakfast fees apply for additional guests. 
+                                Guests booked in dinner included rate plans receive dinner for up to 2 adults who 
+                                are sharing a guestroom. Dinner fees apply for additional guests.                                
+                            </p>
+                        </div>
 
-                            <div className={ styles.instructionItem }>
-                                <h3>Taxes and fees</h3>
-                                <p>
-                                    Deposit: CAD 250 per accommodation, per stay    
-                                </p>                        
-                            </div>
+                        <div className={ styles.policyItem }>
+                            <h3>Taxes and fees</h3>
+                            <p>
+                                Deposit: CAD 250 per accommodation, per stay    
+                            </p>                        
                         </div>
                     </article>
 

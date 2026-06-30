@@ -73,11 +73,13 @@
         h3 {
             @include font-title('Poppins');
             margin-bottom: 1rem;
+            color: var(--white);
         }
 
 
         p {
             @include font-regular('Poppins');
+            color: var(--white);
         }
 
     }
