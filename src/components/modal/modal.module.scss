@@ -1,0 +1,80 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+
+
+    @include mini-mobile {
+        padding: 2rem;
+    }
+
+
+    @include mobile {
+        padding: 2rem;
+    }
+
+
+
+    &__container {
+        width: 30rem;
+        background-color: var(--card-bg);
+        @include element-border;
+        @include element-border-radius;
+        padding: 1rem;
+        
+
+
+
+        .iconWrapper {
+            margin-bottom: 1rem;
+            background-color: var(--delete-modal-icon-bg);
+            display: inline-block;
+            padding: 0.5rem;
+            @include element-border-radius;
+        }
+
+
+        .titleWrapper {
+            margin-bottom: 1rem;
+            @include font-regular('Poppins');
+        }
+
+
+        .bodyWrapper {
+            margin-bottom: 2rem;
+            @include font-regular('Poppins');
+        }
+
+
+        .actionsWrapper {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+
+
+            button {
+                @include button-primary(100%, 3rem);
+            }
+        }
+
+
+    }
+}
