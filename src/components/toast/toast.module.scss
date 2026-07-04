@@ -1,0 +1,115 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+.toast {
+    width: 30rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    @include element-border;
+    @include element-border-radius;
+    position: fixed;
+    top: 2rem;
+    right: -40rem;
+    animation: toastDisplay 0.3s ease;
+
+
+    @keyframes toastDisplay {
+        0% {
+            transform: translateX(-40rem);
+        }
+
+        20% {
+            transform: translateX(-10rem);
+        }
+
+        40% {
+            transform: translateX(20rem);
+        }
+
+        
+        60% {
+            transform: translateX(40rem)
+        }
+
+
+        100% {
+            transform: translateX(50rem);
+        }
+    }
+
+
+
+    &--error {
+        background-color: var(--alert-red-secondary);
+        border-left: 3px solid var(--alert-red-primary);
+        border-bottom: 3px solid var(--alert-red-primary);
+    }
+
+
+    &--success {
+        background-color: var(--alert-green-secondary);
+        border-left: 3px solid var(--alert-green-primary);
+        border-bottom: 3px solid var(--alert-green-primary);
+    }
+
+
+    &--info {
+        background-color: var(--alert-blue-secondary);
+        border-left: 3px solid var(--alert-blue-primary);
+        border-bottom: 3px solid var(--alert-blue-primary);
+    }
+
+
+
+    &__iconWrapper {
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+
+
+        &--error {
+            background-color: var(--alert-red-primary)
+        }
+
+
+        &--success {
+            background-color: var(--alert-green-primary)
+        }
+
+
+        &--info {
+            background-color: var(--alert-blue-primary)
+        }
+        
+    }
+
+
+
+    &__content {
+        
+        h3 {
+            @include font-sub-title('Poppins');
+        }
+
+        p {
+            @include font-regular('Poppins');
+        }
+    }
+
+
+    &__closeWrapper {
+        align-self: center;
+        cursor: pointer;
+    }
+}

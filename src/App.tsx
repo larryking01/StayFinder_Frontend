@@ -14,7 +14,7 @@ import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
 import AuthLayout from './layouts/authLayout/authLayout'
 import Modal from './components/modal/modal'
-
+import Toast from './components/toast/toast'
 
 
 
@@ -42,6 +42,7 @@ function App() {
           <Route path="support" element={ <Support /> } />
 
           <Route path="modal" element={ <Modal /> } />
+          <Route path="toast" element={ <Toast /> } />
         </Route>
 
         <Route path="accounts" element={ <AuthLayout /> }>
