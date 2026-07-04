@@ -1,0 +1,65 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include modal-bg;
+
+
+
+    &__pulseDivsContainer {
+    width: 17rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+
+    .pulseDiv--blue {
+        @include pulseDiv(var(--alert-blue-primary))
+    }
+
+    .pulseDiv--red {
+        @include pulseDiv(var(--alert-red-primary))
+    }
+
+    .pulseDiv--green {
+        @include pulseDiv(var(--alert-green-primary))
+    }
+
+    .pulseDiv--yellow {
+        @include pulseDiv(var(--brand-accent))
+    }
+
+
+    }
+
+
+    &__description {
+        @include font-regular('Poppins');
+        font-size: 1.4rem;
+    }
+
+
+
+}
+
+
+
+
+
+
+
