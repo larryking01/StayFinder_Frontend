@@ -12,23 +12,15 @@ import { X, Check, CircleCheckBig } from 'lucide-react'
 const Toast = () => {
 
 
-    let type = "info"
+    let type = "success"
 
 
 
     return (
-        <main className={ `${ styles.toast } 
-                        ${ type === 'success' ? styles['toast--success'] :
-                           type === 'error' ? styles['toast--error'] :
-                           styles['toast--info']}`
-                         }>
+        <main className={ `${ styles.toast } ${ styles[`toast--${ type }`]} `}>
 
 
-            <section className={ `${ styles.toast__iconWrapper } 
-                               ${ type === 'success' ? styles['toast__iconWrapper--success'] :
-                                  type === 'error' ? styles['toast__iconWrapper--error'] :
-                                  styles['toast__iconWrapper--info']}` 
-                        }>
+            <section className={ `${ styles.toast__iconWrapper } ${ styles[`toast__iconWrapper--${ type }`]}`}>
                 <Check />
             </section>
 

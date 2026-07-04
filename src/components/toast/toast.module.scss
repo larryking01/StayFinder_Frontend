@@ -16,32 +16,37 @@
     @include element-border-radius;
     position: fixed;
     top: 2rem;
-    right: -40rem;
-    animation: toastDisplay 0.3s ease;
+    right: 1rem;
+    transform: translateX(110%);   // ensure the toast starts offscreen right
+    animation: toastDisplay 5s ease forwards;
 
 
     @keyframes toastDisplay {
         0% {
-            transform: translateX(-40rem);
+            transform: translateX(110%);   // start from the right offscreen
+            opacity: 0;
         }
 
         20% {
-            transform: translateX(-10rem);
+            transform: translateX(0);
+            opacity: 1;
         }
 
-        40% {
-            transform: translateX(20rem);
+        80% {
+            transform: translateX(0);
+            opacity: 1;
         }
-
-        
-        60% {
-            transform: translateX(40rem)
-        }
-
 
         100% {
-            transform: translateX(50rem);
+            transform: translateX(120%);
+            opacity: 0
         }
+    }
+
+
+    @include mini-mobile {
+        width: 90%;
+        gap: 1.3rem;
     }
 
 
@@ -100,10 +105,19 @@
         
         h3 {
             @include font-sub-title('Poppins');
+
+
+            @include mini-mobile {
+                font-size: 1rem;
+            }
         }
 
         p {
             @include font-regular('Poppins');
+
+            @include mini-mobile {
+                font-size: 0.85rem;
+            }
         }
     }
 
@@ -111,5 +125,7 @@
     &__closeWrapper {
         align-self: center;
         cursor: pointer;
-    }
+    };
+
+
 }
