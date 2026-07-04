@@ -18,11 +18,7 @@ const Modal = () => {
     return (
         <main className={ styles.modal }>
             <article className={ styles.modal__container }>
-                <section className={ `${ styles.iconWrapper } 
-                         ${type === 'delete' ? styles['iconWrapper--delete'] : 
-                           type === 'success' ? styles['iconWrapper--success'] : 
-                           styles['iconWrapper--info']}` 
-                         }>
+                <section className={ `${ styles.iconWrapper } ${ styles[`iconWrapper--${ type }`]}`}>
                     <Trash />
                 </section>
 
@@ -35,11 +31,7 @@ const Modal = () => {
                 </section>
 
                 <section className={ styles.actionsWrapper }>
-                    <button type="button" className={ `${ styles.confirmBtn } 
-                                          ${ type === 'delete' ? styles['confirmBtn--delete'] : 
-                                             type === 'success' ? styles['confirmBtn--success'] :
-                                             styles['confirmBtn--info'] } `
-                                        }>
+                    <button type="button" className={ `${ styles.confirmBtn } ${ styles[`confirmBtn--${ type }`]}`}>
                         Yes
                     </button>
 

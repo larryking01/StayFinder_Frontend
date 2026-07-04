@@ -1,0 +1,131 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+.toast {
+    width: 30rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    @include element-border;
+    @include element-border-radius;
+    position: fixed;
+    top: 2rem;
+    right: 1rem;
+    transform: translateX(110%);   // ensure the toast starts offscreen right
+    animation: toastDisplay 5s ease forwards;
+
+
+    @keyframes toastDisplay {
+        0% {
+            transform: translateX(110%);   // start from the right offscreen
+            opacity: 0;
+        }
+
+        20% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        80% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(120%);
+            opacity: 0
+        }
+    }
+
+
+    @include mini-mobile {
+        width: 90%;
+        gap: 1.3rem;
+    }
+
+
+
+    &--error {
+        background-color: var(--alert-red-secondary);
+        border-left: 3px solid var(--alert-red-primary);
+        border-bottom: 3px solid var(--alert-red-primary);
+    }
+
+
+    &--success {
+        background-color: var(--alert-green-secondary);
+        border-left: 3px solid var(--alert-green-primary);
+        border-bottom: 3px solid var(--alert-green-primary);
+    }
+
+
+    &--info {
+        background-color: var(--alert-blue-secondary);
+        border-left: 3px solid var(--alert-blue-primary);
+        border-bottom: 3px solid var(--alert-blue-primary);
+    }
+
+
+
+    &__iconWrapper {
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+
+
+        &--error {
+            background-color: var(--alert-red-primary)
+        }
+
+
+        &--success {
+            background-color: var(--alert-green-primary)
+        }
+
+
+        &--info {
+            background-color: var(--alert-blue-primary)
+        }
+        
+    }
+
+
+
+    &__content {
+        
+        h3 {
+            @include font-sub-title('Poppins');
+
+
+            @include mini-mobile {
+                font-size: 1rem;
+            }
+        }
+
+        p {
+            @include font-regular('Poppins');
+
+            @include mini-mobile {
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+
+    &__closeWrapper {
+        align-self: center;
+        cursor: pointer;
+    };
+
+
+}
