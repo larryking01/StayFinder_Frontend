@@ -28,8 +28,8 @@ const Modal = () => {
                 </section>
 
                 <section className={ styles.actionsWrapper }>
-                    <button type="button">Yes</button>
-                    <button type="button">Cancel</button>
+                    <button type="button" className={ styles.confirmBtn }>Yes</button>
+                    <button type="button" className={ styles.cancelBtn }>Cancel</button>
                 </section>
             </article>
         </main>

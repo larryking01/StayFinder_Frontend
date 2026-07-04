@@ -44,7 +44,7 @@
 
         .iconWrapper {
             margin-bottom: 1rem;
-            background-color: var(--delete-modal-icon-bg);
+            background-color: var(--alert-red-secondary);
             display: inline-block;
             padding: 0.5rem;
             @include element-border-radius;
@@ -70,8 +70,15 @@
             gap: 1rem;
 
 
-            button {
+            .confirmBtn {
                 @include button-primary(100%, 3rem);
+                background-color: var(--alert-red-primary);
+            }
+
+            .cancelBtn {
+                @include button-secondary(100%, 3rem);
+                background-color:  var(--white);
+                @include element-border;                
             }
         }
 

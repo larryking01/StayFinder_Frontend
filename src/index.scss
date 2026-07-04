@@ -27,9 +27,12 @@
     --text-input-focused: #{$text-input-focused};
     --card-bg: #{$card-bg};
     --white: #{$white};
-    --alert-red-bg: #{$alert-red-bg};
-    --alert-blue-bg: #{$alert-blue-bg};  
-    --delete-modal-icon-bg: #{$delete-modal-icon-bg};
+    --alert-red-primary: #{$alert-red-primary};
+    --alert-red-secondary: #{$alert-red-secondary};
+    --alert-blue-primary: #{$alert-blue-primary};
+    --alert-blue-secondary: #{$alert-blue-secondary};
+    --alert-green-primary: #{$alert-green-primary};
+    --alert-green-secondary: #{$alert-green-secondary};
 }
 
 
