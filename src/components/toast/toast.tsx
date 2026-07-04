@@ -1,5 +1,5 @@
 import styles from './toast.module.scss'
-import { X, Check, CircleCheckBig } from 'lucide-react'
+import { X, Check } from 'lucide-react'
 
 
 
