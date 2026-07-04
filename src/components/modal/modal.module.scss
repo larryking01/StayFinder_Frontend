@@ -44,11 +44,27 @@
 
         .iconWrapper {
             margin-bottom: 1rem;
-            background-color: var(--alert-red-secondary);
             display: inline-block;
             padding: 0.5rem;
             @include element-border-radius;
+
+
+            &--delete {
+                background-color: var(--alert-red-secondary);
+            }
+
+
+            &--success {
+                background-color: var(--alert-green-secondary);
+            }
+
+
+            &--info {
+                background-color: var(--alert-blue-secondary);
+            }
         }
+
+        
 
 
         .titleWrapper {
@@ -72,7 +88,21 @@
 
             .confirmBtn {
                 @include button-primary(100%, 3rem);
-                background-color: var(--alert-red-primary);
+
+
+                &--delete {
+                    background-color: var(--alert-red-primary);
+                }
+
+
+                &--success {
+                    background-color: var(--alert-green-primary);
+                }
+
+
+                &--info {
+                    background-color: var(--alert-blue-primary)
+                }
             }
 
             .cancelBtn {

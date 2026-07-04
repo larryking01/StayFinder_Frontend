@@ -10,12 +10,19 @@ import { Trash } from 'lucide-react'
 const Modal = () => {
 
 
+    let type = 'info';
+
+
 
 
     return (
         <main className={ styles.modal }>
             <article className={ styles.modal__container }>
-                <section className={ styles.iconWrapper }>
+                <section className={ `${ styles.iconWrapper } 
+                         ${type === 'delete' ? styles['iconWrapper--delete'] : 
+                           type === 'success' ? styles['iconWrapper--success'] : 
+                           styles['iconWrapper--info']}` 
+                         }>
                     <Trash />
                 </section>
 
@@ -28,7 +35,14 @@ const Modal = () => {
                 </section>
 
                 <section className={ styles.actionsWrapper }>
-                    <button type="button" className={ styles.confirmBtn }>Yes</button>
+                    <button type="button" className={ `${ styles.confirmBtn } 
+                                          ${ type === 'delete' ? styles['confirmBtn--delete'] : 
+                                             type === 'success' ? styles['confirmBtn--success'] :
+                                             styles['confirmBtn--info'] } `
+                                        }>
+                        Yes
+                    </button>
+
                     <button type="button" className={ styles.cancelBtn }>Cancel</button>
                 </section>
             </article>
