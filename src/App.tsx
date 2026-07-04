@@ -15,8 +15,8 @@ import SearchResults from './pages/searchResults/searchResults'
 import AuthLayout from './layouts/authLayout/authLayout'
 import Modal from './components/modal/modal'
 import Toast from './components/toast/toast'
-
-
+import Loading from './components/loading/loading'
+import Empty from './components/empty/empty'
 
 
 
@@ -43,6 +43,8 @@ function App() {
 
           <Route path="modal" element={ <Modal /> } />
           <Route path="toast" element={ <Toast /> } />
+          <Route path="loading" element={ <Loading /> } />
+          <Route path="empty" element={ <Empty /> } />
         </Route>
 
         <Route path="accounts" element={ <AuthLayout /> }>

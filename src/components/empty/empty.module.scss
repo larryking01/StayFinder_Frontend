@@ -1,0 +1,125 @@
+@use '../../style/fonts' as *;
+@use '../../style/mixins' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+
+
+.empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+
+
+
+  &__card {
+    width: 100%;
+    max-width: 28rem;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--white);
+    @include element-border-radius;
+    @include box-shadow;
+    text-align: center;
+
+
+
+    @include mini-mobile {
+      padding: 2rem 1.5rem;
+    }
+
+
+    @include mobile {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+
+  &__iconWrapper {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    background: var(--text-light);
+    @include element-border;
+    border-radius: 50%;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  &__title {
+    margin-bottom: 0.8rem;
+    color: var(--brand-primary);
+    @include font-sub-title('Poppins');
+
+
+
+    @include mini-mobile{
+      font-size: 1.25rem;
+    }
+
+
+    @include mobile{
+      font-size: 1.25rem;
+    }
+  }
+
+
+  &__description {
+    max-width: 21rem;
+    @include font-regular('Poppins');
+
+
+
+    @include mini-mobile{
+      font-size: 0.95rem;
+    }
+
+    @include mobile{
+      font-size: 0.95rem;
+    }
+  }
+
+}
+
+
+
+.fadeIn {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
