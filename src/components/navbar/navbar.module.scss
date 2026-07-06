@@ -5,6 +5,8 @@
 
 
 
+
+
 .navbar {
     background-color: var(--card-bg);
     display: flex;
@@ -60,10 +62,23 @@
         }
     }
 
+
+    &__hamburger {
+        background-color: var(--brand-secondary);
+        @include element-border-radius;
+        padding: 0.5rem;
+        cursor: pointer;
+        display: none;
+
+
+        
+        @include mini-mobile {
+            display: flex;
+        }
+
+        
+        @include mobile {
+            display: flex;
+        }
+    }
 }
-
-
-
-
-
-// responsive styles

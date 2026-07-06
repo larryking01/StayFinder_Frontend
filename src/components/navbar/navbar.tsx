@@ -1,4 +1,5 @@
 import styles from './navbar.module.scss'
+import { Menu } from 'lucide-react'
 
 
 
@@ -32,6 +33,10 @@ const Navbar = () => {
                         <button type="button">Sign In</button>
                     </li>
                 </ul>
+            </section>
+
+            <section className={ styles.navbar__hamburger }>
+                <Menu />
             </section>
         </nav>
     )
