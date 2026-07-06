@@ -45,6 +45,10 @@ const Navbar = () => {
                         <h3>Home</h3>
                     </div>
 
+                    <div className={ styles.appLogo }>
+                        <h3>StayFinder</h3>
+                    </div>
+
                     <X size={ 30 } className={ styles.closeIcon }/>
                 </article>
 

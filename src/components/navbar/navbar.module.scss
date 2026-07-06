@@ -132,6 +132,13 @@
             }
 
 
+            .appLogo {
+                @include font-sub-title('Poppins');
+                color: var(--brand-primary);
+                font-style: italic;
+            }
+
+
             .closeIcon {
                 align-self: flex-start;
                 color: var(--brand-primary);
