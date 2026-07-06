@@ -1,6 +1,5 @@
 import styles from './navbar.module.scss'
-import { Menu } from 'lucide-react'
-
+import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
 
 
 
@@ -36,7 +35,49 @@ const Navbar = () => {
             </section>
 
             <section className={ styles.navbar__hamburger }>
-                <Menu />
+                <Menu size={ 30 } />
+            </section>
+
+            <section className={ styles.navbar__responsiveMenu }>
+                <article className={ styles.currentRouteAndCloseBtn }>
+                    <div className={ styles.currentRouteDisplay }>
+                        <ArrowLeft className={ styles.backIcon }/>
+                        <h3>Home</h3>
+                    </div>
+
+                    <X size={ 30 } className={ styles.closeIcon }/>
+                </article>
+
+                <article className={ styles.underLine }></article>
+
+
+                <article className={ styles.navLinks }>
+                    <ul>
+                        <li>
+                            <House />
+                            <p>Home</p>
+                        </li>
+
+                        <li>
+                            <UserCog />
+                            <p>Support</p>
+                        </li>
+
+                        <li>
+                            <Info />
+                            <p>About Us</p>
+                        </li>
+
+                        <li>
+                            <ScrollText />
+                            <p>Bookings</p>
+                        </li>
+
+                        <li>
+                            <button type="button">Sign In</button>
+                        </li>
+                    </ul>
+                </article>
             </section>
         </nav>
     )
