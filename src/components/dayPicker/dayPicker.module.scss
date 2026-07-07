@@ -1,0 +1,18 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+.dayPicker {
+    position: absolute;
+    top: 5.5rem;
+    background-color: var(--card-bg);
+    @include element-border-radius;
+    @include box-shadow;
+    width: fit-content;
+    padding: 1rem;
+    z-index: 2000;
+}
