@@ -2,6 +2,7 @@ import styles from './dayPicker.module.scss'
 import { useState } from 'react'
 import { DayPicker } from '@daypicker/react'
 import '@daypicker/react/style.css'
+import './dayPicker.scss'   // override some default daypicker styling
 
 
 

@@ -36,7 +36,6 @@ const ReservationForm = () => {
                         Length of stay
                     </button>
                     <CalendarDays className={ styles.reservation__icon } />
-                    
                 </section>
 
                 <section className={ styles.reservation__wrapper }>
@@ -46,7 +45,6 @@ const ReservationForm = () => {
 
                 <button type='submit' className={ styles.reservation__submitBtn }>Search</button>
             </form>
-
 
             { openDatePicker && <DayPickerComponent />}
         </main>
