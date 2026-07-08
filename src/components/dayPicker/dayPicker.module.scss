@@ -19,4 +19,24 @@
     padding: 1rem;
     z-index: 2000;
 
+
+
+    @include mini-mobile {
+        width: 100%;
+        top: 8rem;
+    }
+
+
+    @include mobile {
+        width: 100%;
+        top: 8rem;
+    }
+
+
+    @include tablet {
+        width: 100%;
+        top: 8rem;
+    }
+
+
 }
