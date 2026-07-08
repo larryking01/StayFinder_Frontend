@@ -74,13 +74,13 @@
 
         // mini-mobile responsive styling
         @include mini-mobile {
-          max-width: 90% !important;
+          max-width: 80% !important;
         }
 
 
         // mobile responsive styling
         @include mobile {
-          max-width: 90% !important;
+          max-width: 80% !important;
         }
         
 
