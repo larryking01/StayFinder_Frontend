@@ -1,7 +1,7 @@
 import styles from './navbar.module.scss'
 import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
 import { useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 
 
 
