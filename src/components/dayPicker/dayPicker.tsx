@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { DayPicker } from '@daypicker/react'
 import '@daypicker/react/style.css'
 import './dayPicker.scss'   // override some default daypicker styling
-
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 
 
@@ -13,6 +13,8 @@ import './dayPicker.scss'   // override some default daypicker styling
 const DayPickerComponent = () => {
 
     const [ selectedDate, setSelectedDate ] = useState()
+
+    const isMobile = useMediaQuery("(max-width: 973px)")
 
 
     const handleSelectedDate = (value: any) => {
@@ -31,7 +33,7 @@ const DayPickerComponent = () => {
                 onSelect={ handleSelectedDate }
                 mode="range"
                 navLayout="around"
-                numberOfMonths={ 2 }
+                numberOfMonths={ isMobile ? 1 : 2 }
                 captionLayout="label"
                 footer={ selectedDate ? 'Date selected' : 'None selected'}
             />
