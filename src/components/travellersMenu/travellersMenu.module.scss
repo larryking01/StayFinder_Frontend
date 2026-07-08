@@ -22,18 +22,21 @@
     @include mini-mobile {
         width: 100%;
         top: 13rem;
+        background-color: var(--popover-bg);
     }
 
 
     @include mobile {
         width: 100%;
         top: 13rem;
+        background-color: var(--popover-bg);
     }
 
 
     @include tablet {
         width: 100%;
         top: 13rem;
+        background-color: var(--popover-bg);
     }
 
 
