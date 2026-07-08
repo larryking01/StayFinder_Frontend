@@ -1,0 +1,63 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+.locationSuggestions {
+    position: absolute;
+    top: 5.5rem;
+    background-color: var(--card-bg);
+    @include element-border-radius;
+    @include box-shadow;
+    width: 24rem;
+    max-height: 24rem;
+    padding: 1rem;
+    z-index: 2000;
+    overflow-y: scroll;
+
+
+
+    &__locationItem {
+        display: flex;
+        gap: 1rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        @include element-border-radius;
+        margin-bottom: 0.5rem;
+        transition: background-color 0.3s ease;
+
+
+        &:hover {
+            background-color: var(--footer-bg);
+        }
+
+
+        .icon {
+            align-self: center;
+        }
+
+
+
+
+        .location {
+
+            h3 {
+                @include font-sub-title('Poppins');
+                color: var(--text-primary);
+                font-size: 0.9rem;
+            }
+
+
+            p {
+                @include font-regular('Poppins');
+                font-size: 0.75rem;
+            }
+        }
+    }
+
+
+}

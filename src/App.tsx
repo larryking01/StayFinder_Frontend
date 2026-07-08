@@ -17,6 +17,8 @@ import Modal from './components/modal/modal'
 import Toast from './components/toast/toast'
 import Loading from './components/loading/loading'
 import Empty from './components/empty/empty'
+import DayPickerComponent from './components/dayPicker/dayPicker'
+
 
 
 
@@ -47,6 +49,7 @@ function App() {
           <Route path="toast" element={ <Toast /> } />
           <Route path="loading" element={ <Loading /> } />
           <Route path="empty" element={ <Empty /> } />
+          <Route path="daypicker" element={ <DayPickerComponent />} />
         </Route>
 
         <Route path="accounts" element={ <AuthLayout /> }>

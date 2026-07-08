@@ -1,0 +1,11 @@
+// override some default daypicker styling
+.rdp-root {
+    --rdp-accent-background-color: var(--footer-bg);
+    --rdp-accent-color: var(--brand-primary);
+    // --rdp-today-color: red;
+    // --rdp-range_start-background: yellow; 
+    // --rdp-range_end-background: green; 
+    // --rdp-range_end-color: red;
+    // --rdp-range_middle-color: indigo; 
+}
+

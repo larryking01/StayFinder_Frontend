@@ -1,5 +1,5 @@
 import styles from './home.module.scss'
-import ReservationForm from '../../components/reservationForm/reservationForm'
+import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import hero from '../../assets/images/hero_1.jpg'
 import bookingDotCom from '../../assets/images/bookingDotComLogo.webp'
@@ -27,8 +27,8 @@ const Home = () => {
             <section className={ `${ styles.home__hero } ${ styles.marginBottom }` }>
                 <h3>Your next trip starts here</h3>
 
-                <div className={ styles.datePicker }>
-                    <ReservationForm />
+                <div className={ styles.reservationWrapper }>
+                    <ReservationWidget />
                 </div>
             </section>
 

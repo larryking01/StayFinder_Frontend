@@ -1,5 +1,5 @@
 import styles from './hotelInfo.module.scss'
-import ReservationForm from '../../components/reservationForm/reservationForm'
+import ReservationForm from '../../components/reservationWidget/reservationWidget'
 import { MapPin, CircleSmall, Info } from 'lucide-react'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'

@@ -68,25 +68,25 @@
       }
 
 
-      .datePicker {
+      .reservationWrapper {
         width: 64rem;
 
 
         // mini-mobile responsive styling
         @include mini-mobile {
-          width: 90%;
+          max-width: 90% !important;
         }
 
 
         // mobile responsive styling
         @include mobile {
-          width: 90%;
+          max-width: 90% !important;
         }
         
 
         // tablet responsive styling
         @include tablet {
-          width: 70%;
+          max-width: 70%;
         }
       }
    }

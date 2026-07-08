@@ -1,5 +1,5 @@
 import styles from './searchResults.module.scss'
-import ReservationForm from '../../components/reservationForm/reservationForm'
+import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import ResultHotel from '../../components/resultHotel/resultHotel'
 import map1 from '../../assets/images/map1.avif'
 import { filterCategory } from '../../data/filterCategories'
@@ -20,7 +20,7 @@ const SearchResults = () => {
     return (
         <main className={ styles.searchResults }>
             <section className={ styles.searchResults__reservationForm }>
-                <ReservationForm />
+                <ReservationWidget />
             </section>
 
             <article className={ styles.searchResults__displayResults }>
