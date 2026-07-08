@@ -5,7 +5,7 @@ import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
-
+import { useNavigate } from 'react-router'
 
 
 
@@ -16,6 +16,14 @@ import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 
 
 const HotelInfo = () => {
+
+
+    const navigate = useNavigate()
+
+
+    const handleNavigateCheckout = () => {
+        navigate('/checkout/Accra Marriott Hotel/adv87245423589543589bmn534978')
+    }
 
 
 
@@ -36,6 +44,8 @@ const HotelInfo = () => {
                         <p>Akosombo, Ghana.</p>
                     </div>
                 </div>
+
+                {/* <button className={ styles.hotelInfo__reserveNowBtn }>Reserve Now</button> */}
             </section>
 
 
@@ -57,6 +67,11 @@ const HotelInfo = () => {
                 <p>Pricing</p>
                 <p>Accepted Payment Methods</p>
                 <p>Reviews</p>
+            </section>
+
+
+            <section className={ styles.hotelInfo__reserveNow }>
+                <button className={ styles.hotelInfo__reserveNowBtn } onClick={ handleNavigateCheckout }>Reserve Now</button>
             </section>
 
 

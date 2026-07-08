@@ -1,6 +1,6 @@
 import styles from './login.module.scss'
 import { FcGoogle } from "react-icons/fc";
-
+import { NavLink } from 'react-router';
 
 
 
@@ -41,7 +41,9 @@ const Login = () => {
 
             <section className={ styles.login__registerRedirect }>
                 <p>Don't have an account?</p>
-                <p className={ styles.registerText }>Register</p>
+                <NavLink to="register">
+                    <p className={ styles.registerText }>Register</p>
+                </NavLink>
             </section>
 
 
