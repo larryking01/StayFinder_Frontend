@@ -12,13 +12,12 @@ import './dayPicker.scss'   // override some default daypicker styling
 
 const DayPickerComponent = () => {
 
-    const [ selected, setSelected ] = useState()
-
+    const [ selectedDate, setSelectedDate ] = useState()
 
 
     const handleSelectedDate = (value: any) => {
-        setSelected( value )
-        console.log("selected date is: ", selected)
+        setSelectedDate( value )
+        console.log("selected date is: ", selectedDate)
     }   
 
 
@@ -28,13 +27,13 @@ const DayPickerComponent = () => {
             <DayPicker 
                 animate
                 fixedWeeks
-                selected={ selected }
+                selected={ selectedDate }
                 onSelect={ handleSelectedDate }
                 mode="range"
                 navLayout="around"
                 numberOfMonths={ 2 }
                 captionLayout="label"
-                footer={ selected ? 'Selected' : 'None selected'}
+                footer={ selectedDate ? 'Date selected' : 'None selected'}
             />
         </main>
     )

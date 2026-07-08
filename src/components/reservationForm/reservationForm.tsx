@@ -1,9 +1,9 @@
 import styles from './reservationForm.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
-import DayPickerComponent from '../dayPicker/dayPicker'
-import DestinationDropdown from '../destinationDropdown/destinationDropdown'
 import { useState } from 'react'
-
+import LocationSuggestions from '../locationSuggestions/locationSuggestions'
+import DayPickerComponent from '../dayPicker/dayPicker'
+import TravellersMenu from '../travellersMenu/travellersMenu'
 
 
 
@@ -14,49 +14,71 @@ import { useState } from 'react'
 const ReservationForm = () => {
 
 
-    const [openDatePicker, setOpenDatePicker] = useState<boolean>(false)
-    const [openDestinationDropdown, setOpenDestinationDropdown] = useState<boolean>(false)
+
+    const [ showLocationSuggestions, setShowLocationSuggestions ] = useState<boolean>(false)
+    const [ showDayPicker, setShowDayPicker ] = useState<boolean>(false)
+    const [ showTravellersMenu, setShowTravellersMenu ] = useState<boolean>(false)
 
 
-
-    const handleOpenDatePicker = () => {
-        setOpenDestinationDropdown( false )
-        setOpenDatePicker( !openDatePicker )
+    const displayLocationSuggestions = () => {
+        setShowDayPicker( false )
+        setShowTravellersMenu( false )
+        setShowLocationSuggestions( !showLocationSuggestions )
     }
 
 
-    const handleOpenDestinationDropdown = () => {
-        setOpenDatePicker( false )
-        setOpenDestinationDropdown( !openDestinationDropdown )
+    const displayDayPicker = () => {
+        setShowLocationSuggestions( false )
+        setShowTravellersMenu( false )
+        setShowDayPicker( !showDayPicker )
     }
+
+
+    const displayTravellersMenu = () => {
+        setShowLocationSuggestions( false )
+        setShowDayPicker( false )
+        setShowTravellersMenu( !showTravellersMenu )
+    }
+
+
+    const submitHotelPreferences = (event: any) => {
+        event.preventDefault()
+        setShowLocationSuggestions( false )
+        setShowDayPicker( false )
+        setShowTravellersMenu( false )
+    }
+
 
     
     return (
         <main className={ styles.reservation }>
-            <form className={ styles.reservation__form }>
+            <form onSubmit={ submitHotelPreferences } className={ styles.reservation__form }>
                 <section className={ styles.reservation__wrapper }>
-                    <input type="text" placeholder='Where to?' className={ styles.reservation__locationInput } onClick={ handleOpenDestinationDropdown } />
+                    <input type="text" placeholder='Where to?' className={ styles.reservation__locationInput } onClick={ displayLocationSuggestions } />
                     <MapPin className={ styles.reservation__icon } />
                 </section>
 
                 <section className={ styles.reservation__wrapper}>
-                    <button type="button" className={ styles.reservation__options } onClick={ handleOpenDatePicker }>
+                    <button type="button" className={ styles.reservation__options } onClick={ displayDayPicker }>
                         Length of stay
                     </button>
                     <CalendarDays className={ styles.reservation__icon } />
                 </section>
 
                 <section className={ styles.reservation__wrapper }>
-                    <button type="button" className={ styles.reservation__options }>Travellers</button>
+                    <button type="button" className={ styles.reservation__options } onClick={ displayTravellersMenu }>Travellers</button>
                     <User className={ styles.reservation__icon } />
                 </section>
 
                 <button type='submit' className={ styles.reservation__submitBtn }>Search</button>
             </form>
 
-            { openDatePicker && <DayPickerComponent />}
-            
-            { openDestinationDropdown && <DestinationDropdown /> }
+            { showLocationSuggestions && <LocationSuggestions /> }
+
+            { showDayPicker && <DayPickerComponent /> }
+
+            { showTravellersMenu && <TravellersMenu /> }
+
         </main>
     )
 }

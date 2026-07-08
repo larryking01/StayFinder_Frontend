@@ -1,0 +1,83 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+
+
+.travellersMenu {
+    position: absolute;
+    top: 5.5rem;
+    right: 0;
+    background-color: var(--card-bg);
+    @include element-border-radius;
+    @include box-shadow;
+    width: 24rem;
+    padding: 1rem;
+    z-index: 2000;
+
+
+
+    &__wrapper {
+        padding: 0.5rem;
+        @include element-border-radius;
+        margin-bottom: 0.5rem;
+
+
+
+        .travellerItem {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+
+
+
+            h3 {
+                align-self: center;
+                @include font-sub-title('Poppins');
+                color: var(--text-primary);
+                font-size: 1rem;
+            }
+
+
+            .controls {
+                width: 10rem;
+                display: flex;
+                justify-content: space-between;
+
+
+
+                button {
+                    @include button-primary(2.3rem, 2.3rem);
+                    border-radius: 50%;
+                    background-color: var(--card-bg);
+                    @include element-border;
+                    color: var(--text-primary);
+                    @include font-regular('Poppins');
+                    font-weight: 600
+                }
+
+                p {
+                    align-self: center;
+                    @include font-sub-title('Poppins');
+                    font-size: 1rem;
+                }
+            }
+        }
+
+
+        .submitBtn {
+            display: flex;
+            justify-content: flex-end;
+
+            
+            button {
+                @include button-primary(10rem, 2.5rem);
+            }
+        }
+    }
+
+
+}
