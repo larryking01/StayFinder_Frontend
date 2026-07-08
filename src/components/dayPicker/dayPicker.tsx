@@ -19,7 +19,6 @@ const DayPickerComponent = () => {
 
     const handleSelectedDate = (value: any) => {
         setSelectedDate( value )
-        console.log("selected date is: ", selectedDate)
     }   
 
 
