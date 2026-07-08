@@ -2,7 +2,7 @@ import styles from './resultHotel.module.scss'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { MapPin } from 'lucide-react'
 import ReviewSummary from '../reviewSummary/reviewSummary'
-
+import { useNavigate } from 'react-router'
 
 
 
@@ -15,8 +15,16 @@ import ReviewSummary from '../reviewSummary/reviewSummary'
 const ResultHotel = () => {
 
 
+    const navigate = useNavigate()
+
+
+    const handleNavigateToHotelInfo = () => {
+        navigate('/Accra MArriot Hotel/85789325634857243')
+    }
+
+
     return (
-        <main className={ styles.resultHotel }>
+        <main className={ styles.resultHotel } onClick={ handleNavigateToHotelInfo }>
             <article className={ styles.resultHotel__coverImage }>
                 <img src={ cover1 } />
             </article>

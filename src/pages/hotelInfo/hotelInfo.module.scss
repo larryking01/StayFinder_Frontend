@@ -22,8 +22,15 @@
     }
 
 
+    &__reserveNow {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
     
-    
+    &__reserveNowBtn {
+        @include button-primary(10rem, 3rem);
+    }
 
     &__reservationForm {
         display: flex;
@@ -34,6 +41,7 @@
 
     &__nameAndLocation {
         margin-bottom: 2rem;
+        
 
         h3 {
             @include font-title('Poppins');
@@ -50,6 +58,7 @@
             .nameAndLocationContainer {
                 display: flex;
                 gap: 0.5rem;
+                margin-bottom: 1rem;
 
 
                 @include mini-mobile {
@@ -68,6 +77,7 @@
                 }
             }
         }
+
     }
 
 

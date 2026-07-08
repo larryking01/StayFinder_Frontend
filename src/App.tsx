@@ -27,6 +27,9 @@ import DayPickerComponent from './components/dayPicker/dayPicker'
 
 
 
+
+
+
 function App() {
 
 
@@ -56,7 +59,6 @@ function App() {
           <Route index element={ <Login /> } />
           <Route path="register" element={ <Register /> } />
         </Route>
-
 
         <Route path='*' element={ <NotFound /> } />
       </Routes>

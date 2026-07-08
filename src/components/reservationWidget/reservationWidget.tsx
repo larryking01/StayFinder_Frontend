@@ -1,6 +1,7 @@
 import styles from './reservationWidget.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
@@ -21,6 +22,7 @@ const ReservationWidget = () => {
     const [ showLocationSuggestions, setShowLocationSuggestions ] = useState<boolean>(false)
     const [ showDayPicker, setShowDayPicker ] = useState<boolean>(false)
     const [ showTravellersMenu, setShowTravellersMenu ] = useState<boolean>(false)
+    const navigate = useNavigate()
 
 
     const displayLocationSuggestions = () => {
@@ -49,6 +51,8 @@ const ReservationWidget = () => {
         setShowLocationSuggestions( false )
         setShowDayPicker( false )
         setShowTravellersMenu( false )
+
+        navigate('/searchResults/Movempick Ambassador Hotel')
     }
 
 

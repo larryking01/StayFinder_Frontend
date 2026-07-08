@@ -1,7 +1,7 @@
 import styles from './navbar.module.scss'
 import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
 import { useState } from 'react'
-
+import { Link, NavLink, useNavigate } from 'react-router'
 
 
 
@@ -16,6 +16,7 @@ const Navbar = () => {
 
 
     const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
+    const navigate = useNavigate()
 
     
     const handleOpenMobileNavbar = () => {
@@ -23,21 +24,38 @@ const Navbar = () => {
     }
 
 
+    const handleNavigateToSignIn = () => {
+        navigate("/accounts")
+    }
+
+
+    const handleNavigateTo = (route: string) => {
+        navigate(`/${ route }`)
+    }
+
+
 
     return (
         <nav className={ styles.navbar }>
             <section className={ styles.navbar__brand }>
-                <h3>StayFinder</h3>
+                <h3 onClick={ () => handleNavigateTo("home")}>StayFinder</h3>
             </section>
 
             <section className={ styles.navbar__menu }>
                 <ul>
-                    <li>Home</li>
+                    <li>
+                        <NavLink to="/">
+                            Home
+                        </NavLink>
+                    </li>
+
                     <li>Support</li>
                     <li>About Us</li>
                     <li>Bookings</li>
                     <li>
-                        <button type="button">Sign In</button>
+                        <button type="button" onClick={ handleNavigateToSignIn }>
+                            Sign In
+                        </button>
                     </li>
                 </ul>
             </section>
