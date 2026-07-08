@@ -1,4 +1,4 @@
-import styles from './reservationForm.module.scss'
+import styles from './reservationWidget.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
 import { useState } from 'react'
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
@@ -11,7 +11,10 @@ import TravellersMenu from '../travellersMenu/travellersMenu'
 
 
 
-const ReservationForm = () => {
+
+
+
+const ReservationWidget = () => {
 
 
 
@@ -84,4 +87,4 @@ const ReservationForm = () => {
 }
 
 
-export default ReservationForm
+export default ReservationWidget

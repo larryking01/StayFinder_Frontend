@@ -7,6 +7,10 @@ import { MapPin } from 'lucide-react'
 
 
 
+
+
+
+
 const LocationSuggestions = () => {
 
 
@@ -76,9 +80,6 @@ const LocationSuggestions = () => {
                     <p>Toronto, Ontario, Canada</p>
                 </div>
             </section>
-
-
-
         </main>
     )
 }
