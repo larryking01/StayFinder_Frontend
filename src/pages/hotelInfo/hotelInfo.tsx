@@ -1,5 +1,4 @@
 import styles from './hotelInfo.module.scss'
-import ReservationForm from '../../components/reservationWidget/reservationWidget'
 import { MapPin, CircleSmall, Info } from 'lucide-react'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
@@ -30,11 +29,6 @@ const HotelInfo = () => {
 
     return (
         <main className={ styles.hotelInfo }>
-            <section className={ styles.hotelInfo__reservationForm }>
-                <ReservationForm />
-            </section>
-
-
             <section className={ styles.hotelInfo__nameAndLocation }>
                 <h3>Atlantis Suites The Entertainment District - Toronto</h3>
                 <div className={ styles.locationDisplay }>
