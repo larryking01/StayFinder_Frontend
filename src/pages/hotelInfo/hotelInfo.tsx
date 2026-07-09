@@ -21,7 +21,7 @@ const HotelInfo = () => {
     const navigate = useNavigate()
 
 
-    const handleNavigateToCheckout = () => {
+    const navigateToCheckout = () => {
         navigate('/checkout/Accra Marriott Hotel/adv87245423589543589bmn534978')
     }
 
@@ -38,7 +38,7 @@ const HotelInfo = () => {
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
                     <h3>Accra Marriott Hotel</h3>
-                    <button className={ styles.hotelInfo__bookNowBtn }>Book Now</button>
+                    <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button>
                 </article>
 
                 <article className={ styles.locationDisplay }>
@@ -202,7 +202,7 @@ const HotelInfo = () => {
                     <ReviewCard />
                 </div>
 
-                <button className={ styles.readAllReviewsBtn }>Read all reviews</button>
+                <button className={ styles.hotelInfo__actionBtn }>Read all</button>
             </section>
 
 
@@ -225,6 +225,11 @@ const HotelInfo = () => {
                         License number: STR-2603-JBFPPZ                    
                     </p>
                 </div>
+            </section>
+
+
+            <section className={ styles.hotelInfo__infoSection }>
+                <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Hotel</button>
             </section>
 
 

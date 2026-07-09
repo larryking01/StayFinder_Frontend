@@ -2,46 +2,6 @@
 @use './style/colours' as *;
 
 
-
-
-// define global scss variables
-:root {
-    // app brand
-    --brand-primary: #{$brand-primary};
-    --brand-secondary: #{$brand-secondary};
-    --brand-accent: #{$brand-accent};
-
-    // containers
-    --body-bg: #{$body-bg};
-    --footer-bg: #{$footer-bg};
-
-    // typography
-    --text-heading: #{$text-heading};
-    --text-link: #{$text-link};
-    --text-secondary: #{$text-secondary};
-    --text-primary: #{$text-primary};
-    --text-light: #{$text-light};
-
-    // elements
-    --border-default: #{$border-default};
-    --text-input-focused: #{$text-input-focused};
-    --card-bg: #{$card-bg};
-    --popover-bg: #{$popover-bg};
-    --white: #{$white};
-    --alert-red-primary: #{$alert-red-primary};
-    --alert-red-secondary: #{$alert-red-secondary};
-    --alert-blue-primary: #{$alert-blue-primary};
-    --alert-blue-secondary: #{$alert-blue-secondary};
-    --alert-green-primary: #{$alert-green-primary};
-    --alert-green-secondary: #{$alert-green-secondary};
-}
-
-
-body {
-    background-color: var(--body-bg);
-}
-
-
 // create font types
 // poppins font family
 @font-face {
@@ -127,4 +87,58 @@ body {
     src: url('./assets/fonts/montserrat/Montserrat-Light.ttf') format('truetype');
     font-display: swap;
     font-weight: 200;
+}
+
+
+
+// define global scss variables
+:root {
+    // app brand
+    --brand-primary: #{$brand-primary};
+    --brand-secondary: #{$brand-secondary};
+    --brand-accent: #{$brand-accent};
+
+    // containers
+    --body-bg: #{$body-bg};
+    --footer-bg: #{$footer-bg};
+
+    // typography
+    --text-heading: #{$text-heading};
+    --text-link: #{$text-link};
+    --text-secondary: #{$text-secondary};
+    --text-primary: #{$text-primary};
+    --text-light: #{$text-light};
+
+    // elements
+    --border-default: #{$border-default};
+    --text-input-focused: #{$text-input-focused};
+    --card-bg: #{$card-bg};
+    --popover-bg: #{$popover-bg};
+    --white: #{$white};
+    --alert-red-primary: #{$alert-red-primary};
+    --alert-red-secondary: #{$alert-red-secondary};
+    --alert-blue-primary: #{$alert-blue-primary};
+    --alert-blue-secondary: #{$alert-blue-secondary};
+    --alert-green-primary: #{$alert-green-primary};
+    --alert-green-secondary: #{$alert-green-secondary};
+}
+
+
+body {
+    background-color: var(--body-bg);
+}
+
+
+
+
+// default nav link styling
+.nav-link-default {
+    text-decoration: none;
+    color: var(--brand-primary);
+    transition: font-weight 0.4s ease;
+
+
+    &:hover {
+        font-weight: 700;
+    }
 }

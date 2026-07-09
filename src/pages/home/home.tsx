@@ -80,7 +80,7 @@ const Home = () => {
                     <div className={ styles.trendingGrid }>
                         <TrendingDestination />
                         <TrendingDestination />
-                        <TrendingDestination />
+                        <TrendingDestination /> 
                         <TrendingDestination />
                         <TrendingDestination />
                     </div>

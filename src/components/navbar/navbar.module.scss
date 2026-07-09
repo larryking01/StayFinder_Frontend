@@ -8,6 +8,7 @@
 
 
 .navbar {
+    // @include base-padding();
     background-color: var(--card-bg);
     display: flex;
     flex-wrap: wrap;
@@ -16,6 +17,7 @@
     height: 5rem;
     padding: 0 2rem;
 
+    
 
     &__brand {
         color: var(--text-heading);
@@ -38,7 +40,7 @@
         @include mobile {
             display: none;
         }
-        
+
 
         ul {
             display: flex;
