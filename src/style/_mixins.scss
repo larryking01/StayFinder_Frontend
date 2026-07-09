@@ -76,13 +76,41 @@
 
 
 @mixin input-focused {
-    transition: all 0.3s ease;
+    transition: border-color 0.4s ease;
+
+
+    &:hover {
+        outline: none;
+        border: 1px solid var(--text-input-focused);
+    }
+
 
     &:focus {
         outline: none;
         border: 2px solid var(--text-input-focused);
     }
 }
+
+
+@mixin element-border-transition {
+    transition: border-color 0.4s ease;
+
+
+    &:hover {
+        border: 2px solid var(--text-input-focused);
+    }
+}
+
+
+@mixin element-transform-transition {
+    transition: transform 0.4s ease;
+
+
+    &:hover {
+        transform: scale(1.04);
+    }
+}
+
 
 
 @mixin base-padding($vertical: 0, $horizontal: 5rem) {
@@ -153,5 +181,3 @@
     }
 
 }
-
-

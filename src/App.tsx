@@ -12,6 +12,7 @@ import Support from './pages/support/support'
 import BookedHotels from './pages/bookedHotels/bookedHotels'
 import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
+import ListHotel from './pages/listHotel/listHotel'
 import AuthLayout from './layouts/authLayout/authLayout'
 import Modal from './components/modal/modal'
 import Toast from './components/toast/toast'
@@ -44,6 +45,7 @@ function App() {
           <Route path='searchResults/:destination' element={ <SearchResults /> } />
           <Route path="checkout/:hotelName/:hotelId" element={ <HotelCheckout /> } /> 
           <Route path="my-bookings" element={ <BookedHotels /> } />
+          <Route path="list-your-hotel" element={ <ListHotel /> } />
           <Route path="favourites" element={ <Favourites /> } />
           <Route path="about-us" element={ <AboutUs /> } />
           <Route path="support" element={ <Support /> } />

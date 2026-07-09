@@ -19,7 +19,9 @@ const Register = () => {
     return (
         <main className={ styles.register }>
             <section className={ styles.register__intro }>
-                <h3>StayFinder</h3>
+                <NavLink to="/" className="nav-link-default">
+                    <h3>StayFinder</h3>
+                </NavLink>
                 <p>Create your free account</p>
             </section>
 
@@ -57,7 +59,7 @@ const Register = () => {
 
             <section className={ styles.register__loginRedirect }>
                 <p>Have an account?</p>
-                <NavLink to="/accounts">
+                <NavLink to="/accounts" className="nav-link-default">
                     <p className={ styles.loginText }>Login</p>
                 </NavLink>
             </section>

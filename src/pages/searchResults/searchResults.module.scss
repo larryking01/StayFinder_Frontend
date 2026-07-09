@@ -196,10 +196,11 @@
                     display: flex;
                     gap: 0.5rem;
                     background-color: var(--card-bg);
-                    @include element-border-radius;
                     padding: 0.5rem;
                     cursor: pointer;
-                    
+                    @include element-border-radius;
+                    @include box-shadow;
+
 
                     p {
                         @include font-small('Poppins');

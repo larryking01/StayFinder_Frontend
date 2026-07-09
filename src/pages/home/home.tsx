@@ -6,8 +6,7 @@ import bookingDotCom from '../../assets/images/bookingDotComLogo.webp'
 import expedia from '../../assets/images/expediaLogo.webp'
 import hotelsDotCom from '../../assets/images/hotelsDotComLogo.png'
 import priceLine from '../../assets/images/pricelineLogo.jpg'
-import ghanaFlag from '../../assets/images/ghanaFlag.png'
-
+import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 
 
 
@@ -79,50 +78,11 @@ const Home = () => {
                     </p>
 
                     <div className={ styles.trendingGrid }>
-                        <div className={ styles.destinationItem }>
-                            <img src={ hero } className={ styles.destinationImage }/>
-
-                            <div className={ styles.destinationTarget }>
-                                <p>Accra</p>
-                                <img src={ ghanaFlag } className={ styles.destinationFlag }/>
-                            </div>
-                        </div>
-
-                        <div className={ styles.destinationItem }>
-                            <img src={ hero } className={ styles.destinationImage }/>
-
-                            <div className={ styles.destinationTarget }>
-                                <p>Accra</p>
-                                <img src={ ghanaFlag } className={ styles.destinationFlag }/>
-                            </div>
-                        </div>
-
-                        <div className={ styles.destinationItem }>
-                            <img src={ hero } className={ styles.destinationImage }/>
-
-                            <div className={ styles.destinationTarget }>
-                                <p>Accra</p>
-                                <img src={ ghanaFlag } className={ styles.destinationFlag }/>
-                            </div>
-                        </div>
-
-                        <div className={ styles.destinationItem }>
-                            <img src={ hero } className={ styles.destinationImage }/>
-
-                            <div className={ styles.destinationTarget }>
-                                <p>Accra</p>
-                                <img src={ ghanaFlag } className={ styles.destinationFlag }/>
-                            </div>
-                        </div>
-
-                        <div className={ styles.destinationItem }>
-                            <img src={ hero } className={ styles.destinationImage }/>
-
-                            <div className={ styles.destinationTarget }>
-                                <p>Accra</p>
-                                <img src={ ghanaFlag } className={ styles.destinationFlag }/>
-                            </div>
-                        </div>
+                        <TrendingDestination />
+                        <TrendingDestination />
+                        <TrendingDestination /> 
+                        <TrendingDestination />
+                        <TrendingDestination />
                     </div>
                 </section>
 

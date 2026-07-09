@@ -17,7 +17,9 @@ const Login = () => {
     return (
         <main className={ styles.login }>
             <section className={ styles.login__intro }>
-                <h3>StayFinder</h3>
+                <NavLink to="/" className="nav-link-default">
+                    <h3>StayFinder</h3>
+                </NavLink>
                 <p>Login to your account</p>
             </section>
 
@@ -41,7 +43,7 @@ const Login = () => {
 
             <section className={ styles.login__registerRedirect }>
                 <p>Don't have an account?</p>
-                <NavLink to="register">
+                <NavLink to="register" className="nav-link-default">
                     <p className={ styles.registerText }>Register</p>
                 </NavLink>
             </section>

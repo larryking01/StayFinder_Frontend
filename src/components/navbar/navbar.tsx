@@ -24,12 +24,12 @@ const Navbar = () => {
     }
 
 
-    const handleNavigateToSignIn = () => {
+    const navigateToSignIn = () => {
         navigate("/accounts")
     }
 
 
-    const handleNavigateTo = (route: string) => {
+    const navigateTo = (route: string) => {
         navigate(`/${ route }`)
     }
 
@@ -38,22 +38,37 @@ const Navbar = () => {
     return (
         <nav className={ styles.navbar }>
             <section className={ styles.navbar__brand }>
-                <h3 onClick={ () => handleNavigateTo("home")}>StayFinder</h3>
+                <h3 onClick={ () => navigateTo("home")}>StayFinder</h3>
             </section>
 
             <section className={ styles.navbar__menu }>
                 <ul>
                     <li>
-                        <NavLink to="/">
+                        <NavLink to="/" className="nav-link-default">
                             Home
                         </NavLink>
                     </li>
 
-                    <li>Support</li>
-                    <li>About Us</li>
-                    <li>Bookings</li>
                     <li>
-                        <button type="button" onClick={ handleNavigateToSignIn }>
+                        <NavLink to="/list-your-hotel" className="nav-link-default">
+                            List your hotel
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/support" className="nav-link-default">
+                            Support
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/about-us" className="nav-link-default">
+                            About Us
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <button type="button" onClick={ navigateToSignIn }>
                             Sign In
                         </button>
                     </li>
@@ -92,6 +107,11 @@ const Navbar = () => {
                                 </li>
 
                                 <li>
+                                    <ScrollText />
+                                    <p>List your hotel</p>
+                                </li>
+
+                                <li>
                                     <UserCog />
                                     <p>Support</p>
                                 </li>
@@ -99,11 +119,6 @@ const Navbar = () => {
                                 <li>
                                     <Info />
                                     <p>About Us</p>
-                                </li>
-
-                                <li>
-                                    <ScrollText />
-                                    <p>Bookings</p>
                                 </li>
 
                                 <li>

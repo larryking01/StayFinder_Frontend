@@ -1,11 +1,11 @@
 import styles from './hotelInfo.module.scss'
-import ReservationForm from '../../components/reservationWidget/reservationWidget'
 import { MapPin, CircleSmall, Info } from 'lucide-react'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import { useNavigate } from 'react-router'
+// import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
 
@@ -21,7 +21,7 @@ const HotelInfo = () => {
     const navigate = useNavigate()
 
 
-    const handleNavigateCheckout = () => {
+    const navigateToCheckout = () => {
         navigate('/checkout/Accra Marriott Hotel/adv87245423589543589bmn534978')
     }
 
@@ -30,22 +30,24 @@ const HotelInfo = () => {
 
     return (
         <main className={ styles.hotelInfo }>
-            <section className={ styles.hotelInfo__reservationForm }>
-                <ReservationForm />
-            </section>
+            {/* <section className={ styles.hotelInfo__reservationForm }>
+                <ReservationWidget />
+            </section> */}
+           
 
+            <section className={ styles.hotelInfo__nameLocationCTA }>
+                <article className={ styles.nameAndCTA }>
+                    <h3>Accra Marriott Hotel</h3>
+                    <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button>
+                </article>
 
-            <section className={ styles.hotelInfo__nameAndLocation }>
-                <h3>Atlantis Suites The Entertainment District - Toronto</h3>
-                <div className={ styles.locationDisplay }>
-                    <MapPin size={ 20 } />
-                    <div className={ styles.nameAndLocationContainer }>
+                <article className={ styles.locationDisplay }>
+                    <MapPin size={ 20 } className={ styles.iconWrapper } />
+                    <div className={ styles.locationContainer }>
                         <p>Akosombo Lakeside Road</p>
                         <p>Akosombo, Ghana.</p>
                     </div>
-                </div>
-
-                {/* <button className={ styles.hotelInfo__reserveNowBtn }>Reserve Now</button> */}
+                </article>
             </section>
 
 
@@ -67,11 +69,6 @@ const HotelInfo = () => {
                 <p>Pricing</p>
                 <p>Accepted Payment Methods</p>
                 <p>Reviews</p>
-            </section>
-
-
-            <section className={ styles.hotelInfo__reserveNow }>
-                <button className={ styles.hotelInfo__reserveNowBtn } onClick={ handleNavigateCheckout }>Reserve Now</button>
             </section>
 
 
@@ -205,7 +202,7 @@ const HotelInfo = () => {
                     <ReviewCard />
                 </div>
 
-                <button className={ styles.readAllReviewsBtn }>Read all reviews</button>
+                <button className={ styles.hotelInfo__actionBtn }>Read all</button>
             </section>
 
 
@@ -228,6 +225,11 @@ const HotelInfo = () => {
                         License number: STR-2603-JBFPPZ                    
                     </p>
                 </div>
+            </section>
+
+
+            <section className={ styles.hotelInfo__infoSection }>
+                <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Hotel</button>
             </section>
 
 
