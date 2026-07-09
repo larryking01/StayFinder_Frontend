@@ -17,7 +17,9 @@ const Login = () => {
     return (
         <main className={ styles.login }>
             <section className={ styles.login__intro }>
-                <h3>StayFinder</h3>
+                <NavLink to="/">
+                    <h3>StayFinder</h3>
+                </NavLink>
                 <p>Login to your account</p>
             </section>
 
