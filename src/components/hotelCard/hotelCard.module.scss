@@ -6,12 +6,13 @@
 
 
 .hotelCard {
-    @include element-border-radius;
-    @include box-shadow;
     background-color: var(--card-bg);
     width: 100%;
     height: 27rem;
     cursor: pointer;
+    @include element-border-radius;
+    @include box-shadow;
+    @include element-transform-transition;
 
 
     &__coverImage {
