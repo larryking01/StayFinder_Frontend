@@ -8,17 +8,16 @@
 
 
 .hotelInfo {
-    @include base-padding(3rem);
-
+    @include base-padding(4rem);
 
 
     @include mini-mobile {
-        @include base-padding(0, 2rem);
+        @include base-padding(3rem, 2rem);
     }
 
 
     @include mobile {
-        @include base-padding(0, 2rem);
+        @include base-padding(3rem, 2rem);
     }
 
 
@@ -28,27 +27,73 @@
         margin-bottom: 1rem;
     }
     
-    &__reserveNowBtn {
-        @include button-primary(10rem, 3rem);
+
+    &__bookNowBtn {
+        @include button-primary(7rem, 2.7rem);
+
+
+        @include mini-mobile {
+            @include button-primary(6rem, 2.3rem);
+        }
+
+
+        @include mobile {
+            @include button-primary(6rem, 2.3rem);
+        }
     }
 
-    &__nameAndLocation {
-        margin-bottom: 2rem;
-        
+    // &__reservationForm {
+    //     display: flex;
+    //     justify-content: center;
+    //     margin: 2rem 0;
+    // }
 
-        h3 {
-            @include font-title('Poppins');
-            font-size: 1.8rem;
-            color: var(--brand-primary);
-            margin-bottom: 0.5rem;
+
+    &__nameLocationCTA {
+        margin-bottom: 2rem;
+
+
+        .nameAndCTA {
+            display: flex;
+            justify-content: space-between;
+
+
+            @include mini-mobile {
+                margin-bottom: 1rem;
+            }
+
+
+            @include mobile {
+                margin-bottom: 1rem;
+            }
+
+
+            h3 {
+                @include font-title('Poppins');
+                font-size: 1.8rem;
+                color: var(--brand-primary);
+
+
+                @include mini-mobile {
+                    font-size: 1.4rem;
+                    align-self: center;
+                }
+
+
+                @include mobile {
+                    font-size: 1.4rem;
+                    align-self: center;
+                }
+            }
         }
+        
 
         .locationDisplay {
             display: flex;
             gap: 0.5rem;
 
 
-            .nameAndLocationContainer {
+            .locationContainer {
                 display: flex;
                 gap: 0.5rem;
                 margin-bottom: 1rem;
@@ -56,17 +101,23 @@
 
                 @include mini-mobile {
                     flex-direction: column;
-                    gap: 0.3rem;
                 }
-
-
-                @include mobile {
-                    flex-direction: column;
-                    gap: 0.3rem;
-                }
+                
 
                 p {
                     @include font-regular('Poppins');
+
+
+                    @include mini-mobile {
+                        @include font-regular('Poppins');
+                        font-size: 0.8rem;
+                    }
+                    
+
+                    @include mobile {
+                        @include font-regular('Poppins');
+                        font-size: 0.9rem;
+                    }
                 }
             }
         }
