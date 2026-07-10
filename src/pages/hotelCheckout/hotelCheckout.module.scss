@@ -67,16 +67,19 @@
             width: 100%;
         }
 
+
         form {
             width: 100%;
 
             .formControlsContainer {
                 background-color: var(--card-bg);
                 @include element-border;
+                @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
                 margin-bottom: 1rem;
             }
+
 
             .inputContainer {
                 position: relative;
@@ -137,6 +140,7 @@
             .cancellationPolicyAndInstructions {
                 background-color: var(--card-bg);
                 @include element-border;
+                @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
 
@@ -208,6 +212,7 @@
         .hotelInfoSummary {
             background-color: var(--card-bg);
             @include element-border;
+            @include box-shadow;
             @include element-border-radius;
             margin-bottom: 1rem;
 
@@ -285,6 +290,7 @@
 
             .tasteItem {
                 @include element-border;
+                @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
                 display: flex;
@@ -319,6 +325,7 @@
         .priceDetails {
             background-color: var(--card-bg);
             @include element-border;
+            @include box-shadow;
             @include element-border-radius;
             padding: 1rem;
             margin-bottom: 2rem;
