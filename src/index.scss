@@ -135,10 +135,23 @@ body {
 .nav-link-default {
     text-decoration: none;
     color: var(--brand-primary);
-    transition: font-weight 0.4s ease;
+    transition: 
+        background-color 0.3s ease,
+        padding 0.3s ease;
+        border: 0.3s ease;
 
 
     &:hover {
-        font-weight: 700;
+        background-color: var(--brand-secondary);
+        padding: 0.5rem;
+        border-radius: 0.625rem;
     }
+}
+
+
+
+
+// no scroll on body when responsive navigation is open on mobile devices
+body.no-scroll {
+    overflow: hidden;
 }

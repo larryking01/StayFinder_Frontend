@@ -1,6 +1,6 @@
 import styles from './navbar.module.scss'
 import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 
 
@@ -17,6 +17,23 @@ const Navbar = () => {
 
     const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
     const navigate = useNavigate()
+
+
+    // prevent device from scrolling when responsive navbar is open on mobile devices
+    useEffect(() => {
+        if(openMobileNavbar) {
+            document.body.classList.add("no-scroll")
+        }
+        else {
+            document.body.classList.remove("no-scroll")
+        }
+
+
+        return () => {
+            document.body.classList.remove("no-scroll")
+        }
+
+    }, [ openMobileNavbar ])
 
     
     const handleOpenMobileNavbar = () => {
