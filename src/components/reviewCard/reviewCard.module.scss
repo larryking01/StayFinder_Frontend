@@ -7,9 +7,13 @@
 
 .reviewCard {
     width: 100% !important;
+    background-color: var(--card-bg);
     padding: 1rem;
-    @include element-border;
+    // @include element-border;
+    border: 1px solid transparent;
+    @include box-shadow;
     @include element-border-radius;
+    @include element-border-transition;
     
 
 

@@ -38,13 +38,13 @@ const HotelInfo = () => {
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
                     <h3>Accra Marriott Hotel</h3>
-                    <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button>
+                    {/* <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button> */}
                 </article>
 
                 <article className={ styles.locationDisplay }>
                     <MapPin size={ 20 } className={ styles.iconWrapper } />
                     <div className={ styles.locationContainer }>
-                        <p>Akosombo Lakeside Road</p>
+                        <p>Akosombo Lakeside Road </p>
                         <p>Akosombo, Ghana.</p>
                     </div>
                 </article>
@@ -62,12 +62,12 @@ const HotelInfo = () => {
 
 
             <section className={ styles.hotelInfo__headingList }>
-                <p>Overview</p>
                 <p>Description</p>
                 <p>Amenities</p>
                 <p>Policies</p>
-                <p>Pricing</p>
-                <p>Accepted Payment Methods</p>
+                <p>Rooms</p>
+                <p>Location</p>
+                <p>Payment Methods</p>
                 <p>Reviews</p>
             </section>
 
@@ -183,7 +183,578 @@ const HotelInfo = () => {
 
 
             <section className={ styles.hotelInfo__infoSection }>
-                <h3>Pricing</h3>
+                <h3>Choose Your Room</h3>
+                <article className={ styles.roomsGrid }>
+                    <div className={ styles.roomItem }>
+                        <div className={ styles.coverImage }>
+                            <img src={ cover1 } />
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Room, 1 King Bed (High Floor)</h3>
+                            <ReviewSummary />
+                            <h4>Features</h4>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                14 sqm
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                    1 bedroom
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Sleeps 2
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                1 King bed
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Free wifi
+                            </p>
+                        </div>
+                        
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Cancellation Policy</h3>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                More details on all policy options
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                Free cancellation before July 19, 2026
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                No prepayment needed – pay at the property
+                            </p>
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                                <h3>Extras</h3>
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>No Extras</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $0</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+                        </div>
+
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Pricing</h3>
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                                <p className={ styles.priceIndicator }>$181</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Extras</p>
+                                <p className={ styles.priceIndicator }>+ $35</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Total</p>
+                                <p className={ styles.priceTotal }>$3500</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.remaningRoomsTtext }>We have 5 left!</p>
+                            </div>
+
+                            <button className={ styles.reserveBtn } onClick={ navigateToCheckout }>Reserve</button>
+                            <p className={ styles.notChargedText }>You will not be charged yet</p>
+                        </div>
+                    </div>
+
+
+
+                    <div className={ styles.roomItem }>
+                        <div className={ styles.coverImage }>
+                            <img src={ cover1 } />
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Room, 1 King Bed (High Floor)</h3>
+                            <ReviewSummary />
+                            <h4>Features</h4>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                14 sqm
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                    1 bedroom
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Sleeps 2
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                1 King bed
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Free wifi
+                            </p>
+                        </div>
+                        
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Cancellation Policy</h3>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                More details on all policy options
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                Free cancellation before July 19, 2026
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                No prepayment needed – pay at the property
+                            </p>
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                                <h3>Extras</h3>
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>No Extras</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $0</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+                        </div>
+
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Pricing</h3>
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                                <p className={ styles.priceIndicator }>$181</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Extras</p>
+                                <p className={ styles.priceIndicator }>+ $35</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Total</p>
+                                <p className={ styles.priceTotal }>$3500</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.remaningRoomsTtext }>We have 5 left!</p>
+                            </div>
+
+                            <button className={ styles.reserveBtn } onClick={ navigateToCheckout }>Reserve</button>
+                        </div>
+                    </div>
+                    <div className={ styles.roomItem }>
+                        <div className={ styles.coverImage }>
+                            <img src={ cover1 } />
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Room, 1 King Bed (High Floor)</h3>
+                            <ReviewSummary />
+                            <h4>Features</h4>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                14 sqm
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                    1 bedroom
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Sleeps 2
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                1 King bed
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Free wifi
+                            </p>
+                        </div>
+                        
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Cancellation Policy</h3>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                More details on all policy options
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                Free cancellation before July 19, 2026
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                No prepayment needed – pay at the property
+                            </p>
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                                <h3>Extras</h3>
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>No Extras</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $0</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+                        </div>
+
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Pricing</h3>
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                                <p className={ styles.priceIndicator }>$181</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Extras</p>
+                                <p className={ styles.priceIndicator }>+ $35</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Total</p>
+                                <p className={ styles.priceTotal }>$3500</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.remaningRoomsTtext }>We have 5 left!</p>
+                            </div>
+
+                            <button className={ styles.reserveBtn }>Reserve</button>
+                        </div>
+                    </div>
+                    <div className={ styles.roomItem }>
+                        <div className={ styles.coverImage }>
+                            <img src={ cover1 } />
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Room, 1 King Bed (High Floor)</h3>
+                            <ReviewSummary />
+                            <h4>Features</h4>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                14 sqm
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                    1 bedroom
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Sleeps 2
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                1 King bed
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Free wifi
+                            </p>
+                        </div>
+                        
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Cancellation Policy</h3>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                More details on all policy options
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                Free cancellation before July 19, 2026
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                No prepayment needed – pay at the property
+                            </p>
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                                <h3>Extras</h3>
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>No Extras</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $0</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+                        </div>
+
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Pricing</h3>
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                                <p className={ styles.priceIndicator }>$181</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Extras</p>
+                                <p className={ styles.priceIndicator }>+ $35</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Total</p>
+                                <p className={ styles.priceTotal }>$3500</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.remaningRoomsTtext }>We have 5 left!</p>
+                            </div>
+
+                            <button className={ styles.reserveBtn } onClick={ navigateToCheckout }>Reserve</button>
+                        </div>
+                    </div>
+                    <div className={ styles.roomItem }>
+                        <div className={ styles.coverImage }>
+                            <img src={ cover1 } />
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Room, 1 King Bed (High Floor)</h3>
+                            <ReviewSummary />
+                            <h4>Features</h4>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                14 sqm
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                    1 bedroom
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Sleeps 2
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                1 King bed
+                            </p>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/> 
+                                Free wifi
+                            </p>
+                        </div>
+                        
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Cancellation Policy</h3>
+                            <p className={ styles.flexParagraph }> 
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                More details on all policy options
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                Free cancellation before July 19, 2026
+                            </p>
+
+                            <p className={ styles.flexParagraph }>
+                                <CircleSmall size={ 15 } className={ styles.icon }/>
+                                No prepayment needed – pay at the property
+                            </p>
+                        </div>
+
+
+                        <div className={ styles.roomInfo }>
+                                <h3>Extras</h3>
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>No Extras</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $0</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+
+                                <div className={ styles.extraItem }>
+                                    <div className={ styles.extraSelection }>
+                                        <input type='checkbox' />
+                                        <p className={ styles.flexParagraph }>Breakfast for 2</p>
+                                    </div>
+                                    <p className={ styles.priceIndicator }>+ $30</p>
+                                </div>
+                        </div>
+
+
+
+                        <div className={ styles.roomInfo }>
+                            <h3>Pricing</h3>
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                                <p className={ styles.priceIndicator }>$181</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Extras</p>
+                                <p className={ styles.priceIndicator }>+ $35</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.flexParagraph }>Total</p>
+                                <p className={ styles.priceTotal }>$3500</p>
+                            </div>
+
+                            <div className={ styles.pricingItem }>
+                                <p className={ styles.remaningRoomsTtext }>We have 5 left!</p>
+                            </div>
+
+                            <button className={ styles.reserveBtn } onClick={ navigateToCheckout }>Reserve</button>
+                        </div>
+                    </div>
+                </article>
             </section>
 
 
@@ -196,7 +767,7 @@ const HotelInfo = () => {
 
                 <p className={ styles.topRatedText }>Top-rated guest experiences</p>
 
-                <div className={ styles.reviewsDisplay }>
+                <div className={ styles.reviewsGrid }>
                     <ReviewCard />
                     <ReviewCard />
                     <ReviewCard />
@@ -225,11 +796,6 @@ const HotelInfo = () => {
                         License number: STR-2603-JBFPPZ                    
                     </p>
                 </div>
-            </section>
-
-
-            <section className={ styles.hotelInfo__infoSection }>
-                <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Hotel</button>
             </section>
 
 
