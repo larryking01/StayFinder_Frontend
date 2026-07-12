@@ -6,13 +6,13 @@ import { CircleUser,
          ShieldCheck,
          BanknoteArrowDown
 } from 'lucide-react'
+import type { SupportItem } from '../types/supportItem.model'
 
 
 
 
 
-
-export const supportItems = [
+export const supportItems: SupportItem[] = [
     {
         name: 'Refunds & Charges',
         icon: BanknoteArrowDown

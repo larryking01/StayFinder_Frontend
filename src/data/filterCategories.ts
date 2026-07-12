@@ -1,4 +1,7 @@
-export const filterCategory = [
+import type { FilterCategory } from "../types/filterCategory.model";
+
+
+export const filterCategory: FilterCategory[] = [
     {
         title: "Popular Features",
         options: [
@@ -11,7 +14,7 @@ export const filterCategory = [
             "Couples Retreat"
         ]
     },
-    
+
     {
         title: "Property Type",
         options: [
