@@ -1,0 +1,1 @@
+export const selectAllHotels = (state: any) => state.hotels.hotels
