@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 
-
+// add initial state type later
 
 
 

@@ -1,1 +1,9 @@
-export const selectAllHotels = (state: any) => state.hotels.hotels
+import type { Rootstate } from "../../store"
+
+
+
+
+
+
+
+export const selectAllHotels = (state: Rootstate) => state.hotels.hotels
