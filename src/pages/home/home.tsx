@@ -1,4 +1,8 @@
 import styles from './home.module.scss'
+import { selectAllHotels } from '../../store/features/hotelSlice/hotel.selectors'
+import { useAppSelector } from '../../hooks/useStore'
+
+
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import hero from '../../assets/images/hero_1.jpg'
@@ -10,7 +14,7 @@ import TrendingDestination from '../../components/trendingDestination/trendingDe
 
 
 
-
+import type { Hotel } from '../../types/hotel.model'
 
 
 
@@ -18,6 +22,14 @@ import TrendingDestination from '../../components/trendingDestination/trendingDe
 
 
 const Home = () => {
+
+
+    const hotels = useAppSelector( selectAllHotels )
+
+
+    let renderedHotels = hotels.map(( hotel: Hotel ) => (
+        <HotelCard coverImage={ hotel.coverImageURL } hotelName={ hotel.hotelName } location={ hotel.city } />
+    ))
 
 
 
@@ -42,10 +54,7 @@ const Home = () => {
                 <section className={ styles.home__hotelsList }>
                     <h3 className={ styles.titleText }>Discover your favourite place with us</h3>
                     <div className={ styles.hotelsGrid }>
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
+                        { renderedHotels }
                     </div>
                 </section>
 
