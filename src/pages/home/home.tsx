@@ -1,7 +1,6 @@
 import styles from './home.module.scss'
 import { selectAllHotels } from '../../store/features/hotelSlice/hotel.selectors'
 import { useAppSelector } from '../../hooks/useStore'
-import { useEffect } from 'react'
 
 
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'

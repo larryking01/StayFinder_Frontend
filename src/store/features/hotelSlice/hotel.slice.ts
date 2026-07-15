@@ -37,7 +37,7 @@ const hotelSlice = createSlice({
                 state.loading = false
                 state.error = null
             })
-            .addCase( fetchHotels.rejected, (state, action) => {
+            .addCase( fetchHotels.rejected, (state) => {
                 // state.error = action.payload
                 state.hotels = []
                 state.loading = false
