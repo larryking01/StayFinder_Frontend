@@ -1,17 +1,20 @@
 import styles from './hotelCard.module.scss'
-import hero from '../../assets/images/hero_5.webp'
 import ReviewSummary from '../reviewSummary/reviewSummary'
 import { useNavigate } from 'react-router'
 
 
 
 
+interface HotelCardProps {
+    coverImage: string,
+    hotelName: string,
+    location: string
+}
 
 
 
 
-
-const HotelCard = () => {
+const HotelCard = ( { coverImage, hotelName, location } : HotelCardProps) => {
 
     
     const navigate = useNavigate()
@@ -25,14 +28,14 @@ const HotelCard = () => {
     return (
         <main className={ styles.hotelCard } onClick={ handleNavigateToHotelInfo }>
             <section className={ styles.hotelCard__coverImage }>
-                <img src={ hero } />
+                <img src={ coverImage } />
             </section>
 
             <section className={ styles.hotelCard__details }>
                 <article>
                     <div className={ styles.nameLocation }>
-                        <h3>Accra Marriott Hotel </h3>
-                        <p>Accra</p>
+                        <h3>{ hotelName }</h3>
+                        <p>{ location }</p>
                     </div>
                     
                     <ReviewSummary />

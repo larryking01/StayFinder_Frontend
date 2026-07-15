@@ -17,7 +17,8 @@ import { fetchHotels } from "./hotel.thunks";
 const hotelSlice = createSlice({
     name: 'hotels',
     initialState: {
-        loading: 'idle',
+        loading: false,
+        error: null,
         hotels: []
     },
     reducers: {
@@ -27,8 +28,19 @@ const hotelSlice = createSlice({
     },
     extraReducers: ( builder ) => {
         builder 
+            .addCase( fetchHotels.pending, (state) => {
+                state.loading = true
+            })
             .addCase( fetchHotels.fulfilled, (state, action) => {
-                console.log("thunk succeeded")
+                const loadedHotels = action.payload
+                state.hotels = loadedHotels
+                state.loading = false
+                state.error = null
+            })
+            .addCase( fetchHotels.rejected, (state, action) => {
+                // state.error = action.payload
+                state.hotels = []
+                state.loading = false
             })
     }
 })
