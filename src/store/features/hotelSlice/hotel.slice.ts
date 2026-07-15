@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchHotels } from "./hotel.thunks";
+
+
+
+
+
 
 
 
@@ -20,6 +26,10 @@ const hotelSlice = createSlice({
         }
     },
     extraReducers: ( builder ) => {
+        builder 
+            .addCase( fetchHotels.fulfilled, (state, action) => {
+                console.log("thunk succeeded")
+            })
     }
 })
 

@@ -1,4 +1,8 @@
 import styles from './home.module.scss'
+import { useAppDispatch } from '../../hooks/useStore'
+import { useEffect } from 'react'
+import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
+
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import hero from '../../assets/images/hero_1.jpg'
@@ -19,6 +23,16 @@ import TrendingDestination from '../../components/trendingDestination/trendingDe
 
 const Home = () => {
 
+
+    const dispatch = useAppDispatch()
+
+
+
+
+    useEffect(() => {
+        dispatch( fetchHotels())
+        
+    }, [])
 
 
 
