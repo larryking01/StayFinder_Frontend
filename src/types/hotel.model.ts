@@ -1,4 +1,5 @@
 export interface Hotel {
+    id: string;
     hotelName: string;
     shortDescription: string;
     fullDescription: string;
@@ -32,6 +33,55 @@ export interface Hotel {
 
     minimumStay: number;
     maximumStay: number;
+
+    houseRules: string[];
+
+    contactPhone: string;
+    contactEmail: string;
+
+    acceptedPaymentMethods: string[];
+
+    isFeatured: boolean;
+}
+
+
+
+
+export interface CreateHotelPayload {
+    hotelName: string;
+    shortDescription: string;
+    fullDescription: string;
+
+    streetAddress: string;
+    city: string;
+    country: string;
+
+    latitude: number;
+    longitude: number;
+
+    startingPrice: number;
+    currency: string;
+    priceRange: string;
+
+    isAvailable: boolean;
+    numberOfRoomsAvailable: number;
+
+    coverImageURL: string;
+    galleryImages: string[];
+
+    averageRating: number;
+    reviewCount: number;
+    starRating: number;
+
+    minimumStay: number;
+    maximumStay: number;
+
+    amenities: string[];
+    policies: string[];
+    accessibilityFeatures: string[];
+
+    checkInTime: string;
+    checkOutTime: string;
 
     houseRules: string[];
 
