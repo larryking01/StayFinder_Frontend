@@ -1,5 +1,4 @@
 export interface Hotel {
-    id: string;
     hotelName: string;
     shortDescription: string;
     fullDescription: string;
