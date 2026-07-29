@@ -27,9 +27,9 @@ const Loading = () => {
                         <div className={ styles['pulseDiv--yellow'] }></div>
                 </section>
 
-                <section className={ styles.loading__description }>
+                {/* <section className={ styles.loading__description }>
                     <p>loading...</p>
-                </section>
+                </section> */}
             </article>
         </main>
     )

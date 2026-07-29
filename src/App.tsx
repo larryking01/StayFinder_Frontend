@@ -14,11 +14,6 @@ import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
 import ListHotel from './pages/listHotel/listHotel'
 import AuthLayout from './layouts/authLayout/authLayout'
-import Modal from './components/modal/modal'
-import Toast from './components/toast/toast'
-import Loading from './components/loading/loading'
-import Empty from './components/empty/empty'
-import DayPickerComponent from './components/dayPicker/dayPicker'
 
 
 
@@ -49,12 +44,6 @@ function App() {
           <Route path="favourites" element={ <Favourites /> } />
           <Route path="about-us" element={ <AboutUs /> } />
           <Route path="support" element={ <Support /> } />
-
-          <Route path="modal" element={ <Modal /> } />
-          <Route path="toast" element={ <Toast /> } />
-          <Route path="loading" element={ <Loading /> } />
-          <Route path="empty" element={ <Empty /> } />
-          <Route path="daypicker" element={ <DayPickerComponent />} />
         </Route>
 
         <Route path="accounts" element={ <AuthLayout /> }>
