@@ -20,8 +20,8 @@ const ReviewSummary = ( { reviewSummary }: ReviewSummaryProps ) => {
     return (
         <main className={ styles.reviewSummary }>
             <p className={ styles.averageRating }>{ reviewSummary.averageRating }</p>
-            <p>Very good</p>
             <p>{ reviewSummary.reviewCount } reviews</p>
+            {/* <p>Very good</p> */}
         </main>
     )
 }

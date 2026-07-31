@@ -6,15 +6,18 @@
 
 
 
+
 .reviewSummary {
     display: flex;
     justify-content: flex-start;
     gap: 0.5rem;
+    color: var(--text-secondary);
 
 
     .averageRating {
         @include element-border-radius;
         @include font-regular('Poppins');
+        font-size: 0.9rem;
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
@@ -52,7 +55,8 @@
 
     p {
         align-self: center;
-        @include font-regular('Poppins');
+        @include font-small('Poppins');
+        // font-size: 0.9rem;
 
 
         @include mini-mobile {

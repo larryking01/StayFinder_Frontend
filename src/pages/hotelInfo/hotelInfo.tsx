@@ -1,10 +1,16 @@
 import styles from './hotelInfo.module.scss'
 import { MapPin, CircleSmall, Info } from 'lucide-react'
+import { useNavigate, useParams } from 'react-router'
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
+import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
+import { selectChosenHotel } from '../../store/features/hotelSlice/hotel.selectors'
+import { useEffect } from 'react'
+
+
 import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
-import { useNavigate } from 'react-router'
 // import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
@@ -19,10 +25,22 @@ const HotelInfo = () => {
 
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+    const selectedHotel = useAppSelector( selectChosenHotel )
+    const { hotelName, hotelId } = useParams()
+
+
+    useEffect(() => {
+        if(!selectedHotel) {
+            dispatch(fetchSelectedHotelById( hotelId as string ))
+        }
+
+        console.log("selected hotel = ", selectedHotel)
+    },[ selectedHotel ])
 
 
     const navigateToCheckout = () => {
-        navigate('/checkout/Accra Marriott Hotel/adv87245423589543589bmn534978')
+        navigate(`/checkout/${ hotelName }/${ hotelId }`)
     }
 
 
@@ -37,27 +55,24 @@ const HotelInfo = () => {
 
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
-                    <h3>Accra Marriott Hotel</h3>
+                    <h3>{ selectedHotel?.hotelName }</h3>
                     {/* <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button> */}
                 </article>
 
                 <article className={ styles.locationDisplay }>
                     <MapPin size={ 20 } className={ styles.iconWrapper } />
                     <div className={ styles.locationContainer }>
-                        <p>Akosombo Lakeside Road </p>
-                        <p>Akosombo, Ghana.</p>
+                        <p>{ selectedHotel?.streetAddress }</p>
+                        <p>{ selectedHotel?.city }</p>
                     </div>
                 </article>
             </section>
 
 
             <section className={ styles.hotelInfo__picturesDisplayGrid }>
-                <img src={ cover1 } />
-                <img src={ cover1 } />
-                <img src={ cover1 } />
-                <img src={ cover1 } />
-                <img src={ cover1 } />
-                <img src={ cover1 } />
+                {
+                    selectedHotel?.galleryImages.map( image => ( <img src={ image } />))
+                }
             </section>
 
 
@@ -74,16 +89,7 @@ const HotelInfo = () => {
 
             <section className={ styles.hotelInfo__infoSection }>
                 <h3>Description</h3>
-                <p>
-                    Volta River Luxury Resort combines modern comfort with the natural beauty of the Volta Region. 
-                    Guests can enjoy spacious rooms, riverfront dining, water activities, conference facilities, and 
-                    exceptional hospitality. Whether you're traveling for business or leisure, the resort offers a peaceful 
-                    escape with premium amenities.  
-                    Volta River Luxury Resort combines modern comfort with the natural beauty of the Volta Region. 
-                    Guests can enjoy spacious rooms, riverfront dining, water activities, conference facilities, and 
-                    exceptional hospitality. Whether you're traveling for business or leisure, the resort offers a peaceful 
-                    escape with premium amenities.                
-                </p>
+                <p>{ selectedHotel?.fullDescription }</p>
             </section>
 
 
@@ -91,79 +97,31 @@ const HotelInfo = () => {
                 <h3>Amenities</h3>
                 
                 <div className={ styles.amenitiesGrid }>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Swimming Pool</p>
-                    </div>
-
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Free wifi</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Restaurant</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Spa</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Fitness Center</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Conference Room</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Airport Shuttle</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Free Parking</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Gym</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Pool</p>
-                    </div>
-                    <div className={ styles.amenityItem }>
-                        <CircleSmall />
-                        <p>Free Parking</p>
-                    </div>
+                    {
+                        selectedHotel?.amenities.map( amenity => (
+                            <div className={ styles.amenityItem }>
+                                <CircleSmall />
+                                <p>{ amenity }</p>
+                            </div>
+                        ))
+                    }
                 </div>
             </section>
 
 
             <section className={ styles.hotelInfo__infoSection }>
                 <h3>Policies & House Rules</h3>
-                <p>Atlantis Suites The Entertainment District - Toronto takes special requests – add in the next step!</p>
+                <p>{ selectedHotel?.hotelName } takes special requests – add in the next step!</p>
                 <div className={ styles.houseRulesContainer }>
                     <ul>
-                        <li>
-                            <Info /> 
-                            No smoking indoors
-                        </li>
 
-                        <li>
-                            <Info />                             
-                            Valid ID required at check-in
-                        </li>
+                        { selectedHotel?.policies.map( policy => (
+                            <li>
+                                <Info /> 
+                                { policy }
+                            </li>
+                        )) }
 
-                        <li>
-                            <Info />                             
-                            Pets not allowed
-                        </li>
-
-                        <li>
-                            <Info />                             
-                            No parties or events
-                        </li>
                     </ul>
                 </div>
             </section>
@@ -195,7 +153,7 @@ const HotelInfo = () => {
 
                                 <section className={ styles.roomInfo }>
                                     <h3>Room, 1 King Bed (High Floor)</h3>
-                                    <ReviewSummary />
+                                    {/* <ReviewSummary /> */}
                                     <h4>Features</h4>
                                     <p className={ styles.flexParagraph }> 
                                         <CircleSmall size={ 15 } className={ styles.icon }/> 
@@ -310,7 +268,9 @@ const HotelInfo = () => {
                 <h3>Guest Reviews</h3>
 
                 <div className={ styles.reviewsInfo }>
-                    <ReviewSummary />
+                    <ReviewSummary 
+                        reviewSummary={{ averageRating: selectedHotel?.averageRating!, reviewCount: selectedHotel?.reviewCount!}} 
+                    />
                 </div>
 
                 <p className={ styles.topRatedText }>Top-rated guest experiences</p>
@@ -348,7 +308,7 @@ const HotelInfo = () => {
 
 
             <section className={ styles.hotelInfo__infoSection }>
-                <h3>FAQs about Atlantis Suites The Entertainment District - Toronto</h3>
+                <h3>FAQs about { selectedHotel?.hotelName }</h3>
             </section>
             
         </main>

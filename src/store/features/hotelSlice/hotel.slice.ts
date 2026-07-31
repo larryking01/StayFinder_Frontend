@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchHotels } from "./hotel.thunks";
+import type { PayloadAction } from "@reduxjs/toolkit";
+
+
+import type { Hotel } from "../../../types/hotel.model";
+import { fetchHotels, fetchSelectedHotelById } from "./hotel.thunks";
 import { hotelInitialState } from "./initialHotelState";
 
 
@@ -15,8 +19,9 @@ const hotelSlice = createSlice({
     name: 'hotels',
     initialState: hotelInitialState,
     reducers: {
-        addNewHotel(state, action) {
-            console.log( state, action )
+        updateSelectedHotel(state, action: PayloadAction<Hotel>) {
+            let selectedHotel = action.payload 
+            state.selectedHotel = selectedHotel
         }
     },
     extraReducers: ( builder ) => {
@@ -35,6 +40,20 @@ const hotelSlice = createSlice({
                 state.hotels = []
                 state.loading = false
             })
+            .addCase( fetchSelectedHotelById.pending, (state) => {
+                state.loading = true
+            })
+            .addCase( fetchSelectedHotelById.fulfilled, (state, action) => {
+                let selectedHotel = action.payload
+                state.loading = false
+                state.error = null 
+                state.selectedHotel = selectedHotel
+            })
+            .addCase( fetchSelectedHotelById.rejected, (state) => {
+                state.loading = false
+                // state.error = action.payload 
+                state.selectedHotel = null
+            })
     }
 })
 
@@ -43,6 +62,6 @@ const hotelSlice = createSlice({
 
 
 // make actions accessible to other files and slice reducer accessible to the store
-export const { addNewHotel } = hotelSlice.actions
+export const { updateSelectedHotel } = hotelSlice.actions
 
 export default hotelSlice.reducer
