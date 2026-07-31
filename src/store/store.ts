@@ -19,7 +19,7 @@ export const store = configureStore({
 
 
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+// infer the `RootState` and `AppDispatch` types from the store itself
 export type Rootstate = ReturnType<typeof store.getState> 
 
 // create a customized dispatch type with thunks and extra features support

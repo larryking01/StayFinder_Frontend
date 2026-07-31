@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchHotels } from "./hotel.thunks";
+import { hotelInitialState } from "./initialHotelState";
 
 
 
@@ -7,20 +8,12 @@ import { fetchHotels } from "./hotel.thunks";
 
 
 
-
-
-
-// add initial state type later
 
 
 
 const hotelSlice = createSlice({
     name: 'hotels',
-    initialState: {
-        loading: false,
-        error: null,
-        hotels: []
-    },
+    initialState: hotelInitialState,
     reducers: {
         addNewHotel(state, action) {
             console.log( state, action )

@@ -1,4 +1,5 @@
 import styles from './reviewSummary.module.scss'
+import type { ReviewSummaryProps } from '../../types/componentProps/reviewSummaryProps'
 
 
 
@@ -8,16 +9,19 @@ import styles from './reviewSummary.module.scss'
 
 
 
-const ReviewSummary = () => {
+
+
+
+const ReviewSummary = ( { reviewSummary }: ReviewSummaryProps ) => {
 
 
 
 
     return (
         <main className={ styles.reviewSummary }>
-            <p className={ styles.averageRating }>8.7</p>
+            <p className={ styles.averageRating }>{ reviewSummary.averageRating }</p>
             <p>Very good</p>
-            <p>21 reviews</p>
+            <p>{ reviewSummary.reviewCount } reviews</p>
         </main>
     )
 }
