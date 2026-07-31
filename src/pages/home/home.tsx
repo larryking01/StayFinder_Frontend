@@ -13,9 +13,7 @@ import priceLine from '../../assets/images/pricelineLogo.jpg'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 
 
-import { useEffect } from 'react'
 import Loading from '../../components/loading/loading'
-import { useSearchParams } from 'react-router'
 
 
 
@@ -31,14 +29,13 @@ const Home = () => {
     const hotels = useAppSelector( selectAllHotels )
 
 
-
     let renderedHotels = isLoadingHotels ?
         <Loading />
         :
         hotels.length === 0 ?
             <p>There are no hotels to display at the moment</p>
             :
-            hotels.map( hotel => ( <HotelCard hotel={ hotel }/>))
+            hotels.map( hotel => ( <HotelCard hotel={ hotel } key={ hotel.id } />))
 
 
 
