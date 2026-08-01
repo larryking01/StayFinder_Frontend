@@ -1,7 +1,7 @@
 import styles from './resultHotel.module.scss'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { MapPin } from 'lucide-react'
-import ReviewSummary from '../reviewSummary/reviewSummary'
+// import ReviewSummary from '../reviewSummary/reviewSummary'
 import { useNavigate } from 'react-router'
 
 
@@ -33,7 +33,7 @@ const ResultHotel = () => {
                 <section className={ styles.hotelNameAndReview }>
                     <h3>Accra Marriott Hotel</h3>
 
-                    <ReviewSummary />
+                    {/* <ReviewSummary /> */}
                 </section>
 
 
