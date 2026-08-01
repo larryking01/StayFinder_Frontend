@@ -14,6 +14,7 @@ import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import Loading from '../../components/loading/loading'
+import Empty from '../../components/empty/empty'
 // import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
@@ -69,13 +70,18 @@ const HotelInfo = () => {
     }
 
 
-    return (
-        <main className={ styles.hotelInfo }>
-            {/* <section className={ styles.hotelInfo__reservationForm }>
-                <ReservationWidget />
-            </section> */}
-           
+    if(!selectedHotel) {
+        return (
+            <Empty emptyCardInfo={{ 
+                title: "Hotel not found", 
+                content: "The hotel you're looking for doesn't exist or may have been removed. Return to the homepage to explore other hotels"}} 
+            />
+        )
+    }
 
+
+    return (
+        <main className={ styles.hotelInfo }>           
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
                     <h3>{ selectedHotel?.hotelName }</h3>
@@ -289,23 +295,33 @@ const HotelInfo = () => {
             <section className={ styles.hotelInfo__infoSection }>
                 <h3>Guest Reviews</h3>
 
-                <div className={ styles.reviewsInfo }>
-                    <ReviewSummary 
-                        reviewSummary={{ averageRating: selectedHotel?.averageRating!, reviewCount: selectedHotel?.reviewCount!}} 
-                    />
-                </div>
+                {
+                    hotelReviews.length === 0 ?
+                        <article>
+                            <p>No reviews yet. Be the first to share your experience at this hotel.</p>
+                        </article>
+                        :
+                        <article>
+                            <div className={ styles.reviewsInfo }>
+                                <ReviewSummary 
+                                    reviewSummary={{ averageRating: selectedHotel?.averageRating!, reviewCount: selectedHotel?.reviewCount!}} 
+                                />
+                            </div>
 
-                <p className={ styles.topRatedText }>Top-rated guest experiences</p>
+                            <p className={ styles.topRatedText }>Top-rated guest experiences</p>
 
-                <div className={ styles.reviewsGrid }>
-                    {
-                        hotelReviews.map( review => (
-                            <ReviewCard review={ review} />
-                        ))
-                    }
-                </div>
+                            <div className={ styles.reviewsGrid }>
+                                {
+                                    hotelReviews.map( review => (
+                                        <ReviewCard review={ review } key={ review.id } />
+                                    ))
+                                }
+                            </div>
 
-                <button className={ styles.hotelInfo__actionBtn }>Read all</button>
+                            <button className={ styles.hotelInfo__actionBtn }>Read all</button>
+                        </article>
+                }
+
             </section>
 
 

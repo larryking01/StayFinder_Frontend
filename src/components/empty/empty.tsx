@@ -1,6 +1,7 @@
 import styles from './empty.module.scss'
 import { PiEmptyLight } from 'react-icons/pi'
 
+import type { EmptyCardProps } from '../../types/componentProps/emptyCardProps'
 
 
 
@@ -8,8 +9,10 @@ import { PiEmptyLight } from 'react-icons/pi'
 
 
 
+const Empty = ({ emptyCardInfo }: EmptyCardProps) => {
 
-const Empty = () => {
+    let title = emptyCardInfo.title ?? 'Nothing to show'
+    let content = emptyCardInfo.content ?? 'New content will appear here once added'
 
 
     
@@ -21,8 +24,8 @@ const Empty = () => {
                 </section>
 
                 <section className={styles.empty__content}>
-                    <h2 className={styles.empty__title}>Nothing to show</h2>
-                    <p className={styles.empty__description}>New content will appear here once added</p>
+                    <h2 className={styles.empty__title}>{ title }</h2>
+                    <p className={styles.empty__description}>{ content }</p>
                 </section>
             </article>
         </main>    

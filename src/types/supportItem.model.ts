@@ -1,4 +1,3 @@
-// define the shape of a support item
 import type { LucideIcon } from "lucide-react"
 
 export interface SupportItem {
