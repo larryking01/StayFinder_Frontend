@@ -1,6 +1,8 @@
 import styles from './home.module.scss'
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { selectAllHotels, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
-import { useAppSelector } from '../../hooks/useStore'
+import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
+import { useEffect } from 'react'
 
 
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
@@ -11,8 +13,6 @@ import expedia from '../../assets/images/expediaLogo.webp'
 import hotelsDotCom from '../../assets/images/hotelsDotComLogo.png'
 import priceLine from '../../assets/images/pricelineLogo.jpg'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
-
-
 import Loading from '../../components/loading/loading'
 
 
@@ -24,9 +24,15 @@ import Loading from '../../components/loading/loading'
 
 const Home = () => {
 
+    const dispatch = useAppDispatch()
     const isLoadingHotels = useAppSelector( selectHotelsLoadingState )
-
     const hotels = useAppSelector( selectAllHotels )
+
+
+    // fetch hotels from database and populate the store.
+    useEffect(() => {
+        dispatch(fetchHotels())
+    }, [ dispatch ])
 
 
     let renderedHotels = isLoadingHotels ?

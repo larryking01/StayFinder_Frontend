@@ -1,6 +1,10 @@
 import styles from './hotelCard.module.scss'
-import ReviewSummary from '../reviewSummary/reviewSummary'
 import { useNavigate } from 'react-router'
+import { useAppDispatch } from '../../hooks/useStore'
+import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice'
+
+
+import ReviewSummary from '../reviewSummary/reviewSummary'
 import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
 
 
@@ -16,10 +20,14 @@ const HotelCard = ( { hotel }: HotelCardProps ) => {
 
     
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
 
     const handleNavigateToHotelInfo = () => {
-        navigate('/Accra Marriot Hotel/85789325634857243')
+        // set selected hotel to the one just clicked
+        dispatch(updateSelectedHotel( hotel ))
+
+        navigate(`/${ hotel.hotelName }/${ hotel.id }`)
     }
 
 
@@ -35,15 +43,14 @@ const HotelCard = ( { hotel }: HotelCardProps ) => {
                         <h3>{ hotel.hotelName }</h3>
                         <p>{ hotel.city }</p>
                     </div>
-                    
-                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }} />
+
+                    <div className={ styles.pricingInfo }>
+                        <p>GHS { hotel.priceRange } per night</p>
+                    </div>
                 </article>
 
                 <article>
-                    <div className={ styles.pricingInfo }>
-                        {/* <h3>$134</h3> <p>per night</p> */}
-                        <p>GHS { hotel.priceRange } per night</p>
-                    </div>
+                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }} />
                 </article>
             </section>
         </main>

@@ -6,14 +6,16 @@ import type { Hotel } from "../../../types/hotel.model";
 
 
 export interface HotelState {
-    loading: boolean,
+    loadingHotels: boolean,
     error: null | string,
-    hotels: Hotel[]
+    hotels: Hotel[],
+    selectedHotel: Hotel | null
 }
 
 
 export const hotelInitialState: HotelState = {
-    loading: false,
+    loadingHotels: false,
     error: null,
-    hotels: []
+    hotels: [],
+    selectedHotel: null
 }
