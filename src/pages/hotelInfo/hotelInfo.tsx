@@ -3,7 +3,9 @@ import { MapPin, CircleSmall, Info } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
 import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
-import { selectChosenHotel } from '../../store/features/hotelSlice/hotel.selectors'
+import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
+import { fetchHotelReviewsById } from '../../store/features/reviewSlice/review.thunk'
+import { selectHotelReviews } from '../../store/features/reviewSlice/review.selectors'
 import { useEffect } from 'react'
 
 
@@ -11,6 +13,7 @@ import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
+import Loading from '../../components/loading/loading'
 // import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
@@ -26,7 +29,9 @@ const HotelInfo = () => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const isLoading = useAppSelector( selectHotelsLoadingState )
     const selectedHotel = useAppSelector( selectChosenHotel )
+    const hotelReviews = useAppSelector( selectHotelReviews )
     const { hotelName, hotelId } = useParams()
 
 
@@ -36,7 +41,20 @@ const HotelInfo = () => {
         }
 
         console.log("selected hotel = ", selectedHotel)
-    },[ selectedHotel ])
+    },[ dispatch, selectedHotel, hotelId ])
+
+
+
+    useEffect(() => {
+        if (selectedHotel) {
+            dispatch(fetchHotelReviewsById(selectedHotel.id));
+        }
+
+        console.log("hotel reviews = ", hotelReviews)
+    }, [ dispatch, selectedHotel])
+
+
+
 
 
     const navigateToCheckout = () => {
@@ -44,6 +62,11 @@ const HotelInfo = () => {
     }
 
 
+    if(isLoading) {
+        return (
+            <Loading />
+        )
+    }
 
 
     return (
@@ -56,7 +79,6 @@ const HotelInfo = () => {
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
                     <h3>{ selectedHotel?.hotelName }</h3>
-                    {/* <button className={ styles.hotelInfo__actionBtn } onClick={ navigateToCheckout }>Book Now</button> */}
                 </article>
 
                 <article className={ styles.locationDisplay }>
@@ -276,9 +298,11 @@ const HotelInfo = () => {
                 <p className={ styles.topRatedText }>Top-rated guest experiences</p>
 
                 <div className={ styles.reviewsGrid }>
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
+                    {
+                        hotelReviews.map( review => (
+                            <ReviewCard review={ review} />
+                        ))
+                    }
                 </div>
 
                 <button className={ styles.hotelInfo__actionBtn }>Read all</button>

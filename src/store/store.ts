@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import hotelsReducer from './features/hotelSlice/hotel.slice'
-
+import reviewsReducer from './features/reviewSlice/review.slice'
 
 
 
@@ -11,7 +11,8 @@ import hotelsReducer from './features/hotelSlice/hotel.slice'
 
 export const store = configureStore({
     reducer: {
-        hotels: hotelsReducer
+        hotels: hotelsReducer,
+        reviews: reviewsReducer
     }
 })
 

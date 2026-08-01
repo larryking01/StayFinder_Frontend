@@ -27,31 +27,31 @@ const hotelSlice = createSlice({
     extraReducers: ( builder ) => {
         builder 
             .addCase( fetchHotels.pending, (state) => {
-                state.loading = true
+                state.loadingHotels = true
             })
             .addCase( fetchHotels.fulfilled, (state, action) => {
                 const loadedHotels = action.payload
                 state.hotels = loadedHotels
-                state.loading = false
+                state.loadingHotels = false
                 state.error = null
             })
-            .addCase( fetchHotels.rejected, (state) => {
-                // state.error = action.payload
+            .addCase( fetchHotels.rejected, (state, action) => {
+                state.error = action.payload as string
                 state.hotels = []
-                state.loading = false
+                state.loadingHotels = false
             })
             .addCase( fetchSelectedHotelById.pending, (state) => {
-                state.loading = true
+                state.loadingHotels = true
             })
             .addCase( fetchSelectedHotelById.fulfilled, (state, action) => {
                 let selectedHotel = action.payload
-                state.loading = false
+                state.loadingHotels = false
                 state.error = null 
                 state.selectedHotel = selectedHotel
             })
-            .addCase( fetchSelectedHotelById.rejected, (state) => {
-                state.loading = false
-                // state.error = action.payload 
+            .addCase( fetchSelectedHotelById.rejected, (state, action) => {
+                state.loadingHotels = false
+                state.error = action.payload as string
                 state.selectedHotel = null
             })
     }

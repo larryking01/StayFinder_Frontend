@@ -6,7 +6,7 @@ import type { Hotel } from "../../../types/hotel.model";
 
 
 export interface HotelState {
-    loading: boolean,
+    loadingHotels: boolean,
     error: null | string,
     hotels: Hotel[],
     selectedHotel: Hotel | null
@@ -14,7 +14,7 @@ export interface HotelState {
 
 
 export const hotelInitialState: HotelState = {
-    loading: false,
+    loadingHotels: false,
     error: null,
     hotels: [],
     selectedHotel: null
