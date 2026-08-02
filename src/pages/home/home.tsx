@@ -39,7 +39,7 @@ const Home = () => {
     }
 
 
-    let renderedHotels = hotels.length === 0 ?
+    let renderedHotels = hotels?.length === 0 ?
             <p className={ styles.regularText }>There are currently no hotels to display. Please check back later.</p>
             :
             hotels.map( hotel => ( <HotelCard hotel={ hotel } key={ hotel.id } />))
