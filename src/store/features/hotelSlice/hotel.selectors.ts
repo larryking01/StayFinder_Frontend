@@ -13,3 +13,5 @@ export const selectHotelsLoadingState = (state: Rootstate) => state.hotels.loadi
 export const selectChosenHotel = (state: Rootstate) => state.hotels.selectedHotel
 
 export const selectHotelsError = (state: Rootstate) => state.hotels.error
+
+export const selectAppName = (state: Rootstate) => state.hotels.appName

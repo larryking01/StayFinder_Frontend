@@ -1,6 +1,7 @@
 import styles from './authLayout.module.scss'
 import { Outlet } from 'react-router'
-
+import { useAppSelector } from '../../hooks/useStore' 
+import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
 
 
@@ -10,6 +11,7 @@ import { Outlet } from 'react-router'
 
 const AuthLayout = () => {
 
+    const appName = useAppSelector( selectAppName )
 
 
     return (
@@ -17,7 +19,7 @@ const AuthLayout = () => {
             <article className={ styles.authLayout }>
                 <section className={ styles.authLayout__coverImageDisplay }>
                     <div className={ styles.intro }>
-                        <h3>Welcome to StayFinder</h3>
+                        <h3>Welcome to { appName }</h3>
                         <p>Discover exceptional hotels, manage your bookings, and plan your next unforgettable stay.</p>
                     </div>
                 </section>

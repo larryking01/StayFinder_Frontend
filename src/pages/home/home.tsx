@@ -1,6 +1,6 @@
 import styles from './home.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
-import { selectAllHotels, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
+import { selectAllHotels, selectHotelsLoadingState, selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
 import { useEffect } from 'react'
 
@@ -23,6 +23,7 @@ const Home = () => {
     const dispatch = useAppDispatch()
     const isLoadingHotels = useAppSelector( selectHotelsLoadingState )
     const hotels = useAppSelector( selectAllHotels )
+    const appName = useAppSelector( selectAppName )
 
 
     // fetch hotels from database and populate the store.
@@ -60,7 +61,7 @@ const Home = () => {
                 <article className={ styles.mainContent }>
                     <section className={ styles.marginBottom }>
                         <h3 className={ styles.titleText }>Get away for a while</h3>
-                        <p className={ styles.regularText }>Whether for business, vacation or pleasure, StayFinder can help you find the best hotel for your needs right here.</p>
+                        <p className={ styles.regularText }>Whether for business, vacation or pleasure, { appName } can help you find the best hotel for your needs right here.</p>
                     </section>
 
 
@@ -79,8 +80,8 @@ const Home = () => {
 
                         <div className={ styles.briefDescriptionContainer }>
                             <p>
-                                StayFinder is a modern hotel booking platform dedicated to helping travelers discover exceptional accommodations with ease and confidence. 
-                                Whether you're planning a relaxing getaway, a business trip, or a family vacation, StayFinder connects you with carefully curated hotels, 
+                                { appName } is a modern hotel booking platform dedicated to helping travelers discover exceptional accommodations with ease and confidence. 
+                                Whether you're planning a relaxing getaway, a business trip, or a family vacation, { appName } connects you with carefully curated hotels, 
                                 resorts, lodges, and apartments across a variety of destinations.                        
                             </p>
                         </div>

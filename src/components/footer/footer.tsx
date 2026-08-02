@@ -1,5 +1,6 @@
 import styles from './footer.module.scss'
-
+import { useAppSelector } from '../../hooks/useStore'
+import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
 
 
@@ -9,12 +10,15 @@ import styles from './footer.module.scss'
 const Footer = () => {
 
 
+    const appName = useAppSelector( selectAppName )
+
+
 
     return (
         <main className={ styles.footer }>
             <footer className={ styles.footer__wrapper }>
                 <section className={ styles.footer__column }>
-                        <h3>StayFinder</h3>
+                        <h3>{ appName }</h3>
                 </section>
 
                 <section className={ styles.footer__column }>
@@ -40,7 +44,7 @@ const Footer = () => {
                 <section className={ styles.footer__column }>
                         <h3>Contact</h3>
                         <ul>
-                            <li>support@stayfinder.com</li>
+                            <li>support@{ appName.toLowerCase() }.com</li>
                             <li>+233 XX XXX XXXX</li>
                             <li>Accra, Ghana</li>
                         </ul>
@@ -54,7 +58,7 @@ const Footer = () => {
             </section>
 
             <section className={ styles.footer__copyrights }>
-                <p>© 2026 StayFinder. All rights reserved.</p>
+                <p>© 2026 { appName }. All rights reserved.</p>
             </section>
         </main>
     )
