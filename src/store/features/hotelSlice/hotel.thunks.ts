@@ -21,7 +21,7 @@ export const fetchHotels = createAsyncThunk('hotels/fetchHotels', async (_, { re
     catch( error ) {
         if(isAxiosError(error)) {
             console.log("FETCH/HOTELS AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages
+            // check for specific axios error type and return descriptive messages latetr
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
 
