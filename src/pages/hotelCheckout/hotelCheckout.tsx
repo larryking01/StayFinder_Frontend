@@ -158,7 +158,7 @@ const HotelCheckout = () => {
                         <p>8.2 out of 10 Very good</p>
                     </div>
 
-                    <div className={ styles.lengthOfStay }>
+                    <div className={ stylesOfStay }>
                         <div className={ styles.stayInfo }>
                             <p className={ styles.stayInfoTitle }>Check-in</p>
                             <p>Wed, Jul 1, 2026</p>
