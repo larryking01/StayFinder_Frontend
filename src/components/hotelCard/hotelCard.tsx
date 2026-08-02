@@ -1,6 +1,6 @@
 import styles from './hotelCard.module.scss'
 import { useNavigate } from 'react-router'
-import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
+import { useAppDispatch } from '../../hooks/useStore'
 import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice'
 
 import ReviewSummary from '../reviewSummary/reviewSummary'

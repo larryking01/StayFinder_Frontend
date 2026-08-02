@@ -7,7 +7,6 @@ import { useEffect } from 'react'
 
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
-import hero from '../../assets/images/hero_1.jpg'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 import Loading from '../../components/loading/loading'
 import { whoAreWeImages } from '../../data/whoAreWe'
