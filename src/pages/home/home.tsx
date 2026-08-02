@@ -8,13 +8,10 @@ import { useEffect } from 'react'
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import hero from '../../assets/images/hero_1.jpg'
-import bookingDotCom from '../../assets/images/bookingDotComLogo.webp'
-import expedia from '../../assets/images/expediaLogo.webp'
-import hotelsDotCom from '../../assets/images/hotelsDotComLogo.png'
-import priceLine from '../../assets/images/pricelineLogo.jpg'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 import Loading from '../../components/loading/loading'
 import { whoAreWeImages } from '../../data/whoAreWe'
+import { partnerIcons } from '../../data/partnerIcons'
 
 
 
@@ -92,7 +89,7 @@ const Home = () => {
                         <div className={ styles.ourImagesContainer }>
                             {
                                 whoAreWeImages.map( image => (
-                                    <img src={ image } />
+                                    <img src={ image } alt={ image } key={ image } />
                                 ))
                             }
                         </div>
@@ -123,10 +120,11 @@ const Home = () => {
                         </p>
 
                         <div className={ styles.partnerIcons }>
-                            <img src={ bookingDotCom } />
-                            <img src={ expedia } />
-                            <img src={ hotelsDotCom } />
-                            <img src={ priceLine } />
+                            {
+                                partnerIcons.map( icon => (
+                                    <img src={ icon.src } key={ icon.name } alt={ icon.name } />
+                                ))
+                            }
                         </div>
                     </section>
 
