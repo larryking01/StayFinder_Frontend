@@ -4,7 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import type { Hotel } from "../../../types/hotel.model";
 import { fetchHotels, fetchSelectedHotelById } from "./hotel.thunks";
-import { hotelInitialState } from "./initialHotelState";
+import { hotelInitialState } from "./hotel.initialState";
 
 
 

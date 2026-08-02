@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router'
 import { useAppDispatch } from '../../hooks/useStore'
 import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice'
 
-
 import ReviewSummary from '../reviewSummary/reviewSummary'
 import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
+
 
 
 
@@ -21,6 +21,7 @@ const HotelCard = ( { hotel }: HotelCardProps ) => {
     
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+
 
 
     const handleNavigateToHotelInfo = () => {

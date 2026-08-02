@@ -1,6 +1,7 @@
-import type { ReviewSummaryInterface } from "../reviewSummary.model";
-
-
+interface ReviewSummaryInterface {
+    averageRating: number,
+    reviewCount: number
+}
 
 
 

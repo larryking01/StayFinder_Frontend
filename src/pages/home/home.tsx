@@ -7,14 +7,10 @@ import { useEffect } from 'react'
 
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
-import hero from '../../assets/images/hero_1.jpg'
-import bookingDotCom from '../../assets/images/bookingDotComLogo.webp'
-import expedia from '../../assets/images/expediaLogo.webp'
-import hotelsDotCom from '../../assets/images/hotelsDotComLogo.png'
-import priceLine from '../../assets/images/pricelineLogo.jpg'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 import Loading from '../../components/loading/loading'
-
+import { whoAreWeImages } from '../../data/whoAreWe'
+import { partnerIcons } from '../../data/partnerIcons'
 
 
 
@@ -35,11 +31,15 @@ const Home = () => {
     }, [ dispatch ])
 
 
-    let renderedHotels = isLoadingHotels ?
-        <Loading />
-        :
-        hotels.length === 0 ?
-            <p>There are no hotels to display at the moment</p>
+    if( isLoadingHotels ) {
+        return (
+            <Loading />
+        )
+    }
+
+
+    let renderedHotels = hotels.length === 0 ?
+            <p className={ styles.regularText }>There are currently no hotels to display. Please check back later.</p>
             :
             hotels.map( hotel => ( <HotelCard hotel={ hotel } key={ hotel.id } />))
 
@@ -66,7 +66,7 @@ const Home = () => {
 
                     <section className={ styles.home__hotelsList }>
                         <h3 className={ styles.titleText }>Discover your favourite place with us</h3>
-                        <div className={ styles.hotelsGrid }>
+                        <div className={ hotels.length === 0 ? styles.noHotels : styles.hotelsGrid }>
                             { renderedHotels }
                         </div>
                     </section>
@@ -86,9 +86,11 @@ const Home = () => {
                         </div>
 
                         <div className={ styles.ourImagesContainer }>
-                            <img src={ hero } />
-                            <img src={ hero } />
-                            <img src={ hero } />
+                            {
+                                whoAreWeImages.map( image => (
+                                    <img src={ image } alt={ image } key={ image } />
+                                ))
+                            }
                         </div>
                     </section>
 
@@ -117,10 +119,11 @@ const Home = () => {
                         </p>
 
                         <div className={ styles.partnerIcons }>
-                            <img src={ bookingDotCom } />
-                            <img src={ expedia } />
-                            <img src={ hotelsDotCom } />
-                            <img src={ priceLine } />
+                            {
+                                partnerIcons.map( icon => (
+                                    <img src={ icon.src } key={ icon.name } alt={ icon.name } />
+                                ))
+                            }
                         </div>
                     </section>
 
