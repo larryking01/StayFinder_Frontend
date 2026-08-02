@@ -41,6 +41,8 @@ export interface Hotel {
 
     acceptedPaymentMethods: string[];
 
+    finePrint: string;
+
     isFeatured: boolean;
 }
 
@@ -89,6 +91,8 @@ export interface CreateHotelPayload {
     contactEmail: string;
 
     acceptedPaymentMethods: string[];
+
+    finePrint: string;
 
     isFeatured: boolean;
 }

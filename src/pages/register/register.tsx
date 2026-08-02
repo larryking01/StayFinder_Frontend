@@ -1,6 +1,8 @@
 import styles from './register.module.scss'
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from 'react-router';
+import { useAppSelector } from '../../hooks/useStore';
+import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 
 
 
@@ -15,12 +17,15 @@ import { NavLink } from 'react-router';
 
 const Register = () => {
 
+
+    const appName = useAppSelector( selectAppName )
+
     
     return (
         <main className={ styles.register }>
             <section className={ styles.register__intro }>
                 <NavLink to="/" className="nav-link-default">
-                    <h3>StayFinder</h3>
+                    <h3>{ appName }</h3>
                 </NavLink>
                 <p>Create your free account</p>
             </section>

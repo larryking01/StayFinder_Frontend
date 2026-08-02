@@ -3,6 +3,8 @@ import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-rea
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 
+import { useAppSelector } from '../../hooks/useStore'
+import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
 
 
@@ -17,6 +19,7 @@ const Navbar = () => {
 
     const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
     const navigate = useNavigate()
+    const appName = useAppSelector( selectAppName )
 
 
     // prevent device from scrolling when responsive navbar is open on mobile devices
@@ -55,7 +58,7 @@ const Navbar = () => {
     return (
         <nav className={ styles.navbar }>
             <section className={ styles.navbar__brand }>
-                <h3 onClick={ () => navigateTo("home")}>StayFinder</h3>
+                <h3 onClick={ () => navigateTo("home")}>{ appName }</h3>
             </section>
 
             <section className={ styles.navbar__menu }>
@@ -103,7 +106,7 @@ const Navbar = () => {
                         <article className={ styles.currentRouteAndCloseBtn }>
                             <div className={ styles.appLogoAndBackIcon }>
                                 <ArrowLeft className={ styles.backIcon } onClick={ handleOpenMobileNavbar }/>
-                                <h3>StayFinder</h3>
+                                <h3>{ appName }</h3>
                             </div>
 
                             <div className={ styles.currentRouteDisplay }>

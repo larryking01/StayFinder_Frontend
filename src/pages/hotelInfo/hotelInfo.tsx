@@ -330,19 +330,7 @@ const HotelInfo = () => {
                 <p>Must-know information for guests at this property</p>
 
                 <div className={ styles.finePrintContainer }>
-                    <p>
-                        Each suite is individually styled; therefore, interior colours, finishes, flooring, layouts, and views may vary from the images displayed. 
-                        All suites are maintained to a consistent luxury standard; however, exact design details and views are subject to availability.
-                        Please note that a late check-in fee of $75 applies for arrivals between 11:15 PM and 1:00 AM.
-                        All requests for early check-in or late check-out are subject to property approval and must be submitted at least 24 hours prior to arrival.
-                        Guests are required to present a valid photo ID and credit card upon check-in. Please note that all Special Requests are subject to availability and may incur additional charges.
-                        Please inform Atlantis Suites The Entertainment District - Toronto of your expected arrival time in advance. You can use the Special Requests box when booking, or contact the property directly using the contact details in your confirmation.
-                        This property does not accommodate bachelor(ette) or similar parties.
-                        Quiet hours are between 23:00:00 and 07:00:00.
-                        A damage deposit of CAD 600 is required. The property charges this days before arrival. This will be collected by credit card. You should be reimbursed within 14 days of check-out. 
-                        Your deposit will be refunded in full by credit card, subject to an inspection of the property.
-                        License number: STR-2603-JBFPPZ                    
-                    </p>
+                    <p>{ selectedHotel?.finePrint }</p>
                 </div>
             </section>
 
