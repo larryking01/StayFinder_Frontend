@@ -67,7 +67,7 @@ const Home = () => {
 
                     <section className={ styles.home__hotelsList }>
                         <h3 className={ styles.titleText }>Discover your favourite place with us</h3>
-                        <div className={ hotels.length === 0 ? styles.noHotels : styles.hotelsGrid }>
+                        <div className={ hotels?.length === 0 ? styles.noHotels : styles.hotelsGrid }>
                             { renderedHotels }
                         </div>
                     </section>
