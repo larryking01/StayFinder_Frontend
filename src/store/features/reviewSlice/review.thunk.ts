@@ -15,6 +15,7 @@ export const fetchHotelReviewsById = createAsyncThunk('reviews/fetchHotelReviews
 
     try {
         let response = await publicAxios.get( endpoint )
+        console.log("hotel reviews = ", response.data.data)
         return response.data.data
     }
     catch( error ) {
