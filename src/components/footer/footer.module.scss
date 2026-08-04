@@ -8,14 +8,16 @@
 
 .footer {
     background-color: var(--footer-bg);
-    padding: 2rem;
+    padding-bottom: 2rem;
 
-
+    
     &__wrapper {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 3rem;
+        padding: 2rem 2rem 4rem 2rem;
+        margin-bottom: 2rem;
         flex-wrap: wrap;
+        border-bottom: 1px solid var(--text-heading);
 
 
         @include mini-mobile {
@@ -50,24 +52,10 @@
 
         ul {
             list-style: none;
+            display: flex;
+            flex-direction: column;
         }
 
-        li {
-            margin-bottom: 1rem;
-            @include font-regular('Poppins');
-            cursor: pointer;
-            color: var(--text-link);
-
-
-            @include mini-mobile {
-                @include font-small('Poppins');
-            }
-
-
-            @include mobile {
-                @include font-small('Poppins');
-            }
-        }
     }
 
 
@@ -75,24 +63,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 1rem;
+        gap: 3rem;
         margin-bottom: 1.5rem;
         @include font-regular('Poppins');
 
-
-        p {
-            cursor: pointer;
-
-
-            @include mini-mobile {
-                @include font-small('Poppins');
-            }
-
-
-            @include mobile {
-                @include font-small('Poppins');
-            }
-        }
     }
 
 
@@ -102,6 +76,8 @@
         flex-wrap: wrap;
         justify-content: center;
         @include font-regular('Poppins');
+        color: var(--text-link);
+        // color: var(--brand-primary);
 
 
         @include mini-mobile {
@@ -113,5 +89,34 @@
             @include font-small('Poppins');
         }
 
+    }
+
+
+
+    // global class
+    .nav-item {
+        margin-bottom: 1rem;
+        @include font-regular('Poppins');
+        font-size: 0.95rem;
+        cursor: pointer;
+        color: var(--text-link);
+        // color: var(--brand-primary);
+        text-decoration: none;
+        transition: font-weight 0.3s ease;
+
+
+        &:hover {
+            font-weight: 600;
+        }
+
+
+        @include mini-mobile {
+            @include font-small('Poppins');
+        }
+
+
+        @include mobile {
+            @include font-small('Poppins');
+        }
     }
 }
