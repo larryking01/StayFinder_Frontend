@@ -1,7 +1,8 @@
 import styles from './mobileNavMenu.module.scss'
-import type { MobileNavMenuProps } from '../../types/componentProps/mobileNavMenuProps'
 import { X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
+import { useNavigate } from 'react-router'
 
+import type { MobileNavMenuProps } from '../../types/componentProps/mobileNavMenuProps'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
@@ -16,6 +17,15 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
 
     const appName = useAppSelector( selectAppName )
+    const navigate = useNavigate()
+
+
+    const navigateToRoute = (route: string) => {
+        // close the mobile nav menu and navigate to selected route    
+        toggleVisibility()    
+        navigate( route )
+    }
+
 
 
     return (
@@ -37,28 +47,28 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
             <article className={ styles.navLinks }>
                 <ul>
-                    <li>
+                    <li onClick={() => navigateToRoute('/')}>
                         <House />
                         <p>Home</p>
                     </li>
 
-                    <li>
+                    <li onClick={() => navigateToRoute('/list-your-hotel')}>
                         <ScrollText />
                         <p>List your hotel</p>
                     </li>
 
-                    <li>
+                    <li onClick={() => navigateToRoute('/support')}>
                         <UserCog />
                         <p>Support</p>
                     </li>
 
-                    <li>
+                    <li onClick={() => navigateToRoute('/about-us')}>
                         <Info />
                         <p>About Us</p>
                     </li>
 
                     <li>
-                        <button type="button">Sign In</button>
+                        <button type="button" onClick={() => navigateToRoute('/accounts')}>Sign In</button>
                     </li>
                 </ul>
             </article>

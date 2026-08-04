@@ -39,7 +39,7 @@ const Support = () => {
                             let Icon = item.icon 
 
                             return (
-                                <div className={ styles.supportItem }>
+                                <div className={ styles.supportItem } key={ item.name }>
                                     <div className={ styles.supportNameAndIcon }>
                                         <Icon className={ styles.icon } size={ 22 }/>
                                         <p>{ item.name }</p>
