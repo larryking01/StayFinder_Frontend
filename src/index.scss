@@ -135,17 +135,22 @@ body {
 .nav-link-default {
     text-decoration: none;
     color: var(--brand-primary);
-    transition: 
-        background-color 0.3s ease,
-        padding 0.3s ease;
-        border: 0.3s ease;
+    transition: font-weight 0.3s ease;
 
 
     &:hover {
-        background-color: var(--brand-secondary);
-        padding: 0.5rem;
-        border-radius: 0.625rem;
+        font-weight: bold;
     }
+
+}
+
+
+.nav-link-active {
+    text-decoration: none;
+    color: var(--brand-primary);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--brand-primary);
+    font-weight: bold;
 }
 
 

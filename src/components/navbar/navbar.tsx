@@ -1,8 +1,9 @@
 import styles from './navbar.module.scss'
-import { Menu, X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router'
+import { NavLink, useNavigate, useLocation } from 'react-router'
 
+import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
@@ -18,8 +19,19 @@ const Navbar = () => {
 
 
     const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
+    const location = useLocation()
     const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )
+    const [ activeRoute, setActiveRoute ] = useState<string | null>(null)
+
+
+
+    // get the current route and apply the active styling to the corresponding nav link
+    useEffect(() => {
+        let currentRoute = location.pathname 
+        setActiveRoute(currentRoute)
+
+    }, [ location ])
 
 
     // prevent device from scrolling when responsive navbar is open on mobile devices
@@ -64,25 +76,25 @@ const Navbar = () => {
             <section className={ styles.navbar__menu }>
                 <ul>
                     <li>
-                        <NavLink to="/" className="nav-link-default">
+                        <NavLink to="/" className={ activeRoute === '/' ? 'nav-link-active' : 'nav-link-default' }>
                             Home
                         </NavLink>
                     </li>
 
                     <li>
-                        <NavLink to="/list-your-hotel" className="nav-link-default">
+                        <NavLink to="/list-your-hotel" className={ activeRoute === '/list-your-hotel' ? 'nav-link-active' : 'nav-link-default' }>
                             List your hotel
                         </NavLink>
                     </li>
 
                     <li>
-                        <NavLink to="/support" className="nav-link-default">
+                        <NavLink to="/support" className={ activeRoute === '/support' ? 'nav-link-active' : 'nav-link-default' }>
                             Support
                         </NavLink>
                     </li>
 
                     <li>
-                        <NavLink to="/about-us" className="nav-link-default">
+                        <NavLink to="/about-us" className={ activeRoute === '/about-us' ? 'nav-link-active' : 'nav-link-default' }>
                             About Us
                         </NavLink>
                     </li>
@@ -101,52 +113,7 @@ const Navbar = () => {
 
 
             {
-                openMobileNavbar &&
-                    <section className={ styles.navbar__responsiveMenu }>
-                        <article className={ styles.currentRouteAndCloseBtn }>
-                            <div className={ styles.appLogoAndBackIcon }>
-                                <ArrowLeft className={ styles.backIcon } onClick={ handleOpenMobileNavbar }/>
-                                <h3>{ appName }</h3>
-                            </div>
-
-                            <div className={ styles.currentRouteDisplay }>
-                                <h3>Home</h3>
-                            </div>
-
-                            <X size={ 30 } className={ styles.closeIcon } onClick={ handleOpenMobileNavbar }/>
-                        </article>
-
-                        <article className={ styles.underLine }></article>
-
-
-                        <article className={ styles.navLinks }>
-                            <ul>
-                                <li>
-                                    <House />
-                                    <p>Home</p>
-                                </li>
-
-                                <li>
-                                    <ScrollText />
-                                    <p>List your hotel</p>
-                                </li>
-
-                                <li>
-                                    <UserCog />
-                                    <p>Support</p>
-                                </li>
-
-                                <li>
-                                    <Info />
-                                    <p>About Us</p>
-                                </li>
-
-                                <li>
-                                    <button type="button">Sign In</button>
-                                </li>
-                            </ul>
-                        </article>
-                    </section>
+                openMobileNavbar && <MobileNavMenu toggleVisibility={ handleOpenMobileNavbar } />
             }
 
         </nav>

@@ -51,7 +51,7 @@ const HotelCard = ( { hotel }: HotelCardProps ) => {
                 </article>
 
                 <article>
-                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }} />
+                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }}/>
                 </article>
             </section>
         </main>
