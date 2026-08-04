@@ -20,12 +20,13 @@
     
 
     &__brand {
-        color: var(--text-heading);
 
-        h3 {
+        .brandText {
             @include font-title('Poppins');
             font-size: 1.8rem;
             cursor: pointer;
+            text-decoration: none;
+            color: var(--text-heading)
         }
     }
 
