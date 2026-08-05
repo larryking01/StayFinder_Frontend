@@ -61,16 +61,11 @@ const Navbar = () => {
     }
 
 
-    const navigateTo = (route: string) => {
-        navigate(`/${ route }`)
-    }
-
-
 
     return (
         <nav className={ styles.navbar }>
             <section className={ styles.navbar__brand }>
-                <h3 onClick={ () => navigateTo("home")}>{ appName }</h3>
+                <NavLink to='/' className={ styles.brandText }>{ appName }</NavLink>
             </section>
 
             <section className={ styles.navbar__menu }>
