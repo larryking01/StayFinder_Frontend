@@ -11,46 +11,71 @@
     display: flex;
     justify-content: flex-start;
     gap: 0.5rem;
-    color: var(--text-secondary);
 
 
-    .averageRating {
-        @include element-border-radius;
-        @include font-regular('Poppins');
-        font-size: 0.9rem;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
+
+    .ratingWrapper {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--brand-primary);
-        color: var(--white);
+        // background-color: red;
+        gap: 0.5rem;
 
 
-        @include mini-mobile {
-            @include font-small('Poppins');
-            font-size: 0.8rem;
-            width: 1.9rem;
-            height: 1.9rem;
+        .averageRating {
+            @include element-border-radius;
+            @include font-regular('Poppins');
+            font-size: 0.9rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--brand-primary);
+            color: var(--white);
+
+
+            @include mini-mobile {
+                @include font-small('Poppins');
+                font-size: 0.8rem;
+                width: 1.9rem;
+                height: 1.9rem;
+            }
+
+
+            @include mobile {
+                @include font-small('Poppins');
+                font-size: 0.8rem;
+                width: 1.9rem;
+                height: 1.9rem;
+            }
+
+
+            @include tablet {
+                @include font-small('Poppins');
+                font-size: 0.8rem;
+                width: 1.9rem;
+                height: 1.9rem;
+            }
         }
 
-
-        @include mobile {
-            @include font-small('Poppins');
-            font-size: 0.8rem;
-            width: 1.9rem;
-            height: 1.9rem;
+        .ratingDescription {
+            color: var(--brand-primary);
+            font-weight: 600;
         }
 
-
-        @include tablet {
-            @include font-small('Poppins');
-            font-size: 0.8rem;
-            width: 1.9rem;
-            height: 1.9rem;
-        }
     }
+
+
+    .dotIcon {
+        color: var(--brand-primary);
+        align-self: flex-end;
+    }
+
+
+    .reviewsCount {
+        color: var(--text-secondary)
+    }
+
 
 
     p {

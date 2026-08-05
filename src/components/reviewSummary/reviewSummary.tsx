@@ -6,12 +6,6 @@ import type { ReviewSummaryProps } from '../../types/componentProps/reviewSummar
 
 
 
-
-
-
-
-
-
 const ReviewSummary = ( { reviewSummary }: ReviewSummaryProps ) => {
 
 
@@ -19,9 +13,11 @@ const ReviewSummary = ( { reviewSummary }: ReviewSummaryProps ) => {
 
     return (
         <main className={ styles.reviewSummary }>
-            <p className={ styles.averageRating }>{ reviewSummary.averageRating }</p>
-            <p>{ reviewSummary.reviewCount } reviews</p>
-            {/* <p>Very good</p> */}
+            <div className={ styles.ratingWrapper }>
+                <p className={ styles.averageRating }>{ reviewSummary.averageRating }</p>
+                <p className={ styles.ratingDescription }>Very good</p>
+            </div>
+            <p className={ styles.reviewsCount }> - { reviewSummary.reviewCount } reviews</p>
         </main>
     )
 }
