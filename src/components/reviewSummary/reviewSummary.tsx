@@ -17,7 +17,7 @@ const ReviewSummary = ( { reviewSummary }: ReviewSummaryProps ) => {
                 <p className={ styles.averageRating }>{ reviewSummary.averageRating }</p>
                 <p className={ styles.ratingDescription }>Very good</p>
             </div>
-            <p className={ styles.reviewsCount }> - { reviewSummary.reviewCount } reviews</p>
+            <p className={ styles.reviewsCount }> | { reviewSummary.reviewCount } reviews</p>
         </main>
     )
 }

@@ -8,7 +8,7 @@
 .hotelCard {
     background-color: var(--card-bg);
     width: 100%;
-    height: 27rem;
+    height: 28rem;
     cursor: pointer;
     @include element-border-radius;
     @include box-shadow;
@@ -33,7 +33,7 @@
 
     &__details {
         width: 100%;
-        height: 12rem;
+        height: 13rem;
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -42,6 +42,7 @@
 
         h3 {
             @include font-sub-title('Poppins');
+            font-size: 1.1rem;
             color: var(--brand-primary);
         }
 
@@ -50,8 +51,10 @@
         }
 
 
-        .nameLocation {
-            margin-bottom: 1rem;
+        .nameLocationRating {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem
         }
         
         
@@ -62,7 +65,10 @@
 
             
             p {
-                align-self: center
+                align-self: center;
+                @include font-sub-title('Poppins');
+                font-size: 0.85rem;
+                color: var(--brand-primary);
             }
         }
     }
