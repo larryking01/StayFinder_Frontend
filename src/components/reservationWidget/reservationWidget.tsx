@@ -3,7 +3,10 @@ import { MapPin, User, CalendarDays } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { toggleOpenDayPicker, toggleOpenLocationSuggestions, toggleOpenTravellersMenu, closeReservationControls } from '../../store/features/reservationSlice/reservation.slice'
-import { selectOpenDayPicker, selectOpenLocationSuggestions, selectOpenTravellersMenu } from '../../store/features/reservationSlice/reservation.selectors'
+import { selectOpenDayPicker, selectOpenLocationSuggestions, selectOpenTravellersMenu,
+         selectIntendedDestination, selectIntendedStayDuration, selectIntendedAdultTravellers,
+         selectIntendedChildTravellers, selectIntendedNumberOfRooms 
+        } from '../../store/features/reservationSlice/reservation.selectors'
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
@@ -25,6 +28,11 @@ const ReservationWidget = () => {
     const showLocationSuggestions = useAppSelector( selectOpenLocationSuggestions )
     const showDayPicker = useAppSelector( selectOpenDayPicker )
     const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
+    const intendedDestination = useAppSelector( selectIntendedDestination )
+    const intendedStayDuration = useAppSelector( selectIntendedStayDuration )
+    const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
+    const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
+    const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
     const navigate = useNavigate()
 
 
@@ -55,7 +63,8 @@ const ReservationWidget = () => {
         <main className={ styles.reservation }>
             <form onSubmit={ submitHotelPreferences } className={ styles.reservation__form }>
                 <section className={ styles.reservation__wrapper }>
-                    <input type="text" placeholder='Where to?' className={ styles.reservation__locationInput } onClick={ displayLocationSuggestions } />
+                    <input type="text" placeholder='Where to?' className={ styles.reservation__locationInput } 
+                           onClick={ displayLocationSuggestions } value={ intendedDestination } />
                     <MapPin className={ styles.reservation__icon } />
                 </section>
 
@@ -67,7 +76,11 @@ const ReservationWidget = () => {
                 </section>
 
                 <section className={ styles.reservation__wrapper }>
-                    <button type="button" className={ styles.reservation__options } onClick={ displayTravellersMenu }>Travellers</button>
+                    <button type="button" className={ styles.reservation__options } onClick={ displayTravellersMenu }>
+                        <p>{ intendedAdultTravellers } adult</p>,
+                        <p>{ intendedChildTravellers } children</p>, 
+                        <p>{ intendedRooms } room</p>
+                    </button>
                     <User className={ styles.reservation__icon } />
                 </section>
 
