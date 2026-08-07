@@ -1,4 +1,8 @@
 import styles from './travellersMenu.module.scss'
+import { useAppDispatch } from '../../hooks/useStore'
+import { toggleOpenTravellersMenu } from '../../store/features/reservationSlice/reservation.slice'
+
+
 
 
 
@@ -8,6 +12,13 @@ import styles from './travellersMenu.module.scss'
 
 const TravellersMenu = () => {
 
+
+    const dispatch = useAppDispatch()
+
+
+    const closeTravellersMenu = () => {
+        dispatch(toggleOpenTravellersMenu())
+    }
 
 
 
@@ -45,7 +56,7 @@ const TravellersMenu = () => {
 
 
                 <article className={ styles.submitBtn }>
-                    <button type="button">Done</button>
+                    <button type="button" onClick={ closeTravellersMenu }>Done</button>
                 </article>
             </section>
         </main>

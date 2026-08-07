@@ -1,7 +1,9 @@
 import styles from './reservationWidget.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
+import { toggleOpenDayPicker, toggleOpenLocationSuggestions, toggleOpenTravellersMenu, closeReservationControls } from '../../store/features/reservationSlice/reservation.slice'
+import { selectOpenDayPicker, selectOpenLocationSuggestions, selectOpenTravellersMenu } from '../../store/features/reservationSlice/reservation.selectors'
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
@@ -19,40 +21,32 @@ const ReservationWidget = () => {
 
 
 
-    const [ showLocationSuggestions, setShowLocationSuggestions ] = useState<boolean>(false)
-    const [ showDayPicker, setShowDayPicker ] = useState<boolean>(false)
-    const [ showTravellersMenu, setShowTravellersMenu ] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
+    const showLocationSuggestions = useAppSelector( selectOpenLocationSuggestions )
+    const showDayPicker = useAppSelector( selectOpenDayPicker )
+    const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
     const navigate = useNavigate()
 
 
     const displayLocationSuggestions = () => {
-        setShowDayPicker( false )
-        setShowTravellersMenu( false )
-        setShowLocationSuggestions( !showLocationSuggestions )
+        dispatch(toggleOpenLocationSuggestions())
     }
 
 
-    const displayDayPicker = () => {
-        setShowLocationSuggestions( false )
-        setShowTravellersMenu( false )
-        setShowDayPicker( !showDayPicker )
+    const displayDatePicker = () => {
+        dispatch(toggleOpenDayPicker())
     }
 
 
     const displayTravellersMenu = () => {
-        setShowLocationSuggestions( false )
-        setShowDayPicker( false )
-        setShowTravellersMenu( !showTravellersMenu )
+        dispatch(toggleOpenTravellersMenu())
     }
 
 
     const submitHotelPreferences = (event: any) => {
         event.preventDefault()
-        setShowLocationSuggestions( false )
-        setShowDayPicker( false )
-        setShowTravellersMenu( false )
-
-        navigate('/searchResults/Movempick Ambassador Hotel')
+        dispatch(closeReservationControls())
+        // navigate('/searchResults/Movempick Ambassador Hotel')
     }
 
 
@@ -66,7 +60,7 @@ const ReservationWidget = () => {
                 </section>
 
                 <section className={ styles.reservation__wrapper}>
-                    <button type="button" className={ styles.reservation__options } onClick={ displayDayPicker }>
+                    <button type="button" className={ styles.reservation__options } onClick={ displayDatePicker }>
                         Length of stay
                     </button>
                     <CalendarDays className={ styles.reservation__icon } />

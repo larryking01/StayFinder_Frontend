@@ -5,7 +5,7 @@ import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice
 
 import ReviewSummary from '../reviewSummary/reviewSummary'
 import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
-// import { truncateText } from '../../utils/truncateText'
+
 
 
 
