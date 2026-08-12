@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import type { DateRange } from "@daypicker/react";
 import { reservationInitialState } from "./reservation.initialState";
 
 
@@ -38,7 +39,7 @@ const reservationSlice = createSlice({
             let selectedDestination = action.payload
             state.intendedDestination = selectedDestination
         },
-        setIntendedStayDuration(state, action: PayloadAction<string>) {
+        setIntendedStayDuration(state, action: PayloadAction<DateRange | undefined>) {
             let selectedStayDuration = action.payload 
             state.intendedStayDuration = selectedStayDuration
         },

@@ -1,3 +1,7 @@
+import type { DateRange } from "@daypicker/react"
+
+
+
 interface ReservationState {
     // component controls. 
     openLocationSuggestions: boolean,
@@ -7,7 +11,7 @@ interface ReservationState {
 
     // component data
     intendedDestination: string,
-    intendedStayDuration: string,
+    intendedStayDuration: DateRange | undefined,
     intendedChildTravellers: number,
     intendedAdultTravellers: number,
     intendedNumberOfRooms: number
@@ -23,7 +27,7 @@ export const reservationInitialState: ReservationState = {
 
     // component data
     intendedDestination: "",
-    intendedStayDuration: "",
+    intendedStayDuration: undefined,
     intendedChildTravellers: 0,
     intendedAdultTravellers: 1,
     intendedNumberOfRooms: 1

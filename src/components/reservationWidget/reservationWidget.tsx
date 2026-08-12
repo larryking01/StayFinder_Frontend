@@ -5,11 +5,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { toggleOpenDayPicker, toggleOpenLocationSuggestions, toggleOpenTravellersMenu, closeReservationControls } from '../../store/features/reservationSlice/reservation.slice'
 import { selectOpenDayPicker, selectOpenLocationSuggestions, selectOpenTravellersMenu,
          selectIntendedDestination, selectIntendedStayDuration, selectIntendedAdultTravellers,
-         selectIntendedChildTravellers, selectIntendedNumberOfRooms 
+         selectIntendedChildTravellers, selectIntendedNumberOfRooms, selectIntendedReservationDetails 
         } from '../../store/features/reservationSlice/reservation.selectors'
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
+import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
+
+
 
 
 
@@ -33,6 +36,7 @@ const ReservationWidget = () => {
     const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
     const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
     const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
+    const intendedReservationDetails = useAppSelector( selectIntendedReservationDetails )
     const navigate = useNavigate()
 
 
@@ -51,10 +55,16 @@ const ReservationWidget = () => {
     }
 
 
+    const renderedStayDuration = intendedStayDuration ? 
+        `${ formatStayDurationDate(intendedStayDuration.from) } - ${ formatStayDurationDate(intendedStayDuration.to)} `
+        :
+        'Length of stay'
+
+
     const submitHotelPreferences = (event: any) => {
         event.preventDefault()
         dispatch(closeReservationControls())
-        // navigate('/searchResults/Movempick Ambassador Hotel')
+        navigate('/searchResults/Movempick Ambassador Hotel')
     }
 
 
@@ -70,7 +80,7 @@ const ReservationWidget = () => {
 
                 <section className={ styles.reservation__wrapper}>
                     <button type="button" className={ styles.reservation__options } onClick={ displayDatePicker }>
-                        Length of stay
+                        { renderedStayDuration }
                     </button>
                     <CalendarDays className={ styles.reservation__icon } />
                 </section>
