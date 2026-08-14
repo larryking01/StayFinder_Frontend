@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { DayPicker } from '@daypicker/react'
 import type { DateRange } from '@daypicker/react'
 import '@daypicker/react/style.css'
-import './dayPicker.scss'   // override some default daypicker styling
+import './dayPicker.scss'   // override some default daypicker styling.
 import useMediaQuery from '../../hooks/useMediaQuery'
 import { setIntendedStayDuration } from '../../store/features/reservationSlice/reservation.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
