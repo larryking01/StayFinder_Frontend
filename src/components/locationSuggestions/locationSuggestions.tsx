@@ -1,5 +1,10 @@
 import styles from './locationSuggestions.module.scss'
 import { MapPin } from 'lucide-react'
+import { useAppDispatch } from '../../hooks/useStore'
+import { toggleOpenLocationSuggestions, setIntendedDestination } from '../../store/features/reservationSlice/reservation.slice'
+
+
+
 
 
 
@@ -14,10 +19,19 @@ import { MapPin } from 'lucide-react'
 const LocationSuggestions = () => {
 
 
+    const dispatch = useAppDispatch()
+
+
+    const handleSetIntendedDestination = () => {
+        dispatch(setIntendedDestination("Square One Shopping Center"))
+        dispatch(toggleOpenLocationSuggestions())    
+    }
+
+
 
     return (
         <main className={ styles.locationSuggestions }>
-            <section className={ styles.locationSuggestions__locationItem }>
+            <section className={ styles.locationSuggestions__locationItem } onClick={ handleSetIntendedDestination }>
                 <MapPin size={ 20 }  className={ styles.icon }/>
                 <div className={ styles.location }>
                     <h3>Square One Shopping Center</h3>

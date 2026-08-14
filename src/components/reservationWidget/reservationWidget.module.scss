@@ -94,17 +94,7 @@
 
         
          .reservation__options{
-            @include element-border;
-            @include button-base;
-            width: 100%;
-            height: 3rem;
-            background-color: var(--white);
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding-left: 3rem;
-            @include input-focused;
+            cursor: pointer;
         }
     }
 

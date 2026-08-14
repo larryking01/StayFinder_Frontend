@@ -1,10 +1,32 @@
 import styles from './reservationWidget.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
+
+import { 
+         toggleOpenDayPicker, 
+         toggleOpenLocationSuggestions, 
+         toggleOpenTravellersMenu, 
+         closeReservationControls 
+        } from '../../store/features/reservationSlice/reservation.slice'
+
+import { 
+         selectOpenDayPicker, 
+         selectOpenLocationSuggestions, 
+         selectOpenTravellersMenu,
+         selectIntendedDestination, 
+         selectIntendedStayDuration, 
+         selectIntendedAdultTravellers,
+         selectIntendedChildTravellers, 
+         selectIntendedNumberOfRooms 
+        } from '../../store/features/reservationSlice/reservation.selectors'
+
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
+import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
+
+
 
 
 
@@ -19,39 +41,66 @@ const ReservationWidget = () => {
 
 
 
-    const [ showLocationSuggestions, setShowLocationSuggestions ] = useState<boolean>(false)
-    const [ showDayPicker, setShowDayPicker ] = useState<boolean>(false)
-    const [ showTravellersMenu, setShowTravellersMenu ] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
+    const showLocationSuggestions = useAppSelector( selectOpenLocationSuggestions )
+    const showDayPicker = useAppSelector( selectOpenDayPicker )
+    const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
+    const intendedDestination = useAppSelector( selectIntendedDestination )
+    const intendedStayDuration = useAppSelector( selectIntendedStayDuration )
+    const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
+    const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
+    const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
     const navigate = useNavigate()
 
 
+
     const displayLocationSuggestions = () => {
-        setShowDayPicker( false )
-        setShowTravellersMenu( false )
-        setShowLocationSuggestions( !showLocationSuggestions )
+        dispatch(toggleOpenLocationSuggestions())
     }
 
 
-    const displayDayPicker = () => {
-        setShowLocationSuggestions( false )
-        setShowTravellersMenu( false )
-        setShowDayPicker( !showDayPicker )
+    const displayDatePicker = () => {
+        dispatch(toggleOpenDayPicker())
     }
 
 
     const displayTravellersMenu = () => {
-        setShowLocationSuggestions( false )
-        setShowDayPicker( false )
-        setShowTravellersMenu( !showTravellersMenu )
+        dispatch(toggleOpenTravellersMenu())
+    }
+
+
+    const renderedStayDuration = intendedStayDuration ? 
+        `${ formatStayDurationDate(intendedStayDuration.from) } - ${ formatStayDurationDate(intendedStayDuration.to)} `
+        :
+        ''
+
+
+    const renderedTravellersAndRooms = () => {
+        let adultTravellersText = 'adults'
+        let childTravellersText = 'children'
+        let roomsText = 'rooms'
+
+
+        if( intendedAdultTravellers === 1 ) {
+            adultTravellersText = 'adult'
+        }
+
+        if( intendedChildTravellers === 1 ) {
+            childTravellersText = 'child'
+        }
+
+        if( intendedRooms === 1 ) {
+            roomsText = 'room'
+        }
+
+        let renderedText = `${ intendedRooms } ${ roomsText }, ${ intendedAdultTravellers } ${ adultTravellersText }, ${ intendedChildTravellers } ${ childTravellersText }`
+        return renderedText
     }
 
 
     const submitHotelPreferences = (event: any) => {
         event.preventDefault()
-        setShowLocationSuggestions( false )
-        setShowDayPicker( false )
-        setShowTravellersMenu( false )
-
+        dispatch(closeReservationControls())
         navigate('/searchResults/Movempick Ambassador Hotel')
     }
 
@@ -61,19 +110,38 @@ const ReservationWidget = () => {
         <main className={ styles.reservation }>
             <form onSubmit={ submitHotelPreferences } className={ styles.reservation__form }>
                 <section className={ styles.reservation__wrapper }>
-                    <input type="text" placeholder='Where to?' className={ styles.reservation__locationInput } onClick={ displayLocationSuggestions } />
+                    <input 
+                        type="text" 
+                        placeholder='Where to?' 
+                        onClick={ displayLocationSuggestions } 
+                        value={ intendedDestination } 
+                    />
                     <MapPin className={ styles.reservation__icon } />
                 </section>
 
                 <section className={ styles.reservation__wrapper}>
-                    <button type="button" className={ styles.reservation__options } onClick={ displayDayPicker }>
-                        Length of stay
-                    </button>
+                    <input 
+                        type="text"
+                        placeholder="Length of stay"                        
+                        className={ styles.reservation__options } 
+                        onClick={ displayDatePicker } 
+                        value={ renderedStayDuration }
+                     />
                     <CalendarDays className={ styles.reservation__icon } />
                 </section>
 
                 <section className={ styles.reservation__wrapper }>
-                    <button type="button" className={ styles.reservation__options } onClick={ displayTravellersMenu }>Travellers</button>
+                    <input 
+                        type="text"
+                        placeholder="Guests & rooms"                        
+                        className={ styles.reservation__options } 
+                        onClick={ displayTravellersMenu } 
+                        // value={ intendedAdultTravellers }
+                        value={renderedTravellersAndRooms()}
+                    />
+                        {/* <p>{ intendedAdultTravellers } adult</p>,
+                        <p>{ intendedChildTravellers } children</p>, 
+                        <p>{ intendedRooms } room</p> */}
                     <User className={ styles.reservation__icon } />
                 </section>
 

@@ -39,19 +39,14 @@ const HotelCard = ( { hotel }: HotelCardProps ) => {
             </section>
 
             <section className={ styles.hotelCard__details }>
-                <article>
-                    <div className={ styles.nameLocation }>
-                        <h3>{ hotel.hotelName }</h3>
-                        <p>{ hotel.city }</p>
-                    </div>
-
-                    <div className={ styles.pricingInfo }>
-                        <p>GHS { hotel.priceRange } per night</p>
-                    </div>
+                <article className={ styles.nameLocationRating }>
+                    <h3>{ hotel.hotelName }</h3>
+                    <p>{ hotel.city }</p>
+                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }}/>
                 </article>
 
-                <article>
-                    <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }}/>
+                <article className={ styles.pricingInfo }>
+                    <p>GHS { hotel.priceRange } per night</p>
                 </article>
             </section>
         </main>

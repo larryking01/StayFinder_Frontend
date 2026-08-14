@@ -5,7 +5,7 @@ import type { Hotel } from "../../../types/hotel.model";
 
 
 
-export interface HotelState {
+interface HotelState {
     loadingHotels: boolean,
     error: null | string,
     hotels: Hotel[],
