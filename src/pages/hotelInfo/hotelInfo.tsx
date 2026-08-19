@@ -16,6 +16,7 @@ import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import Loading from '../../components/loading/loading'
 import Empty from '../../components/empty/empty'
 import RoomCard from '../../components/roomCard/roomCard'
+import { rooms } from '../../data/rooms.data'
 // import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
@@ -171,7 +172,7 @@ const HotelInfo = () => {
                 <h3>Choose Your Room</h3>
                 <article className={ styles.roomsGrid }>
                     {
-                        [1, 2, 3].map(() => <RoomCard /> )
+                        rooms.slice(0, 3).map(( room ) => <RoomCard roomItem={ room } /> )
                     }
                 </article>
             </section>
