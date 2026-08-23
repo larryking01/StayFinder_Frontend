@@ -99,7 +99,7 @@ const HotelInfo = () => {
 
             <section className={ styles.hotelInfo__picturesDisplayGrid }>
                 {
-                    selectedHotel?.galleryImages.map( image => ( <img src={ image } />))
+                    selectedHotel?.galleryImages.slice(0, 6).map( image => ( <img src={ image } />))
                 }
             </section>
 
