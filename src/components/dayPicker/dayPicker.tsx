@@ -8,7 +8,6 @@ import useMediaQuery from '../../hooks/useMediaQuery'
 import { setIntendedTripDates } from '../../store/features/reservationSlice/reservation.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { selectIntendedTripDates } from '../../store/features/reservationSlice/reservation.selectors'
-import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
 import { calculateNumberOfNights } from '../../utils/calculateNumberOfNights'
 
 

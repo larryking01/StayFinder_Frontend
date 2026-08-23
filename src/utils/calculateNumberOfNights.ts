@@ -21,14 +21,13 @@ export const calculateNumberOfNights = (startDate: Date | undefined, endDate: Da
         return 'Invalid dates provided'
     }
 
-    const numberOfNights = differenceInMilliseconds / millisecondsPerDay 
+    const numberOfNights = differenceInMilliseconds / millisecondsPerDay
 
     if( numberOfNights === 1 ) {
         nightText = 'night'
     }
 
     const tripDatesAndNumberOfNights = `${ formattedStartAndEndDates } (${ numberOfNights } ${ nightText })`
-
     return tripDatesAndNumberOfNights
 }
 
