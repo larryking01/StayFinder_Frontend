@@ -39,9 +39,9 @@ const reservationSlice = createSlice({
             let selectedDestination = action.payload
             state.intendedDestination = selectedDestination
         },
-        setIntendedStayDuration(state, action: PayloadAction<DateRange | undefined>) {
+        setIntendedTripDates(state, action: PayloadAction<DateRange | undefined>) {
             let selectedStayDuration = action.payload 
-            state.intendedStayDuration = selectedStayDuration
+            state.intendedTripDates = selectedStayDuration
         },
         incrementIntendedNumberOfChildTravellers(state) {
             state.intendedChildTravellers++ 
@@ -93,7 +93,7 @@ export const {
                 toggleOpenTravellersMenu, 
                 closeReservationControls,
                 setIntendedDestination,
-                setIntendedStayDuration,
+                setIntendedTripDates,
                 incrementIntendedNumberOfChildTravellers,
                 decrementIntendedNumberOfChildTravellers,
                 incrementIntendedNumberOfAdultTravellers,

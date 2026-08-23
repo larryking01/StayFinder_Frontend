@@ -12,7 +12,7 @@ export const selectOpenTravellersMenu = (state: Rootstate) => state.reservation.
 
 export const selectIntendedDestination = (state: Rootstate) => state.reservation.intendedDestination
 
-export const selectIntendedStayDuration = (state: Rootstate) => state.reservation.intendedStayDuration
+export const selectIntendedTripDates = (state: Rootstate) => state.reservation.intendedTripDates
 
 export const selectIntendedChildTravellers = (state: Rootstate) => state.reservation.intendedChildTravellers
 
@@ -24,15 +24,15 @@ export const selectIntendedNumberOfRooms = (state: Rootstate) => state.reservati
 export const selectIntendedReservationDetails = createSelector(
     [
      selectIntendedDestination, 
-     selectIntendedStayDuration, 
+     selectIntendedTripDates, 
      selectIntendedChildTravellers, 
      selectIntendedAdultTravellers, 
      selectIntendedNumberOfRooms
     ],
-    ((intendedDestination, intendedStayDuration, intendedChildTravellers, intendedAdultTravellers, intendedNumberOfRooms) => {
+    ((intendedDestination, intendedTripDates, intendedChildTravellers, intendedAdultTravellers, intendedNumberOfRooms) => {
         let reservationDetails = {
             intendedDestination,
-            intendedStayDuration,
+            intendedTripDates,
             intendedChildTravellers,
             intendedAdultTravellers,
             intendedNumberOfRooms

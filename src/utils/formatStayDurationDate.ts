@@ -1,8 +1,11 @@
-export const formatStayDurationDate = (date: Date | undefined) => {
-    if( !date ) {
+export const formatStayDurationDate = (startDate: Date | undefined, endDate: Date | undefined) => {
+    if( !startDate || !endDate ) {
         return
     }
 
-    let formattedDate = date.toString()
-    return formattedDate.slice(0, 10)
+    let formattedStartDate = startDate.toString()
+    let formattedEndDate = endDate.toString()
+    let formattedStartAndEndDates = `${ formattedStartDate.slice(0, 10)} - ${ formattedEndDate.slice(0, 10)}`
+
+    return formattedStartAndEndDates
 }
