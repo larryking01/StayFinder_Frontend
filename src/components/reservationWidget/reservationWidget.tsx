@@ -15,7 +15,7 @@ import {
          selectOpenLocationSuggestions, 
          selectOpenTravellersMenu,
          selectIntendedDestination, 
-         selectIntendedStayDuration, 
+         selectIntendedTripDates, 
          selectIntendedAdultTravellers,
          selectIntendedChildTravellers, 
          selectIntendedNumberOfRooms 
@@ -24,7 +24,7 @@ import {
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
-import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
+import { formatTripDates } from '../../utils/formatTripDates'
 
 
 
@@ -46,7 +46,7 @@ const ReservationWidget = () => {
     const showDayPicker = useAppSelector( selectOpenDayPicker )
     const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
     const intendedDestination = useAppSelector( selectIntendedDestination )
-    const intendedStayDuration = useAppSelector( selectIntendedStayDuration )
+    const intendedTripDates = useAppSelector( selectIntendedTripDates )
     const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
     const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
     const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
@@ -69,8 +69,8 @@ const ReservationWidget = () => {
     }
 
 
-    const renderedStayDuration = intendedStayDuration ? 
-        `${ formatStayDurationDate(intendedStayDuration.from) } - ${ formatStayDurationDate(intendedStayDuration.to)} `
+    const renderedTripDates = intendedTripDates ? 
+        formatTripDates( intendedTripDates.from, intendedTripDates.to)
         :
         ''
 
@@ -125,7 +125,7 @@ const ReservationWidget = () => {
                         placeholder="Length of stay"                        
                         className={ styles.reservation__options } 
                         onClick={ displayDatePicker } 
-                        value={ renderedStayDuration }
+                        value={ renderedTripDates }
                      />
                     <CalendarDays className={ styles.reservation__icon } />
                 </section>
@@ -136,12 +136,8 @@ const ReservationWidget = () => {
                         placeholder="Guests & rooms"                        
                         className={ styles.reservation__options } 
                         onClick={ displayTravellersMenu } 
-                        // value={ intendedAdultTravellers }
                         value={renderedTravellersAndRooms()}
                     />
-                        {/* <p>{ intendedAdultTravellers } adult</p>,
-                        <p>{ intendedChildTravellers } children</p>, 
-                        <p>{ intendedRooms } room</p> */}
                     <User className={ styles.reservation__icon } />
                 </section>
 

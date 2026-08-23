@@ -11,7 +11,7 @@ interface ReservationState {
 
     // component data
     intendedDestination: string,
-    intendedStayDuration: DateRange | undefined,
+    intendedTripDates: DateRange | undefined,
     intendedChildTravellers: number,
     intendedAdultTravellers: number,
     intendedNumberOfRooms: number
@@ -27,7 +27,7 @@ export const reservationInitialState: ReservationState = {
 
     // component data
     intendedDestination: "",
-    intendedStayDuration: undefined,
+    intendedTripDates: undefined,
     intendedChildTravellers: 0,
     intendedAdultTravellers: 1,
     intendedNumberOfRooms: 1

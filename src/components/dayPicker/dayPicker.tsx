@@ -5,11 +5,10 @@ import type { DateRange } from '@daypicker/react'
 import '@daypicker/react/style.css'
 import './dayPicker.scss'   // override some default daypicker styling.
 import useMediaQuery from '../../hooks/useMediaQuery'
-import { setIntendedStayDuration } from '../../store/features/reservationSlice/reservation.slice'
+import { setIntendedTripDates } from '../../store/features/reservationSlice/reservation.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
-import { selectIntendedStayDuration } from '../../store/features/reservationSlice/reservation.selectors'
-import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
-
+import { selectIntendedTripDates } from '../../store/features/reservationSlice/reservation.selectors'
+import { formatTripDatesAndCalculateNumberOfNights } from '../../utils/formatTripDatesAndCalculateNumberOfNights'
 
 
 
@@ -25,20 +24,19 @@ const DayPickerComponent = () => {
     const [ selectedDate, setSelectedDate ] = useState<DateRange | undefined>()
     const isMobile = useMediaQuery("(max-width: 973px)")
     const dispatch = useAppDispatch()
-    const intendedStayDuration = useAppSelector( selectIntendedStayDuration )
+    const intendedTripDates = useAppSelector( selectIntendedTripDates )
 
 
     const handleSelectedDate = (value: DateRange | undefined) => {
         setSelectedDate( value )
-        console.log("selected date = ", value)
-        dispatch(setIntendedStayDuration( value ))
+        dispatch(setIntendedTripDates( value ))
     }   
 
 
-    const renderedStayDuration = intendedStayDuration ? 
-        `${ formatStayDurationDate(intendedStayDuration.from) } - ${ formatStayDurationDate(intendedStayDuration.to)} `
+    const renderedTripDates = intendedTripDates ? 
+        formatTripDatesAndCalculateNumberOfNights(intendedTripDates.from, intendedTripDates.to)      
         :
-        'None selected'
+        ''
 
 
 
@@ -54,7 +52,7 @@ const DayPickerComponent = () => {
                 navLayout="around"
                 numberOfMonths={ isMobile ? 1 : 2 }
                 captionLayout="label"
-                footer={ renderedStayDuration }
+                footer={ renderedTripDates }
             />
         </main>
     )
