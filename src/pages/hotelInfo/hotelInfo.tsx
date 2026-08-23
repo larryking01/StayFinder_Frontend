@@ -1,6 +1,6 @@
 import styles from './hotelInfo.module.scss'
 import { MapPin, CircleSmall, Info } from 'lucide-react'
-import { useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
 import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
 import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
@@ -8,8 +8,6 @@ import { fetchHotelReviewsById } from '../../store/features/reviewSlice/review.t
 import { selectHotelReviews } from '../../store/features/reviewSlice/review.selectors'
 import { useEffect } from 'react'
 
-
-import cover1 from '../../assets/images/hero_2.jpg'
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
@@ -17,7 +15,7 @@ import Loading from '../../components/loading/loading'
 import Empty from '../../components/empty/empty'
 import RoomCard from '../../components/roomCard/roomCard'
 import { rooms } from '../../data/rooms.data'
-// import ReservationWidget from '../../components/reservationWidget/reservationWidget'
+
 
 
 
@@ -30,12 +28,11 @@ import { rooms } from '../../data/rooms.data'
 const HotelInfo = () => {
 
 
-    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const isLoading = useAppSelector( selectHotelsLoadingState )
     const selectedHotel = useAppSelector( selectChosenHotel )
     const hotelReviews = useAppSelector( selectHotelReviews )
-    const { hotelName, hotelId } = useParams()
+    const { hotelId } = useParams()
 
 
     useEffect(() => {
@@ -43,7 +40,6 @@ const HotelInfo = () => {
             dispatch(fetchSelectedHotelById( hotelId as string ))
         }
 
-        // console.log("selected hotel = ", selectedHotel)
     },[ dispatch, selectedHotel, hotelId ])
 
 
@@ -53,14 +49,7 @@ const HotelInfo = () => {
             dispatch(fetchHotelReviewsById(selectedHotel.id));
         }
 
-        // console.log("hotel reviews = ", hotelReviews)
     }, [ dispatch, selectedHotel])
-
-
-
-    const navigateToCheckout = () => {
-        navigate(`/checkout/${ hotelName }/${ hotelId }`)
-    }
 
 
     if(isLoading) {
