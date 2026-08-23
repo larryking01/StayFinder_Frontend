@@ -1,16 +1,8 @@
-import { formatStayDurationDate } from "./formatStayDurationDate"
-
-
-
-
-
-
 export const calculateNumberOfNights = (startDate: Date | undefined, endDate: Date | undefined) => {
     if(!startDate || !endDate ) {
         return
     }
 
-    let formattedStartAndEndDates = formatStayDurationDate(startDate, endDate)
 
     let nightText = 'nights'
     const millisecondsPerDay = 1000 * 60 * 60 * 24 
@@ -27,7 +19,6 @@ export const calculateNumberOfNights = (startDate: Date | undefined, endDate: Da
         nightText = 'night'
     }
 
-    const tripDatesAndNumberOfNights = `${ formattedStartAndEndDates } (${ numberOfNights } ${ nightText })`
-    return tripDatesAndNumberOfNights
+    let numberOfNightsText = `${ numberOfNights } ${ nightText }`
+    return numberOfNightsText
 }
-

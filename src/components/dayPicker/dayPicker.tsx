@@ -8,7 +8,7 @@ import useMediaQuery from '../../hooks/useMediaQuery'
 import { setIntendedTripDates } from '../../store/features/reservationSlice/reservation.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { selectIntendedTripDates } from '../../store/features/reservationSlice/reservation.selectors'
-import { calculateNumberOfNights } from '../../utils/calculateNumberOfNights'
+import { formatTripDatesAndCalculateNumberOfNights } from '../../utils/formatTripDatesAndCalculateNumberOfNights'
 
 
 
@@ -34,7 +34,7 @@ const DayPickerComponent = () => {
 
 
     const renderedTripDates = intendedTripDates ? 
-        calculateNumberOfNights(intendedTripDates.from, intendedTripDates.to)      
+        formatTripDatesAndCalculateNumberOfNights(intendedTripDates.from, intendedTripDates.to)      
         :
         ''
 

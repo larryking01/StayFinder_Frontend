@@ -24,7 +24,7 @@ import {
 import LocationSuggestions from '../locationSuggestions/locationSuggestions'
 import DayPickerComponent from '../dayPicker/dayPicker'
 import TravellersMenu from '../travellersMenu/travellersMenu'
-import { formatStayDurationDate } from '../../utils/formatStayDurationDate'
+import { formatTripDates } from '../../utils/formatTripDates'
 
 
 
@@ -70,7 +70,7 @@ const ReservationWidget = () => {
 
 
     const renderedTripDates = intendedTripDates ? 
-        formatStayDurationDate( intendedTripDates.from, intendedTripDates.to)
+        formatTripDates( intendedTripDates.from, intendedTripDates.to)
         :
         ''
 
