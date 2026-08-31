@@ -6,7 +6,7 @@ import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.th
 import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
 import { fetchHotelReviewsById } from '../../store/features/reviewSlice/review.thunk'
 import { selectHotelReviews } from '../../store/features/reviewSlice/review.selectors'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { paymentOptions } from '../../data/paymentOptions'
 import ReviewCard from '../../components/reviewCard/reviewCard'
@@ -33,6 +33,13 @@ const HotelInfo = () => {
     const selectedHotel = useAppSelector( selectChosenHotel )
     const hotelReviews = useAppSelector( selectHotelReviews )
     const { hotelId } = useParams()
+    const descriptionRef = useRef<HTMLElement | null>(null)
+    const amenitiesRef = useRef<HTMLElement | null>(null)
+    const policiesRef = useRef<HTMLElement | null>(null)
+    const roomsRef = useRef<HTMLElement | null>(null)
+    const paymentMethodsRef = useRef<HTMLElement | null>(null)
+    const reviewsRef = useRef<HTMLElement | null>(null)
+
 
 
     useEffect(() => {
@@ -50,6 +57,14 @@ const HotelInfo = () => {
         }
 
     }, [ dispatch, selectedHotel])
+
+
+    const scrollToSection = (sectionRef: React.RefObject<HTMLElement | null> ) => {
+        sectionRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+    }
 
 
     if(isLoading) {
@@ -94,23 +109,43 @@ const HotelInfo = () => {
 
 
             <section className={ styles.hotelInfo__headingList }>
-                <p>Description</p>
-                <p>Amenities</p>
-                <p>Policies</p>
-                <p>Rooms</p>
-                <p>Location</p>
-                <p>Payment Methods</p>
-                <p>Reviews</p>
+                <p onClick={() => scrollToSection( descriptionRef )} className='nav-link-default'>
+                    Description
+                </p>
+
+                <p onClick={() => scrollToSection( amenitiesRef )} className='nav-link-default'>
+                    Amenities
+                </p>
+
+                <p onClick={() => scrollToSection( policiesRef )} className='nav-link-default'>
+                    Policies
+                </p>
+
+                <p onClick={() => scrollToSection( roomsRef )} className='nav-link-default'>
+                    Rooms
+                </p>
+
+                <p className='nav-link-default'>
+                    Location
+                </p>
+
+                <p onClick={() => scrollToSection( paymentMethodsRef )} className='nav-link-default'>
+                    Payment Methods
+                </p>
+                
+                <p onClick={() => scrollToSection( reviewsRef )} className='nav-link-default'>
+                    Reviews
+                </p>
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
-                <h3>Description</h3>
+            <section className={ styles.hotelInfo__infoSection }  ref={ descriptionRef }>
+                <h3> Description</h3>
                 <p>{ selectedHotel?.fullDescription }</p>
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
+            <section className={ styles.hotelInfo__infoSection } ref={ amenitiesRef }>
                 <h3>Amenities</h3>
                 
                 <div className={ styles.amenitiesGrid }>
@@ -126,7 +161,7 @@ const HotelInfo = () => {
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
+            <section className={ styles.hotelInfo__infoSection } ref={ policiesRef }>
                 <h3>Policies & House Rules</h3>
                 <p>{ selectedHotel?.hotelName } takes special requests – add in the next step!</p>
                 <div className={ styles.houseRulesContainer }>
@@ -144,7 +179,7 @@ const HotelInfo = () => {
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
+            <section className={ styles.hotelInfo__infoSection } ref={ paymentMethodsRef }>
                 <h3>Accepted Payment options</h3>
 
                 <div className={ styles.paymentOptionsDisplay }>
@@ -157,7 +192,7 @@ const HotelInfo = () => {
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
+            <section className={ styles.hotelInfo__infoSection } ref={ roomsRef }>
                 <h3>Choose Your Room</h3>
                 <article className={ styles.roomsGrid }>
                     {
@@ -167,7 +202,7 @@ const HotelInfo = () => {
             </section>
 
 
-            <section className={ styles.hotelInfo__infoSection }>
+            <section className={ styles.hotelInfo__infoSection } ref={ reviewsRef }>
                 <h3>Guest Reviews</h3>
 
                 {
