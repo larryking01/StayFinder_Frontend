@@ -4,7 +4,7 @@ import { Outlet } from 'react-router'
 
 import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/footer/footer'
-
+import ScrollToTop from '../../components/scrollToTop/scrollToTop'
 
 
 
@@ -20,6 +20,7 @@ const Layout = () => {
             <Navbar />
             <Outlet />
             <Footer />
+            <ScrollToTop />
         </main>
     )
 }

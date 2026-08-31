@@ -132,7 +132,7 @@ const HotelInfo = () => {
                 <p onClick={() => scrollToSection( paymentMethodsRef )} className='nav-link-default'>
                     Payment Methods
                 </p>
-                
+
                 <p onClick={() => scrollToSection( reviewsRef )} className='nav-link-default'>
                     Reviews
                 </p>
