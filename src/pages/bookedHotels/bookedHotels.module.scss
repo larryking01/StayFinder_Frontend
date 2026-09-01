@@ -1,0 +1,30 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
+.bookings {
+    @include base-padding(4rem);
+
+
+    @include mini-mobile {
+        @include base-padding(2rem, 2rem)
+    }
+
+
+    @include mobile {
+        @include base-padding(2rem, 2rem)
+    }
+    
+
+    &__title {
+        
+        h3 {
+            @include font-sub-title('Poppins');
+            margin-bottom: 2rem;
+        }
+    }
+
+}
