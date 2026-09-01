@@ -143,8 +143,16 @@
 
             .pricingInfo {
 
+                @include mini-mobile {
+                    width: 100% !important;
+                }
+                
+                @include mobile {
+                    width: 100% !important;
+                }
+
                 @include tablet {
-                    width: 20%;
+                    width: 20% !important;
                 }
 
 
