@@ -16,7 +16,7 @@ import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import Loading from '../../components/loading/loading'
 import Empty from '../../components/empty/empty'
 import RoomCard from '../../components/roomCard/roomCard'
-import { rooms } from '../../data/rooms.data'
+import type { Room } from '../../types/room.model'
 
 
 
@@ -42,6 +42,8 @@ const HotelInfo = () => {
     const paymentMethodsRef = useRef<HTMLElement | null>(null)
     const reviewsRef = useRef<HTMLElement | null>(null)
 
+    let rooms: Room[] = []
+
 
 
     useEffect(() => {
@@ -58,9 +60,6 @@ const HotelInfo = () => {
             dispatch(fetchRoomsByHotelId(selectedHotel.id))
             dispatch(fetchHotelReviewsById(selectedHotel.id));
         }
-
-
-        console.log("hotel rooms = ", hotelRooms)
 
     }, [ dispatch, selectedHotel ])
 
@@ -201,10 +200,19 @@ const HotelInfo = () => {
 
 
             <section className={ styles.hotelInfo__infoSection } ref={ roomsRef }>
-                <h3>Choose Your Room</h3>
-                <article className={ styles.roomsGrid }>
+                {
+                    hotelRooms.length > 0 ?
+                        <h3>Choose Your Room</h3>
+                        :
+                        <h3>No rooms available yet</h3>
+                }
+
+                <article className={ hotelRooms.length > 0 ? styles.roomsGrid : '' }>
                     {
-                        hotelRooms.map(( room ) => <RoomCard roomItem={ room } key={ room.id } /> )
+                        hotelRooms.length > 0 ?
+                            hotelRooms.map(( room ) => <RoomCard roomItem={ room } key={ room.id } /> )
+                            :
+                            <p>Room options for this hotel haven't been added yet. Please check back later.</p>
                     }
                 </article>
             </section>
