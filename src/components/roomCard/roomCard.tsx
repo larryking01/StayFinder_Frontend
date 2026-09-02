@@ -1,4 +1,5 @@
 import styles from './roomCard.module.scss'
+import { useNavigate } from 'react-router'
 import type { RoomCardProp } from '../../types/componentProps/roomCardProps'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { CircleSmall } from 'lucide-react'
@@ -13,6 +14,14 @@ import { CircleSmall } from 'lucide-react'
 
 
 const RoomCard = ({ roomItem }: RoomCardProp) => {
+
+    const navigate = useNavigate()
+
+
+    const navigateToCheckout = () => {
+        console.log("room item = ", roomItem )
+        navigate(`/checkout/${ roomItem.hotelName }/${ roomItem.hotelId }`)
+    }
 
 
 
@@ -55,22 +64,34 @@ const RoomCard = ({ roomItem }: RoomCardProp) => {
             <section className={ styles.roomInfo }>
                 <h3>Pricing ~ GHS { roomItem.price } per night</h3>
                 <div className={ styles.pricingItem }>
-                    <p className={ styles.flexParagraph }>1 room × 16 nights incl. taxes & fees</p>
+                    <p className={ styles.flexParagraph }>1 room × 16 nights</p>
                     <p className={ styles.priceIndicator }>$181</p>
                 </div>
 
-                {/* <div className={ styles.pricingItem }>
-                    <p className={ styles.flexParagraph }>Extras</p>
-                    <p className={ styles.priceIndicator }>+ $35</p>
-                </div> */}
+                <div className={ styles.pricingItem }>
+                    <p className={ styles.flexParagraph }>15% VAT</p>
+                    <p className={ styles.priceIndicator }>$181</p>
+                </div>
 
-                <div className={ styles.extraItem }>
+                <div className={ styles.pricingItem }>
+                    <p className={ styles.flexParagraph }>2.5% NHIL</p>
+                    <p className={ styles.priceIndicator }>$181</p>
+                </div>
+
+                <div className={ styles.pricingItem }>
+                    <p className={ styles.flexParagraph }>2.5% GETFUND</p>
+                    <p className={ styles.priceIndicator }>$181</p>
+                </div>
+
+
+
+                {/* <div className={ styles.extraItem }>
                     <div className={ styles.extraSelection }>
                         <input type='checkbox' />
                         <p className={ styles.flexParagraph }>No Extras</p>
                     </div>
                     <p className={ styles.priceIndicator }>+ $0</p>
-                </div>
+                </div> */}
 
                 <div className={ styles.pricingItem }>
                     <p className={ styles.flexParagraph }>Total</p>
@@ -81,7 +102,7 @@ const RoomCard = ({ roomItem }: RoomCardProp) => {
                     <p className={ styles.remaningRoomsTtext }>We have { roomItem.numberOfRoomsAvailable } left!</p>
                 </div>
 
-                <button className={ styles.reserveBtn }>Reserve</button>
+                <button className={ styles.reserveBtn } onClick={ navigateToCheckout }>Reserve</button>
                 <p className={ styles.notChargedText }>You will not be charged yet</p>
             </section>
         </article>
