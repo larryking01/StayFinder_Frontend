@@ -6,6 +6,8 @@ import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.th
 import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
 import { fetchHotelReviewsById } from '../../store/features/reviewSlice/review.thunk'
 import { selectHotelReviews } from '../../store/features/reviewSlice/review.selectors'
+import { fetchRoomsByHotelId } from '../../store/features/roomsSlice/rooms.thunk'
+import { selectRooms } from '../../store/features/roomsSlice/rooms.selectors'
 import { useEffect, useRef } from 'react'
 
 import { paymentOptions } from '../../data/paymentOptions'
@@ -27,12 +29,12 @@ import { rooms } from '../../data/rooms.data'
 
 const HotelInfo = () => {
 
-
+    const { hotelId } = useParams()
     const dispatch = useAppDispatch()
     const isLoading = useAppSelector( selectHotelsLoadingState )
     const selectedHotel = useAppSelector( selectChosenHotel )
     const hotelReviews = useAppSelector( selectHotelReviews )
-    const { hotelId } = useParams()
+    const hotelRooms = useAppSelector( selectRooms )
     const descriptionRef = useRef<HTMLElement | null>(null)
     const amenitiesRef = useRef<HTMLElement | null>(null)
     const policiesRef = useRef<HTMLElement | null>(null)
@@ -53,10 +55,14 @@ const HotelInfo = () => {
 
     useEffect(() => {
         if (selectedHotel) {
+            dispatch(fetchRoomsByHotelId(selectedHotel.id))
             dispatch(fetchHotelReviewsById(selectedHotel.id));
         }
 
-    }, [ dispatch, selectedHotel])
+
+        console.log("hotel rooms = ", hotelRooms)
+
+    }, [ dispatch, selectedHotel ])
 
 
     const scrollToSection = (sectionRef: React.RefObject<HTMLElement | null> ) => {
@@ -103,7 +109,9 @@ const HotelInfo = () => {
 
             <section className={ styles.hotelInfo__picturesDisplayGrid }>
                 {
-                    selectedHotel?.galleryImages.slice(0, 6).map( image => ( <img src={ image } />))
+                    selectedHotel?.galleryImages.slice(0, 6).map(
+                        (image, index) => ( <img src={ image } key={ index } alt="hotel gallery image" />)
+                    )
                 }
             </section>
 
@@ -150,8 +158,8 @@ const HotelInfo = () => {
                 
                 <div className={ styles.amenitiesGrid }>
                     {
-                        selectedHotel?.amenities.map( amenity => (
-                            <div className={ styles.amenityItem }>
+                        selectedHotel?.amenities.map((amenity, index) => (
+                            <div className={ styles.amenityItem } key={ index }>
                                 <CircleSmall />
                                 <p>{ amenity }</p>
                             </div>
@@ -167,8 +175,8 @@ const HotelInfo = () => {
                 <div className={ styles.houseRulesContainer }>
                     <ul>
 
-                        { selectedHotel?.policies.map( policy => (
-                            <li>
+                        { selectedHotel?.policies.map((policy, index) => (
+                            <li key={ index }>
                                 <Info /> 
                                 { policy }
                             </li>
@@ -185,7 +193,7 @@ const HotelInfo = () => {
                 <div className={ styles.paymentOptionsDisplay }>
                     {
                         paymentOptions.map( option => (
-                            <img src={ option.src } alt={ option.name } />
+                            <img src={ option.src } alt={ option.name } key={ option.name } />
                         ))
                     }
                 </div>
@@ -196,7 +204,7 @@ const HotelInfo = () => {
                 <h3>Choose Your Room</h3>
                 <article className={ styles.roomsGrid }>
                     {
-                        rooms.slice(0, 3).map(( room ) => <RoomCard roomItem={ room } /> )
+                        hotelRooms.map(( room ) => <RoomCard roomItem={ room } key={ room.id } /> )
                     }
                 </article>
             </section>

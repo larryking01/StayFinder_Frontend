@@ -32,7 +32,7 @@ export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async(_, { reject
 
 
 
-export const fetchRoomsByHotelId = createAsyncThunk('rooms/fetchHotelRooms', async(hotelId, { rejectWithValue }) => {
+export const fetchRoomsByHotelId = createAsyncThunk('rooms/fetchHotelRooms', async(hotelId: string, { rejectWithValue }) => {
 
     let endpoint = `/rooms/fetch-hotel-rooms/${ hotelId }`
 
