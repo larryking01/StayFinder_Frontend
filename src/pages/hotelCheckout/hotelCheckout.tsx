@@ -1,4 +1,5 @@
 import styles from './hotelCheckout.module.scss'
+import { useState } from 'react'
 import cover from '../../assets/images/hero_3.jpg'
 import { filterCategory } from '../../data/filterCategories'
 import { Check, TrendingUp, X } from 'lucide-react'
@@ -15,6 +16,9 @@ import { Check, TrendingUp, X } from 'lucide-react'
 
 
 const HotelCheckout = () => {
+
+
+    const [ showCouponForm, setShowCouponForm ] = useState( false )
 
 
 
@@ -233,16 +237,21 @@ const HotelCheckout = () => {
                 </article>
 
 
+                
                 <article className={ styles.couponContainer }>
                     <div className={ styles.couponIntro }>
-                        <p>Use a coupon or promotion code</p>
+                        <p onClick={() => setShowCouponForm( true )}>
+                            Use a coupon or promotion code
+                        </p>
                     </div>
 
-                    <div className={ styles.couponControls }>
-                        <X className={ styles.iconContainer }/>
-                        <input type="text" placeholder='Coupon code' />
-                        <button type="button">Apply</button>
-                    </div>
+                    { showCouponForm &&
+                        <div className={ styles.couponControls }>
+                            <X className={ styles.closeIcon } onClick={() => setShowCouponForm( false )}/>
+                            <input type="text" placeholder='Coupon code' />
+                            <button type="button">Apply</button>
+                        </div>
+                    }
                 </article>
 
 

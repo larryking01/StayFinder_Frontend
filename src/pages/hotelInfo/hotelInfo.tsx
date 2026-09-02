@@ -16,7 +16,6 @@ import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import Loading from '../../components/loading/loading'
 import Empty from '../../components/empty/empty'
 import RoomCard from '../../components/roomCard/roomCard'
-import type { Room } from '../../types/room.model'
 
 
 
@@ -42,7 +41,7 @@ const HotelInfo = () => {
     const paymentMethodsRef = useRef<HTMLElement | null>(null)
     const reviewsRef = useRef<HTMLElement | null>(null)
 
-    let rooms: Room[] = []
+
 
 
 
