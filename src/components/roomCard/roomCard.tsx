@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router'
 import type { RoomCardProp } from '../../types/componentProps/roomCardProps'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { CircleSmall } from 'lucide-react'
-
+import { useAppDispatch } from '../../hooks/useStore'
+import { setSelectedRoom } from '../../store/features/roomsSlice/rooms.slice'
 
 
 
@@ -16,10 +17,11 @@ import { CircleSmall } from 'lucide-react'
 const RoomCard = ({ roomItem }: RoomCardProp) => {
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
 
     const navigateToCheckout = () => {
-        console.log("room item = ", roomItem )
+        dispatch(setSelectedRoom( roomItem ))
         navigate(`/checkout/${ roomItem.hotelName }/${ roomItem.hotelId }`)
     }
 

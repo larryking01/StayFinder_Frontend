@@ -14,7 +14,7 @@ import Empty from '../../components/empty/empty'
 const BookedHotels = () => {
 
 
-    let bookedHotels: number[] = [0, 1, 2, 3 ,4]
+    let bookedHotels: number[] = [0, 1]
 
     
 

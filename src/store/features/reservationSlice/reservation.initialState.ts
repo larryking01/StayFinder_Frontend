@@ -8,7 +8,6 @@ interface ReservationState {
     openDayPicker: boolean,
     openTravellersMenu: boolean,
 
-
     // component data
     intendedDestination: string,
     intendedTripDates: DateRange | undefined,

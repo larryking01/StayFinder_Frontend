@@ -1,6 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { roomsInitialState } from "./rooms.initialState";
 import { fetchRooms, fetchRoomsByHotelId } from "./rooms.thunk";
+import type { Room } from "../../../types/room.model";
+
 
 
 
@@ -12,7 +14,12 @@ import { fetchRooms, fetchRoomsByHotelId } from "./rooms.thunk";
 export const roomsSlice = createSlice({
     name: 'Rooms',
     initialState: roomsInitialState,
-    reducers: {},
+    reducers: {
+        setSelectedRoom(state, action: PayloadAction<Room>) {
+            let room = action.payload
+            state.selectedRoom = room
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchRooms.pending, (state) => {
@@ -48,6 +55,11 @@ export const roomsSlice = createSlice({
 
 
 
+
+
+
+// make actions accessible to other components
+export const { setSelectedRoom } = roomsSlice.actions
 
 // make the rooms reducer accessible to the store.
 export default roomsSlice.reducer

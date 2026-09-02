@@ -4,6 +4,9 @@ import { createSelector } from "@reduxjs/toolkit";
 
 
 
+
+
+
 export const selectOpenLocationSuggestions = (state: Rootstate) => state.reservation.openLocationSuggestions
 
 export const selectOpenDayPicker = (state: Rootstate) => state.reservation.openDayPicker 

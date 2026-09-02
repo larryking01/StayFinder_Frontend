@@ -20,3 +20,5 @@ export const selectRoomsByHotelId = createSelector(
         return hotelRooms
     }
 )
+
+export const selectChosenRoom = (state: Rootstate) => state.rooms.selectedRoom

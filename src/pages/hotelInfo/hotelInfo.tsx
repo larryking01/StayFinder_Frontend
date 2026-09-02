@@ -172,14 +172,12 @@ const HotelInfo = () => {
                 <p>{ selectedHotel?.hotelName } takes special requests – add in the next step!</p>
                 <div className={ styles.houseRulesContainer }>
                     <ul>
-
                         { selectedHotel?.policies.map((policy, index) => (
                             <li key={ index }>
                                 <Info /> 
                                 { policy }
                             </li>
                         )) }
-
                     </ul>
                 </div>
             </section>
