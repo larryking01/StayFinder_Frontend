@@ -51,3 +51,25 @@ export const fetchRoomsByHotelId = createAsyncThunk('rooms/fetchHotelRooms', asy
     }
 
 })
+
+
+
+export const fetchRoomById = createAsyncThunk('rooms/fetchRoomById', async(roomId: string, { rejectWithValue }) => {
+
+    let endpoint = `/rooms/fetch-room/${ roomId }`
+
+    try {
+        let response = await publicAxios.get(endpoint)
+        return response.data.data[0]
+    }
+    catch(error) {
+        if(isAxiosError(error)) {
+            console.log("FETCH/SELECTED ROOM AXIOS ERROR: ", error)
+            // check for specific axios error type and return descriptive messages latetr
+            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        }
+
+        return rejectWithValue("An unexpected error occurred")
+    }
+
+})

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { roomsInitialState } from "./rooms.initialState";
-import { fetchRooms, fetchRoomsByHotelId } from "./rooms.thunk";
+import { fetchRooms, fetchRoomsByHotelId, fetchRoomById } from "./rooms.thunk";
 import type { Room } from "../../../types/room.model";
 
 
@@ -48,6 +48,20 @@ export const roomsSlice = createSlice({
             .addCase(fetchRoomsByHotelId.rejected, (state, action) => {
                 state.loadingRooms = false 
                 state.rooms = []
+                state.roomsError = action.payload as string
+            })
+            .addCase(fetchRoomById.pending, (state, action) => {
+                state.loadingRooms = true
+            })
+            .addCase(fetchRoomById.fulfilled, (state, action) => {
+                let loadedRoom = action.payload
+                state.loadingRooms = false
+                state.selectedRoom = loadedRoom
+                state.roomsError = action.payload
+            })
+            .addCase(fetchRoomById.rejected, (state, action) => {
+                state.loadingRooms = false
+                state.selectedRoom = null 
                 state.roomsError = action.payload as string
             })
     }

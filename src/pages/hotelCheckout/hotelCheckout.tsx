@@ -1,16 +1,19 @@
 import styles from './hotelCheckout.module.scss'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
-import { selectChosenHotel } from '../../store/features/hotelSlice/hotel.selectors'
-import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
-import { selectChosenRoom } from '../../store/features/roomsSlice/rooms.selectors'
-import { selectIntendedReservationDetails } from '../../store/features/reservationSlice/reservation.selectors'
 import { Check, TrendingUp, X, Info } from 'lucide-react'
 
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
+import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
+import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
+import { fetchRoomById } from '../../store/features/roomsSlice/rooms.thunk'
+import { selectChosenRoom, selectRoomsLoadingState } from '../../store/features/roomsSlice/rooms.selectors'
+import { selectIntendedReservationDetails } from '../../store/features/reservationSlice/reservation.selectors'
+import Loading from '../../components/loading/loading'
 import ReviewSummary from '../../components/reviewSummary/reviewSummary'
-import { formatTripDates } from '../../utils/formatTripDates'
 import { formatTripDatesAndCalculateNumberOfNights } from '../../utils/formatTripDatesAndCalculateNumberOfNights'
+
+
 
 
 
@@ -25,10 +28,12 @@ const HotelCheckout = () => {
 
 
     const [ showCouponForm, setShowCouponForm ] = useState( false )
-    const { hotelId } = useParams()
+    const { hotelId, roomId } = useParams()
     const navigate = useNavigate()
     const selectedHotel = useAppSelector( selectChosenHotel )
     const selectedRoom = useAppSelector( selectChosenRoom )
+    const isLoadingHotel = useAppSelector( selectHotelsLoadingState )
+    const isLoadingRoom = useAppSelector( selectRoomsLoadingState )
     const reservationDetails = useAppSelector( selectIntendedReservationDetails )
     const dispatch = useAppDispatch()
 
@@ -47,10 +52,30 @@ const HotelCheckout = () => {
 
 
 
+    useEffect(() => {
+        if(!selectedRoom) {
+            dispatch(fetchRoomById( roomId as string ))
+        }
+
+        console.log("selected room = ", selectedRoom )
+
+    }, [dispatch, roomId, selectedRoom])
+
+
+
     const navigateToUserBookings = () => {
         navigate("/my-bookings")
     }
 
+
+
+
+
+    if( isLoadingHotel || isLoadingRoom ) {
+        return (
+            <Loading />
+        )
+    }
 
 
     return (

@@ -22,7 +22,7 @@ const RoomCard = ({ roomItem }: RoomCardProp) => {
 
     const navigateToCheckout = () => {
         dispatch(setSelectedRoom( roomItem ))
-        navigate(`/checkout/${ roomItem.hotelName }/${ roomItem.hotelId }`)
+        navigate(`/checkout/${ roomItem.hotelName }/${ roomItem.hotelId }/${ roomItem.id }`)
     }
 
 
