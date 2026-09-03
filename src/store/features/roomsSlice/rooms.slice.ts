@@ -10,7 +10,6 @@ import type { Room } from "../../../types/room.model";
 
 
 
-
 export const roomsSlice = createSlice({
     name: 'Rooms',
     initialState: roomsInitialState,
