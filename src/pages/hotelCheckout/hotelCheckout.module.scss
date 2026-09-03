@@ -55,7 +55,7 @@
 
 
     &__paymentColumn {
-        width: 40%;
+        width: 50%;
 
 
         @include mini-mobile {
@@ -72,9 +72,6 @@
             width: 100%;
 
             .formControlsContainer {
-                background-color: var(--card-bg);
-                @include element-border;
-                @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
                 margin-bottom: 1rem;
@@ -88,7 +85,6 @@
 
                 input {
                     @include text-input-default();
-                    
                 }
             }
 
@@ -139,7 +135,6 @@
 
             .cancellationPolicyAndInstructions {
                 background-color: var(--card-bg);
-                @include element-border;
                 @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
@@ -151,6 +146,24 @@
 
                     p {
                         line-height: 1.5rem;
+                    }
+
+
+                    ul {
+                        list-style: none;
+                        
+
+                        li {
+                            display: flex;
+                            gap: 0.5rem;
+                            margin-bottom: 0.5rem;
+                            @include font-small('Poppins');
+
+
+                            .infoIcon {
+                                align-self: center;
+                            }
+                        }
                     }
 
 
@@ -169,6 +182,11 @@
             .termsAndConditions {
                 padding: 1rem 0;
                 line-height: 1.5rem;
+
+
+                p {
+                    color: var(--text-secondary)
+                }
             }
 
 
@@ -211,14 +229,13 @@
 
         .hotelInfoSummary {
             background-color: var(--card-bg);
-            @include element-border;
             @include box-shadow;
             @include element-border-radius;
             margin-bottom: 1rem;
 
 
             .coverImages {
-                height: 17rem;
+                height: 15rem;
                 margin-bottom: 0.5rem;
 
                 img {
@@ -231,40 +248,40 @@
             }
 
 
-            .hotelName {
+            .hotelDetail {
                 margin-bottom: 1rem;
-                padding: 1rem;
-            }
+                padding: 0 1rem;
 
 
-            .hotelReviews {
-                margin-bottom: 1rem;
-                padding: 1rem;
+                .roomTypeText {
+                    font-weight: 600;
+                }
+
+
+                .roomDetail {
+                    display: flex;
+                    gap: 0.5rem;
+                }
             }
 
 
             .lengthOfStay {
+                height: 4rem;
                 margin: 1rem;
-                @include element-border-radius;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
+                align-items: center;
+                @include element-border-radius;
                 background-color: var(--brand-secondary);
                 padding: 1rem;
                 @include box-shadow;
 
 
-                .stayInfo {
-                    height: 5rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-
-
-                    .stayInfoTitle {
-                        font-weight: 600;
-                    }
-                    
+                .tripDuration {
+                    @include font-sub-title('Poppins');
+                    font-size: 1rem;
                 }
+                    
             }
 
 
@@ -289,7 +306,6 @@
 
 
             .tasteItem {
-                @include element-border;
                 @include box-shadow;
                 @include element-border-radius;
                 padding: 1rem;
@@ -324,7 +340,6 @@
 
         .priceDetails {
             background-color: var(--card-bg);
-            @include element-border;
             @include box-shadow;
             @include element-border-radius;
             padding: 1rem;
@@ -365,13 +380,20 @@
 
 
             .couponIntro {
-                margin-bottom: 1rem;
+                margin-bottom: 2rem;
 
 
                 p {
                     @include font-small('Poppins');
+                    font-size: 0.92rem;
                     color: var(--brand-primary);
                     cursor: pointer;
+                    transition: font-weight 0.3s ease;
+
+
+                    &:hover {
+                        font-weight: 700;
+                    }
                 }
             }
 
@@ -384,8 +406,8 @@
                 height: 100%;
 
 
-                .iconContainer {
-                    align-self: flex-end;
+                .closeIcon {
+                    align-self: flex-start;
                     cursor: pointer;
                 }
                 

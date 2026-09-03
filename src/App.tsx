@@ -38,7 +38,7 @@ function App() {
           <Route path='home' element={ <Home /> } />
           <Route path=':hotelName/:hotelId' element={ <HotelInfo /> } />
           <Route path='searchResults/:destination' element={ <SearchResults /> } />
-          <Route path="checkout/:hotelName/:hotelId" element={ <HotelCheckout /> } /> 
+          <Route path="checkout/:hotelName/:hotelId/:roomId" element={ <HotelCheckout /> } /> 
           <Route path="my-bookings" element={ <BookedHotels /> } />
           <Route path="list-your-hotel" element={ <ListHotel /> } />
           <Route path="favourites" element={ <Favourites /> } />

@@ -1,3 +1,96 @@
+@use '../../style/mixins' as *;
+@use '../../style/fonts' as *;
+@use '../../style/breakpoints' as *;
+
+
+
+
 .notFound {
-    background-color: bisque;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+    @include mobile {
+      padding: 1.5rem;
+    }
+
+
+    &__content {
+      width: 100%;
+      max-width: 40rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    &__image-wrapper {
+      width: 100%;
+      max-width: 26rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      @include mobile {
+        max-width: 20rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+
+    &__image {
+      width: 30%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    &__title {
+      @include font-title('Poppins');
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+
+    }
+
+
+    &__description {
+      @include font-sub-title('Poppins');
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      max-width: 32.5rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+
+    &__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background-color: var(--brand-primary);
+      color: var(--white);
+      text-decoration: none;
+      @include element-border-radius;
+      @include font-regular('Poppins');
+      font-size: clamp(1rem, 3vw, 1rem);
+      @include element-transform-transition;
+
+    }
+
+
+    &__button-icon {
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 }

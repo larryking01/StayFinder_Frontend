@@ -9,6 +9,7 @@ export const rooms: Room[] = [
     {
         id: "room-001",
         hotelId: "HOTEL_ID",
+        hotelName: 'Kempinski Hotel, Gold Coast City',
         roomType: "Standard Double Room",
         description:
             "A comfortable and well-appointed room ideal for couples or two guests, featuring a spacious double bed and modern essentials.",
@@ -33,6 +34,7 @@ export const rooms: Room[] = [
     {
         id: "room-002",
         hotelId: "HOTEL_ID",
+        hotelName: "Holiday Inn Hotel",
         roomType: "Superior Twin Room",
         description:
             "A bright and spacious room with two separate beds, making it a convenient choice for friends, colleagues, or family members travelling together.",
@@ -58,6 +60,7 @@ export const rooms: Room[] = [
     {
         id: "room-003",
         hotelId: "HOTEL_ID",
+        hotelName: 'Labadi Seaview Resort',
         roomType: "Deluxe King Room",
         description:
             "An elegantly furnished room offering additional space, a king-size bed, and upgraded amenities for a relaxing stay.",
@@ -84,6 +87,7 @@ export const rooms: Room[] = [
     {
         id: "room-004",
         hotelId: "HOTEL_ID",
+        hotelName: 'The Azure Beach Resort',
         roomType: "Executive Room",
         description:
             "A refined room designed for business and leisure travellers, offering a generous workspace and premium in-room amenities.",
@@ -111,6 +115,7 @@ export const rooms: Room[] = [
     {
         id: "room-005",
         hotelId: "HOTEL_ID",
+        hotelName: 'Movenpick Ambassador Hotel',
         roomType: "Junior Suite",
         description:
             "A spacious suite featuring a comfortable bedroom and separate sitting area, providing additional space for relaxation or work.",
@@ -139,6 +144,7 @@ export const rooms: Room[] = [
     {
         id: "room-006",
         hotelId: "HOTEL_ID",
+        hotelName: "Volta River Luxury Resort",
         roomType: "Family Suite",
         description:
             "A spacious family-friendly suite offering separate sleeping and living areas with enough room for a comfortable group stay.",
@@ -166,6 +172,7 @@ export const rooms: Room[] = [
     {
         id: "room-007",
         hotelId: "HOTEL_ID",
+        hotelName: "Accra Marriott Hotel",
         roomType: "Executive Suite",
         description:
             "A luxurious suite combining a private bedroom with a spacious living room, ideal for guests seeking extra comfort and privacy.",
@@ -196,6 +203,7 @@ export const rooms: Room[] = [
     {
         id: "room-008",
         hotelId: "HOTEL_ID",
+        hotelName: "Cape Coast Heritage Hotel",
         roomType: "Presidential Suite",
         description:
             "An expansive luxury suite featuring multiple living spaces, premium furnishings, and exceptional amenities for an exclusive stay.",

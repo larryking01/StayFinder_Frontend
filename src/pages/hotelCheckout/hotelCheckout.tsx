@@ -1,7 +1,17 @@
 import styles from './hotelCheckout.module.scss'
-import cover from '../../assets/images/hero_3.jpg'
-import { filterCategory } from '../../data/filterCategories'
-import { Check, TrendingUp, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router'
+import { Check, TrendingUp, X, Info } from 'lucide-react'
+
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
+import { selectChosenHotel, selectHotelsLoadingState } from '../../store/features/hotelSlice/hotel.selectors'
+import { fetchSelectedHotelById } from '../../store/features/hotelSlice/hotel.thunks'
+import { fetchRoomById } from '../../store/features/roomsSlice/rooms.thunk'
+import { selectChosenRoom, selectRoomsLoadingState } from '../../store/features/roomsSlice/rooms.selectors'
+import { selectIntendedReservationDetails } from '../../store/features/reservationSlice/reservation.selectors'
+import Loading from '../../components/loading/loading'
+import ReviewSummary from '../../components/reviewSummary/reviewSummary'
+import { formatTripDatesAndCalculateNumberOfNights } from '../../utils/formatTripDatesAndCalculateNumberOfNights'
 
 
 
@@ -16,6 +26,56 @@ import { Check, TrendingUp, X } from 'lucide-react'
 
 const HotelCheckout = () => {
 
+
+    const [ showCouponForm, setShowCouponForm ] = useState( false )
+    const { hotelId, roomId } = useParams()
+    const navigate = useNavigate()
+    const selectedHotel = useAppSelector( selectChosenHotel )
+    const selectedRoom = useAppSelector( selectChosenRoom )
+    const isLoadingHotel = useAppSelector( selectHotelsLoadingState )
+    const isLoadingRoom = useAppSelector( selectRoomsLoadingState )
+    const reservationDetails = useAppSelector( selectIntendedReservationDetails )
+    const dispatch = useAppDispatch()
+
+
+
+    useEffect(() => {
+        if(!selectedHotel) {
+            dispatch(fetchSelectedHotelById( hotelId as string ))
+        }
+
+        // console.log("selected room = ", selectedRoom )
+        console.log("reservation details = ", reservationDetails )
+
+
+    },[ dispatch, selectedHotel, hotelId ])
+
+
+
+    useEffect(() => {
+        if(!selectedRoom) {
+            dispatch(fetchRoomById( roomId as string ))
+        }
+
+        console.log("selected room = ", selectedRoom )
+
+    }, [dispatch, roomId, selectedRoom])
+
+
+
+    const navigateToUserBookings = () => {
+        navigate("/my-bookings")
+    }
+
+
+
+
+
+    if( isLoadingHotel || isLoadingRoom ) {
+        return (
+            <Loading />
+        )
+    }
 
 
     return (
@@ -97,29 +157,23 @@ const HotelCheckout = () => {
                         <div className={ styles.policyItem }>
                             <h3>Cancellation policy</h3>
                             <p className={ styles.refundableText }>Fully refundable before Wed, 24 Jun, 2026</p>
-                            <p>Cancellations or changes made after 18:00 (property local time) on 24 Jun 2026 or
-                                no-shows are subject to a property fee equal to 100% of the total 
-                                amount paid for the reservation.
-                            </p>
+                            <ul>
+                                {
+                                    selectedRoom?.cancellationPolicy.map((policy, index) => (
+                                        <li key={ index }>
+                                            <Info size={ 15 } className={ styles.infoIcon }/>
+                                            { policy }
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
 
                         <div className={ styles.policyItem }>
                             <h3>Special check-in instructions</h3>
                             <p>
-                                Front desk staff will greet guests on arrival at the property. Information provided 
-                                by the property may be translated using automated translation tools.
-                                Guests booked in breakfast included rate plans receive breakfast for up to 2 adults 
-                                who are sharing a guestroom. Breakfast fees apply for additional guests. 
-                                Guests booked in dinner included rate plans receive dinner for up to 2 adults who 
-                                are sharing a guestroom. Dinner fees apply for additional guests.                                
+                                { selectedHotel?.finePrint.slice(0, 700)}...                        
                             </p>
-                        </div>
-
-                        <div className={ styles.policyItem }>
-                            <h3>Taxes and fees</h3>
-                            <p>
-                                Deposit: CAD 250 per accommodation, per stay    
-                            </p>                        
                         </div>
                     </article>
 
@@ -134,7 +188,7 @@ const HotelCheckout = () => {
 
 
                     <article className={ styles.submitBtnContainer }>
-                        <button type="submit">
+                        <button type="submit" onClick={ navigateToUserBookings }>
                             Complete booking
                         </button>
                     </article>
@@ -146,35 +200,30 @@ const HotelCheckout = () => {
             <section className={ styles.checkout__bookingConfirmation }>
                 <article className={ styles.hotelInfoSummary }>
                     <div className={ styles.coverImages }>
-                        <img src={ cover } />
+                        <img src={ selectedHotel?.coverImageURL } />
                     </div>
 
-                    <div className={ styles.hotelName }>
-                        <h3>Crowne Plaza Toronto Airport by IHG</h3>
-                        <p>33 Carlson Court, Toronto, ON M9W 6H5</p>
+                    <div className={ styles.hotelDetail }>
+                        <h3>{ selectedHotel?.hotelName }</h3>
+                        <div className={ styles.roomDetail }>
+                            <p className={ styles.roomTypeText }>{ selectedRoom?.roomType }</p> |
+                            <p>{ reservationDetails.intendedAdultTravellers } adult(s)</p> |
+                            <p>{ reservationDetails.intendedChildTravellers } children</p> |
+                            <p>{ reservationDetails.intendedNumberOfRooms } room(s)</p>
+                        </div>
                     </div>
 
-                    <div className={ styles.hotelReviews }>
-                        <p>8.2 out of 10 Very good</p>
+
+                    <div className={ styles.hotelDetail }>
+                        <p>{ selectedHotel?.streetAddress }, { selectedHotel?.city }</p>
+                    </div>
+
+                    <div className={ styles.hotelDetail }>
+                        <ReviewSummary reviewSummary={{ averageRating: selectedHotel?.averageRating!, reviewCount: selectedHotel?.reviewCount! }} />
                     </div>
 
                     <div className={ styles.lengthOfStay }>
-                        <div className={ styles.stayInfo }>
-                            <p className={ styles.stayInfoTitle }>Check-in</p>
-                            <p>Wed, Jul 1, 2026</p>
-                            <p>3:00pm</p>
-                        </div>
-
-                        <div className={ styles.stayInfo }>
-                            <p className={ styles.stayInfoTitle }>Check-out</p>
-                            <p>Wed, Jul 1, 2026</p>
-                            <p>3:00pm</p>
-                        </div>
-
-                        <div className={ styles.stayInfo }>
-                            <p className={ styles.stayInfoTitle }>Nights</p>
-                            <p>1</p>
-                        </div>
+                        <p className={ styles.tripDuration }>{formatTripDatesAndCalculateNumberOfNights( reservationDetails.intendedTripDates?.from, reservationDetails.intendedTripDates?.to )}</p>
                     </div>
 
 
@@ -182,8 +231,8 @@ const HotelCheckout = () => {
                         <h3>Property highlights</h3>
                         <div className={ styles.highlightsContainer }>
                             {
-                                filterCategory[0].options.map( feature => (
-                                    <div className={ styles.featureItem }>
+                                selectedHotel?.amenities.slice(0, 8).map((feature, index) => (
+                                    <div className={ styles.featureItem } key={ index }>
                                         <p>{ feature }</p>
                                     </div>
                                 ))
@@ -233,16 +282,21 @@ const HotelCheckout = () => {
                 </article>
 
 
+                
                 <article className={ styles.couponContainer }>
                     <div className={ styles.couponIntro }>
-                        <p>Use a coupon or promotion code</p>
+                        <p onClick={() => setShowCouponForm( true )}>
+                            Use a coupon or promotion code
+                        </p>
                     </div>
 
-                    <div className={ styles.couponControls }>
-                        <X className={ styles.iconContainer }/>
-                        <input type="text" placeholder='Coupon code' />
-                        <button type="button">Apply</button>
-                    </div>
+                    { showCouponForm &&
+                        <div className={ styles.couponControls }>
+                            <X className={ styles.closeIcon } onClick={() => setShowCouponForm( false )}/>
+                            <input type="text" placeholder='Coupon code' />
+                            <button type="button">Apply</button>
+                        </div>
+                    }
                 </article>
 
 
