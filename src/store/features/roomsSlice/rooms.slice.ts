@@ -49,7 +49,7 @@ export const roomsSlice = createSlice({
                 state.rooms = []
                 state.roomsError = action.payload as string
             })
-            .addCase(fetchRoomById.pending, (state, action) => {
+            .addCase(fetchRoomById.pending, (state) => {
                 state.loadingRooms = true
             })
             .addCase(fetchRoomById.fulfilled, (state, action) => {
