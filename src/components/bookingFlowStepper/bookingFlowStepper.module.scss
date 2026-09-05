@@ -1,0 +1,97 @@
+@use '../../style/breakpoints' as *;
+@use '../../style/colours' as *;
+@use '../../style/fonts' as *;
+
+
+
+
+
+
+
+.bookingFlowStepper {
+    display: flex;
+    justify-content: space-evenly;
+
+
+    // @include mini-mobile {
+    //     justify-content: space-between;
+    // }
+
+
+    // @include mobile {
+    //     justify-content: space-between;
+    // }
+
+
+
+
+    .stepperItem {
+        display: flex;
+        gap: 0.5rem;
+
+
+        .stepperArticle {
+            display: flex;
+            gap: 0.5rem;
+
+
+            @include mini-mobile {
+                flex-direction: column;
+                align-items: center;
+            }
+
+
+            @include mobile {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+
+
+            .step {
+                background-color: var(--brand-primary);
+                width: 2rem;
+                height: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                
+
+
+                p {
+                    color: var(--white);
+                    @include font-small('Poppins');
+                    
+                }
+
+                .checkIcon {
+                    color: var(--white);
+                }
+            }
+
+
+            h4 {
+                align-self: center;
+                @include font-small('Poppins');
+                font-weight: 600;
+                }
+        }
+
+        
+        .divider {
+            align-self: center;
+
+
+            @include mini-mobile {
+                display: none;
+            }
+
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+}

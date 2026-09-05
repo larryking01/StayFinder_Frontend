@@ -6,422 +6,453 @@
 
 
 
-.checkout {
-    @include base-padding(2rem);
-    margin: 4rem 0;
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
+
+.container {
+    // background-color: green;
+    @include base-padding(3rem);
 
 
     @include mini-mobile {
-        flex-direction: column;
-        @include base-padding(0, 1rem)
+        @include base-padding(2rem, 0);
     }
 
-
     @include mobile {
-        flex-direction: column;
-        @include base-padding(0, 1rem)
+        @include base-padding(2rem, 0);
     }
 
 
     @include tablet {
-        @include base-padding(0, 1rem)
+        @include base-padding(2rem, 0)
     }
 
 
-    h3 {
-        margin-bottom: 0.5rem;
-        @include font-sub-title('Poppins');
-        color: var(--brand-primary)
+
+    .bookingStepperWrapper {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
 
 
-    p {
-        @include font-small('Poppins');
+    .checkout {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        // background-color: red;
 
 
         @include mini-mobile {
-            @include font-regular('Poppins');
+            flex-direction: column;
         }
 
 
         @include mobile {
-            @include font-regular('Poppins');
-        }
-    }
-
-
-
-    &__paymentColumn {
-        width: 50%;
-
-
-        @include mini-mobile {
-            width: 100%;
+            flex-direction: column;
         }
 
 
-        @include mobile {
-            width: 100%;
+        // @include tablet {
+        //     @include base-padding(2rem, 1rem)
+        // }
+
+
+
+        h3 {
+            margin-bottom: 0.5rem;
+            @include font-sub-title('Poppins');
+            color: var(--brand-primary)
         }
 
 
-        form {
-            width: 100%;
+        p {
+            @include font-small('Poppins');
 
-            .formControlsContainer {
-                @include element-border-radius;
-                padding: 1rem;
-                margin-bottom: 1rem;
+
+            @include mini-mobile {
+                @include font-regular('Poppins');
             }
 
 
-            .inputContainer {
-                position: relative;
-                margin-bottom: 1rem;
+            @include mobile {
+                @include font-regular('Poppins');
+            }
+        }
 
 
-                input {
-                    @include text-input-default();
-                }
+
+        &__paymentColumn {
+            width: 45%;
+            padding: 1rem;
+            // background-color: yellow;
+
+
+            @include mini-mobile {
+                width: 100%;
             }
 
 
-            .inputContainerFlex {
-                display: flex;
-                gap: 1rem;
-                margin-bottom: 1rem;
+            @include mobile {
+                width: 100%;
+            }
 
 
-                input {
-                    @include text-input-default();
+            form {
+                width: 100%;
 
+                .formControlsContainer {
+                    @include element-border-radius;
+                    margin-bottom: 1rem;
                 }
 
 
-
-                .phoneRegionContainer {
+                .inputContainer {
                     position: relative;
-                    width: 40%;
+                    margin-bottom: 1rem;
+
+
+                    input {
+                        @include text-input-default();
+                    }
                 }
 
 
-                .phoneNumberContainer {
-                    position: relative;
-                    width: 60%;
-                }
-            }
+                .inputContainerFlex {
+                    display: flex;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
 
 
-            .notificationsContainer {
-                display: flex;
-                gap: 0.5rem;
-                margin-bottom: 3rem;
+                    input {
+                        @include text-input-default();
 
-
-                .checkBox {
-                    @include checkBox-default();
-                }
-
-
-                p {
-                    @include font-small('Poppins');
-                    color: var(--text-secondary)
-                }
-            }
-
-
-            .cancellationPolicyAndInstructions {
-                background-color: var(--card-bg);
-                @include box-shadow;
-                @include element-border-radius;
-                padding: 1rem;
-
-
-                .policyItem {
-                    margin-bottom: 2rem;
-
-
-                    p {
-                        line-height: 1.5rem;
                     }
 
 
-                    ul {
-                        list-style: none;
-                        
 
-                        li {
-                            display: flex;
-                            gap: 0.5rem;
-                            margin-bottom: 0.5rem;
-                            @include font-small('Poppins');
+                    .phoneRegionContainer {
+                        position: relative;
+                        width: 40%;
+                    }
 
 
-                            .infoIcon {
-                                align-self: center;
+                    .phoneNumberContainer {
+                        position: relative;
+                        width: 60%;
+                    }
+                }
+
+
+                .notificationsContainer {
+                    display: flex;
+                    gap: 0.5rem;
+                    margin-bottom: 3rem;
+
+
+                    .checkBox {
+                        @include checkBox-default();
+                    }
+
+
+                    p {
+                        @include font-small('Poppins');
+                        color: var(--text-secondary)
+                    }
+                }
+
+
+                .cancellationPolicyAndInstructions {
+                    background-color: var(--card-bg);
+                    @include box-shadow;
+                    @include element-border-radius;
+                    padding: 1rem;
+
+
+                    .policyItem {
+                        margin-bottom: 2rem;
+
+
+                        p {
+                            line-height: 1.5rem;
+                        }
+
+
+                        ul {
+                            list-style: none;
+                            
+
+                            li {
+                                display: flex;
+                                gap: 0.5rem;
+                                margin-bottom: 0.5rem;
+                                @include font-small('Poppins');
+
+
+                                .infoIcon {
+                                    align-self: center;
+                                }
                             }
+                        }
+
+
+                        .refundableText {
+                            background-color: var(--brand-secondary);
+                            padding: 0.5rem;
+                            @include element-border-radius;
+                            margin-bottom: 1rem;
+                            @include box-shadow;
+                            font-weight: 600;
+                        }
+                    }
+                }
+
+
+                .termsAndConditions {
+                    padding: 1rem 0;
+                    line-height: 1.5rem;
+
+
+                    p {
+                        color: var(--text-secondary)
+                    }
+                }
+
+
+                .submitBtnContainer {
+                    padding: 1rem 0;
+
+
+                    button {
+                        @include button-primary(50%, 3rem);
+
+
+                        @include mini-mobile {
+                            @include button-primary(100%, 3rem)
+                        };
+
+
+                        @include mobile {
+                            @include button-primary(100%, 3rem)
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        &__bookingConfirmation {
+            width: 40%;
+            padding: 1rem;
+            // background-color: yellow;
+
+
+            @include mini-mobile {
+                width: 100%;
+            }
+
+
+            @include mobile {
+                width: 100%;
+            }
+
+
+            .hotelInfoSummary {
+                background-color: var(--card-bg);
+                @include box-shadow;
+                @include element-border-radius;
+                margin-bottom: 1rem;
+
+
+                .coverImages {
+                    height: 15rem;
+                    margin-bottom: 0.5rem;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-top-left-radius: 0.625rem;
+                        border-top-right-radius: 0.625rem;
+                    }
+                }
+
+
+                .hotelDetail {
+                    margin-bottom: 1rem;
+                    padding: 0 1rem;
+
+
+                    .roomTypeText {
+                        font-weight: 600;
+                    }
+
+
+                    .roomDetail {
+                        display: flex;
+                        gap: 0.5rem;
+                    }
+                }
+
+
+                .lengthOfStay {
+                    height: 4rem;
+                    margin: 1rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    @include element-border-radius;
+                    background-color: var(--brand-secondary);
+                    padding: 1rem;
+                    @include box-shadow;
+
+
+                    .tripDuration {
+                        @include font-sub-title('Poppins');
+                        font-size: 1rem;
+                    }
+                        
+                }
+
+
+                .featureHighlights {
+                    padding: 1rem;
+
+
+                    .highlightsContainer {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        gap: 0.7rem;
+                    }
+                }
+            }
+
+
+            .goodTaste {
+                background-color: var(--card-bg);
+                margin-bottom: 1rem;
+
+
+                .tasteItem {
+                    @include box-shadow;
+                    @include element-border-radius;
+                    padding: 1rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 1rem;
+
+
+                    .iconContainer {
+                        display: grid;
+                        place-items: center;
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        border-radius: 50%;
+                        background-color: var(--brand-secondary);
+
+
+                        @include tablet {
+                            width: 3rem;
+                            height: 3rem;
                         }
                     }
 
 
-                    .refundableText {
-                        background-color: var(--brand-secondary);
-                        padding: 0.5rem;
-                        @include element-border-radius;
-                        margin-bottom: 1rem;
-                        @include box-shadow;
-                        font-weight: 600;
+                    p {
+                        align-self: center;
                     }
                 }
+                
             }
 
 
-            .termsAndConditions {
-                padding: 1rem 0;
-                line-height: 1.5rem;
-
-
-                p {
-                    color: var(--text-secondary)
-                }
-            }
-
-
-            .submitBtnContainer {
-                padding: 1rem 0;
-
-
-                button {
-                    @include button-primary(50%, 3rem);
-
-
-                    @include mini-mobile {
-                        @include button-primary(100%, 3rem)
-                    };
-
-
-                    @include mobile {
-                        @include button-primary(100%, 3rem)
-                    }
-                }
-            }
-        }
-    }
-
-
-
-    &__bookingConfirmation {
-        width: 40%;
-
-
-        @include mini-mobile {
-            width: 100%;
-        }
-
-
-        @include mobile {
-            width: 100%;
-        }
-
-
-        .hotelInfoSummary {
-            background-color: var(--card-bg);
-            @include box-shadow;
-            @include element-border-radius;
-            margin-bottom: 1rem;
-
-
-            .coverImages {
-                height: 15rem;
-                margin-bottom: 0.5rem;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-top-left-radius: 0.625rem;
-                    border-top-right-radius: 0.625rem;
-                }
-            }
-
-
-            .hotelDetail {
-                margin-bottom: 1rem;
-                padding: 0 1rem;
-
-
-                .roomTypeText {
-                    font-weight: 600;
-                }
-
-
-                .roomDetail {
-                    display: flex;
-                    gap: 0.5rem;
-                }
-            }
-
-
-            .lengthOfStay {
-                height: 4rem;
-                margin: 1rem;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                @include element-border-radius;
-                background-color: var(--brand-secondary);
-                padding: 1rem;
+            .priceDetails {
+                background-color: var(--card-bg);
                 @include box-shadow;
-
-
-                .tripDuration {
-                    @include font-sub-title('Poppins');
-                    font-size: 1rem;
-                }
-                    
-            }
-
-
-            .featureHighlights {
+                @include element-border-radius;
                 padding: 1rem;
+                margin-bottom: 2rem;
 
 
-                .highlightsContainer {
-                    width: 100%;
+                .priceItem {
                     display: flex;
                     justify-content: space-between;
-                    flex-wrap: wrap;
-                    gap: 0.7rem;
+                    margin-bottom: 2rem;
+
+
+                    &:nth-child(3) {
+                        padding-bottom: 1rem;
+                        border-bottom: 2px solid var(--border-default);
+                    }
+
+
+                    .total {
+                        @include font-sub-title('Poppins');
+                    }
                 }
-            }
-        }
 
 
-        .goodTaste {
-            background-color: var(--card-bg);
-            margin-bottom: 1rem;
-
-
-            .tasteItem {
-                @include box-shadow;
-                @include element-border-radius;
-                padding: 1rem;
-                display: flex;
-                justify-content: flex-start;
-                gap: 1rem;
-
-
-                .iconContainer {
-                    display: grid;
-                    place-items: center;
-                    width: 2.5rem;
-                    height: 2.5rem;
-                    border-radius: 50%;
+                .priceIncrementWarning {
                     background-color: var(--brand-secondary);
+                    padding: 1rem;
+                    @include element-border-radius;
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 1rem;
+                    
+                }
+            }
 
 
-                    @include tablet {
-                        width: 3rem;
-                        height: 3rem;
+            .couponContainer {
+
+
+                .couponIntro {
+                    margin-bottom: 2rem;
+
+
+                    p {
+                        @include font-small('Poppins');
+                        font-size: 0.92rem;
+                        color: var(--brand-primary);
+                        cursor: pointer;
+                        transition: font-weight 0.3s ease;
+
+
+                        &:hover {
+                            font-weight: 700;
+                        }
                     }
                 }
 
 
-                p {
-                    align-self: center;
-                }
-            }
-            
-        }
+                .couponControls {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    justify-content: space-between;
+                    height: 100%;
 
 
-        .priceDetails {
-            background-color: var(--card-bg);
-            @include box-shadow;
-            @include element-border-radius;
-            padding: 1rem;
-            margin-bottom: 2rem;
+                    .closeIcon {
+                        align-self: flex-start;
+                        cursor: pointer;
+                    }
+                    
+
+                    input {
+                        @include text-input-default(100%, 3rem);
+                    }
 
 
-            .priceItem {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 2rem;
-
-
-                &:nth-child(3) {
-                    padding-bottom: 1rem;
-                    border-bottom: 2px solid var(--border-default);
-                }
-
-
-                .total {
-                    @include font-sub-title('Poppins');
-                }
-            }
-
-
-            .priceIncrementWarning {
-                background-color: var(--brand-secondary);
-                padding: 1rem;
-                @include element-border-radius;
-                display: flex;
-                justify-content: flex-start;
-                gap: 1rem;
-                
-            }
-        }
-
-
-        .couponContainer {
-
-
-            .couponIntro {
-                margin-bottom: 2rem;
-
-
-                p {
-                    @include font-small('Poppins');
-                    font-size: 0.92rem;
-                    color: var(--brand-primary);
-                    cursor: pointer;
-                    transition: font-weight 0.3s ease;
-
-
-                    &:hover {
-                        font-weight: 700;
+                    button {
+                        @include button-primary(100%, 3rem)
                     }
                 }
             }
-
-
-            .couponControls {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                justify-content: space-between;
-                height: 100%;
-
-
-                .closeIcon {
-                    align-self: flex-start;
-                    cursor: pointer;
-                }
-                
-
-                input {
-                    @include text-input-default(100%, 3rem);
-                }
-
-
-                button {
-                    @include button-primary(100%, 3rem)
-                }
-            }
         }
+
     }
+
 
 }
