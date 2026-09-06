@@ -36,20 +36,18 @@
         }
     }
 
-    // &__reservationForm {
-    //     display: flex;
-    //     justify-content: center;
-    //     margin: 2rem 0;
-    // }
+
+    &__reservationContainer {
+        margin-bottom: 2rem;
+    }
+
 
 
     &__nameLocationCTA {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
 
         .nameAndCTA {
-            // display: flex;
-            // justify-content: space-between;
 
 
             @include mini-mobile {
@@ -92,11 +90,6 @@
                 gap: 0.5rem;
                 margin-bottom: 1rem;
 
-
-                // @include mini-mobile {
-                //     flex-direction: column;
-                // }
-                
 
                 p {
                     @include font-regular('Poppins');
