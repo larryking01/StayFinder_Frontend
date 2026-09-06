@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router'
 import type { RoomCardProp } from '../../types/componentProps/roomCardProps'
 import cover1 from '../../assets/images/hero_2.jpg'
 import { CircleSmall } from 'lucide-react'
-import { useAppDispatch } from '../../hooks/useStore'
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { setSelectedRoom } from '../../store/features/roomsSlice/rooms.slice'
-
+import { selectIntendedTripDates } from '../../store/features/reservationSlice/reservation.selectors'
 
 
 
@@ -18,10 +18,18 @@ const RoomCard = ({ roomItem }: RoomCardProp) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const intendedTripDates = useAppSelector( selectIntendedTripDates )
 
 
     const navigateToCheckout = () => {
         dispatch(setSelectedRoom( roomItem ))
+
+        // check if user has selected trip dates before navigating to checkout.
+        if(!intendedTripDates || intendedTripDates.from?.getTime() === intendedTripDates.to?.getTime()) {
+            alert("Please select your start and end dates to continue.")
+            return
+        }
+
         navigate(`/checkout/${ roomItem.hotelName }/${ roomItem.hotelId }/${ roomItem.id }`)
     }
 
