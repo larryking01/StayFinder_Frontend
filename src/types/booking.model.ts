@@ -1,57 +1,34 @@
 export interface Booking {
-    id: string;
-    userId: string;
-    hotelId: string;
+    id?: string
 
-    userEmail: string;
+    userId: string
+    userEmail: string
 
-    hotelName: string;
-    hotelCoverImage: string;
-    hotelLocation: string;
+    hotelId: string
+    hotelName: string
+    hotelCoverImage: string
 
-    startDate: string; 
-    endDate: string;
+    roomId: string
+    roomType: string
 
-    numberOfNights: number;
+    startDate: string
+    endDate: string
+    numberOfNights: number
 
-    pricePerNight: number;
-    totalPrice: number;
-    currency: string;
+    numberOfAdults: number
+    numberOfChildren: number
+    numberOfRooms: number
 
-    bookingStatus: BookingStatus;
-    paymentStatus: PaymentStatus;
+    pricePerNight: number
+    totalPrice: number
+    currency: string
 
-    createdAt: string;
+    status: BookingStatus
+    paymentStatus: PaymentStatus
+
+    createdAt: string
+    updatedAt: string
 }
-
-
-
-export interface CreateBookingPayload {
-    userId: string;
-    hotelId: string;
-
-    userEmail: string;
-
-    hotelName: string;
-    hotelCoverImage: string;
-    hotelLocation: string;
-
-    startDate: string;
-    endDate: string;
-
-    numberOfNights: number;
-
-    pricePerNight: number;
-    totalPrice: number;
-    currency: string;
-
-    bookingStatus: BookingStatus;
-    paymentStatus: PaymentStatus;
-
-    createdAt: string;
-}
-
-
 
 
 type BookingStatus = | "pending" | "confirmed" | "cancelled" | "completed";
