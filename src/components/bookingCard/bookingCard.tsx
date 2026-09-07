@@ -1,7 +1,7 @@
 import styles from './bookingCard.module.scss'
 import cover1 from '../../assets/images/hero_4.jpg'
 import { useEffect, useState } from 'react'
-import { CircleCheck, CircleX, CircleDashed } from 'lucide-react'
+import { CircleCheck, CircleX, CircleDashed, EllipsisVertical } from 'lucide-react'
 
 
 
@@ -67,8 +67,11 @@ const BookingCard = () => {
                         </div>
                     </div>
 
-                    <div className={ styles.pricingInfo }>
+                    <div className={ styles.pricingInfoAndCTA }>
                        <h3>US$ 753.00</h3>
+                       <div className={ styles.ellipsisIconContainer }>
+                            <EllipsisVertical />
+                       </div>
                     </div>
                 </article>
             </section>

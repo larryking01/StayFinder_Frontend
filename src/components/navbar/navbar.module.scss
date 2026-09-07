@@ -67,7 +67,7 @@
 
 
     &__hamburger {
-        background-color: var(--brand-secondary);
+        // background-color: var(--brand-secondary);
         @include element-border-radius;
         padding: 0.5rem;
         cursor: pointer;

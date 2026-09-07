@@ -16,7 +16,7 @@ import ReviewSummary from '../../components/reviewSummary/reviewSummary'
 import Loading from '../../components/loading/loading'
 import Empty from '../../components/empty/empty'
 import RoomCard from '../../components/roomCard/roomCard'
-
+import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 
 
 
@@ -89,7 +89,12 @@ const HotelInfo = () => {
 
 
     return (
-        <main className={ styles.hotelInfo }>           
+        <main className={ styles.hotelInfo }>        
+            <section className={ styles.hotelInfo__reservationContainer }>
+                <ReservationWidget />
+            </section>   
+           
+
             <section className={ styles.hotelInfo__nameLocationCTA }>
                 <article className={ styles.nameAndCTA }>
                     <h3>{ selectedHotel?.hotelName }</h3>
@@ -103,7 +108,7 @@ const HotelInfo = () => {
                     </div>
                 </article>
             </section>
-
+            
 
             <section className={ styles.hotelInfo__picturesDisplayGrid }>
                 {

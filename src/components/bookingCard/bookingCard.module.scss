@@ -45,7 +45,7 @@
                 display: flex;
                 justify-content: space-between;
                 gap: 2rem;
-                width: 90%;
+                width: 80%;
 
 
                 @include mini-mobile {
@@ -141,8 +141,11 @@
             }
 
 
-            .pricingInfo {
+            .pricingInfoAndCTA {
+                display: flex;
+                gap: 0.5rem;
 
+                
                 @include mini-mobile {
                     width: 100% !important;
                 }
@@ -152,12 +155,29 @@
                 }
 
                 @include tablet {
-                    width: 20% !important;
+                    width: 20%;
                 }
 
 
                 h3 {
                     @include font-sub-title('Poppins');
+                }
+
+
+                .ellipsisIconContainer {
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    width: 2rem;
+                    height: 2rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+
+                    &:hover {
+                        background-color: var(--ui-element-bg);
+                        @include element-border-radius
+                    }
                 }
 
             }
