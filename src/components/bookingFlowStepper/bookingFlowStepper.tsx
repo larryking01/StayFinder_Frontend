@@ -13,7 +13,7 @@ import { useState } from 'react'
 export const BookingFlowStepper = () => {
     
 
-    const [ detailsCompleted, setDetailsCompleted ] = useState<boolean>(false)
+    const [ detailsCompleted ] = useState<boolean>(false)
 
 
     return (
