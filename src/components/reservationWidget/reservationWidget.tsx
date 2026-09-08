@@ -1,5 +1,5 @@
 import styles from './reservationWidget.module.scss'
-import { MapPin, User, CalendarDays } from 'lucide-react'
+import { MapPin, User, CalendarDays, AArrowDown } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 
@@ -101,10 +101,21 @@ const ReservationWidget = () => {
     const submitHotelPreferences = (event: any) => {
         event.preventDefault()
         dispatch(closeReservationControls())
-        navigate('/searchResults/Movempick Ambassador Hotel')
+
+        if(!intendedDestination) {
+            alert("Enter a destination to start searching...")
+            return
+        }
+
+        // pass the intended destination to the query parameter
+        const searchParams = new URLSearchParams({
+            query: intendedDestination
+        })
+
+        navigate(`search-results?${searchParams.toString()}`)
     }
 
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     
     return (
         <main className={ styles.reservation }>
