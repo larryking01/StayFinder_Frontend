@@ -68,7 +68,7 @@
          
         button {
             @include button-primary(50%, 3rem);
-            @include font-small('Poppins');
+            @include font-regular('Poppins');
 
 
             @include mini-mobile {

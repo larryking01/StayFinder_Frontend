@@ -133,7 +133,7 @@ const ReservationWidget = () => {
                 <section className={ styles.reservation__wrapper}>
                     <input 
                         type="text"
-                        placeholder="Length of stay"                        
+                        placeholder="Check in - Check out"                        
                         className={ styles.reservation__options } 
                         onClick={ displayDatePicker } 
                         value={ renderedTripDates }

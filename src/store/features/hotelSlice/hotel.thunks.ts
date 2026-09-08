@@ -49,3 +49,23 @@ export const fetchSelectedHotelById = createAsyncThunk('hotels/fetchSelectedHote
         return rejectWithValue("An unexpected error occurred")
     }
 })
+
+
+
+export const searchHotels = createAsyncThunk('hotels/searchHotels', async (query: string, { rejectWithValue }) => {
+    const endpoint = `/hotels/find-hotel-by-search-query/${ query }`
+
+    try {
+        let response = await publicAxios.get( endpoint)
+        return response.data.data
+    }
+    catch( error ) {
+        if(isAxiosError(error)) {
+            console.log("FETCH/HOTEL BY QUERY axios error: ", error)
+            // check for specific axios error type and return descriptive messages
+            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        }
+
+        return rejectWithValue("An unexpected error occurred")
+    }
+})
