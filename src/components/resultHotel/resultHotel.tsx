@@ -1,10 +1,5 @@
 import styles from './resultHotel.module.scss'
 import { MapPin } from 'lucide-react'
-import { useEffect } from 'react'
-// import ReviewSummary from '../reviewSummary/reviewSummary'
-import { calculateNumberOfNights } from '../../utils/calculateNumberOfNights'
-import { useAppSelector } from '../../hooks/useStore'
-import { selectIntendedTripDates, selectIntendedReservationDetails } from '../../store/features/reservationSlice/reservation.selectors'
 import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
 import { useNavigate } from 'react-router'
 
@@ -23,9 +18,6 @@ const ResultHotel = ({ hotel }: HotelCardProps) => {
 
 
     const navigate = useNavigate()
-    const intendedTripDates = useAppSelector( selectIntendedTripDates )
-    const reservationDetails = useAppSelector( selectIntendedReservationDetails )
-
 
 
     const handleNavigateToHotelInfo = () => {

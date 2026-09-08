@@ -9,7 +9,7 @@ interface ReservationState {
     openTravellersMenu: boolean,
 
     // component data
-    intendedDestination: string,
+    intendedDestination: string | null,
     intendedTripDates: DateRange | undefined,
     intendedChildTravellers: number,
     intendedAdultTravellers: number,

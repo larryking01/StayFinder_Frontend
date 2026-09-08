@@ -35,7 +35,7 @@ const reservationSlice = createSlice({
             state.openLocationSuggestions = false 
             state.openTravellersMenu = false
         },
-        setIntendedDestination(state, action: PayloadAction<string>) {
+        setIntendedDestination(state, action: PayloadAction<string | null>) {
             let selectedDestination = action.payload
             state.intendedDestination = selectedDestination
         },
