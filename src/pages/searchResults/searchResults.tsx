@@ -1,8 +1,11 @@
 import styles from './searchResults.module.scss'
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router'
+import { useAppSelector } from '../../hooks/useStore'
+import { selectHotelsBySearchQuery } from '../../store/features/hotelSlice/hotel.selectors'
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import ResultHotel from '../../components/resultHotel/resultHotel'
+import Empty from '../../components/empty/empty'
 import map1 from '../../assets/images/map1.avif'
 import { filterCategory } from '../../data/filterCategories'
 import { ChevronDown } from 'lucide-react'
@@ -21,12 +24,25 @@ const SearchResults = () => {
 
     const [searchParams] = useSearchParams()
     let destination = searchParams.get('query')
+    const matchingHotels = useAppSelector(state => selectHotelsBySearchQuery(state, destination as string))
+
 
 
     useEffect(() => {
         console.log("search params = ", destination)
+        console.log("matching hotels = ", matchingHotels)
 
     }, [searchParams])
+
+
+    if(matchingHotels.length === 0) {
+        return (
+            <Empty emptyCardInfo={{
+                title: "No hotels found",
+                content: "We couldn't find any hotels matching your search. Try searching for a different hotel, city, or location."
+            }} />
+        )
+    }
 
 
 
@@ -67,7 +83,7 @@ const SearchResults = () => {
 
                 <section className={ styles.resultsContent }>
                     <div className={ styles.options }>
-                        <h3>Kumasi: 103 properties found</h3>
+                        <h3>{`${ destination }: ${ matchingHotels.length } properties found.`}</h3>
                         
                         <div className={ styles.filter }>
                             <p>Sort by: Recommended for you</p>
@@ -75,25 +91,13 @@ const SearchResults = () => {
                         </div>
                     </div>
 
-                    <div className={ styles.hotelsList }>
-                        <ResultHotel />
-                    </div>
-
-                    <div className={ styles.hotelsList }>
-                        <ResultHotel />
-                    </div>
-
-                    <div className={ styles.hotelsList }>
-                        <ResultHotel />
-                    </div>
-
-                    <div className={ styles.hotelsList }>
-                        <ResultHotel />
-                    </div>
-
-                    <div className={ styles.hotelsList }>
-                        <ResultHotel />
-                    </div>
+                    {
+                        matchingHotels.map( hotel => (
+                            <div className={ styles.hotelsList } key={ hotel.id}>
+                                <ResultHotel hotel={ hotel } /> 
+                            </div>
+                        ))
+                    }
                 </section>
             </article>
             

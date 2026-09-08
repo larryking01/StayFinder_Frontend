@@ -23,7 +23,7 @@ const LocationSuggestions = () => {
 
 
     const handleSetIntendedDestination = () => {
-        dispatch(setIntendedDestination("Square One Shopping Center"))
+        dispatch(setIntendedDestination("Accra"))
         dispatch(toggleOpenLocationSuggestions())    
     }
 
