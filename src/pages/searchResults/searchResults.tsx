@@ -1,4 +1,6 @@
 import styles from './searchResults.module.scss'
+import { useEffect } from 'react'
+import { useSearchParams } from 'react-router'
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import ResultHotel from '../../components/resultHotel/resultHotel'
 import map1 from '../../assets/images/map1.avif'
@@ -15,6 +17,17 @@ import { ChevronDown } from 'lucide-react'
 
 
 const SearchResults = () => {
+
+
+    const [searchParams] = useSearchParams()
+    let destination = searchParams.get('query')
+
+
+    useEffect(() => {
+        console.log("search params = ", destination)
+
+    }, [searchParams])
+
 
 
     return (
