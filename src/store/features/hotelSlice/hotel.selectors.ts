@@ -16,7 +16,7 @@ export const selectHotelsError = (state: Rootstate) => state.hotels.error
 
 export const selectAppName = (state: Rootstate) => state.hotels.appName 
 
-export const selectSearchQuery = (state: Rootstate, query: string) => query
+export const selectSearchQuery = (_state: Rootstate, query: string) => query
 
 export const selectHotelsBySearchQuery = createSelector(
     [selectAllHotels, selectSearchQuery],
