@@ -9,7 +9,7 @@ interface ReservationState {
     openTravellersMenu: boolean,
 
     // component data
-    intendedDestination: string | null,
+    searchDestination: string,
     intendedTripDates: DateRange | undefined,
     intendedChildTravellers: number,
     intendedAdultTravellers: number,
@@ -25,7 +25,7 @@ export const reservationInitialState: ReservationState = {
     openTravellersMenu: false,
 
     // component data
-    intendedDestination: "",
+    searchDestination: "",
     intendedTripDates: undefined,
     intendedChildTravellers: 0,
     intendedAdultTravellers: 1,

@@ -3,6 +3,8 @@ import { MapPin } from 'lucide-react'
 import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
 import { useNavigate } from 'react-router'
 import ReviewSummary from '../reviewSummary/reviewSummary'
+import { useAppDispatch } from '../../hooks/useStore'
+import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice'
 
 
 
@@ -18,23 +20,25 @@ const ResultHotel = ({ hotel }: HotelCardProps) => {
 
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
 
     const handleNavigateToHotelInfo = () => {
+        dispatch(updateSelectedHotel(hotel))
         navigate(`/${ hotel.hotelName }/${ hotel.id }`)
     }
 
 
     return (
-        <main className={ styles.resultHotel }>
+        <main className={ styles.resultHotel } onClick={ handleNavigateToHotelInfo }>
             <article className={ styles.resultHotel__coverImage }>
-                <img src={ hotel.coverImageURL } onClick={ handleNavigateToHotelInfo } />
+                <img src={ hotel.coverImageURL }/>
             </article>
 
             <article className={ styles.resultHotel__info }>
                 <section className={ styles.infoItemContainer }>
                     <div className={ styles.hotelNameAndReview }>
-                        <h3 onClick={ handleNavigateToHotelInfo }>{ hotel.hotelName }</h3>
+                        <h3>{ hotel.hotelName }</h3>
                         <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }} />
                     </div>
 

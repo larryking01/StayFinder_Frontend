@@ -1,7 +1,6 @@
 import styles from './reservationWidget.module.scss'
 import { MapPin, User, CalendarDays } from 'lucide-react'
 import { useNavigate } from 'react-router'
-import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 
 import { 
@@ -9,14 +8,14 @@ import {
          toggleOpenLocationSuggestions, 
          toggleOpenTravellersMenu, 
          closeReservationControls,
-         setIntendedDestination
+         setsearchDestination
         } from '../../store/features/reservationSlice/reservation.slice'
 
 import { 
          selectOpenDayPicker, 
          selectOpenLocationSuggestions, 
          selectOpenTravellersMenu,
-         selectIntendedDestination, 
+         selectSearchDestination, 
          selectIntendedTripDates, 
          selectIntendedAdultTravellers,
          selectIntendedChildTravellers, 
@@ -42,12 +41,11 @@ import { formatTripDates } from '../../utils/formatTripDates'
 const ReservationWidget = () => {
 
 
-    const [searchTerm, setSearchTerm] = useState<string>('')
     const dispatch = useAppDispatch()
     const showLocationSuggestions = useAppSelector( selectOpenLocationSuggestions )
     const showDayPicker = useAppSelector( selectOpenDayPicker )
     const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
-    const intendedDestination = useAppSelector( selectIntendedDestination )
+    const searchDestination = useAppSelector( selectSearchDestination )
     const intendedTripDates = useAppSelector( selectIntendedTripDates )
     const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
     const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
@@ -57,9 +55,10 @@ const ReservationWidget = () => {
 
 
     const handleUpdateSearchTerm = (event: any) => {
-        dispatch(setIntendedDestination(null))
-        setSearchTerm(event.target.value)
+        // console.log("search destination = ", searchDestination)
+        dispatch(setsearchDestination(event.target.value))
     }
+
 
     const displayLocationSuggestions = () => {
         dispatch(toggleOpenLocationSuggestions())
@@ -109,14 +108,14 @@ const ReservationWidget = () => {
         event.preventDefault()
         dispatch(closeReservationControls())
 
-        if(!intendedDestination && !searchTerm) {
+        if(!searchDestination) {
             alert("Enter a destination to start searching...")
             return
         }
 
         // pass the intended destination to the query parameter
         const searchParams = new URLSearchParams({
-            query: intendedDestination! ?? searchTerm
+            query: searchDestination
         })
 
         navigate(`/search-results?${searchParams.toString()}`)
@@ -133,7 +132,7 @@ const ReservationWidget = () => {
                         placeholder='Where to?' 
                         onClick={ displayLocationSuggestions } 
                         onChange={ handleUpdateSearchTerm }
-                        value={ intendedDestination ?? searchTerm } 
+                        value={ searchDestination! } 
                     />
                     <MapPin className={ styles.reservation__icon } />
                 </section>

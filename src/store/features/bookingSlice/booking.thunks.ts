@@ -17,7 +17,7 @@ export const addNewBooking = createAsyncThunk('bookings/addNewBooking', async (b
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("ADD/NEW/BOOKING axios error: ", error)
+            console.error("ADD/NEW/BOOKING axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -37,7 +37,7 @@ export const fetchUserBookings = createAsyncThunk('bookings/fetchUserBookings', 
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("FETCH/USER/BOOKINGS axios error: ", error)
+            console.error("FETCH/USER/BOOKINGS axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -57,7 +57,7 @@ export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', as
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("FETCH/BOOKING/BYID axios error: ", error)
+            console.error("FETCH/BOOKING/BYID axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -77,7 +77,7 @@ export const cancelBooking = createAsyncThunk('bookings/cancelBooking', async (b
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("CANCEL/BOOKING axios error: ", error)
+            console.error("CANCEL/BOOKING axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -99,7 +99,7 @@ export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (b
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("DELETE/BOOKING axios error: ", error)
+            console.error("DELETE/BOOKING axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -119,7 +119,7 @@ export const deleteAllBookings = createAsyncThunk('bookings/deleteAllBookings', 
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("DELETE/ALL/BOOKINGS axios error: ", error)
+            console.error("DELETE/ALL/BOOKINGS axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
