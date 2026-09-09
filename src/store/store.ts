@@ -4,7 +4,7 @@ import reviewsReducer from './features/reviewSlice/review.slice'
 import reservationReducer from './features/reservationSlice/reservation.slice'
 import roomsReducer from './features/roomsSlice/rooms.slice'
 import bookingReducer from './features/bookingSlice/booking.slice'
-
+import userReducer from './features/userSlice/user.slice'
 
 
 
@@ -15,7 +15,8 @@ export const store = configureStore({
         reviews: reviewsReducer,
         reservation: reservationReducer,
         rooms: roomsReducer,
-        bookings: bookingReducer
+        bookings: bookingReducer,
+        user: userReducer
     }
 })
 
