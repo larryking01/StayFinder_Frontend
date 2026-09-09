@@ -26,7 +26,7 @@ const SearchResults = () => {
 
 
     const [searchParams] = useSearchParams()
-    let destination = searchParams.get('query')
+    const destination = searchParams.get('query')
     const dispatch = useAppDispatch()
     const isLoadingHotels = useAppSelector(selectHotelsLoadingState)
     const matchingHotels = useAppSelector(state => selectHotelsBySearchQuery(state, destination as string))
