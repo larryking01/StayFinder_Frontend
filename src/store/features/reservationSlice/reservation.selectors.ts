@@ -13,7 +13,7 @@ export const selectOpenDayPicker = (state: Rootstate) => state.reservation.openD
 
 export const selectOpenTravellersMenu = (state: Rootstate) => state.reservation.openTravellersMenu
 
-export const selectIntendedDestination = (state: Rootstate) => state.reservation.intendedDestination
+export const selectSearchDestination = (state: Rootstate) => state.reservation.searchDestination
 
 export const selectIntendedTripDates = (state: Rootstate) => state.reservation.intendedTripDates
 
@@ -26,15 +26,15 @@ export const selectIntendedNumberOfRooms = (state: Rootstate) => state.reservati
 // use memoized selector to return aggregate reservation details to avoid unnecessary re-rendering inside component.
 export const selectIntendedReservationDetails = createSelector(
     [
-     selectIntendedDestination, 
+     selectSearchDestination, 
      selectIntendedTripDates, 
      selectIntendedChildTravellers, 
      selectIntendedAdultTravellers, 
      selectIntendedNumberOfRooms
     ],
-    ((intendedDestination, intendedTripDates, intendedChildTravellers, intendedAdultTravellers, intendedNumberOfRooms) => {
+    ((searchDestination, intendedTripDates, intendedChildTravellers, intendedAdultTravellers, intendedNumberOfRooms) => {
         let reservationDetails = {
-            intendedDestination,
+            searchDestination,
             intendedTripDates,
             intendedChildTravellers,
             intendedAdultTravellers,

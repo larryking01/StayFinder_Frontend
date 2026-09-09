@@ -7,14 +7,15 @@ import {
          toggleOpenDayPicker, 
          toggleOpenLocationSuggestions, 
          toggleOpenTravellersMenu, 
-         closeReservationControls 
+         closeReservationControls,
+         setsearchDestination
         } from '../../store/features/reservationSlice/reservation.slice'
 
 import { 
          selectOpenDayPicker, 
          selectOpenLocationSuggestions, 
          selectOpenTravellersMenu,
-         selectIntendedDestination, 
+         selectSearchDestination, 
          selectIntendedTripDates, 
          selectIntendedAdultTravellers,
          selectIntendedChildTravellers, 
@@ -40,18 +41,23 @@ import { formatTripDates } from '../../utils/formatTripDates'
 const ReservationWidget = () => {
 
 
-
     const dispatch = useAppDispatch()
     const showLocationSuggestions = useAppSelector( selectOpenLocationSuggestions )
     const showDayPicker = useAppSelector( selectOpenDayPicker )
     const showTravellersMenu = useAppSelector( selectOpenTravellersMenu )
-    const intendedDestination = useAppSelector( selectIntendedDestination )
+    const searchDestination = useAppSelector( selectSearchDestination )
     const intendedTripDates = useAppSelector( selectIntendedTripDates )
     const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
     const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
     const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
     const navigate = useNavigate()
 
+
+
+    const handleUpdateSearchTerm = (event: any) => {
+        // console.log("search destination = ", searchDestination)
+        dispatch(setsearchDestination(event.target.value))
+    }
 
 
     const displayLocationSuggestions = () => {
@@ -101,10 +107,21 @@ const ReservationWidget = () => {
     const submitHotelPreferences = (event: any) => {
         event.preventDefault()
         dispatch(closeReservationControls())
-        navigate('/searchResults/Movempick Ambassador Hotel')
+
+        if(!searchDestination) {
+            alert("Enter a destination to start searching...")
+            return
+        }
+
+        // pass the intended destination to the query parameter
+        const searchParams = new URLSearchParams({
+            query: searchDestination
+        })
+
+        navigate(`/search-results?${searchParams.toString()}`)
     }
 
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     
     return (
         <main className={ styles.reservation }>
@@ -114,7 +131,8 @@ const ReservationWidget = () => {
                         type="text" 
                         placeholder='Where to?' 
                         onClick={ displayLocationSuggestions } 
-                        value={ intendedDestination } 
+                        onChange={ handleUpdateSearchTerm }
+                        value={ searchDestination! } 
                     />
                     <MapPin className={ styles.reservation__icon } />
                 </section>
@@ -122,7 +140,7 @@ const ReservationWidget = () => {
                 <section className={ styles.reservation__wrapper}>
                     <input 
                         type="text"
-                        placeholder="Length of stay"                        
+                        placeholder="Check in - Check out"                        
                         className={ styles.reservation__options } 
                         onClick={ displayDatePicker } 
                         value={ renderedTripDates }

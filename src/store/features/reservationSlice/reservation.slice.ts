@@ -35,9 +35,9 @@ const reservationSlice = createSlice({
             state.openLocationSuggestions = false 
             state.openTravellersMenu = false
         },
-        setIntendedDestination(state, action: PayloadAction<string>) {
+        setsearchDestination(state, action: PayloadAction<string>) {
             let selectedDestination = action.payload
-            state.intendedDestination = selectedDestination
+            state.searchDestination = selectedDestination
         },
         setIntendedTripDates(state, action: PayloadAction<DateRange | undefined>) {
             let selectedStayDuration = action.payload 
@@ -92,7 +92,7 @@ export const {
                 toggleOpenDayPicker, 
                 toggleOpenTravellersMenu, 
                 closeReservationControls,
-                setIntendedDestination,
+                setsearchDestination,
                 setIntendedTripDates,
                 incrementIntendedNumberOfChildTravellers,
                 decrementIntendedNumberOfChildTravellers,

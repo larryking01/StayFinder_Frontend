@@ -7,7 +7,7 @@ import {
         } from '../../store/features/reservationSlice/reservation.slice'
 
 import { selectIntendedAdultTravellers, selectIntendedChildTravellers, 
-         selectIntendedNumberOfRooms, selectIntendedReservationDetails } from '../../store/features/reservationSlice/reservation.selectors'
+         selectIntendedNumberOfRooms } from '../../store/features/reservationSlice/reservation.selectors'
 
 
 
@@ -25,11 +25,9 @@ const TravellersMenu = () => {
     const intendedChildTravellers = useAppSelector( selectIntendedChildTravellers )
     const intendedAdultTravellers = useAppSelector( selectIntendedAdultTravellers )
     const intendedRooms = useAppSelector( selectIntendedNumberOfRooms )
-    const intendedReservationDetails = useAppSelector( selectIntendedReservationDetails )
 
 
     const handleCloseTravellersMenu = () => {
-        console.log("intended reservation details = ", intendedReservationDetails)
         dispatch(toggleOpenTravellersMenu())
     }
 

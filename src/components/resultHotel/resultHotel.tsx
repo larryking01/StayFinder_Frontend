@@ -1,8 +1,10 @@
 import styles from './resultHotel.module.scss'
-import cover1 from '../../assets/images/hero_2.jpg'
 import { MapPin } from 'lucide-react'
-// import ReviewSummary from '../reviewSummary/reviewSummary'
+import type { HotelCardProps } from '../../types/componentProps/hotelCardProps'
 import { useNavigate } from 'react-router'
+import ReviewSummary from '../reviewSummary/reviewSummary'
+import { useAppDispatch } from '../../hooks/useStore'
+import { updateSelectedHotel } from '../../store/features/hotelSlice/hotel.slice'
 
 
 
@@ -12,54 +14,62 @@ import { useNavigate } from 'react-router'
 
 
 
-const ResultHotel = () => {
+
+
+const ResultHotel = ({ hotel }: HotelCardProps) => {
 
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
 
     const handleNavigateToHotelInfo = () => {
-        navigate('/Accra MArriot Hotel/85789325634857243')
+        dispatch(updateSelectedHotel(hotel))
+        navigate(`/${ hotel.hotelName }/${ hotel.id }`)
     }
 
 
     return (
         <main className={ styles.resultHotel } onClick={ handleNavigateToHotelInfo }>
             <article className={ styles.resultHotel__coverImage }>
-                <img src={ cover1 } />
+                <img src={ hotel.coverImageURL }/>
             </article>
 
             <article className={ styles.resultHotel__info }>
-                <section className={ styles.hotelNameAndReview }>
-                    <h3>Accra Marriott Hotel</h3>
+                <section className={ styles.infoItemContainer }>
+                    <div className={ styles.hotelNameAndReview }>
+                        <h3>{ hotel.hotelName }</h3>
+                        <ReviewSummary reviewSummary={{ averageRating: hotel.averageRating, reviewCount: hotel.reviewCount }} />
+                    </div>
 
-                    {/* <ReviewSummary /> */}
+                    <div className={ `${ styles.infoItem } ${ styles.smallFont }` }>
+                        <MapPin size={ 20 } />
+                        <p className={ styles.location }>{ hotel.streetAddress }, { hotel.city}</p>
+                    </div>
                 </section>
 
 
-                <section className={ `${ styles.location } ${ styles.smallFont }` }>
-                    <MapPin size={ 20 } />
-                    <p>Airport, Accra</p>
+                <section className={ styles.infoItemContainer }>
+                    <div className={ `${ styles.infoItem } ${ styles.smallFont }` }>
+                        {
+                            hotel.amenities.slice(0,3).map((amenity, index) => (
+                                <p key={ index }>{ amenity } |</p>
+                            ))
+                        }
+                    </div>
+
+                    <div className={ `${ styles.description } ${ styles.smallFont }` }>
+                        <p>{ hotel.shortDescription }</p>
+                    </div>
                 </section>
 
 
-                <section className={ `${ styles.topFeatures } ${ styles.smallFont }` }>
-                    <p>Breakfast</p>
-                    <p>Pool</p>
-                    <p>Restaurant</p>
+                <section className={ styles.infoItemContainer }>
+                    <div className={ `${ styles.pricing } ${ styles.smallFont }` }>
+                        <p>3 nights | 1 adult</p>
+                        <h3>GHS { hotel.startingPrice }</h3>
+                    </div>
                 </section>
-
-
-                <section className={ `${ styles.refund } ${ styles.smallFont }` }>
-                    <p>Fully refundable. Reserve now, pay later</p>
-                </section>
-
-
-                <section className={ `${ styles.pricing } ${ styles.smallFont }` }>
-                    <p>31 nights, 2 adults</p>
-                    <h3>$ 7, 346, 895</h3>
-                </section>
-
             </article>
         </main>
     )

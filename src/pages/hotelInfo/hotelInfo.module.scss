@@ -139,6 +139,7 @@
             height: 13rem;
             object-fit: cover;
             @include element-border-radius;
+            // @include imageZoom;
         }
     }
 

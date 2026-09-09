@@ -1,6 +1,7 @@
 @use '../../style/fonts' as *;
 @use '../../style/mixins' as *;
 @use '../../style/breakpoints' as *;
+@use "sass:color";
 
 
 
@@ -8,10 +9,9 @@
 
 
 .resultHotel {
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 0.5rem;
     background-color: var(--card-bg);
     cursor: pointer;
     border: 1px solid transparent;
@@ -21,64 +21,79 @@
 
 
 
-
-
-
-
-
     @include mini-mobile {
-        padding: 0.5rem;
         gap: 0.7rem;
         flex-direction: column;
     }
 
 
     @include mobile {
-        padding: 0.5rem;
         gap: 0.7rem;
         flex-direction: column;
     }
 
 
     @include tablet {
-        padding: 0.5rem;
         gap: 0.7rem;
         flex-direction: column;
     }
 
 
     &__coverImage {
-        width: 30%;
+        width: 35%;
+        overflow: hidden;
 
 
         @include mini-mobile {
             width: 100%;
-            height: 15rem;
         }
 
 
         @include mobile {
             width: 100%;
-            height: 15rem;
         }
 
 
         @include tablet {
             width: 100%;
-            height: 15rem;
         }
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            @include element-border-radius;
+            border-top-left-radius: 0.625rem;
+            border-bottom-left-radius: 0.625rem;
+            @include imageZoom;
+
+
+
+            @include mini-mobile {
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 0.625rem;
+            }
+
+
+            @include mobile {
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 0.625rem;
+            }
+
+
+            @include tablet {
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 0.625rem;
+            }
         }
     }
 
 
     &__info {
-        width: 70%;
+        width: 65%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
 
         @include mini-mobile {
@@ -95,125 +110,127 @@
             width: 100%;
         }
 
-        .hotelNameAndReview {
-            display: flex;
-            justify-content: space-between;
+
+        .infoItemContainer {
             margin-bottom: 1rem;
 
 
-            @include mini-mobile {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 1.5rem;
+            &:last-child {
+                margin-bottom: 0;
             }
 
 
-            @include mobile {
+            .infoItem {
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 1.5rem;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+
+
+                .location {
+                    color: var(--text-secondary);
+                }
             }
+            
 
-
-            @include tablet {
+            .hotelNameAndReview {
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 1.5rem;
-            }
-
-
-            h3 {
-                @include font-sub-title('Poppins');
-                color: var(--brand-primary);
+                justify-content: space-between;
+                margin-bottom: 0.2rem;
 
 
                 @include mini-mobile {
-                    @include font-sub-title('Poppins');
-                    font-weight: 700;
-                    margin-bottom: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 0.8rem;
                 }
 
 
                 @include mobile {
-                    @include font-sub-title('Poppins');
-                    font-weight: 700;
-                    margin-bottom: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 0.8rem;
                 }
 
 
                 @include tablet {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 0.8rem;
+                }
+
+
+                h3 {
                     @include font-sub-title('Poppins');
-                    font-weight: 700;
-                    margin-bottom: 0.5rem;
+                    color: var(--brand-primary);
+                    cursor: pointer;
+
+                    &:hover {
+                        color: color.adjust(#0f766e, $lightness: -10%);
+                    }
+
+
+                    @include mini-mobile {
+                        @include font-sub-title('Poppins');
+                        font-weight: 700;
+                        margin-bottom: 0.5rem;
+                    }
+
+
+                    @include mobile {
+                        @include font-sub-title('Poppins');
+                        font-weight: 700;
+                        margin-bottom: 0.5rem;
+                    }
+
+
+                    @include tablet {
+                        @include font-sub-title('Poppins');
+                        font-weight: 700;
+                        margin-bottom: 0.5rem;
+                    }
                 }
             }
-        }
 
 
-        .location {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-
-        .topFeatures {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-
-        .refund {
-            margin-bottom: 3rem;
-
-
-            @include mini-mobile {
-                margin-bottom: 1rem;
-            }
-
-            @include mobile {
+            .description {
                 margin-bottom: 2rem;
-            }
-            
-        }
-
-
-        .pricing {
-            display: flex;
-            justify-content: space-between;
-
-
-            h3 {
-                @include font-title('Poppins');
-                font-size: 1rem;
-                color: var(--brand-primary);
 
 
                 @include mini-mobile {
-                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                }
+
+                @include mobile {
+                    margin-bottom: 2rem;
+                }
+                
+            }
+
+
+            .pricing {
+                display: flex;
+                justify-content: space-between;
+
+
+                h3 {
+                    @include font-title('Poppins');
+                    font-size: 1rem;
+                    color: var(--brand-primary);
+
+
+                    @include mini-mobile {
+                        font-size: 0.9rem;
+                    }
                 }
             }
-        }
 
+        }
     }
 
 
     // component scoped global style for regular fonts
     .smallFont {
         @include font-small('Poppins');
-
-
-        @include mini-mobile {
-            font-size: 0.8rem;
-        }
-
-        @include mobile {
-            font-size: 0.8rem;
-        }
-
-        @include tablet {
-            font-size: 0.8rem;
-        }
+        font-size: 0.88rem;
     }
 }

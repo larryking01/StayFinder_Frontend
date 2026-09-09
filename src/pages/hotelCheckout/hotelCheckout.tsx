@@ -45,10 +45,6 @@ const HotelCheckout = () => {
             dispatch(fetchSelectedHotelById( hotelId as string ))
         }
 
-        // console.log("selected room = ", selectedRoom )
-        console.log("reservation details = ", reservationDetails )
-
-
     },[ dispatch, selectedHotel, hotelId ])
 
 
@@ -57,8 +53,6 @@ const HotelCheckout = () => {
         if(!selectedRoom) {
             dispatch(fetchRoomById( roomId as string ))
         }
-
-        console.log("selected room = ", selectedRoom )
 
     }, [dispatch, roomId, selectedRoom])
 

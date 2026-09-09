@@ -20,7 +20,7 @@ export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async(_, { reject
     }
     catch(error) {
         if(isAxiosError(error)) {
-            console.log("FETCH/ROOMS AXIOS ERROR: ", error)
+            console.error("FETCH/ROOMS AXIOS ERROR: ", error)
             // check for specific axios error type and return descriptive messages latetr
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -42,7 +42,7 @@ export const fetchRoomsByHotelId = createAsyncThunk('rooms/fetchHotelRooms', asy
     }
     catch(error) {
         if(isAxiosError(error)) {
-            console.log("FETCH/HOTEL ROOMS AXIOS ERROR: ", error)
+            console.error("FETCH/HOTEL ROOMS AXIOS ERROR: ", error)
             // check for specific axios error type and return descriptive messages latetr
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -64,7 +64,7 @@ export const fetchRoomById = createAsyncThunk('rooms/fetchRoomById', async(roomI
     }
     catch(error) {
         if(isAxiosError(error)) {
-            console.log("FETCH/SELECTED ROOM AXIOS ERROR: ", error)
+            console.error("FETCH/SELECTED ROOM AXIOS ERROR: ", error)
             // check for specific axios error type and return descriptive messages latetr
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }

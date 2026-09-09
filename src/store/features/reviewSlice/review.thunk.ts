@@ -15,12 +15,12 @@ export const fetchHotelReviewsById = createAsyncThunk('reviews/fetchHotelReviews
 
     try {
         let response = await publicAxios.get( endpoint )
-        console.log("hotel reviews = ", response.data.data)
+        console.error("hotel reviews = ", response.data.data)
         return response.data.data
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("axios error fetching hotel reviews: ", error)
+            console.error("axios error fetching hotel reviews: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }

@@ -20,7 +20,7 @@ export const fetchHotels = createAsyncThunk('hotels/fetchHotels', async (_, { re
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("FETCH/HOTELS AXIOS ERROR: ", error)
+            console.error("FETCH/HOTELS AXIOS ERROR: ", error)
             // check for specific axios error type and return descriptive messages latetr
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
@@ -41,7 +41,27 @@ export const fetchSelectedHotelById = createAsyncThunk('hotels/fetchSelectedHote
     }
     catch( error ) {
         if(isAxiosError(error)) {
-            console.log("FETCH/SELECTED/HOTEL axios error: ", error)
+            console.error("FETCH/SELECTED/HOTEL axios error: ", error)
+            // check for specific axios error type and return descriptive messages
+            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        }
+
+        return rejectWithValue("An unexpected error occurred")
+    }
+})
+
+
+
+export const searchHotels = createAsyncThunk('hotels/searchHotels', async (query: string, { rejectWithValue }) => {
+    const endpoint = `/hotels/find-hotel-by-search-query/${ query }`
+
+    try {
+        let response = await publicAxios.get( endpoint)
+        return response.data.data
+    }
+    catch( error ) {
+        if(isAxiosError(error)) {
+            console.error("FETCH/HOTEL BY QUERY axios error: ", error)
             // check for specific axios error type and return descriptive messages
             return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
         }
