@@ -1,4 +1,4 @@
-export interface User {
+export interface SupabaseUser {
   id: string
   aud: string
   role: string
@@ -50,6 +50,18 @@ export interface User {
 }
 
 
+export interface User {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  phone: string
+  emailVerified: boolean
+  authProvider: string
+  createdAt: string
+  updatedAt: string
+  lastSignInAt?: string
+}
 
 export interface CreateUserPayload {
     firstName: string
