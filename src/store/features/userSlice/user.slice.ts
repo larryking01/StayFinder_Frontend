@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"; 
 import { userInitialState } from "./user.initialState";
 import { registerUser, loginUser, getCurrentUser, logoutUser } from "./user.thunks";
-
+import { normalizeUser } from "../../../utils/normalizeUser";
 
 
 
@@ -21,6 +21,7 @@ const userSlice = createSlice({
             })
             .addCase(registerUser.fulfilled, (state) => {
                 state.loading = false 
+                state.error = null
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.loading = false 
@@ -31,6 +32,7 @@ const userSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state) => {
                 state.loading = false 
+                state.error = null
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false 
@@ -40,13 +42,15 @@ const userSlice = createSlice({
                 state.loading = true
             })
             .addCase(getCurrentUser.fulfilled, (state, action) => {
-                const currentUser = action.payload 
-                state.user = currentUser
+                const supabaseUser = action.payload 
+                const normalizedUser = normalizeUser(supabaseUser)
+                state.user = normalizedUser
                 state.loading = false
             })
-            .addCase(getCurrentUser.rejected, (state) => {
+            .addCase(getCurrentUser.rejected, (state, action) => {
                 state.loading = false 
                 state.user = null
+                state.error = action.payload as string
             })
             .addCase(logoutUser.pending, (state) => {
                 state.loading = false

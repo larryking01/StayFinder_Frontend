@@ -55,13 +55,13 @@ export interface User {
   email: string
   firstName: string
   lastName: string
-  phone: string
   emailVerified: boolean
   authProvider: string
   createdAt: string
   updatedAt: string
   lastSignInAt?: string
 }
+
 
 export interface CreateUserPayload {
     firstName: string

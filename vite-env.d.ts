@@ -5,6 +5,8 @@
 
 interface ImportMetaEnv {
     readonly VITE_API_BASE_URL: string
+    readonly VITE_STAYFINDER_PROJECT_URL: string 
+    readonly VITE_STAYFINDER_PUBLISHABLE_KEY: string
 }
 
 
