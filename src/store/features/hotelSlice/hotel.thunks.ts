@@ -12,7 +12,7 @@ import { isAxiosError } from 'axios'
 
 export const fetchHotels = createAsyncThunk('hotels/fetchHotels', async (_, { rejectWithValue } ) => {
     
-    const endpoint = '/hotels/get-all-hotels'
+    const endpoint = '/hotels/all-hotels'
 
     try {
         let response = await publicAxios.get(endpoint)
@@ -33,7 +33,7 @@ export const fetchHotels = createAsyncThunk('hotels/fetchHotels', async (_, { re
 
 
 export const fetchSelectedHotelById = createAsyncThunk('hotels/fetchSelectedHotelById', async (hotelId: string, { rejectWithValue }) => {
-    const endpoint = `/hotels/find-hotel/${ hotelId }`
+    const endpoint = `/hotels/find-by-id/${ hotelId }`
 
     try {
         let response = await publicAxios.get( endpoint)
@@ -53,10 +53,15 @@ export const fetchSelectedHotelById = createAsyncThunk('hotels/fetchSelectedHote
 
 
 export const searchHotels = createAsyncThunk('hotels/searchHotels', async (query: string, { rejectWithValue }) => {
-    const endpoint = `/hotels/find-hotel-by-search-query/${ query }`
+    const endpoint = '/hotels/find-by-search-query'
 
     try {
-        let response = await publicAxios.get( endpoint)
+        let response = await publicAxios.get(endpoint, { 
+            params: {
+                searchTerm: query
+            }
+        })
+        
         return response.data.data
     }
     catch( error ) {

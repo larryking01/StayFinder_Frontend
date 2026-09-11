@@ -8,7 +8,6 @@
 
 
 .navbar {
-    // @include base-padding();
     background-color: var(--card-bg);
     display: flex;
     flex-wrap: wrap;
@@ -90,11 +89,10 @@
         right: 30px;
         z-index: 1000;
         background-color: var(--popover-bg);
-        width: 17rem;
+        width: 14rem;
         height: auto;
         @include element-border-radius;
         @include box-shadow;
-        // padding: 0.3rem;
 
 
 
@@ -121,8 +119,6 @@
 
 
     &__hamburger {
-        // background-color: var(--brand-secondary);
-        // @include element-border-radius;
         padding: 0.5rem;
         cursor: pointer;
         display: none;

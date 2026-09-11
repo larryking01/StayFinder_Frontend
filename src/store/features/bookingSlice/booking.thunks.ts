@@ -9,7 +9,7 @@ import { isAxiosError } from "axios";
 
 
 export const addNewBooking = createAsyncThunk('bookings/addNewBooking', async (bookingPayload: Booking, { rejectWithValue }) => {
-    const endpoint = `/bookings/add-new-booking`
+    const endpoint = '/bookings/add-new'
 
     try {
         let response = await publicAxios.post(endpoint, bookingPayload)
@@ -29,7 +29,7 @@ export const addNewBooking = createAsyncThunk('bookings/addNewBooking', async (b
 
 
 export const fetchUserBookings = createAsyncThunk('bookings/fetchUserBookings', async (userId: string, { rejectWithValue }) => {
-    const endpoint = `/bookings/fetch-user-bookings/:${ userId }`
+    const endpoint = `/bookings/find-by-user/:${ userId }`
 
     try {
         let response = await publicAxios.get(endpoint)
@@ -49,7 +49,7 @@ export const fetchUserBookings = createAsyncThunk('bookings/fetchUserBookings', 
 
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async (bookingId: string, { rejectWithValue }) => {
-    const endpoint = `/bookings/fetch-booking/:${ bookingId }`
+    const endpoint = `/bookings/find-by-id/:${ bookingId }`
 
     try {
         let response = await publicAxios.get(endpoint)
@@ -69,7 +69,7 @@ export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', as
 
 
 export const cancelBooking = createAsyncThunk('bookings/cancelBooking', async (bookingId: string, { rejectWithValue }) => {
-    const endpoint = `/bookings/cancel-booking/:${ bookingId }`
+    const endpoint = `/bookings/cancel/:${ bookingId }`
 
     try {
         let response = await publicAxios.patch(endpoint)
@@ -88,10 +88,8 @@ export const cancelBooking = createAsyncThunk('bookings/cancelBooking', async (b
 
 
 
-
-
 export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (bookingId: string, { rejectWithValue }) => {
-    const endpoint = `/bookings/delete-booking/:${ bookingId }`
+    const endpoint = `/bookings/delete/:${ bookingId }`
 
     try {
         let response = await publicAxios.delete(endpoint)
@@ -111,7 +109,7 @@ export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (b
 
 
 export const deleteAllBookings = createAsyncThunk('bookings/deleteAllBookings', async (userId: string, { rejectWithValue }) => {
-    const endpoint = `/bookings/cancel-all-bookings/:${ userId }`
+    const endpoint = `/bookings/delete-all/:${ userId }`
 
     try {
         let response = await publicAxios.delete(endpoint)
