@@ -1,11 +1,12 @@
 import styles from './navbar.module.scss'
-import { Menu } from 'lucide-react'
+import { Menu, UserRound, CircleUserRound } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router'
 
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import avatar from '../../assets/images/hero_1.jpg'
 
 
 
@@ -19,6 +20,8 @@ const Navbar = () => {
 
 
     const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
+    const [ openManageAccountDialog, setOpenManageAccountDialog ] = useState( false )
+    const [isLoggedIn, setIsLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )
@@ -53,6 +56,16 @@ const Navbar = () => {
     
     const handleOpenMobileNavbar = () => {
         setOpenMobileNavbar( !openMobileNavbar )
+    }
+
+
+    const handleOpenManageAccountDialog = () => {
+        setOpenManageAccountDialog(!openManageAccountDialog)
+    }
+
+
+    const handleManageAccountItemClicked = () => {
+        setOpenManageAccountDialog( false )
     }
 
 
@@ -94,18 +107,43 @@ const Navbar = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <button type="button" onClick={ navigateToSignIn }>
-                            Sign In
-                        </button>
-                    </li>
+                    {
+                        isLoggedIn ?
+                            <img 
+                                src={ avatar } 
+                                alt="user profile"
+                                className={ styles.navbar__avatar }
+                                onClick={ handleOpenManageAccountDialog }
+                            />
+                            :
+                            <li>
+                                <button type="button" onClick={ navigateToSignIn }>
+                                    Sign In
+                                </button>
+                            </li>
+
+                    }
                 </ul>
             </section>
 
-            <section className={ styles.navbar__hamburger } onClick={ handleOpenMobileNavbar }>
-                <Menu size={ 30 } />
+            <section className={ styles.navbar__hamburger } >
+                <UserRound size={ 30 } />
+                <Menu size={ 30 } onClick={ handleOpenMobileNavbar }/>
             </section>
 
+            {
+                openManageAccountDialog && 
+                <div className={ styles.navbar__manageAccountDialog }>
+                    {
+                        [1, 2, 3, 4, 5].map(item => (
+                            <article className={ styles.manageAccountItem } key={ item } onClick={ handleManageAccountItemClicked }>
+                                <UserRound size={ 20 }/>
+                                <p>My account</p>
+                            </article>
+                        ))
+                    }
+                </div>
+            }
 
             {
                 openMobileNavbar && <MobileNavMenu toggleVisibility={ handleOpenMobileNavbar } />

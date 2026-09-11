@@ -17,6 +17,16 @@
     height: 5rem;
     padding: 0 2rem;
 
+
+
+    @include mini-mobile {
+        padding: 0 1rem;
+    }
+
+
+    @include mobile {
+        padding: 0 1rem;
+    }
     
 
     &__brand {
@@ -66,9 +76,53 @@
     }
 
 
+    &__avatar {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+
+    &__manageAccountDialog {
+        position: fixed;
+        top: 75px;
+        right: 30px;
+        z-index: 1000;
+        background-color: var(--popover-bg);
+        width: 17rem;
+        height: auto;
+        @include element-border-radius;
+        @include box-shadow;
+        // padding: 0.3rem;
+
+
+
+        .manageAccountItem {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            margin: 0.2rem;
+            cursor: pointer;
+
+
+            &:hover {
+                background-color: white;
+            }
+
+
+            p {
+                align-self: center;
+                @include font-small('Poppins')
+            }
+        }
+    }
+
+
     &__hamburger {
         // background-color: var(--brand-secondary);
-        @include element-border-radius;
+        // @include element-border-radius;
         padding: 0.5rem;
         cursor: pointer;
         display: none;
@@ -76,11 +130,13 @@
         
         @include mini-mobile {
             display: flex;
+            gap: 1.5rem;
         }
 
 
         @include mobile {
             display: flex;
+            gap: 1.5rem;
         }
     }
 

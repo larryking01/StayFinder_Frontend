@@ -36,10 +36,10 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
                     <h3>{ appName }</h3>
                 </div>
 
-                <div className={ styles.currentRouteDisplay }>
+                {/* <div className={ styles.currentRouteDisplay }>
                     <h3>Home</h3>
                 </div>
-
+ */}
                 <X size={ 30 } className={ styles.closeIcon } onClick={ toggleVisibility }/>
             </article>
 
