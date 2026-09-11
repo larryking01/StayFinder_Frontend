@@ -1,10 +1,10 @@
 import styles from './login.module.scss'
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from 'react-router';
-import { useAppSelector } from '../../hooks/useStore';
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
-
-
+import { loginUser } from '../../store/features/userSlice/user.thunks';
+import { useState } from 'react'
 
 
 
@@ -16,6 +16,17 @@ const Login = () => {
 
 
     const appName = useAppSelector( selectAppName )
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const dispatch = useAppDispatch()
+
+
+
+    const handleLogin = (e: any) => {
+        e.preventDefault()
+        console.log("login triggered")
+        dispatch(loginUser({ email, password }))
+    }
 
     
     return (
@@ -31,15 +42,15 @@ const Login = () => {
             <section className={ styles.login__loginForm }>
                 <form>
                     <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='E-mail' />
+                        <input type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} value={ email } />
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='Password' />
+                        <input type="text" placeholder='Password' onChange={(e) => setPassword(e.target.value)} value={ password } />
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit">Login</button>
+                        <button type="submit" onClick={ handleLogin }>Login</button>
                     </div>
                 </form>
             </section>

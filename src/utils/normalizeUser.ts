@@ -4,7 +4,7 @@ import type { SupabaseUser, User } from "../types/user.model";
 
 
 
-export const normalizeUser = (supabaseUser: SupabaseUser) => {
+export const normalizeUser = (supabaseUser: any) => {
 
     let user: User = {
         id: supabaseUser.id,

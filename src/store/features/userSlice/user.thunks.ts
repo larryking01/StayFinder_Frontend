@@ -3,7 +3,7 @@ import { isAxiosError } from "axios";
 import { publicAxios } from "../../../api/axios.public.instance";
 import type { CreateUserPayload, LoginUserPayload, UpdateUserProfilePayload } from "../../../types/user.model";
 
-
+import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/supabaseAuthService";
 
 
 
@@ -52,23 +52,39 @@ export const loginUser = createAsyncThunk('users/loginUser', async (user: LoginU
 
 
 
-export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_, { rejectWithValue }) => {
-    
-    let endpoint = '/auth/current-user'
+export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
 
     try {
-        let response = await publicAxios.get(endpoint)
-        return response.data.data
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("GET CURRENT USER AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        console.log("initialize auth fired")
+        const session = await getSession() 
+        console.log("current session = ", session)
+        if(!session) {
+            return null
         }
 
-        return rejectWithValue("An unexpected error occurred")
+        const supabaseUser = await getSupabaseCurrentUser() 
+        return supabaseUser
     }
+    catch(error) {
+        console.error("INITIALIZE AUTH ERROR: ", error)
+        return rejectWithValue("We could not restore your authentication session.")
+    }
+
+})
+
+
+
+export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_, { rejectWithValue }) => {
+
+    try {
+        const supabaseUser = await getSupabaseCurrentUser()
+        return supabaseUser
+    }
+    catch(error) {
+        console.error("GET CURRENT USER ERROR: ", error)
+        return rejectWithValue("We could not retrieve your account information.")
+    }
+
 })
 
 
@@ -117,7 +133,7 @@ export const forgotPassword = createAsyncThunk('users/forgotPassword', async (em
 
 export const resetPassword = createAsyncThunk('users/resetPassword', async (newPassword: string, { rejectWithValue }) => {
     
-    let endpoint = '/auth/forgot-password'
+    let endpoint = '/auth/reset-password'
 
     try {
         let response = await publicAxios.post(endpoint, newPassword)
@@ -138,7 +154,7 @@ export const resetPassword = createAsyncThunk('users/resetPassword', async (newP
 
 export const updateUserProfile = createAsyncThunk('users/updateUserProfile', async (newProfile: UpdateUserProfilePayload, { rejectWithValue }) => {
     
-    let endpoint = '/auth/update-user-profile'
+    let endpoint = '/auth/update-profile'
 
     try {
         let response = await publicAxios.put(endpoint, newProfile)

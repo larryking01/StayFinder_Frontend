@@ -6,7 +6,8 @@ import type { User } from "../../../types/user.model";
 interface UserState {
     user: User | null,
     loading: boolean,
-    error: string | null
+    error: string | null,
+    authInitialized: boolean
 }
 
 
@@ -14,5 +15,6 @@ interface UserState {
 export const userInitialState: UserState = {
     user: null,
     loading: false,
-    error: null
+    error: null,
+    authInitialized: false
 }

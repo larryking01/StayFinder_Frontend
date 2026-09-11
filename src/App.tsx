@@ -1,5 +1,9 @@
 import './App.scss'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import { useEffect } from 'react'
+import { onAuthStateChange } from './services/supabase/supabaseAuthService'
+import { setAuthenticatedUser, clearAuthenticatedUser } from './store/features/userSlice/user.slice'
+import { initializeAuth } from './store/features/userSlice/user.thunks'
 import Layout from './layouts/layout/layout'
 import Home from './pages/home/home'
 import HotelInfo from './pages/hotelInfo/hotelInfo'
@@ -14,6 +18,7 @@ import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
 import ListHotel from './pages/listHotel/listHotel'
 import AuthLayout from './layouts/authLayout/authLayout'
+import { useAppDispatch } from './hooks/useStore'
 
 
 
@@ -27,6 +32,34 @@ import AuthLayout from './layouts/authLayout/authLayout'
 
 
 function App() {
+
+  const dispatch = useAppDispatch() 
+
+
+  // What is the authentication state when the application first loads?
+  useEffect(() => {
+      dispatch(initializeAuth())
+  }, [dispatch])
+
+
+  // What happens to authentication after the application is running?
+  useEffect(() => {
+    const { data: { subscription } } = onAuthStateChange((event, session) => {
+      if( event === 'SIGNED_IN' && session?.user ) {
+          dispatch(setAuthenticatedUser(session.user))
+      }
+
+      if( event === 'SIGNED_OUT' ) {
+        dispatch( clearAuthenticatedUser() )
+      }
+    })
+
+
+    return () => {
+      subscription.unsubscribe()
+    }
+
+  }, [ dispatch ])
 
 
 
