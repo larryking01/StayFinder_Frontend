@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router'
 
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
+import UserAvatar from '../userAvatar/userAvatar'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 import avatar from '../../assets/images/hero_1.jpg'
@@ -109,12 +110,9 @@ const Navbar = () => {
 
                     {
                         isLoggedIn ?
-                            <img 
-                                src={ avatar } 
-                                alt="user profile"
-                                className={ styles.navbar__avatar }
-                                onClick={ handleOpenManageAccountDialog }
-                            />
+                            <div onClick={ handleOpenManageAccountDialog }>
+                                <UserAvatar firstName='Larry'/>                            
+                            </div>
                             :
                             <li>
                                 <button type="button" onClick={ navigateToSignIn }>
@@ -127,8 +125,15 @@ const Navbar = () => {
             </section>
 
             <section className={ styles.navbar__hamburger } >
-                <UserRound size={ 30 } />
-                <Menu size={ 30 } onClick={ handleOpenMobileNavbar }/>
+                { 
+                    isLoggedIn ? 
+                        <div>
+                            <UserAvatar firstName='Larry' /> 
+                        </div>
+                        : 
+                        <UserRound size={ 30 } onClick={ navigateToSignIn }/> 
+                }
+                <Menu size={ 30 } onClick={ handleOpenMobileNavbar } className={ styles.menuIcon }/>
             </section>
 
             {

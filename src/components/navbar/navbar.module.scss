@@ -75,12 +75,11 @@
     }
 
 
-    &__avatar {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        cursor: pointer;
-    }
+    // &__avatarContainer {
+    //     width: 2.5rem;
+    //     height: 2.5rem;
+    //     cursor: pointer;
+    // }
 
 
     &__manageAccountDialog {
@@ -133,6 +132,11 @@
         @include mobile {
             display: flex;
             gap: 1.5rem;
+        }
+
+
+        .menuIcon {
+            align-self: center;
         }
     }
 
