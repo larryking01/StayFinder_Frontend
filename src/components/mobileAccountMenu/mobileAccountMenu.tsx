@@ -1,10 +1,12 @@
-import styles from './mobileNavMenu.module.scss'
-import { X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
+import styles from './mobileAccountMenu.module.scss'
+import { X, ArrowLeft } from 'lucide-react'
 import { useNavigate } from 'react-router'
 
 import type { MobileNavMenuProps } from '../../types/componentProps/mobileNavMenuProps'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { accountMenuItems } from '../../data/accountMenuItems'
+import UserAvatar from '../userAvatar/userAvatar'
 
 
 
@@ -13,7 +15,9 @@ import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 
 
 
-const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
+
+
+const MobileAccountMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
 
     const appName = useAppSelector( selectAppName )
@@ -41,31 +45,29 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
             <article className={ styles.underLine }></article>
 
+            <article className={ styles.avatar }>
+                <UserAvatar firstName='Larry' />
+                <p>Larry Williams</p>
+            </article>
+
             <article className={ styles.navLinks }>
                 <ul>
-                    <li onClick={() => navigateToRoute('/')}>
-                        <House />
-                        <p>Home</p>
-                    </li>
+                    {
+                        accountMenuItems.map(item => {
+                            let Icon = item.icon
 
-                    <li onClick={() => navigateToRoute('/list-your-hotel')}>
-                        <ScrollText />
-                        <p>List your hotel</p>
-                    </li>
-
-                    <li onClick={() => navigateToRoute('/support')}>
-                        <UserCog />
-                        <p>Support</p>
-                    </li>
-
-                    <li onClick={() => navigateToRoute('/about-us')}>
-                        <Info />
-                        <p>About Us</p>
-                    </li>
-
-                    {/* <li>
-                        <button type="button" onClick={() => navigateToRoute('/accounts')}>Sign In</button>
-                    </li> */}
+                            return (
+                            <li 
+                                className={ styles.manageAccountItem } 
+                                key={ item.name } 
+                                onClick={() => navigateToRoute(item.routePath)}
+                                >
+                                <Icon size={ 20 }/>
+                                <p>{ item.name }</p>
+                            </li>
+                            )
+                        })
+                    }
                 </ul>
             </article>
         </main>
@@ -75,4 +77,4 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
 
 
-export default MobileNavMenu
+export default MobileAccountMenu

@@ -69,7 +69,21 @@
 
     .underLine {
         border-bottom: 2px solid var(--border-default);
+        margin-bottom: 4rem;
+    }
+
+
+    .avatar {
+        display: flex;
+        gap: 1rem;
+        padding: 0 1rem;
         margin-bottom: 2rem;
+
+
+        p {
+            align-self: center;
+            @include font-sub-title('Poppins');
+        }
     }
 
 

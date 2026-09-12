@@ -11,7 +11,7 @@ import { isAxiosError } from "axios";
 
 export const fetchHotelReviewsById = createAsyncThunk('reviews/fetchHotelReviewsById', async (hotelId: string, { rejectWithValue }) => {
     
-    const endpoint = `/reviews/get-hotel-reviews/${ hotelId }`
+    const endpoint = `/reviews/find-by-hotel/${ hotelId }`
 
     try {
         let response = await publicAxios.get( endpoint )

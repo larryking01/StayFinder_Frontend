@@ -1,11 +1,14 @@
 import styles from './navbar.module.scss'
-import { Menu } from 'lucide-react'
+import { Menu, UserRound } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router'
 
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
+import UserAvatar from '../userAvatar/userAvatar'
+import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { accountMenuItems } from '../../data/accountMenuItems'
 
 
 
@@ -18,7 +21,10 @@ import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 const Navbar = () => {
 
 
-    const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
+    const [ isMobileNavOpen, setIsMobileNavOpen ] = useState( false )
+    const [ isAccountMenuOpen, setIsAccountMenuOpen ] = useState( false )
+    const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
+    const [isLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )
@@ -36,7 +42,7 @@ const Navbar = () => {
 
     // prevent device from scrolling when responsive navbar is open on mobile devices
     useEffect(() => {
-        if(openMobileNavbar) {
+        if(isMobileNavOpen || isMobileAccountMenuOpen ) {
             document.body.classList.add("no-scroll")
         }
         else {
@@ -48,11 +54,27 @@ const Navbar = () => {
             document.body.classList.remove("no-scroll")
         }
 
-    }, [ openMobileNavbar ])
+    }, [ isMobileNavOpen, isMobileAccountMenuOpen ])
 
     
-    const handleOpenMobileNavbar = () => {
-        setOpenMobileNavbar( !openMobileNavbar )
+    const handleIsMobileNavOpen = () => {
+        setIsMobileNavOpen( !isMobileNavOpen )
+    }
+
+
+    const handleIsAccountMenuOpen = () => {
+        setIsAccountMenuOpen(!isAccountMenuOpen)
+    }
+
+
+    const handleIsMobileAccountMenuOpen = () => {
+        setIsMobileAccountMenuOpen(!isMobileAccountMenuOpen)
+    }
+
+
+    const handleManageAccountItemClicked = (route: string) => {
+        setIsAccountMenuOpen( false )
+        navigate(route)
     }
 
 
@@ -94,21 +116,62 @@ const Navbar = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <button type="button" onClick={ navigateToSignIn }>
-                            Sign In
-                        </button>
-                    </li>
+                    {
+                        isLoggedIn ?
+                            <div onClick={ handleIsAccountMenuOpen }>
+                                <UserAvatar firstName='Larry'/>                            
+                            </div>
+                            :
+                            <li>
+                                <button type="button" onClick={ navigateToSignIn }>
+                                    Sign In
+                                </button>
+                            </li>
+
+                    }
                 </ul>
             </section>
 
-            <section className={ styles.navbar__hamburger } onClick={ handleOpenMobileNavbar }>
-                <Menu size={ 30 } />
+            <section className={ styles.navbar__hamburger } >
+                { 
+                    isLoggedIn ? 
+                        <div onClick={ handleIsMobileAccountMenuOpen }>
+                            <UserAvatar firstName='Larry' /> 
+                        </div>
+                        : 
+                        <UserRound size={ 30 } onClick={ navigateToSignIn }/> 
+                }
+                <Menu size={ 30 } onClick={ handleIsMobileNavOpen } className={ styles.menuIcon }/>
             </section>
 
+            {
+                isAccountMenuOpen && 
+                <div className={ styles.navbar__manageAccountDialog }>
+                    {
+                        accountMenuItems.map(item => {
+                            let Icon = item.icon 
+
+                            return (
+                                <article 
+                                    className={ styles.manageAccountItem } 
+                                    key={ item.name } 
+                                    onClick={ () => handleManageAccountItemClicked( item.routePath )}
+                                >
+                                    <Icon size={ 20 }/>
+                                    <p>{ item.name }</p>
+                                </article>
+                            )}
+                        )
+                    }
+                </div>
+            }
 
             {
-                openMobileNavbar && <MobileNavMenu toggleVisibility={ handleOpenMobileNavbar } />
+                isMobileNavOpen && <MobileNavMenu toggleVisibility={ handleIsMobileNavOpen } />
+            }
+
+            {
+                isMobileAccountMenuOpen && <MobileAccountMenu toggleVisibility={ handleIsMobileAccountMenuOpen } />
             }
 
         </nav>
