@@ -1,4 +1,4 @@
-import type { SupabaseUser, User } from "../types/user.model"; 
+import type { User } from "../types/user.model"; 
 
 
 
