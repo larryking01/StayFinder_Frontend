@@ -16,7 +16,6 @@ const userSlice = createSlice({
     reducers: {
         setAuthenticatedUser: (state, action) => {
             state.user = normalizeUser(action.payload)
-            console.log("redux user = ", state.user)
         },
         clearAuthenticatedUser: (state) => {
             state.user = null
@@ -38,15 +37,12 @@ const userSlice = createSlice({
                 else {
                     state.user = null
                 }
-                console.log("redux user = ", state.user)
             })
             .addCase(initializeAuth.rejected, (state, action) => {
                 state.loading = false 
                 state.user = null 
                 state.authInitialized = true
                 state.error = action.payload as string
-
-                console.log("redux user = ", state.user)
             })
 
             .addCase(getCurrentUser.pending, (state) => {

@@ -10,6 +10,42 @@ import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/s
 
 
 
+
+
+
+export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
+
+    try {
+        const session = await getSession() 
+        if(!session) {
+            return null
+        }
+
+        const supabaseUser = await getSupabaseCurrentUser() 
+        return supabaseUser
+    }
+    catch(error) {
+        console.error("INITIALIZE AUTH ERROR: ", error)
+        return rejectWithValue("We could not restore your authentication session.")
+    }
+    
+})
+
+
+export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_, { rejectWithValue }) => {
+
+    try {
+        const supabaseUser = await getSupabaseCurrentUser()
+        return supabaseUser
+    }
+    catch(error) {
+        console.error("GET CURRENT USER ERROR: ", error)
+        return rejectWithValue("We could not retrieve your account information.")
+    }
+
+})
+
+
 export const registerUser = createAsyncThunk('users/registerUser', async (user: CreateUserPayload, { rejectWithValue }) => {
     
     let endpoint = '/auth/register'
@@ -28,7 +64,6 @@ export const registerUser = createAsyncThunk('users/registerUser', async (user: 
         return rejectWithValue("An unexpected error occurred")
     }
 })
-
 
 
 export const loginUser = createAsyncThunk('users/loginUser', async (user: LoginUserPayload, { rejectWithValue }) => {
@@ -51,44 +86,6 @@ export const loginUser = createAsyncThunk('users/loginUser', async (user: LoginU
 })
 
 
-
-export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
-
-    try {
-        console.log("initialize auth fired")
-        const session = await getSession() 
-        console.log("current session = ", session)
-        if(!session) {
-            return null
-        }
-
-        const supabaseUser = await getSupabaseCurrentUser() 
-        return supabaseUser
-    }
-    catch(error) {
-        console.error("INITIALIZE AUTH ERROR: ", error)
-        return rejectWithValue("We could not restore your authentication session.")
-    }
-
-})
-
-
-
-export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_, { rejectWithValue }) => {
-
-    try {
-        const supabaseUser = await getSupabaseCurrentUser()
-        return supabaseUser
-    }
-    catch(error) {
-        console.error("GET CURRENT USER ERROR: ", error)
-        return rejectWithValue("We could not retrieve your account information.")
-    }
-
-})
-
-
-
 export const logoutUser = createAsyncThunk('users/logoutUser', async (_, { rejectWithValue }) => {
     
     let endpoint = '/auth/logout'
@@ -107,7 +104,6 @@ export const logoutUser = createAsyncThunk('users/logoutUser', async (_, { rejec
         return rejectWithValue("An unexpected error occurred")
     }
 })
-
 
 
 export const forgotPassword = createAsyncThunk('users/forgotPassword', async (email: string, { rejectWithValue }) => {
@@ -130,7 +126,6 @@ export const forgotPassword = createAsyncThunk('users/forgotPassword', async (em
 })
 
 
-
 export const resetPassword = createAsyncThunk('users/resetPassword', async (newPassword: string, { rejectWithValue }) => {
     
     let endpoint = '/auth/reset-password'
@@ -149,7 +144,6 @@ export const resetPassword = createAsyncThunk('users/resetPassword', async (newP
         return rejectWithValue("An unexpected error occurred")
     }
 })
-
 
 
 export const updateUserProfile = createAsyncThunk('users/updateUserProfile', async (newProfile: UpdateUserProfilePayload, { rejectWithValue }) => {

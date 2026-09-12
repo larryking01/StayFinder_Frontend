@@ -60,18 +60,6 @@
         }
 
 
-        // .currentRouteDisplay {
-
-        //     h3 {
-        //         @include font-sub-title('Poppins');
-        //         color: var(--brand-primary);
-        //         align-self: flex-start;
-        //     }
-        // }
-
-
-
-
         .closeIcon {
             align-self: flex-start;
             color: var(--brand-primary);
@@ -105,11 +93,6 @@
             @include font-regular('Poppins');
             margin: 0.5rem 0;
 
-        }
-
-
-        button {
-            @include button-primary(7rem, 2.4rem);
         }
     }
 

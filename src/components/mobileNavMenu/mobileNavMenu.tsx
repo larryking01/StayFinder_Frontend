@@ -39,7 +39,7 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
                 {/* <div className={ styles.currentRouteDisplay }>
                     <h3>Home</h3>
                 </div>
- */}
+                */}
                 <X size={ 30 } className={ styles.closeIcon } onClick={ toggleVisibility }/>
             </article>
 
@@ -67,9 +67,9 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
                         <p>About Us</p>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <button type="button" onClick={() => navigateToRoute('/accounts')}>Sign In</button>
-                    </li>
+                    </li> */}
                 </ul>
             </article>
         </main>
