@@ -24,7 +24,7 @@ const Navbar = () => {
     const [ isMobileNavOpen, setIsMobileNavOpen ] = useState( false )
     const [ isAccountMenuOpen, setIsAccountMenuOpen ] = useState( false )
     const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
-    const [isLoggedIn, setIsLoggedIn] = useState( true )
+    const [isLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )

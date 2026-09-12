@@ -17,7 +17,6 @@ const UserAvatar = ({ firstName }: UserAvatarProps) => {
     return (
         <main className={ style.userAvatar }>
             <p>{ firstName.trim().toUpperCase()[0] }</p>
-            {/* <p>{ lastName?.trim().toUpperCase()[0] }</p> */}
         </main>
     )
 }
