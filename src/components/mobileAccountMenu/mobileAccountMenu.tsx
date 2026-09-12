@@ -1,10 +1,12 @@
 import styles from './mobileAccountMenu.module.scss'
-import { X, ArrowLeft, House, Info, ScrollText, UserCog } from 'lucide-react'
+import { X, ArrowLeft } from 'lucide-react'
 import { useNavigate } from 'react-router'
 
 import type { MobileNavMenuProps } from '../../types/componentProps/mobileNavMenuProps'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { accountMenuItems } from '../../data/accountMenuItems'
+import UserAvatar from '../userAvatar/userAvatar'
 
 
 
@@ -35,7 +37,7 @@ const MobileAccountMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
             <article className={ styles.currentRouteAndCloseBtn }>
                 <div className={ styles.appLogoAndBackIcon }>
                     <ArrowLeft className={ styles.backIcon } onClick={ toggleVisibility }/>
-                    <h3>{ appName }Mobile Account Menu</h3>
+                    <h3 onClick={() => navigateToRoute("/")}>{ appName }</h3>
                 </div>
 
                 <X size={ 30 } className={ styles.closeIcon } onClick={ toggleVisibility }/>
@@ -43,15 +45,28 @@ const MobileAccountMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
             <article className={ styles.underLine }></article>
 
+            <article className={ styles.avatar }>
+                <UserAvatar firstName='Larry' />
+                <p>Larry Williams</p>
+            </article>
+
             <article className={ styles.navLinks }>
                 <ul>
                     {
-                        [1, 2, 3, 4, 5].map(item => (
-                            <li className={ styles.manageAccountItem } key={ item } onClick={() => navigateToRoute('/')}>
-                                <Info size={ 20 }/>
-                                <p>My account</p>
+                        accountMenuItems.map(item => {
+                            let Icon = item.icon
+
+                            return (
+                            <li 
+                                className={ styles.manageAccountItem } 
+                                key={ item.name } 
+                                onClick={() => navigateToRoute(item.routePath)}
+                                >
+                                <Icon size={ 20 }/>
+                                <p>{ item.name }</p>
                             </li>
-                        ))
+                            )
+                        })
                     }
                 </ul>
             </article>

@@ -33,13 +33,9 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
             <article className={ styles.currentRouteAndCloseBtn }>
                 <div className={ styles.appLogoAndBackIcon }>
                     <ArrowLeft className={ styles.backIcon } onClick={ toggleVisibility }/>
-                    <h3>{ appName }</h3>
+                    <h3 onClick={() => navigateToRoute("/")}>{ appName }</h3>
                 </div>
 
-                {/* <div className={ styles.currentRouteDisplay }>
-                    <h3>Home</h3>
-                </div>
-                */}
                 <X size={ 30 } className={ styles.closeIcon } onClick={ toggleVisibility }/>
             </article>
 

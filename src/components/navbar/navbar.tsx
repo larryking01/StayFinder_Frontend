@@ -8,7 +8,7 @@ import UserAvatar from '../userAvatar/userAvatar'
 import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
-
+import { accountMenuItems } from '../../data/accountMenuItems'
 
 
 
@@ -72,8 +72,9 @@ const Navbar = () => {
     }
 
 
-    const handleManageAccountItemClicked = () => {
+    const handleManageAccountItemClicked = (route: string) => {
         setIsAccountMenuOpen( false )
+        navigate(route)
     }
 
 
@@ -147,12 +148,20 @@ const Navbar = () => {
                 isAccountMenuOpen && 
                 <div className={ styles.navbar__manageAccountDialog }>
                     {
-                        [1, 2, 3, 4, 5].map(item => (
-                            <article className={ styles.manageAccountItem } key={ item } onClick={ handleManageAccountItemClicked }>
-                                <UserRound size={ 20 }/>
-                                <p>My account</p>
-                            </article>
-                        ))
+                        accountMenuItems.map(item => {
+                            let Icon = item.icon 
+
+                            return (
+                                <article 
+                                    className={ styles.manageAccountItem } 
+                                    key={ item.name } 
+                                    onClick={ () => handleManageAccountItemClicked( item.routePath )}
+                                >
+                                    <Icon size={ 20 }/>
+                                    <p>{ item.name }</p>
+                                </article>
+                            )}
+                        )
                     }
                 </div>
             }
