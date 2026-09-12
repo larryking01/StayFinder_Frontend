@@ -1,13 +1,14 @@
 import styles from './navbar.module.scss'
-import { Menu, UserRound, CircleUserRound } from 'lucide-react'
+import { Menu, UserRound } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router'
 
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
 import UserAvatar from '../userAvatar/userAvatar'
+import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
-import avatar from '../../assets/images/hero_1.jpg'
+
 
 
 
@@ -20,8 +21,9 @@ import avatar from '../../assets/images/hero_1.jpg'
 const Navbar = () => {
 
 
-    const [ openMobileNavbar, setOpenMobileNavbar ] = useState( false )
-    const [ openManageAccountDialog, setOpenManageAccountDialog ] = useState( false )
+    const [ isMobileNavOpen, setIsMobileNavOpen ] = useState( false )
+    const [ isAccountMenuOpen, setIsAccountMenuOpen ] = useState( false )
+    const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
     const [isLoggedIn, setIsLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
@@ -40,7 +42,7 @@ const Navbar = () => {
 
     // prevent device from scrolling when responsive navbar is open on mobile devices
     useEffect(() => {
-        if(openMobileNavbar) {
+        if(isMobileNavOpen || isMobileAccountMenuOpen ) {
             document.body.classList.add("no-scroll")
         }
         else {
@@ -52,21 +54,26 @@ const Navbar = () => {
             document.body.classList.remove("no-scroll")
         }
 
-    }, [ openMobileNavbar ])
+    }, [ isMobileNavOpen, isMobileAccountMenuOpen ])
 
     
-    const handleOpenMobileNavbar = () => {
-        setOpenMobileNavbar( !openMobileNavbar )
+    const handleIsMobileNavOpen = () => {
+        setIsMobileNavOpen( !isMobileNavOpen )
     }
 
 
-    const handleOpenManageAccountDialog = () => {
-        setOpenManageAccountDialog(!openManageAccountDialog)
+    const handleIsAccountMenuOpen = () => {
+        setIsAccountMenuOpen(!isAccountMenuOpen)
+    }
+
+
+    const handleIsMobileAccountMenuOpen = () => {
+        setIsMobileAccountMenuOpen(!isMobileAccountMenuOpen)
     }
 
 
     const handleManageAccountItemClicked = () => {
-        setOpenManageAccountDialog( false )
+        setIsAccountMenuOpen( false )
     }
 
 
@@ -110,7 +117,7 @@ const Navbar = () => {
 
                     {
                         isLoggedIn ?
-                            <div onClick={ handleOpenManageAccountDialog }>
+                            <div onClick={ handleIsAccountMenuOpen }>
                                 <UserAvatar firstName='Larry'/>                            
                             </div>
                             :
@@ -127,17 +134,17 @@ const Navbar = () => {
             <section className={ styles.navbar__hamburger } >
                 { 
                     isLoggedIn ? 
-                        <div>
+                        <div onClick={ handleIsMobileAccountMenuOpen }>
                             <UserAvatar firstName='Larry' /> 
                         </div>
                         : 
                         <UserRound size={ 30 } onClick={ navigateToSignIn }/> 
                 }
-                <Menu size={ 30 } onClick={ handleOpenMobileNavbar } className={ styles.menuIcon }/>
+                <Menu size={ 30 } onClick={ handleIsMobileNavOpen } className={ styles.menuIcon }/>
             </section>
 
             {
-                openManageAccountDialog && 
+                isAccountMenuOpen && 
                 <div className={ styles.navbar__manageAccountDialog }>
                     {
                         [1, 2, 3, 4, 5].map(item => (
@@ -151,7 +158,11 @@ const Navbar = () => {
             }
 
             {
-                openMobileNavbar && <MobileNavMenu toggleVisibility={ handleOpenMobileNavbar } />
+                isMobileNavOpen && <MobileNavMenu toggleVisibility={ handleIsMobileNavOpen } />
+            }
+
+            {
+                isMobileAccountMenuOpen && <MobileAccountMenu toggleVisibility={ handleIsMobileAccountMenuOpen } />
             }
 
         </nav>
