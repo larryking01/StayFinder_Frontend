@@ -50,21 +50,32 @@ export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_,
 
 export const registerUser = createAsyncThunk('users/registerUser', async (user: CreateUserPayload, { rejectWithValue }) => {
     
-    let endpoint = '/auth/register'
+      try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: user.email,
+                password: user.password,
+                options: {
+                    data: {
+                        firstName: user.firstName,
+                        lastName: user.lastName
+                    }
+                }
+            })
 
-    try {
-        let response = await publicAxios.post(endpoint, user)
-        return response.data.data.user
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("REGISTER USER AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+            if (error) {
+                console.error("REGISTER USER SUPABASE ERROR: ", error)
+                return rejectWithValue(error.message)
+            }
+
+            return data.user
         }
+        catch (error) {
+            console.error("REGISTER USER ERROR: ", error)
 
-        return rejectWithValue("An unexpected error occurred")
-    }
+            return rejectWithValue(
+                "An unexpected error occurred"
+            )
+        }
 })
 
 
