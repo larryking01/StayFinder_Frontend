@@ -23,6 +23,6 @@ export const accountMenuItems: AccountMenuItem[] = [
     {
         name: "Sign out",
         icon: LogOut,
-        routePath: "/"
+        routePath: "/logout"
     }
 ];

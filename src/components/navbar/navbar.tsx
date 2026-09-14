@@ -6,8 +6,9 @@ import { NavLink, useNavigate, useLocation } from 'react-router'
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
 import UserAvatar from '../userAvatar/userAvatar'
 import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
-import { useAppSelector } from '../../hooks/useStore'
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { logoutUser } from '../../store/features/userSlice/user.thunks'
 import { selectCurrentUser } from '../../store/features/userSlice/user.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
 
@@ -27,6 +28,7 @@ const Navbar = () => {
     const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
     const location = useLocation()
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const appName = useAppSelector( selectAppName )
     const authenticatedUser = useAppSelector( selectCurrentUser )
     const [ activeRoute, setActiveRoute ] = useState<string | null>(null)
@@ -77,6 +79,13 @@ const Navbar = () => {
 
     const handleManageAccountItemClicked = (route: string) => {
         setIsAccountMenuOpen( false )
+
+        if(route === '/logout') {
+            dispatch(logoutUser())
+            navigate('/')
+            return
+        }
+
         navigate(route)
     }
 

@@ -99,21 +99,17 @@ export const loginUser = createAsyncThunk('users/loginUser', async (user: LoginU
 
 export const logoutUser = createAsyncThunk('users/logoutUser', async (_, { rejectWithValue }) => {
     
-    let endpoint = '/auth/logout'
-
     try {
-        let response = await publicAxios.post(endpoint)
-        return response.data
+        const { error } = await supabaseClient.auth.signOut()
+        if(error) {
+            console.error("LOGOUT USER SUPABASE ERROR: ", error);
+            return rejectWithValue(error.message);
+        }
     }
     catch(error) {
-        if(isAxiosError(error)) {
-            console.error("LOGOUT USER AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
-        }
-
-        return rejectWithValue("An unexpected error occurred")
-    }
+        console.error("LOGOUT USER ERROR: ", error);
+        return rejectWithValue("An unexpected error occurred");
+    } 
 })
 
 
