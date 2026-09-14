@@ -8,6 +8,7 @@ import UserAvatar from '../userAvatar/userAvatar'
 import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
 import { useAppSelector } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { selectCurrentUser } from '../../store/features/userSlice/user.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
 
 
@@ -24,10 +25,10 @@ const Navbar = () => {
     const [ isMobileNavOpen, setIsMobileNavOpen ] = useState( false )
     const [ isAccountMenuOpen, setIsAccountMenuOpen ] = useState( false )
     const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
-    const [isLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )
+    const authenticatedUser = useAppSelector( selectCurrentUser )
     const [ activeRoute, setActiveRoute ] = useState<string | null>(null)
 
 
@@ -36,6 +37,8 @@ const Navbar = () => {
     useEffect(() => {
         let currentRoute = location.pathname 
         setActiveRoute(currentRoute)
+
+        console.log("current user is", authenticatedUser )
 
     }, [ location ])
 
@@ -117,9 +120,9 @@ const Navbar = () => {
                     </li>
 
                     {
-                        isLoggedIn ?
+                        authenticatedUser ?
                             <div onClick={ handleIsAccountMenuOpen }>
-                                <UserAvatar firstName='Larry'/>                            
+                                <UserAvatar firstName={ authenticatedUser.firstName }/>                            
                             </div>
                             :
                             <li>
@@ -134,9 +137,9 @@ const Navbar = () => {
 
             <section className={ styles.navbar__hamburger } >
                 { 
-                    isLoggedIn ? 
+                    authenticatedUser ? 
                         <div onClick={ handleIsMobileAccountMenuOpen }>
-                            <UserAvatar firstName='Larry' /> 
+                            <UserAvatar firstName={ authenticatedUser.firstName } /> 
                         </div>
                         : 
                         <UserRound size={ 30 } onClick={ navigateToSignIn }/> 
