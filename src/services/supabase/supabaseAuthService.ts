@@ -15,6 +15,8 @@ export const getSession = async () => {
         throw error
     }
 
+    console.log("retrieved session = ", data.session)
+
     return data.session
 }
 
@@ -28,13 +30,15 @@ export const getSupabaseCurrentUser = async () => {
         throw error
     }
 
+    console.log("retrieved user = ", data.user)
+
     return data.user
 }
 
 
-
 // respond to user auth state changes
 export const onAuthStateChange = ( callback:(event: AuthChangeEvent, session: Session | null) => void ) => {
+    console.log("auth state changed fired in useEffect on app start")
     return supabaseClient.auth.onAuthStateChange( callback )
 }
 

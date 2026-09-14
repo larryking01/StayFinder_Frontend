@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 import { publicAxios } from "../../../api/axios.public.instance";
+import { supabaseClient } from "../../../services/supabase/supabaseClient";
 import type { CreateUserPayload, LoginUserPayload, UpdateUserProfilePayload } from "../../../types/user.model";
 
 import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/supabaseAuthService";
@@ -14,6 +15,7 @@ import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/s
 
 
 export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
+    console.log("initialize auth fired in useEffect on app start")
 
     try {
         const session = await getSession() 
@@ -33,7 +35,7 @@ export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_,
 
 
 export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_, { rejectWithValue }) => {
-
+    
     try {
         const supabaseUser = await getSupabaseCurrentUser()
         return supabaseUser
@@ -67,22 +69,20 @@ export const registerUser = createAsyncThunk('users/registerUser', async (user: 
 
 
 export const loginUser = createAsyncThunk('users/loginUser', async (user: LoginUserPayload, { rejectWithValue }) => {
-    
-    let endpoint = '/auth/login'
-
     try {
-        let response = await publicAxios.post(endpoint, user)
-        return response.data.data.user
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("LOGIN USER AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        const { data, error } = await supabaseClient.auth.signInWithPassword(user)
+
+        if(error) {
+            console.error("LOGIN USER SUPABASE ERROR: ", error);
+            return rejectWithValue(error.message);
         }
 
-        return rejectWithValue("An unexpected error occurred")
+        return data.user
     }
+    catch(error) {
+        console.error("LOGIN USER ERROR: ", error);
+        return rejectWithValue("An unexpected error occurred");
+    } 
 })
 
 
