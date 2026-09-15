@@ -25,3 +25,14 @@ export const formatTripDates = (startDate: Date | undefined, endDate: Date | und
 
     return formattedTripDates
 }
+
+
+
+export const formatSingularTripDate = (tripDate: Date | undefined) => {
+    if( !tripDate ) {
+        return 'Invalid date provided'
+    }
+
+    const formattedTripDate = tripDate.toString()
+    return formattedTripDate
+}

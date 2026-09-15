@@ -11,9 +11,9 @@ import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/s
 
 
 
-export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
-    console.log("initialize auth fired in useEffect on app start")
 
+export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_, { rejectWithValue }) => {
+    
     try {
         const session = await getSession() 
         if(!session) {
@@ -27,7 +27,6 @@ export const initializeAuth = createAsyncThunk('users/initializeAuth', async (_,
         console.error("INITIALIZE AUTH ERROR: ", error)
         return rejectWithValue("We could not restore your authentication session.")
     }
-    
 })
 
 
@@ -41,7 +40,6 @@ export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (_,
         console.error("GET CURRENT USER ERROR: ", error)
         return rejectWithValue("We could not retrieve your account information.")
     }
-
 })
 
 
@@ -128,7 +126,6 @@ export const forgotPassword = createAsyncThunk('users/forgotPassword', async (em
         console.error("FORGOT PASSWORD ERROR: ", error);
         return rejectWithValue("An unexpected error occurred");
     } 
-    
 })
 
 
@@ -148,7 +145,6 @@ export const resetPassword = createAsyncThunk('users/resetPassword', async (newP
         console.error("RESET PASSWORD ERROR: ", error);
         return rejectWithValue("An unexpected error occurred");
     } 
-    
 })
 
 

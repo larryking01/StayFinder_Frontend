@@ -5,13 +5,14 @@ import { selectCurrentUser } from '../../store/features/userSlice/user.selectors
 import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
 import { useEffect } from 'react'
 
-
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 import Loading from '../../components/loading/loading'
 import { whoAreWeImages } from '../../data/whoAreWe'
 import { partnerIcons } from '../../data/partnerIcons'
+
+
 
 
 
@@ -33,7 +34,6 @@ const Home = () => {
 
     // fetch hotels from database and populate the store.
     useEffect(() => {
-        console.log("authenticated user = ", authenticatedUser)
         dispatch(fetchHotels())
     }, [ dispatch ])
     

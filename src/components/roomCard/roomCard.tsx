@@ -14,11 +14,15 @@ import { selectIntendedTripDates } from '../../store/features/reservationSlice/r
 
 
 
+
+
+
 const RoomCard = ({ roomItem }: RoomCardProp) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const intendedTripDates = useAppSelector( selectIntendedTripDates )
+    
 
 
     const navigateToCheckout = () => {
@@ -27,6 +31,10 @@ const RoomCard = ({ roomItem }: RoomCardProp) => {
         // check if user has selected trip dates before navigating to checkout.
         if(!intendedTripDates || intendedTripDates.from?.getTime() === intendedTripDates.to?.getTime()) {
             alert("Please select your start and end dates to continue.")
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
             return
         }
 

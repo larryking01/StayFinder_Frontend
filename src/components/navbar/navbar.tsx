@@ -40,8 +40,6 @@ const Navbar = () => {
         let currentRoute = location.pathname 
         setActiveRoute(currentRoute)
 
-        console.log("current user is", authenticatedUser )
-
     }, [ location ])
 
 

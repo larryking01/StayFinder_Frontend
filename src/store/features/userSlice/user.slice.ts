@@ -37,16 +37,12 @@ const userSlice = createSlice({
                 else {
                     state.user = null
                 }
-
-                console.log("Initialize Auth Updated User To: ", state.user)
             })
             .addCase(initializeAuth.rejected, (state, action) => {
                 state.loading = false 
                 state.user = null 
                 state.authInitialized = true
                 state.error = action.payload as string
-
-                console.log("Initialize Auth Updated User To: ", state.user)
             })
 
             .addCase(getCurrentUser.pending, (state) => {
@@ -57,15 +53,11 @@ const userSlice = createSlice({
                 const normalizedUser = normalizeUser(supabaseUser)
                 state.user = normalizedUser
                 state.loading = false
-
-                console.log("Get Current User Was Called By Initialize Auth")
             })
             .addCase(getCurrentUser.rejected, (state, action) => {
                 state.loading = false 
                 state.user = null
                 state.error = action.payload as string
-
-                console.log("Get Current User Was Called By Initialize Auth")
             })
 
             .addCase(registerUser.pending, (state) => {

@@ -4,21 +4,21 @@ export const calculateNumberOfNights = (startDate: Date | undefined, endDate: Da
     }
 
 
-    let nightText = 'nights'
+    // let nightText = 'nights'
     const millisecondsPerDay = 1000 * 60 * 60 * 24 
     const differenceInMilliseconds = endDate.getTime() - startDate.getTime()
 
     // guard against case where end date comes before the start date
     if( differenceInMilliseconds < 0 ) {
-        return 'Invalid dates provided'
+        return -1
     }
 
     const numberOfNights = differenceInMilliseconds / millisecondsPerDay
 
-    if( numberOfNights === 1 ) {
-        nightText = 'night'
-    }
+    // if( numberOfNights === 1 ) {
+    //     nightText = 'night'
+    // }
 
-    let numberOfNightsText = `${ numberOfNights } ${ nightText }`
-    return numberOfNightsText
+    // let numberOfNightsText = `${ numberOfNights } ${ nightText }`
+    return numberOfNights
 }

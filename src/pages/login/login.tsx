@@ -26,7 +26,6 @@ const Login = () => {
 
     const handleLogin = (e: any) => {
         e.preventDefault()
-        console.log("login triggered")
         dispatch(loginUser({ email, password }))
     }
 

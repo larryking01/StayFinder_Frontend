@@ -55,7 +55,6 @@ const ReservationWidget = () => {
 
 
     const handleUpdateSearchTerm = (event: any) => {
-        // console.log("search destination = ", searchDestination)
         dispatch(setsearchDestination(event.target.value))
     }
 
