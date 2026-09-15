@@ -79,6 +79,13 @@ const HotelCheckout = () => {
 
     const handleSubmitBooking = (e: React.SubmitEvent) => {
         e.preventDefault()
+
+        if(!authenticatedUser) {
+            alert("Almost there!, Please log in to continue with your booking. Once you're signed in, you'll be able to complete your reservation.")
+            return 
+        }
+
+        
         const bookingFormData: BookingFormData = {
             firstName, 
             lastName,
@@ -95,7 +102,7 @@ const HotelCheckout = () => {
 
 
         const bookingPayload: Booking = {
-            userId: authenticatedUser!.id,
+            userId: authenticatedUser.id,
             userEmail: email,
             hotelId: selectedHotel!.id,
             hotelName: selectedHotel!.hotelName,
@@ -114,6 +121,9 @@ const HotelCheckout = () => {
             status: 'pending',
             paymentStatus: 'paid',
         }
+
+
+        // initiate payment flow
 
         console.log("booking form data = ", bookingFormData)
         console.log("booking payload = ", bookingPayload)
