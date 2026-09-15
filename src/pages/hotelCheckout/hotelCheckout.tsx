@@ -83,8 +83,8 @@ const HotelCheckout = () => {
                 <section className={ styles.checkout__paymentColumn }>
                     <form>
                         <article className={ styles.formControlsContainer }>
-
                             <h3>Who's checking in?</h3>
+                            <p className={ styles.nameRequirement }>Guest names must match the valid ID which will be used at check-in.</p>
 
                             <article className={ styles.inputContainer }>
                                 <input type="text" placeholder='First name' />

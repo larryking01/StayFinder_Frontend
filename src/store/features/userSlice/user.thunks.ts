@@ -1,9 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { isAxiosError } from "axios";
-import { publicAxios } from "../../../api/axios.public.instance";
 import { supabaseClient } from "../../../services/supabase/supabaseClient";
 import type { CreateUserPayload, LoginUserPayload, UpdateUserProfilePayload } from "../../../types/user.model";
-
 import { getSession, getSupabaseCurrentUser } from "../../../services/supabase/supabaseAuthService";
 
 
@@ -114,60 +111,67 @@ export const logoutUser = createAsyncThunk('users/logoutUser', async (_, { rejec
 
 
 export const forgotPassword = createAsyncThunk('users/forgotPassword', async (email: string, { rejectWithValue }) => {
-    
-    let endpoint = '/auth/forgot-password'
 
     try {
-        let response = await publicAxios.post(endpoint, email)
-        return response.data
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("FORGOT PASSWORD AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail( email, {
+            redirectTo: 'redirect link here'
+        })
+
+        if(error) {
+            console.error("FORGOT PASSWORD SUPABASE ERROR: ", error);
+            return rejectWithValue(error.message);
         }
 
-        return rejectWithValue("An unexpected error occurred")
+        return data
     }
+    catch(error) {
+        console.error("FORGOT PASSWORD ERROR: ", error);
+        return rejectWithValue("An unexpected error occurred");
+    } 
+    
 })
 
 
 export const resetPassword = createAsyncThunk('users/resetPassword', async (newPassword: string, { rejectWithValue }) => {
     
-    let endpoint = '/auth/reset-password'
-
     try {
-        let response = await publicAxios.post(endpoint, newPassword)
-        return response.data
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("RESET PASSWORD AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        const { data, error } = await supabaseClient.auth.updateUser({ password: newPassword })
+
+        if(error) {
+            console.error("RESET PASSWORD SUPABASE ERROR: ", error);
+            return rejectWithValue(error.message);
         }
 
-        return rejectWithValue("An unexpected error occurred")
+        return data.user
     }
+    catch(error) {
+        console.error("RESET PASSWORD ERROR: ", error);
+        return rejectWithValue("An unexpected error occurred");
+    } 
+    
 })
 
 
 export const updateUserProfile = createAsyncThunk('users/updateUserProfile', async (newProfile: UpdateUserProfilePayload, { rejectWithValue }) => {
     
-    let endpoint = '/auth/update-profile'
-
     try {
-        let response = await publicAxios.put(endpoint, newProfile)
-        return response.data
-    }
-    catch(error) {
-        if(isAxiosError(error)) {
-            console.error("UPDATE USER PROFILE AXIOS ERROR: ", error)
-            // check for specific axios error type and return descriptive messages latetr
-            return rejectWithValue("We could not establish a connection to the server. Please try again in a few minutes.")
+        const { data, error } = await supabaseClient.auth.updateUser({
+            email: newProfile.email,
+            data: {
+                firstName: newProfile.firstName,
+                lastName: newProfile.lastName
+            }
+        })
+
+        if(error) {
+            console.error("UPDATE PROFILE SUPABASE ERROR: ", error);
+            return rejectWithValue(error.message);
         }
 
-        return rejectWithValue("An unexpected error occurred")
+        return data.user
     }
+    catch(error) {
+        console.error("UPDATE PROFILE ERROR: ", error);
+        return rejectWithValue("An unexpected error occurred");
+    } 
 })
