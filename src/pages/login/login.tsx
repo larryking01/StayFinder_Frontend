@@ -1,11 +1,10 @@
 import styles from './login.module.scss'
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 import { loginUser } from '../../store/features/userSlice/user.thunks';
 import { useState } from 'react'
-
 
 
 
@@ -21,12 +20,27 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const dispatch = useAppDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
 
 
 
-    const handleLogin = (e: any) => {
-        e.preventDefault()
-        dispatch(loginUser({ email, password }))
+    const handleLogin = async (e: React.SubmitEvent) => {
+        try {
+            e.preventDefault()
+            const from = location.state?.from
+            await dispatch(loginUser({ email, password })).unwrap()
+
+            if(from) {
+                navigate(`${ from.pathname }${ from.search }${ from.hash }`, { replace: true })
+            }
+            else {
+                navigate("/")
+            }
+        }
+        catch(error) {
+            alert("Hmm, we couldn't sign you in. We couldn't verify your email and password. Please check your details and try again.")
+        }
     }
 
     
@@ -41,7 +55,7 @@ const Login = () => {
 
             
             <section className={ styles.login__loginForm }>
-                <form>
+                <form onSubmit={ handleLogin }>
                     <div className={ styles.inputContainer }>
                         <input type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} value={ email } />
                     </div>
@@ -51,7 +65,7 @@ const Login = () => {
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit" onClick={ handleLogin }>Login</button>
+                        <button type="submit">Login</button>
                     </div>
                 </form>
             </section>

@@ -1,9 +1,10 @@
 import styles from './mobileAccountMenu.module.scss'
 import { X, ArrowLeft } from 'lucide-react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 
 import type { MobileNavMenuProps } from '../../types/componentProps/mobileNavMenuProps'
-import { useAppSelector } from '../../hooks/useStore'
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
+import { logoutUser } from '../../store/features/userSlice/user.thunks'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
 import UserAvatar from '../userAvatar/userAvatar'
@@ -22,12 +23,25 @@ const MobileAccountMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
 
     const appName = useAppSelector( selectAppName )
     const navigate = useNavigate()
+    const location = useLocation()
+    const dispatch = useAppDispatch()
 
 
     const navigateToRoute = (route: string) => {
         // close the mobile nav menu and navigate to selected route    
         toggleVisibility()    
-        navigate( route )
+
+        if(route === '/logout') {
+            dispatch(logoutUser())
+
+            if(location.pathname.includes("checkout") || location.pathname.includes("my-bookings") ) {
+                navigate('/')
+            }
+            
+            return
+        }
+
+        navigate(route)
     }
 
 

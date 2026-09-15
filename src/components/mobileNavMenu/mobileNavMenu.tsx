@@ -62,10 +62,6 @@ const MobileNavMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
                         <Info />
                         <p>About Us</p>
                     </li>
-
-                    {/* <li>
-                        <button type="button" onClick={() => navigateToRoute('/accounts')}>Sign In</button>
-                    </li> */}
                 </ul>
             </article>
         </main>

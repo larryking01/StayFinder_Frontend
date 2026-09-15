@@ -38,6 +38,7 @@ const Navbar = () => {
     // get the current route and apply the active styling to the corresponding nav link
     useEffect(() => {
         let currentRoute = location.pathname 
+        console.log("current route = ", currentRoute)
         setActiveRoute(currentRoute)
 
     }, [ location ])
@@ -80,7 +81,11 @@ const Navbar = () => {
 
         if(route === '/logout') {
             dispatch(logoutUser())
-            navigate('/')
+
+            if(location.pathname.includes("checkout") || location.pathname.includes("my-bookings")) {
+                navigate('/')
+            }
+
             return
         }
 
@@ -89,7 +94,11 @@ const Navbar = () => {
 
 
     const navigateToSignIn = () => {
-        navigate("/accounts")
+        navigate("/accounts", {
+            state: {
+                from: location
+            }
+        })
     }
 
 
