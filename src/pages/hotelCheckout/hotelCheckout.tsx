@@ -62,8 +62,6 @@ const HotelCheckout = () => {
             dispatch(fetchSelectedHotelById( hotelId as string ))
         }
 
-        console.log("authenticated user = ", authenticatedUser)
-
     },[ dispatch, selectedHotel, hotelId ])
 
 
@@ -124,9 +122,7 @@ const HotelCheckout = () => {
 
 
         // initiate payment flow
-
-        console.log("booking form data = ", bookingFormData)
-        console.log("booking payload = ", bookingPayload)
+        navigate("/my-bookings")
     }
 
 

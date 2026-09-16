@@ -11,7 +11,7 @@ import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 import { logoutUser } from '../../store/features/userSlice/user.thunks'
 import { selectCurrentUser } from '../../store/features/userSlice/user.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
-
+import { protectedRoutes } from '../../data/protectedRoutes'
 
 
 
@@ -38,7 +38,6 @@ const Navbar = () => {
     // get the current route and apply the active styling to the corresponding nav link
     useEffect(() => {
         let currentRoute = location.pathname 
-        console.log("current route = ", currentRoute)
         setActiveRoute(currentRoute)
 
     }, [ location ])
@@ -79,10 +78,11 @@ const Navbar = () => {
     const handleManageAccountItemClicked = (route: string) => {
         setIsAccountMenuOpen( false )
 
+
         if(route === '/logout') {
             dispatch(logoutUser())
 
-            if(location.pathname.includes("checkout") || location.pathname.includes("my-bookings")) {
+            if(protectedRoutes.some(route => location.pathname.includes(route))) {
                 navigate('/')
             }
 

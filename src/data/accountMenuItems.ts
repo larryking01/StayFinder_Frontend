@@ -16,6 +16,11 @@ export const accountMenuItems: AccountMenuItem[] = [
         routePath: "/my-bookings"
     },
     // {
+    //     name: "Favourites",
+    //     icon:  Bookmark,
+    //     routePath: "/my-bookings"
+    // },
+    // {
     //     name: "Reviews",
     //     icon: Star,
     //     routePath: "/"

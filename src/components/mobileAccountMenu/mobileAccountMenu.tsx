@@ -8,6 +8,7 @@ import { logoutUser } from '../../store/features/userSlice/user.thunks'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
 import UserAvatar from '../userAvatar/userAvatar'
+import { protectedRoutes } from '../../data/protectedRoutes'
 
 
 
@@ -34,7 +35,7 @@ const MobileAccountMenu = ({ toggleVisibility }: MobileNavMenuProps) => {
         if(route === '/logout') {
             dispatch(logoutUser())
 
-            if(location.pathname.includes("checkout") || location.pathname.includes("my-bookings") ) {
+            if(protectedRoutes.some(route => location.pathname.includes(route))) {
                 navigate('/')
             }
             

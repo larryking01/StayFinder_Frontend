@@ -1,7 +1,6 @@
 import styles from './home.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore'
 import { selectAllHotels, selectHotelsLoadingState, selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
-import { selectCurrentUser } from '../../store/features/userSlice/user.selectors'
 import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
 import { useEffect } from 'react'
 
@@ -29,7 +28,6 @@ const Home = () => {
     const isLoadingHotels = useAppSelector( selectHotelsLoadingState )
     const hotels = useAppSelector( selectAllHotels )
     const appName = useAppSelector( selectAppName )
-    const authenticatedUser = useAppSelector( selectCurrentUser )
 
 
     // fetch hotels from database and populate the store.
