@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 import { registerUser } from '../../store/features/userSlice/user.thunks';
+import { selectIsAuthenticating } from '../../store/features/userSlice/user.selectors';
 import type { CreateUserPayload } from '../../types/user.model';
-
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 
 
 
@@ -23,6 +24,7 @@ const Register = () => {
 
     const dispatch = useAppDispatch()
     const appName = useAppSelector( selectAppName )
+    const isAuthenticating = useAppSelector( selectIsAuthenticating )
     const [ firstName, setFirstName ] = useState<string>('')
     const [ lastName, setLastName ] = useState<string>('')
     const [ email, setEmail ] = useState<string>('')
@@ -31,17 +33,23 @@ const Register = () => {
 
 
 
-    const handleRegister = (e: any) => {
-        e.preventDefault()
+    const handleRegister = async (e: React.SubmitEvent ) => {
+        try {
+            e.preventDefault()
 
-        let user: CreateUserPayload = {
-            firstName,
-            lastName,
-            email,
-            password
+            let user: CreateUserPayload = {
+                firstName,
+                lastName,
+                email,
+                password
+            }
+
+            await dispatch(registerUser(user)).unwrap()
+        }
+        catch( error ) {
+            alert("Hmm, we couldn't create your account. Please check your details and try again.")
         }
 
-        dispatch(registerUser(user))
     }
 
 
@@ -81,7 +89,14 @@ const Register = () => {
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit">Register</button>
+                        <button type="submit" disabled={ isAuthenticating }>
+                            {
+                                isAuthenticating ?
+                                    <LoadingSpinner />
+                                    :
+                                    <p>Register</p>
+                            }
+                        </button>
                     </div>
                 </form>
             </section>
@@ -90,7 +105,7 @@ const Register = () => {
             <section className={ styles.register__loginRedirect }>
                 <p>Have an account?</p>
                 <NavLink to="/accounts" className="nav-link-default">
-                    <p className={ styles.loginText }>Login</p>
+                    <p className="nav-link-default">Login</p>
                 </NavLink>
             </section>
 
@@ -106,8 +121,6 @@ const Register = () => {
                     <p>Join with google </p>
                 </button>
             </section>
-
-
         </main>
     )
 }

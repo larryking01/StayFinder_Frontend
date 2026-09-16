@@ -16,6 +16,9 @@ import { BookingFlowStepper } from '../../components/bookingFlowStepper/bookingF
 import { formatTripDatesAndCalculateNumberOfNights } from '../../utils/formatTripDatesAndCalculateNumberOfNights'
 import type { BookingFormData, Booking } from '../../types/booking.model'
 import { calculateNumberOfNights } from '../../utils/calculateNumberOfNights'
+import { selectIsSubmittingBooking } from '../../store/features/bookingSlice/booking.selectors'
+import { addNewBooking } from '../../store/features/bookingSlice/booking.thunks'
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner'
 
 
 
@@ -41,6 +44,7 @@ const HotelCheckout = () => {
     const isLoadingRoom = useAppSelector( selectRoomsLoadingState )
     const reservationDetails = useAppSelector( selectIntendedReservationDetails )
     const authenticatedUser = useAppSelector( selectCurrentUser )
+    const isSubmittingBooking = useAppSelector( selectIsSubmittingBooking )
 
     // booking form data
     const [ firstName, setFirstName ] = useState<string>('')
@@ -75,54 +79,61 @@ const HotelCheckout = () => {
 
 
 
-    const handleSubmitBooking = (e: React.SubmitEvent) => {
-        e.preventDefault()
+    const handleSubmitBooking = async (e: React.SubmitEvent) => {
+        try {
+            e.preventDefault()
 
-        if(!authenticatedUser) {
-            alert("Almost there!, Please log in to continue with your booking. Once you're signed in, you'll be able to complete your reservation.")
-            return 
+            if(!authenticatedUser) {
+                alert("Almost there!, Please log in to continue with your booking. Once you're signed in, you'll be able to complete your reservation.")
+                return 
+            }
+
+            // const bookingFormData: BookingFormData = {
+            //     firstName, 
+            //     lastName,
+            //     email, 
+            //     countryCode,
+            //     phoneNumber,
+            //     cardHolderName,
+            //     cardNumber,
+            //     expiryDate,
+            //     securityCode,
+            //     specialRequests,
+            //     couponCode
+            // }
+
+
+            const bookingPayload: Booking = {
+                userId: authenticatedUser.id,
+                userEmail: email,
+                hotelId: selectedHotel!.id,
+                hotelName: selectedHotel!.hotelName,
+                hotelCoverImage: selectedHotel!.coverImageURL,
+                roomId: selectedRoom!.id,
+                roomType: selectedRoom!.roomType,
+                startDate: reservationDetails.intendedTripDates!.from!,
+                endDate: reservationDetails.intendedTripDates!.to!,
+                numberOfNights: calculateNumberOfNights(reservationDetails.intendedTripDates?.from, reservationDetails.intendedTripDates?.to )!,
+                numberOfAdults: reservationDetails.intendedAdultTravellers,
+                numberOfChildren: reservationDetails.intendedChildTravellers,
+                numberOfRooms: reservationDetails.intendedNumberOfRooms,
+                pricePerNight: selectedRoom!.price,
+                totalPrice: selectedRoom!.price,
+                currency: 'GHS',
+                status: 'pending',
+                paymentStatus: 'paid',
+            }
+
+
+            // initiate payment flow
+            
+            await dispatch(addNewBooking(bookingPayload)).unwrap()
+            navigate("/my-bookings")
+
         }
-
-        
-        const bookingFormData: BookingFormData = {
-            firstName, 
-            lastName,
-            email, 
-            countryCode,
-            phoneNumber,
-            cardHolderName,
-            cardNumber,
-            expiryDate,
-            securityCode,
-            specialRequests,
-            couponCode
+        catch(error) {
+            alert("Hmm, we couldn't complete your booking at this time.")
         }
-
-
-        const bookingPayload: Booking = {
-            userId: authenticatedUser.id,
-            userEmail: email,
-            hotelId: selectedHotel!.id,
-            hotelName: selectedHotel!.hotelName,
-            hotelCoverImage: selectedHotel!.coverImageURL,
-            roomId: selectedRoom!.id,
-            roomType: selectedRoom!.roomType,
-            startDate: reservationDetails.intendedTripDates!.from!,
-            endDate: reservationDetails.intendedTripDates!.to!,
-            numberOfNights: calculateNumberOfNights(reservationDetails.intendedTripDates?.from, reservationDetails.intendedTripDates?.to )!,
-            numberOfAdults: reservationDetails.intendedAdultTravellers,
-            numberOfChildren: reservationDetails.intendedChildTravellers,
-            numberOfRooms: reservationDetails.intendedNumberOfRooms,
-            pricePerNight: selectedRoom!.price,
-            totalPrice: selectedRoom!.price,
-            currency: 'GHS',
-            status: 'pending',
-            paymentStatus: 'paid',
-        }
-
-
-        // initiate payment flow
-        navigate("/my-bookings")
     }
 
 
@@ -244,8 +255,13 @@ const HotelCheckout = () => {
 
 
                         <article className={ styles.submitBtnContainer }>
-                            <button type="submit">
-                                Complete booking
+                            <button type="submit" disabled={ isSubmittingBooking }>
+                                {
+                                    isSubmittingBooking ?
+                                        <LoadingSpinner />
+                                        :
+                                        <p>Complete booking</p>
+                                }
                             </button>
                         </article>
                     </form>

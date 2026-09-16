@@ -4,8 +4,9 @@ import { NavLink, useLocation, useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 import { loginUser } from '../../store/features/userSlice/user.thunks';
+import { selectIsAuthenticating } from '../../store/features/userSlice/user.selectors';
 import { useState } from 'react'
-
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 
 
 
@@ -16,12 +17,13 @@ import { useState } from 'react'
 const Login = () => {
 
 
-    const appName = useAppSelector( selectAppName )
-    const [ email, setEmail ] = useState('')
-    const [ password, setPassword ] = useState('')
     const dispatch = useAppDispatch()
     const location = useLocation()
     const navigate = useNavigate()
+    const appName = useAppSelector( selectAppName )
+    const isAuthenticating = useAppSelector( selectIsAuthenticating )
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
 
 
 
@@ -65,7 +67,14 @@ const Login = () => {
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit">Login</button>
+                        <button type="submit" disabled={ isAuthenticating }>
+                            {
+                                isAuthenticating ?
+                                    <LoadingSpinner />
+                                    :
+                                    <p>Login</p>
+                            }
+                        </button>
                     </div>
                 </form>
             </section>
@@ -74,7 +83,7 @@ const Login = () => {
             <section className={ styles.login__registerRedirect }>
                 <p>Don't have an account?</p>
                 <NavLink to="register" className="nav-link-default">
-                    <p className={ styles.registerText }>Register</p>
+                    <p className="nav-link-default">Register</p>
                 </NavLink>
             </section>
 

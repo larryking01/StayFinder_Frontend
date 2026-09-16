@@ -85,13 +85,14 @@
 
         p {
             @include font-small('Poppins');
+            font-size: 0.95rem;
         }
 
 
-        .loginText {
-            cursor: pointer;
-            color: var(--brand-primary);
-        }
+        // .loginText {
+        //     cursor: pointer;
+        //     color: var(--brand-primary);
+        // }
     }
 
 
