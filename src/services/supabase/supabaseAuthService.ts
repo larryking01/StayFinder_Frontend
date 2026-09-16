@@ -32,7 +32,6 @@ export const getSupabaseCurrentUser = async () => {
 }
 
 
-
 // respond to user auth state changes
 export const onAuthStateChange = ( callback:(event: AuthChangeEvent, session: Session | null) => void ) => {
     return supabaseClient.auth.onAuthStateChange( callback )

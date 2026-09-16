@@ -4,13 +4,17 @@ import { selectAllHotels, selectHotelsLoadingState, selectAppName } from '../../
 import { fetchHotels } from '../../store/features/hotelSlice/hotel.thunks'
 import { useEffect } from 'react'
 
-
 import ReservationWidget from '../../components/reservationWidget/reservationWidget'
 import HotelCard from '../../components/hotelCard/hotelCard'
 import TrendingDestination from '../../components/trendingDestination/trendingDestination'
 import Loading from '../../components/loading/loading'
 import { whoAreWeImages } from '../../data/whoAreWe'
 import { partnerIcons } from '../../data/partnerIcons'
+
+
+
+
+
 
 
 
@@ -30,6 +34,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchHotels())
     }, [ dispatch ])
+    
 
 
     if( isLoadingHotels ) {

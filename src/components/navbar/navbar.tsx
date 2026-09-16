@@ -6,10 +6,12 @@ import { NavLink, useNavigate, useLocation } from 'react-router'
 import MobileNavMenu from '../mobileNavMenu/mobileNavMenu'
 import UserAvatar from '../userAvatar/userAvatar'
 import MobileAccountMenu from '../mobileAccountMenu/mobileAccountMenu'
-import { useAppSelector } from '../../hooks/useStore'
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore'
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors'
+import { logoutUser } from '../../store/features/userSlice/user.thunks'
+import { selectCurrentUser } from '../../store/features/userSlice/user.selectors'
 import { accountMenuItems } from '../../data/accountMenuItems'
-
+import { protectedRoutes } from '../../data/protectedRoutes'
 
 
 
@@ -24,10 +26,11 @@ const Navbar = () => {
     const [ isMobileNavOpen, setIsMobileNavOpen ] = useState( false )
     const [ isAccountMenuOpen, setIsAccountMenuOpen ] = useState( false )
     const [ isMobileAccountMenuOpen, setIsMobileAccountMenuOpen ] = useState( false )
-    const [isLoggedIn] = useState( true )
     const location = useLocation()
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const appName = useAppSelector( selectAppName )
+    const authenticatedUser = useAppSelector( selectCurrentUser )
     const [ activeRoute, setActiveRoute ] = useState<string | null>(null)
 
 
@@ -74,12 +77,28 @@ const Navbar = () => {
 
     const handleManageAccountItemClicked = (route: string) => {
         setIsAccountMenuOpen( false )
+
+
+        if(route === '/logout') {
+            dispatch(logoutUser())
+
+            if(protectedRoutes.some(route => location.pathname.includes(route))) {
+                navigate('/')
+            }
+
+            return
+        }
+
         navigate(route)
     }
 
 
     const navigateToSignIn = () => {
-        navigate("/accounts")
+        navigate("/accounts", {
+            state: {
+                from: location
+            }
+        })
     }
 
 
@@ -117,9 +136,9 @@ const Navbar = () => {
                     </li>
 
                     {
-                        isLoggedIn ?
+                        authenticatedUser ?
                             <div onClick={ handleIsAccountMenuOpen }>
-                                <UserAvatar firstName='Larry'/>                            
+                                <UserAvatar firstName={ authenticatedUser.firstName }/>                            
                             </div>
                             :
                             <li>
@@ -134,9 +153,9 @@ const Navbar = () => {
 
             <section className={ styles.navbar__hamburger } >
                 { 
-                    isLoggedIn ? 
+                    authenticatedUser ? 
                         <div onClick={ handleIsMobileAccountMenuOpen }>
-                            <UserAvatar firstName='Larry' /> 
+                            <UserAvatar firstName={ authenticatedUser.firstName } /> 
                         </div>
                         : 
                         <UserRound size={ 30 } onClick={ navigateToSignIn }/> 

@@ -1,9 +1,13 @@
 import styles from './register.module.scss'
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from 'react-router';
-import { useAppSelector } from '../../hooks/useStore';
+import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
-
+import { registerUser } from '../../store/features/userSlice/user.thunks';
+import { selectIsAuthenticating } from '../../store/features/userSlice/user.selectors';
+import type { CreateUserPayload } from '../../types/user.model';
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 
 
 
@@ -18,7 +22,36 @@ import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 const Register = () => {
 
 
+    const dispatch = useAppDispatch()
     const appName = useAppSelector( selectAppName )
+    const isAuthenticating = useAppSelector( selectIsAuthenticating )
+    const [ firstName, setFirstName ] = useState<string>('')
+    const [ lastName, setLastName ] = useState<string>('')
+    const [ email, setEmail ] = useState<string>('')
+    const [ password, setPassword ] = useState<string>('')
+    const [ confirmPassword, setConfirmPassword ] = useState<string>('')
+
+
+
+    const handleRegister = async (e: React.SubmitEvent ) => {
+        try {
+            e.preventDefault()
+
+            let user: CreateUserPayload = {
+                firstName,
+                lastName,
+                email,
+                password
+            }
+
+            await dispatch(registerUser(user)).unwrap()
+        }
+        catch( error ) {
+            alert("Hmm, we couldn't create your account. Please check your details and try again.")
+        }
+
+    }
+
 
     
     return (
@@ -32,31 +65,38 @@ const Register = () => {
 
             
             <section className={ styles.register__registerForm }>
-                <form>
+                <form onSubmit={ handleRegister }>
                     <div className={ styles.nameContainer }>
                         <div className={ styles.inputContainer }>
-                            <input type="text" placeholder='First name' />
+                            <input type="text" placeholder='First name' onChange={(e) => setFirstName(e.target.value)} value={ firstName } />
                         </div>
 
                         <div className={ styles.inputContainer }>
-                            <input type="text" placeholder='Last name' />
+                            <input type="text" placeholder='Last name' onChange={(e) => setLastName(e.target.value)} value={ lastName } />
                         </div>
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='E-mail' />
+                        <input type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} value={ email } />
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='Password' />
+                        <input type="text" placeholder='Password' onChange={(e) => setPassword(e.target.value)} value={ password } />
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <input type="text" placeholder='Confirm password' />
+                        <input type="text" placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)} value={ confirmPassword } />
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit">Register</button>
+                        <button type="submit" disabled={ isAuthenticating }>
+                            {
+                                isAuthenticating ?
+                                    <LoadingSpinner />
+                                    :
+                                    <p>Register</p>
+                            }
+                        </button>
                     </div>
                 </form>
             </section>
@@ -65,7 +105,7 @@ const Register = () => {
             <section className={ styles.register__loginRedirect }>
                 <p>Have an account?</p>
                 <NavLink to="/accounts" className="nav-link-default">
-                    <p className={ styles.loginText }>Login</p>
+                    <p className="nav-link-default">Login</p>
                 </NavLink>
             </section>
 
@@ -81,8 +121,6 @@ const Register = () => {
                     <p>Join with google </p>
                 </button>
             </section>
-
-
         </main>
     )
 }

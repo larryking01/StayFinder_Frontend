@@ -12,6 +12,17 @@
     @include base-padding(4rem);
 
 
+    @include mini-mobile {
+        @include base-padding(4rem, 2rem)
+    }
+
+
+    @include mobile {
+        @include base-padding(4rem, 2rem)
+    }
+
+
+
     h3 {
         @include font-title('Poppins');
         color: var(--brand-primary);
@@ -31,16 +42,35 @@
 
 
     &__searchSupport {
-        // background-color: red;
         display: flex;
         justify-content: space-between;
         gap: 1rem;
         margin-bottom: 4rem;
 
 
+        @include mini-mobile {
+            flex-direction: column;
+        }
+
+
+        @include mobile {
+            flex-direction: column;
+        }
+
+
         .inputWrapper {
             position: relative;
             width: 70%;
+
+
+            @include mini-mobile {
+                width: 100%;
+            }
+
+
+            @include mobile {
+                width: 100%;
+            }
 
 
             input {
@@ -50,7 +80,6 @@
 
 
                 &::placeholder {
-                    padding-left: 2rem;
                     @include font-small('Poppins')
                 }
             }
@@ -67,6 +96,16 @@
         button {
             width: 30%;
             @include button-primary(30%, 3rem);
+
+
+            @include mini-mobile {
+                width: 40%;
+            }
+
+
+            @include mobile {
+                width: 40%;
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { initialBookingState } from "./booking.initialState";
-import { fetchUserBookings, cancelBooking, deleteBooking, fetchBookingById } from "./booking.thunks";
+import { addNewBooking, fetchUserBookings, cancelBooking, deleteBooking, fetchBookingById } from "./booking.thunks";
 import type { Booking } from "../../../types/booking.model";
 
 
@@ -36,6 +36,17 @@ export const bookingsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(addNewBooking.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(addNewBooking.fulfilled, (state) => {
+                state.loading = false 
+                state.error = null
+            })
+            .addCase(addNewBooking.rejected, (state, action) => {
+                state.loading = false 
+                state.error = action.payload as string
+            })
             .addCase(fetchUserBookings.pending, (state) => {
                 state.loading = true 
             })
@@ -50,14 +61,17 @@ export const bookingsSlice = createSlice({
                 state.error = action.payload as string 
                 state.bookings = []
             })
+
             .addCase(cancelBooking.rejected, (state, action) => {
                 // revert cancelled action later
                 state.error = action.payload as string
             })
+
             .addCase(deleteBooking.rejected, (state, action) => {
                 // revert local delete operation
                 state.error = action.payload as string
             })
+
             .addCase(fetchBookingById.pending, (state) => {
                 state.loading = true
             })

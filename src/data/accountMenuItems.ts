@@ -16,6 +16,11 @@ export const accountMenuItems: AccountMenuItem[] = [
         routePath: "/my-bookings"
     },
     // {
+    //     name: "Favourites",
+    //     icon:  Bookmark,
+    //     routePath: "/my-bookings"
+    // },
+    // {
     //     name: "Reviews",
     //     icon: Star,
     //     routePath: "/"
@@ -23,6 +28,6 @@ export const accountMenuItems: AccountMenuItem[] = [
     {
         name: "Sign out",
         icon: LogOut,
-        routePath: "/"
+        routePath: "/logout"
     }
 ];

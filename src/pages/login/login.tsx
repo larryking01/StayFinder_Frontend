@@ -1,10 +1,12 @@
 import styles from './login.module.scss'
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../hooks/useStore';
 import { selectAppName } from '../../store/features/hotelSlice/hotel.selectors';
 import { loginUser } from '../../store/features/userSlice/user.thunks';
+import { selectIsAuthenticating } from '../../store/features/userSlice/user.selectors';
 import { useState } from 'react'
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 
 
 
@@ -15,17 +17,32 @@ import { useState } from 'react'
 const Login = () => {
 
 
+    const dispatch = useAppDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
     const appName = useAppSelector( selectAppName )
+    const isAuthenticating = useAppSelector( selectIsAuthenticating )
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
-    const dispatch = useAppDispatch()
 
 
 
-    const handleLogin = (e: any) => {
-        e.preventDefault()
-        console.log("login triggered")
-        dispatch(loginUser({ email, password }))
+    const handleLogin = async (e: React.SubmitEvent) => {
+        try {
+            e.preventDefault()
+            const from = location.state?.from
+            await dispatch(loginUser({ email, password })).unwrap()
+
+            if(from) {
+                navigate(`${ from.pathname }${ from.search }${ from.hash }`, { replace: true })
+            }
+            else {
+                navigate("/")
+            }
+        }
+        catch(error) {
+            alert("Hmm, we couldn't sign you in. We couldn't verify your email and password. Please check your details and try again.")
+        }
     }
 
     
@@ -40,7 +57,7 @@ const Login = () => {
 
             
             <section className={ styles.login__loginForm }>
-                <form>
+                <form onSubmit={ handleLogin }>
                     <div className={ styles.inputContainer }>
                         <input type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} value={ email } />
                     </div>
@@ -50,7 +67,14 @@ const Login = () => {
                     </div>
 
                     <div className={ styles.inputContainer }>
-                        <button type="submit" onClick={ handleLogin }>Login</button>
+                        <button type="submit" disabled={ isAuthenticating }>
+                            {
+                                isAuthenticating ?
+                                    <LoadingSpinner />
+                                    :
+                                    <p>Login</p>
+                            }
+                        </button>
                     </div>
                 </form>
             </section>
@@ -59,7 +83,7 @@ const Login = () => {
             <section className={ styles.login__registerRedirect }>
                 <p>Don't have an account?</p>
                 <NavLink to="register" className="nav-link-default">
-                    <p className={ styles.registerText }>Register</p>
+                    <p className="nav-link-default">Register</p>
                 </NavLink>
             </section>
 

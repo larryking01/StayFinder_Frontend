@@ -11,12 +11,17 @@ import Empty from '../../components/empty/empty'
 
 
 
+
+
 const BookedHotels = () => {
 
 
     let bookedHotels: number[] = [0, 1]
 
+
+
     
+
 
     return (
         <main className={ styles.bookings }>

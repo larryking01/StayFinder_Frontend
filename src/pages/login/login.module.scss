@@ -76,13 +76,14 @@
 
         p {
             @include font-small('Poppins');
+            font-size: 0.95rem;
         }
 
 
-        .registerText {
-            cursor: pointer;
-            color: var(--brand-primary);
-        }
+        // .registerText {
+        //     cursor: pointer;
+        //     color: var(--brand-primary);
+        // }
     }
 
 

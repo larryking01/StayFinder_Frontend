@@ -27,7 +27,7 @@ const Support = () => {
                     <input type="text" placeholder="How can we help?" />
                     <Search size={ 22 } className={ styles.icon }/>
                 </div>
-                <button type="button" >Search</button>
+                <button type="button">Search</button>
             </section>
 
 

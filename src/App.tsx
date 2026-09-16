@@ -18,6 +18,7 @@ import Favourites from './pages/favouriteHotels/favouriteHotels'
 import SearchResults from './pages/searchResults/searchResults'
 import ListHotel from './pages/listHotel/listHotel'
 import AuthLayout from './layouts/authLayout/authLayout'
+import ProtectedRoutesLayout from './layouts/protectedRoutes/protectedRoutes'
 import { useAppDispatch } from './hooks/useStore'
 
 
@@ -66,17 +67,22 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* public routes */}
         <Route path='/' element={ <Layout /> }>
           <Route index element={ <Home /> } />
           <Route path='home' element={ <Home /> } />
           <Route path=':hotelName/:hotelId' element={ <HotelInfo /> } />
           <Route path='search-results' element={ <SearchResults /> } />
           <Route path="checkout/:hotelName/:hotelId/:roomId" element={ <HotelCheckout /> } /> 
-          <Route path="my-bookings" element={ <BookedHotels /> } />
-          <Route path="list-your-hotel" element={ <ListHotel /> } />
-          <Route path="favourites" element={ <Favourites /> } />
           <Route path="about-us" element={ <AboutUs /> } />
           <Route path="support" element={ <Support /> } />
+        </Route>
+
+        {/* protected routes */}
+        <Route element={ <ProtectedRoutesLayout /> }>
+            <Route path="my-bookings" element={ <BookedHotels /> } />
+            <Route path="list-your-hotel" element={ <ListHotel /> } />
+            <Route path="favourites" element={ <Favourites /> } />
         </Route>
 
         <Route path="accounts" element={ <AuthLayout /> }>
