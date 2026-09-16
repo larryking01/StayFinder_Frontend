@@ -126,7 +126,7 @@ const HotelCheckout = () => {
 
 
             // initiate payment flow
-            
+
             await dispatch(addNewBooking(bookingPayload)).unwrap()
             navigate("/my-bookings")
 
@@ -249,7 +249,7 @@ const HotelCheckout = () => {
                         <article className={ styles.termsAndConditions }>
                             <p>
                                 By clicking the button below, I confirm that I have read and understood the Privacy Statement
-                                and that I accept the Terms of Service.
+                                and that I accept the Terms of Service
                             </p>
                         </article>
 
